@@ -1,0 +1,52 @@
+*pi_paren.txt*  pour Vim version 7.0. Dernière modification : 26 avr 2006
+
+                MANUEL DE RÉFÉRENCE DE VIM -  par Bram Moolenaar
+
+
+Surbrillance de la parenthèse correspondante			*matchparen*
+
+La fonctionnalité présenté ici est un greffon standard |standard-plugin|.
+Ce greffon n'est disponible que si 'compatible' n'est pas activé.
+
+Vous pouvez éviter le chargement de ce greffon en positionnant la variable
+"loaded_matchparen" : >
+	:let loaded_matchparen = 1
+
+Ce greffon installe l'autocommande CursorMoved pour redéfinir la surbrillance
+correspondante.
+
+Pour désactiver le greffon après son chargement, utilisez cette commande : >
+
+	:NoMatchParen
+
+Et pour la réactiver : >
+
+	:DoMatchParen
+
+Le groupe de surbrillance utilisé est MatchParen. Vous pouvez donc spécifer
+des couleurs différentes à l'aide de la commande ":highlight". Exemple : >
+
+	:hi MatchParen ctermbg=blue guibg=lightblue
+
+Le caractère à mettre en correspondance vient de l'option 'matchpairs'. Vous
+pouvez changer sa valeur pour mettre en surbrillance des correspondances
+différentes. Notez que tout n'est pas possible. Par exemple, vous ne pouvez
+pas mettre en surbrillance les apostrophes ou les guillemets à l'anglaise car
+le même caractère indique le début et la fin.
+
+Les attributs de surbrillance syntaxique sont utilisés. Lorsque que le curseur
+n'est pas à l'intérieur d'un élément de syntaxe de type chaine ou commentaire,
+alors les correspondances à l'intéreur des chaines ou des commentaires sont
+ignorées. Tous les éléments de syntaxe ayant "string" ou "comment" dans leur
+nom sont considérés comme des éléments de chaine ou de commentaire.
+
+La recherche est limité pour éviter un délai à chaque déplacement du curseur.
+Les limites sont :
+- Ce qui est visible dans la fenêtre.
+- 100 lignes au dessus ou en dessous du curseur pour éviter des délais trop
+  long quand il y a des replis fermés.
+- 'synmaxcolumn' fois 2 octets avant ou après le curseur pour éviter les
+  délais dans une ligne longue avec la surbrillance syntaxique.
+
+==============================================================================
+ vim:tw=78:ts=8:ft=help:norl:
