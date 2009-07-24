@@ -3,6 +3,9 @@ let mapleader = ","
 
 " General {{{
 
+" from Gary Bernhardt: don't close splits when deleting buffer
+cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
+
 let php_sql_query = 1
 set nocp		        " 'compatible' is not set
 filetype plugin on	    " plugins are enabled
@@ -33,10 +36,13 @@ call SetTag()
 "set encoding=latin1
 set termencoding=utf-8
 set hidden
-set lz " do not redraw while running macros (much faster) (LazyRedraw)
+" Do not redraw while running macros (much faster) (LazyRedraw)
+set lz
 set infercase
 set backup
 set backupdir=~/.vim/backup
+" Stores swap files there
+set directory=~/.vim/backup
 set writebackup
 set mouse=a
 " make mouse work on virtual terms like screen
@@ -106,6 +112,9 @@ endif
 " Mappings {{{
 
 set winaltkeys=no
+
+" Hashrocket shortcut compliments of TextMate
+imap <C-L> <space>=><space>
 
 " make pack
 map <Leader>m :!make pack<CR>
@@ -367,6 +376,15 @@ fun! ShowFuncName()
   call search("\\%" . lnum . "l" . "\\%" . col . "c")
 endfun
 map <Leader>f :call ShowFuncName()<CR>
+
+function! ToggleScratch()
+  if expand('%') == g:ScratchBufferName
+    quit
+  else
+    Sscratch
+  endif
+endfunction
+map <Leader>s :call ToggleScratch()<CR>
 " }}}
 
 " User commands or aliases
