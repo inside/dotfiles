@@ -113,11 +113,20 @@ endif
 
 set winaltkeys=no
 
+" Edit ~/.vimrc
+map <Leader>e :e ~/.vimrc<Enter>
+
+" Source ~/.vimrc
+map <Leader>so :w<Enter>:source ~/.vimrc<Enter>
+
 " Hashrocket shortcut compliments of TextMate
 imap <C-L> <space>=><space>
 
 " make pack
 map <Leader>m :!make pack<CR>
+
+" make the dmplayer
+map <Leader>mf :!cd flash/dmplayer && make<CR>
 
 " Toggle mouse on or off
 map <C-m> :call ToggleActiveMouse()<CR>
@@ -255,12 +264,22 @@ let Tlist_Auto_Open = 0
 let Tlist_Show_One_File = 1
 let Tlist_Sort_Type = 'name'
 let Tlist_Ctags_Cmd = "~/bin/ctags"
+" Actionscript language
+" put this in ~/.ctags
+"--langdef=actionscript
+"--langmap=actionscript:.as
+"--regex-actionscript=/^[ \t]*[(private| public|static) ( \t)]*function[ \t]+([A-Za-z0-9_]+)[ \t]*\(/\1/f, function, functions/
+"--regex-actionscript=/^[ \t]*[(public) ( \t)]*function[ \t]+(set|get) [ \t]+([A-Za-z0-9_]+)[ \t]*\(/\1 \2/p,property, properties/
+"--regex-actionscript=/^[ \t]*[(private| public|static) ( \t)]*var[ \t]+([A-Za-z0-9_]+)[ \t]*/\1/v,variable, variables/
+"--regex-actionscript=/.*\.prototype \.([A-Za-z0-9 ]+)=([ \t]?)function( [ \t]?)*\(/\1/ f,function, functions/
+"--regex-actionscript=/^[ \t]*class[ \t]+([A-Za-z0-9_]+)[ \t]*/\1/c,class, classes/
+let tlist_actionscript_settings = 'actionscript;c:class;f:method;p:property;v:variable'
 
 " FuzzyFinder
 let g:FuzzyFinderOptions = { 'Base':{}, 'Buffer':{}, 'File':{}, 'Dir':{},
 \                      'MruFile':{}, 'MruCmd':{}, 'Bookmark':{},
 \                      'Tag':{}, 'TaggedFile':{},
-\                      'GivenFile':{}, 'GivenDir':{},
+\                      'GivenFile':{}, 'GivenDir':{}, 'GivenCmd':{},
 \                      'CallbackFile':{}, 'CallbackItem':{}, }
 
 let g:FuzzyFinderOptions.Base.ignore_case = 1
