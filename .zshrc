@@ -100,4 +100,10 @@ export APACHE_RUN_GROUP=www-data
 umask 002
 stty stop ''
 
-PROMPT=$'%S[%n@%m:%~] %D{%a %b %e %T} P%j%s\n$ '
+# On my local machine, I like this prompt
+if [ $IS_ON_REMOTE_HOST ] && [ $IS_ON_REMOTE_HOST -eq 0 ]
+then
+    PROMPT=$'%S[%n@%m:%~] %D{%a %b %e %T} $(git_prompt_info) P%j%s\n$ '
+else
+    PROMPT='%{$fg_bold[green]%}%n@%m %{$fg[blue]%}%c %{$fg_bold[red]%}$(git_prompt_info)%{$fg[blue]%} P%j %% %{$reset_color%}'
+fi
