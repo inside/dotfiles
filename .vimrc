@@ -128,6 +128,9 @@ map <Leader>m :!make pack<CR>
 " make the dmplayer
 map <Leader>mf :!cd flash/dmplayer && make<CR>
 
+" Toggle paste on or off
+map <Leader>sp :call TogglePaste()<CR>
+
 " Toggle mouse on or off
 map <C-m> :call ToggleActiveMouse()<CR>
 
@@ -334,6 +337,16 @@ function! ToggleActiveMouse()
     else
         exe "set mouse=a"
         echo "Mouse is on"
+    endif
+endfunction
+
+function! TogglePaste()
+    if &paste == "0"
+        exe "set paste"
+        echo "Set paste called"
+    else
+        exe "set nopaste"
+        echo "Set nopaste called"
     endif
 endfunction
 
