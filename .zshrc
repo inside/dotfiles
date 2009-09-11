@@ -107,3 +107,6 @@ then
 else
     PROMPT='%{$fg_bold[green]%}%n@%m %{$fg[blue]%}%c %{$fg_bold[red]%}$(git_prompt_info)%{$fg[blue]%} P%j %% %{$reset_color%}'
 fi
+
+# MySql client prompt
+export MYSQL_PS1="(\u@\h) [\d]> "
