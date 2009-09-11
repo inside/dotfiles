@@ -83,9 +83,9 @@ alias devmysql="mysql -h devdb -u dev -p"
 alias logprod="ssh dev@logprod"
 alias gs="git status"
 alias gd="git diff"
-alias gb="git branch"
 alias gc="git checkout"
 alias gl="git log"
+alias gp="git pull --rebase"
 alias ggrep="git grep"
 
 # variables
