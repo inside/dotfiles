@@ -1,0 +1,21 @@
+[user]
+    name = Yann Thomas-Gerard
+    email = inside@gmail.com
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+[core]
+    pager = less
+[alias]
+    st = status
+[alias]
+    co = checkout
+    st = status
+    ba = branch -v -a
+    slog = log --pretty=oneline
+    nlog = log --name-status
+    dlog = log -p
+    flog = log --name-only
+    ci = commit
+    br = branch -v
