@@ -91,7 +91,7 @@ alias ggrep="git grep"
 # variables
 export PAGER=$(which less)
 export EDITOR=$(which vim)
-export PATH=$PATH:/home/inside/bin:/home/yann/bin:/home/yann/scripts:/home/yann/sdk/flex/bin
+export PATH=$PATH:~/bin:~/scripts:~/sdk/flex/bin
 export APACHE_RUN_USER=www-data
 export APACHE_RUN_GROUP=www-data
 
