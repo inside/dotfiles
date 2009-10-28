@@ -8,7 +8,8 @@ cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
 
 let php_sql_query = 1
 set nocp		        " 'compatible' is not set
-filetype plugin on	    " plugins are enabled
+filetype plugin indent on	    " plugins are enabled
+
 
 " Tell vim to look for these directories when doing gf :find , see :h path
 set path+=lib,lib/DM,lib/DM/DBObject,src
@@ -93,20 +94,22 @@ colorscheme torte
 " }}}
 
 " Autocommands {{{
-:augroup my_tab
-if !exists("autocommands_loaded")
-    let autocommands_loaded = 1
-    au BufNewFile,BufRead *.php    set shiftwidth=4 softtabstop=4 tabstop=4
+":augroup my_tab
+"if !exists("autocommands_loaded")
+"    let autocommands_loaded = 1
+"    au BufNewFile,BufRead *.php    set shiftwidth=4 softtabstop=4 tabstop=4
     " vim will warn me if I type if ($foo = $bar)
     "au BufNewFile,BufRead *.php match ErrorMsg '\(if\|while\)\s*([^=(!<>]*=[^=].*'
-    au BufNewFile,BufRead *.html   set shiftwidth=2 softtabstop=2 tabstop=2
-    au BufNewFile,BufRead *.css    set shiftwidth=2 softtabstop=2 tabstop=2 omnifunc=csscomplete#CompleteCSS
-    au BufNewFile,BufRead *.js     set shiftwidth=4 softtabstop=4 tabstop=4
-    au BufNewFile,BufRead *.tpl    set shiftwidth=2 softtabstop=2 tabstop=2 ft=html syntax=smarty
-    au BufNewFile,BufRead *.phtml  set shiftwidth=2 softtabstop=2 tabstop=2 ft=php " all my .phtml files ARE php
-    au BufNewFile,BufRead Makefile set noexpandtab
-    au BufNewFile,BufRead *.as     set ft=actionscript
-endif
+"    au BufNewFile,BufRead *.html   set shiftwidth=2 softtabstop=2 tabstop=2
+"    au BufNewFile,BufRead *.css    set shiftwidth=2 softtabstop=2 tabstop=2 omnifunc=csscomplete#CompleteCSS
+"    au BufNewFile,BufRead *.js     set shiftwidth=4 softtabstop=4 tabstop=4
+"    au BufNewFile,BufRead *.tpl    set shiftwidth=2 softtabstop=2 tabstop=2 ft=html syntax=smarty
+"    au BufNewFile,BufRead *.phtml  set shiftwidth=2 softtabstop=2 tabstop=2 ft=php " all my .phtml files ARE php
+"    au BufNewFile,BufRead Makefile set noexpandtab
+"    au BufNewFile,BufRead *.as     set ft=actionscript
+"endif
+au BufNewFile,BufRead Makefile set noexpandtab
+au BufNewFile,BufRead *.as     set ft=actionscript
 " }}}
 
 " Mappings {{{
