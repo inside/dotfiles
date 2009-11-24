@@ -87,6 +87,7 @@ alias gc="git checkout"
 alias gl="git log"
 alias gp="git pull --rebase"
 alias ggrep="git grep"
+alias devlog="ssh inside@mydev 'sudo bin/showlog.sh'"
 
 # variables
 export PAGER=$(which less)
