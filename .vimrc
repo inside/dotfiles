@@ -117,7 +117,7 @@ au BufNewFile,BufRead *.as     set ft=actionscript
 set winaltkeys=no
 
 " Edit ~/.vimrc
-map <Leader>e :e ~/.vimrc<Enter>
+map <Leader>es :e ~/.vimrc<Enter>
 
 " Source ~/.vimrc
 map <Leader>so :w<Enter>:source ~/.vimrc<Enter>
@@ -204,10 +204,12 @@ map ff /function <Enter>z<Enter>$
 " }}}
 
 " Useful abbrevs {{{
+iab daylimotion dailymotion
 iab flase false
 iab lfase false
 ab xr print_r($
 ab xv var_dump($
+ab xe error_log(
 ab fu function
 ab xhtml <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"<CR>"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><CR><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr"><CR><head><CR><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><CR><title></title><CR></head><CR><body><CR></body><CR></html>
 
