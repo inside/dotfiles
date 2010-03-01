@@ -90,7 +90,7 @@ set showmode
 set t_Co=256 " See http://www.vim.org/tips/tip.php?tip_id=1312
 syntax on
 set background=dark
-colorscheme wombat
+colorscheme torte
 " }}}
 
 " Autocommands {{{
