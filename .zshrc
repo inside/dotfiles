@@ -16,7 +16,7 @@ vmxpie()
 {
     if [ -z "$1" ]
     then
-        echo "Usage : $(basename $0) 6|7 [host number]"
+        echo "Usage : $(basename $0) 6|7|8 [host number]"
         return
     fi
 
@@ -27,7 +27,8 @@ vmxpie()
         host="vmxpie$1-$2"
     fi
 
-    rdesktop -u 'y.thomas-gerard' -d 'DAILY' -f -a 16 -k fr -z -xb -P $host
+    echo "connecting to $host"
+    rdesktop -u 'y.thomas-gerard' -d 'DAILY' -f -a 16 -k fr -z -xb -P "$host"
 }
 
 HISTFILE="$HOME/.zshistory"              # Fichier d'historique
