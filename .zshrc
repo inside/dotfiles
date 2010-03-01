@@ -7,7 +7,7 @@ vv ()
 # get the name of the branch we are on
 git_prompt_info()
 {
-    ref=$(git-symbolic-ref HEAD 2> /dev/null) || return
+    ref=$(git symbolic-ref HEAD 2> /dev/null) || return
     echo "(${ref#refs/heads/})"
 }
 
@@ -71,6 +71,7 @@ unsetopt EXTENDED_HISTORY                # Historique avec timings = bof
 setopt HIST_NO_STORE                     # N'enregistre pas la cmd history
 
 # aliases
+alias ra="sudo /etc/init.d/apache2 restart"
 alias vi="vim"
 alias ls="ls --color=auto --classify"
 alias ll="ls --color=auto -l --classify"
@@ -89,6 +90,7 @@ alias gl="git log"
 alias gp="git pull --rebase"
 alias ggrep="git grep"
 alias devlog="ssh inside@mydev 'sudo bin/showlog.sh'"
+alias localhostlog="sudo tail -f /var/log/apache2/dailymotion-error.log"
 
 # variables
 export PAGER=$(which less)
@@ -105,7 +107,7 @@ stty stop ''
 # On my local machine, I like this prompt
 if [ $IS_ON_REMOTE_HOST ] && [ $IS_ON_REMOTE_HOST -eq 0 ]
 then
-    PROMPT=$'%S[%n@%m:%~] %D{%a %b %e %T} $(git_prompt_info) P%j%s\n$ '
+    PROMPT=$'%S[%n@%m:%~] %D{%a %b %e %T} P%j%s% %{$fg_bold[red]%} $(git_prompt_info)%{$reset_color%}\n$ '
 else
     PROMPT='%{$fg_bold[green]%}%n@%m %{$fg[blue]%}%c %{$fg_bold[red]%}$(git_prompt_info)%{$fg[blue]%} P%j %% %{$reset_color%}'
 fi
