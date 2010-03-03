@@ -88,9 +88,11 @@ alias gd="git diff"
 alias gc="git checkout"
 alias gl="git log"
 alias gp="git pull --rebase"
+alias gf="git fetch"
 alias ggrep="git grep"
+alias ack="ack-grep"
 alias devlog="ssh inside@mydev 'sudo bin/showlog.sh'"
-alias localhostlog="sudo tail -f /var/log/apache2/dailymotion-error.log"
+alias llog="sudo tail -f /var/log/apache2/dailymotion-error.log"
 
 # variables
 export PAGER=$(which less)
@@ -104,13 +106,7 @@ export APACHE_RUN_GROUP=www-data
 umask 002
 stty stop ''
 
-# On my local machine, I like this prompt
-if [ $IS_ON_REMOTE_HOST ] && [ $IS_ON_REMOTE_HOST -eq 0 ]
-then
-    PROMPT=$'%S[%n@%m:%~] %D{%a %b %e %T} P%j%s% %{$fg_bold[red]%} $(git_prompt_info)%{$reset_color%}\n$ '
-else
-    PROMPT='%{$fg_bold[green]%}%n@%m %{$fg[blue]%}%c %{$fg_bold[red]%}$(git_prompt_info)%{$fg[blue]%} P%j %% %{$reset_color%}'
-fi
+PROMPT=$'%{$fg_bold[green]%}%n@%m:%~ %{$fg_bold[red]%}$(git_prompt_info)%{$fg[blue]%} %D{%a %b %e %T} P%j% \n%{$reset_color%}$ '
 
 # MySql client prompt
 export MYSQL_PS1="(\u@\h) [\d]> "
