@@ -22,7 +22,7 @@ function! SetTag()
         set tags=~/.vim/tags/nakama_branches_revolution
     elseif (getcwd() == '/mnt/svn/nakama/trunk')
         set tags=~/.vim/tags/nakama_trunk
-    elseif (getcwd() == '/home/inside/dailymotion')
+    elseif (getcwd() == '/home/yann/dailymotion')
         set tags=~/.vim/tags/dailymotion
     endif
 endfunction
