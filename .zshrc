@@ -37,7 +37,9 @@ LISTMAX=0                                # Limite d'affichage pour completion
 LISTHISTSIZE=1000                        # Historique litteral
 SAVEHIST=1000                            # Historique a sauver
 
+#bindkey -v
 #bindkey -em
+bindkey -e
 
 # (C) Jedi/Sector One (j@nether.net)
 
@@ -69,6 +71,7 @@ setopt NUMERIC_GLOBSORT                  # Tri numerique sur completions
 setopt PROMPT_SUBST                      # Prompts etendus
 unsetopt EXTENDED_HISTORY                # Historique avec timings = bof
 setopt HIST_NO_STORE                     # N'enregistre pas la cmd history
+setopt noflowcontrol                     # restores the use of the keys ctrl-s, ctrl-q
 
 # aliases
 alias ra="sudo /etc/init.d/apache2 restart"
@@ -97,14 +100,14 @@ alias llog="sudo tail -f /var/log/apache2/dailymotion-error.log"
 # variables
 export PAGER=$(which less)
 export EDITOR=$(which vim)
-export PATH=$PATH:~/bin:~/scripts:~/sdk/flex/bin
+export PATH=$PATH:~/bin:~/sdk/flex/bin
 export APACHE_RUN_USER=www-data
 export APACHE_RUN_GROUP=www-data
 
 # commands
 [ -f ~/.profile ] && source ~/.profile
 umask 002
-stty stop ''
+stty stop undef
 
 PROMPT=$'%{$fg_bold[green]%}%n@%m:%~ %{$fg_bold[red]%}$(git_prompt_info)%{$fg[blue]%} %D{%a %b %e %T} P%j% \n%{$reset_color%}$ '
 
