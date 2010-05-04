@@ -90,24 +90,24 @@ set showmode
 set t_Co=256 " See http://www.vim.org/tips/tip.php?tip_id=1312
 syntax on
 set background=dark
-colorscheme torte
+colorscheme darkburn
 " }}}
 
 " Autocommands {{{
 ":augroup my_tab
-"if !exists("autocommands_loaded")
-"    let autocommands_loaded = 1
-"    au BufNewFile,BufRead *.php    set shiftwidth=4 softtabstop=4 tabstop=4
+if !exists("autocommands_loaded")
+    let autocommands_loaded = 1
+    au BufNewFile,BufRead *.php    set shiftwidth=4 softtabstop=4 tabstop=4
     " vim will warn me if I type if ($foo = $bar)
     "au BufNewFile,BufRead *.php match ErrorMsg '\(if\|while\)\s*([^=(!<>]*=[^=].*'
-"    au BufNewFile,BufRead *.html   set shiftwidth=2 softtabstop=2 tabstop=2
-"    au BufNewFile,BufRead *.css    set shiftwidth=2 softtabstop=2 tabstop=2 omnifunc=csscomplete#CompleteCSS
-"    au BufNewFile,BufRead *.js     set shiftwidth=4 softtabstop=4 tabstop=4
+    au BufNewFile,BufRead *.html   set shiftwidth=2 softtabstop=2 tabstop=2
+    au BufNewFile,BufRead *.css    set shiftwidth=4 softtabstop=4 tabstop=4
+    au BufNewFile,BufRead *.js     set shiftwidth=4 softtabstop=4 tabstop=4
 "    au BufNewFile,BufRead *.tpl    set shiftwidth=2 softtabstop=2 tabstop=2 ft=html syntax=smarty
 "    au BufNewFile,BufRead *.phtml  set shiftwidth=2 softtabstop=2 tabstop=2 ft=php " all my .phtml files ARE php
-"    au BufNewFile,BufRead Makefile set noexpandtab
-"    au BufNewFile,BufRead *.as     set ft=actionscript
-"endif
+    au BufNewFile,BufRead Makefile set noexpandtab
+    au BufNewFile,BufRead *.as     set ft=actionscript
+endif
 au BufNewFile,BufRead Makefile set noexpandtab
 au BufNewFile,BufRead *.as     set ft=actionscript
 " }}}
@@ -116,11 +116,13 @@ au BufNewFile,BufRead *.as     set ft=actionscript
 
 set winaltkeys=no
 
-" Edit ~/.vimrc
+" Edit ~/.vimrc or ~/.zshrc
 map <Leader>es :e ~/.vimrc<Enter>
+map <Leader>ez :e ~/.zshrc<Enter>
 
-" Source ~/.vimrc
+" Source ~/.vimrc or ~/.zshrc
 map <Leader>so :w<Enter>:source ~/.vimrc<Enter>
+map <Leader>sz :w<Enter>:!source ~/.zshrc<Enter>
 
 " Hashrocket shortcut compliments of TextMate
 imap <C-L> <space>=><space>
@@ -274,7 +276,7 @@ let Tlist_Auto_Highlight_Tag = 0
 let Tlist_Auto_Open = 0
 let Tlist_Show_One_File = 1
 let Tlist_Sort_Type = 'name'
-let Tlist_Ctags_Cmd = "~/bin/ctags"
+"let Tlist_Ctags_Cmd = "~/bin/ctags"
 " Actionscript language
 " put this in ~/.ctags
 "--langdef=actionscript
