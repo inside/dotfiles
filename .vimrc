@@ -17,17 +17,18 @@ set path+=lib,lib/DM,lib/DM/DBObject,src
 " set some tag files generated from ctags -R [dir_to_project]
 " this is mandatory for omni completion of user defined classes, methods, functions
 " see :h new-omni-completion
-function! SetTag()
-    if (getcwd() == '/mnt/svn/nakama/branches/revolution')
-        set tags=~/.vim/tags/nakama_branches_revolution
-    elseif (getcwd() == '/mnt/svn/nakama/trunk')
-        set tags=~/.vim/tags/nakama_trunk
-    elseif (getcwd() == '/home/yann/dailymotion')
-        set tags=~/.vim/tags/dailymotion
-    endif
-endfunction
-
-call SetTag()
+"function! SetTag()
+"    if (getcwd() == '/mnt/svn/nakama/branches/revolution')
+"        set tags=~/.vim/tags/nakama_branches_revolution
+"    elseif (getcwd() == '/mnt/svn/nakama/trunk')
+"        set tags=~/.vim/tags/nakama_trunk
+"    elseif (getcwd() == '/home/yann/dailymotion')
+"        set tags=~/.vim/tags/dailymotion
+"    endif
+"endfunction
+"
+"call SetTag()
+set tags=~/.vim/tags/dailymotion
 
 " make dictionary completion source part of the default completion sources
 "set complete-=k complete+=k
@@ -131,7 +132,7 @@ imap <C-L> <space>=><space>
 map <Leader>m :!make pack<CR>
 
 " make the dmplayer
-map <Leader>mf :!cd flash/dmplayer && make<CR>
+map <Leader>mf :!cd flash/dmplayerv4 && make<CR>
 
 " Toggle paste on or off
 map <Leader>sp :call TogglePaste()<CR>

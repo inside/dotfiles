@@ -75,6 +75,7 @@ setopt noflowcontrol                     # restores the use of the keys ctrl-s, 
 
 # aliases
 alias ra="sudo /etc/init.d/apache2 restart"
+alias v="vim"
 alias vi="vim"
 alias ls="ls --color=auto --classify"
 alias ll="ls --color=auto -l --classify"
@@ -111,3 +112,6 @@ PROMPT=$'%{$fg_bold[green]%}%n@%m:%~ %{$fg_bold[red]%}$(git_prompt_info)%{$fg[bl
 
 # MySql client prompt
 export MYSQL_PS1="(\u@\h) [\d]> "
+
+# http://vim.wikia.com/wiki/Configuring_the_cursor
+echo -ne "\033]12;#ffffff\007"
