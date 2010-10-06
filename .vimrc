@@ -80,6 +80,8 @@ set nofoldenable " folding should anly be enabled on small files, otherwise it t
 " }}}
 
 " Vim UI {{{
+set laststatus=2
+"set statusline=[%04l-%04L,%04v]\ %F%m%r%h%w\ %p%%
 set showcmd
 set showmode
 "set verbose=9
