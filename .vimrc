@@ -60,6 +60,7 @@ set ruler
 set vb
 set wildmenu
 set wildmode=list:longest,full 
+set guicursor+=a:blinkon0
 " }}}
 
 " Text formatting {{{

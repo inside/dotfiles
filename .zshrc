@@ -95,6 +95,7 @@ alias ggrep="git grep"
 alias ack="ack-grep"
 alias log="sudo tail -f /var/log/apache2/dailymotion-error.log"
 alias prov="ssh -A dev@prov-01"
+alias closure="java -jar ~/bin/compiler.jar"
 
 # variables
 export PAGER=$(which less)
