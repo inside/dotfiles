@@ -76,7 +76,7 @@ setopt noflowcontrol                     # restores the use of the keys ctrl-s, 
 # aliases
 alias ra="sudo /etc/init.d/apache2 restart"
 alias v="vi"
-alias vi="~/bin/vim"
+alias vi="vim"
 alias ls="ls --color=auto --classify"
 alias ll="ls --color=auto -l --classify"
 alias unison="unison -ui text"
