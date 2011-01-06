@@ -104,7 +104,7 @@ if !exists("autocommands_loaded")
     au BufNewFile,BufRead *.php    set shiftwidth=4 softtabstop=4 tabstop=4
     " vim will warn me if I type if ($foo = $bar)
     "au BufNewFile,BufRead *.php match ErrorMsg '\(if\|while\)\s*([^=(!<>]*=[^=].*'
-    au BufNewFile,BufRead *.html   set shiftwidth=2 softtabstop=2 tabstop=2
+    au BufNewFile,BufRead *.html   set shiftwidth=4 softtabstop=4 tabstop=4
     au BufNewFile,BufRead *.css    set shiftwidth=4 softtabstop=4 tabstop=4
     au BufNewFile,BufRead *.js     set shiftwidth=4 softtabstop=4 tabstop=4
 "    au BufNewFile,BufRead *.tpl    set shiftwidth=2 softtabstop=2 tabstop=2 ft=html syntax=smarty
@@ -216,6 +216,7 @@ iab lfase false
 ab xr print_r($
 ab xv var_dump($
 ab xe error_log(
+ab cl console.log(
 ab fu function
 ab xhtml <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"<CR>"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><CR><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr"><CR><head><CR><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><CR><title></title><CR></head><CR><body><CR></body><CR></html>
 
