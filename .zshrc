@@ -16,17 +16,11 @@ vmxpie()
 {
     if [ -z "$1" ]
     then
-        echo "Usage : $(basename $0) 6|7|8 [host number]"
+        echo "Usage : $(basename $0) 6|7|8|9 [host number]"
         return
     fi
 
-    host="vmxpie$1-01"
-
-    if [ -n "$2" ]
-    then
-        host="vmxpie$1-$2"
-    fi
-
+    host="vmie$1"
     echo "connecting to $host"
     rdesktop -u 'y.thomas-gerard' -d 'DAILY' -f -a 16 -k fr -z -xb -P "$host"
 }
