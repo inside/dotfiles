@@ -423,15 +423,6 @@ fun! ShowFuncName()
   call search("\\%" . lnum . "l" . "\\%" . col . "c")
 endfun
 map <Leader>f :call ShowFuncName()<CR>
-
-function! ToggleScratch()
-  if expand('%') == g:ScratchBufferName
-    quit
-  else
-    Sscratch
-  endif
-endfunction
-map <Leader>s :call ToggleScratch()<CR>
 " }}}
 
 " User commands or aliases
