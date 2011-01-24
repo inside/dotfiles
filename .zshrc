@@ -110,3 +110,16 @@ export MYSQL_PS1="(\u@\h) [\d]> "
 
 # http://vim.wikia.com/wiki/Configuring_the_cursor
 echo -ne "\033]12;#ffffff\007"
+
+# command line editing
+set -o vi
+
+# If you are using vi keys and want to know in what mode you currently are
+function zle-line-init zle-keymap-select {
+    RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
+    RPS2=$RPS1
+    zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
