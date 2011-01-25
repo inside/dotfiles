@@ -159,8 +159,7 @@ map <F3> i<?php<Esc>o<enter>
 map <F5> :call PhpDocSingle()<CR>
 
 " Call the FuzzyFinder file or tag
-map <F6> :FuzzyFinderFile<CR>
-map <S-F6> :FuzzyFinderTag<CR>
+map <Leader>ff :FuzzyFinderFile<CR>
 
 " Execute file within vim
 nmap <F12> :call ExecFile()<Enter>
