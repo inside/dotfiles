@@ -1,0 +1,37 @@
+#!/bin/sh
+
+EXIT_CODE=0
+
+for FILE in $(git diff --cached --name-only)
+do
+    file $FILE 1>/dev/null
+
+    if [ $? -ne 0 ]
+    then
+        continue
+    fi
+
+    EXTENSION=${FILE##*.}
+
+    case $EXTENSION in
+        'php')
+            php -l $FILE
+            ;;
+#        'js')
+            # http://www.javascriptlint.com/
+#            jsl -process $FILE
+#            ;;
+    esac
+
+    EXIT_CODE=$?
+
+    if [ $EXIT_CODE -ne 0 ]
+    then
+        echo "---------------------------------------------------------"
+        echo "- Please correct syntax errors and try to commit again. -"
+        echo "---------------------------------------------------------"
+        exit $EXIT_CODE
+    fi
+done
+
+exit $EXIT_CODE
