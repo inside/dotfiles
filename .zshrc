@@ -94,7 +94,7 @@ alias closure="java -jar ~/bin/compiler.jar"
 # variables
 export PAGER=$(which less)
 export EDITOR=$(which vim)
-export PATH=/data/texlive/2010/bin/i386-linux:$PATH:~/bin:~/sdk/flex/bin:/var/lib/gems/1.8/bin:~/scripts/git
+export PATH=/data/texlive/2010/bin/i386-linux:$PATH:~/bin:~/sdk/flex/bin:/var/lib/gems/1.8/bin:~/scripts/git:~/scripts
 export APACHE_RUN_USER=www-data
 export APACHE_RUN_GROUP=www-data
 
