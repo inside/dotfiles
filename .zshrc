@@ -88,6 +88,7 @@ alias gf="git fetch"
 alias ggrep="git grep"
 alias ack="ack-grep"
 alias log="sudo tail -f /var/log/apache2/dailymotion-error.log"
+alias flog="tail -f ~/.macromedia/Flash_Player/Logs/flashlog.txt"
 alias prov="ssh -A dev@prov-01"
 alias closure="java -jar ~/bin/compiler.jar"
 
