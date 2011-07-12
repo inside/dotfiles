@@ -204,8 +204,8 @@ inoremap [[ []<esc>i
 " Opens lynx and search php.net for the word under the cursor
 nmap  :!lynx -accept_all_cookies http://fr2.php.net/\#function.<CR>
 
-" Cycles through function definition in a the current file
-map ff /function <Enter>z<Enter>$
+" run java
+map <Leader>r :!ant run<Enter>
 " }}}
 
 " Useful abbrevs {{{
