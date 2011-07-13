@@ -1,54 +1,35 @@
-# Reads ouput of command in vim (Usage: $ vv ps ax)
-vv ()
-{
-    $@ | vim -R -
-}
+# Path to your oh-my-zsh configuration.
+export ZSH=$HOME/.oh-my-zsh
 
-# get the name of the branch we are on
-git_prompt_info()
-{
-    ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-    echo "(${ref#refs/heads/})"
-}
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+#export ZSH_THEME="robbyrussell"
+export ZSH_THEME="inside"
 
-# Connects to a virtual machine
-vmxpie()
-{
-    if [ -z "$1" ]
-    then
-        echo "Usage : $(basename $0) 6|7|8|9 [host number]"
-        return
-    fi
+# Set to this to use case-sensitive completion
+# export CASE_SENSITIVE="true"
 
-    host="vmie$1"
-    echo "connecting to $host"
-    rdesktop -u 'y.thomas-gerard' -d 'DAILY' -f -a 16 -k fr -z -xb -P "$host"
-}
+# Comment this out to disable weekly auto-update checks
+# export DISABLE_AUTO_UPDATE="true"
 
-HISTFILE="$HOME/.zshistory"              # Fichier d'historique
-HISTSIZE=1000                            # Taille de l'historique
-LISTMAX=0                                # Limite d'affichage pour completion
-LISTHISTSIZE=1000                        # Historique litteral
-SAVEHIST=1000                            # Historique a sauver
+# Uncomment following line if you want to disable colors in ls
+# export DISABLE_LS_COLORS="true"
 
-#bindkey -v
-#bindkey -em
-bindkey -e
+# Uncomment following line if you want to disable autosetting terminal title.
+# export DISABLE_AUTO_TITLE="true"
 
-# (C) Jedi/Sector One (j@nether.net)
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# my git plugin is custom
+plugins=(git vi-mode dailymotion inside)
 
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=2
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-#style ':completion:*:sudo:*' command-path /home/inside/bin /usr/local/sbin /usr/local/bin \
-                 #/usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+source $ZSH/oh-my-zsh.sh
 
-autoload -U compinit colors
-compinit
-colors
+# Customize to your needs...
+
+stty stop undef
 
 setopt ALWAYS_TO_END                     # Saute apres le mot si completion
 setopt AUTO_CD                           # CD facultatif
@@ -67,62 +48,21 @@ unsetopt EXTENDED_HISTORY                # Historique avec timings = bof
 setopt HIST_NO_STORE                     # N'enregistre pas la cmd history
 setopt noflowcontrol                     # restores the use of the keys ctrl-s, ctrl-q
 
-# aliases
-alias ra="sudo /etc/init.d/apache2 restart"
-alias v="vi"
-alias vi="vim"
-alias ls="ls --color=auto --classify"
-alias ll="ls --color=auto -l --classify"
-alias unison="unison -ui text"
-alias dev="ssh inside@inside"
-alias fgrep="fgrep --color=always --exclude='*.git*'"
-alias lynx="lynx -accept_all_cookies"
-alias devmysql="mysql -h devdb -u dev -p"
-alias logprod="ssh dev@syslog-02"
-alias gs="git status"
-alias gd="git diff"
-alias gc="git checkout"
-alias gl="git log"
-alias gp="git pull --rebase"
-alias gf="git fetch"
-alias ggrep="git grep"
-alias ack="ack-grep"
-alias log="sudo tail -f /var/log/apache2/dailymotion-error.log"
-alias flashlog="tail -f ~/.macromedia/Flash_Player/Logs/flashlog.txt"
-alias stage="ssh-add;ssh -A dev@prov-02"
-alias closure="java -jar ~/bin/compiler.jar"
-
-# variables
+# Variables
 export PAGER=$(which less)
 export EDITOR=$(which vim)
-#export PATH=/data/texlive/2010/bin/i386-linux:$PATH:~/bin:~/sdk/flex/bin:/var/lib/gems/1.8/bin:~/scripts/git:~/scripts
 export PATH=/data/texlive/2010/bin/i386-linux:$PATH:~/bin:/var/lib/gems/1.8/bin:~/scripts/git:~/scripts
 export APACHE_RUN_USER=www-data
 export APACHE_RUN_GROUP=www-data
 export FLEX_HOME=/opt/flex
-
-# commands
-[ -f ~/.profile ] && source ~/.profile
-umask 002
-stty stop undef
-
-PROMPT=$'%{$fg_bold[green]%}%n@%m:%~ %{$fg_bold[red]%}$(git_prompt_info)%{$fg[blue]%} %D{%a %b %e %T} P%j% \n%{$reset_color%}$ '
-
-# MySql client prompt
 export MYSQL_PS1="(\u@\h) [\d]> "
 
 # http://vim.wikia.com/wiki/Configuring_the_cursor
 echo -ne "\033]12;#ffffff\007"
 
-# command line editing
-set -o vi
-
-# If you are using vi keys and want to know in what mode you currently are
-function zle-line-init zle-keymap-select {
-    RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
-    RPS2=$RPS1
-    zle reset-prompt
-}
-
-zle -N zle-line-init
-zle -N zle-keymap-select
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=2
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
