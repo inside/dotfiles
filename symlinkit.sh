@@ -6,7 +6,7 @@ DOTFILES_DIR=~/github/dotfiles/
 
 function relink()
 {
-    rm $1
+    rm -i $1
     ln -s $2 $1
 }
  
