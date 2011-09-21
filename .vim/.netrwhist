@@ -1,7 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/home/yann/dailymotion/lib/DM/WidgetV3/PageItem/Factory'
 let g:netrw_dirhist_2='/home/yann/dailymotion/lib/DM/WidgetV3/Page/Html/History'
 let g:netrw_dirhist_3='/home/yann/dailymotion/lib/DM/WidgetV3/Page/Html'
 let g:netrw_dirhist_4='/home/yann/dailymotion/partners/dilemme-iphone/lib/DM/Widget/Dilemme'
 let g:netrw_dirhist_5='/etc/apache2/sites-available'
+let g:netrw_dirhist_6='/home/inside/dailymotion/lib/DM/WidgetV3/PageItem/Group'
+let g:netrw_dirhist_7='/home/inside/dailymotion/css/widget/pageitem/list'
