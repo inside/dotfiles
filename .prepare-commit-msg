@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+# This script prepares the commit message by inserting
+# [PROJECT_NAME] (BRANCH) at the top of the message.
+# You'll just have to enter your message describing the commit.
+
+function current_branch()
+{
+    ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+    echo ${ref#refs/heads/}
+}
+
+BRANCH=$(current_branch)
+TIME=$(date +%s)
+TEMPORARY_COMMIT_FILE="/tmp/temporary_commit_file.$TIME"
+PROJECT_NAME='DISCUSSION'
+
+echo "[$PROJECT_NAME] ($BRANCH)" | cat - "$1" > $TEMPORARY_COMMIT_FILE
+mv $TEMPORARY_COMMIT_FILE "$1"
