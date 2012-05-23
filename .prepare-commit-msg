@@ -13,7 +13,7 @@ function current_branch()
 BRANCH=$(current_branch)
 TIME=$(date +%s)
 TEMPORARY_COMMIT_FILE="/tmp/temporary_commit_file.$TIME"
-PROJECT_NAME='DISCUSSION'
+PROJECT_NAME=''
 
 echo "[$PROJECT_NAME] ($BRANCH)" | cat - "$1" > $TEMPORARY_COMMIT_FILE
 mv $TEMPORARY_COMMIT_FILE "$1"
