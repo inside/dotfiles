@@ -197,7 +197,7 @@ nmap <S-Tab> :bp<Enter>
 map <del> :bd<Enter>
 
 " Press {{, ((, [[ and it will insert the corresponding {, (, [
-inoremap {{ {<cr>}<esc>kA<cr>
+inoremap {{ {}<esc>i
 inoremap (( ()<esc>i
 inoremap [[ []<esc>i
 
@@ -310,6 +310,10 @@ let g:FuzzyFinderOptions.Base.abbrev_map  = {
 \                "~/dailymotion/js/**/",
 \                "~/dailymotion/lib/",
 \                "~/dailymotion/lib/**/",
+\            ],
+\            "SF" : [
+\                "/var/www/Symfony/",
+\                "/var/www/Symfony/**/",
 \            ],
 \            "MY" : [
 \                "/var/www/myzf/application/",
