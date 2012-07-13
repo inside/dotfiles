@@ -312,8 +312,8 @@ let g:FuzzyFinderOptions.Base.abbrev_map  = {
 \                "~/dailymotion/lib/**/",
 \            ],
 \            "SF" : [
-\                "/var/www/Symfony/",
-\                "/var/www/Symfony/**/",
+\                "/home/inside/Symfony/",
+\                "/home/inside/Symfony/**/",
 \            ],
 \            "MY" : [
 \                "/var/www/myzf/application/",

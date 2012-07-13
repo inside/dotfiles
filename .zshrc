@@ -51,7 +51,7 @@ setopt noflowcontrol                     # restores the use of the keys ctrl-s, 
 # Variables
 export PAGER=$(which less)
 export EDITOR=$(which vim)
-export PATH=~/sdk/android-sdk-linux/tools:~/sdk/android-sdk-linux/platform-tools:/data/texlive/2010/bin/i386-linux:$PATH:~/bin:/var/lib/gems/1.8/bin:~/scripts/git:~/scripts
+export PATH=~/sdk/android-sdk-linux/tools:~/sdk/android-sdk-linux/platform-tools:/data/texlive/2010/bin/i386-linux:$PATH:~/bin:/var/lib/gems/1.8/bin:~/scripts/git:~/scripts:/opt/flex/bin
 export APACHE_RUN_USER=www-data
 export APACHE_RUN_GROUP=www-data
 export FLEX_HOME=/opt/flex
