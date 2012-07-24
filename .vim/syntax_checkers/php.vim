@@ -44,9 +44,9 @@ function! SyntaxCheckers_php_GetLocList()
     let errorformat='%-GNo syntax errors detected in%.%#,PHP Parse error: %#syntax %trror\, %m in %f on line %l,PHP Fatal %trror: %m in %f on line %l,%-GErrors parsing %.%#,%-G\s%#,Parse error: %#syntax %trror\, %m in %f on line %l,Fatal %trror: %m in %f on line %l,PHP Parse %trror: %m in %f on line %l'
     let errors = SyntasticMake({ 'makeprg': makeprg, 'errorformat': errorformat })
 
-    if empty(errors) && !g:syntastic_phpcs_disable && executable("phpcs")
-        let errors = errors + s:GetPHPCSErrors()
-    endif
+"    if empty(errors) && !g:syntastic_phpcs_disable && executable("phpcs")
+"        let errors = errors + s:GetPHPCSErrors()
+"    endif
 
     return errors
 endfunction
