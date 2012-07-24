@@ -249,6 +249,11 @@ ab dlm dailymotion
 
 " Plugin configuration {{{
 
+" Syntastic
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
 " project
 nmap <silent> <Leader>p :Project<CR>
 
