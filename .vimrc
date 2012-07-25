@@ -3,13 +3,8 @@ let mapleader = ","
 
 " General {{{
 
-" from Gary Bernhardt: don't close splits when deleting buffer
-cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
-
 let php_sql_query = 1
-set nocp		        " 'compatible' is not set
-filetype plugin indent on	    " plugins are enabled
-
+set nocp		               " 'compatible' is not set
 
 " Tell vim to look for these directories when doing gf :find , see :h path
 set path+=lib,lib/DM,lib/DM/DBObject,src
@@ -112,6 +107,7 @@ if !exists("autocommands_loaded")
     au BufNewFile,BufRead Makefile set noexpandtab
     au BufNewFile,BufRead *.as     set ft=actionscript
 endif
+
 au BufNewFile,BufRead Makefile set noexpandtab
 au BufNewFile,BufRead *.as     set ft=actionscript
 " }}}
@@ -134,17 +130,11 @@ imap <C-L> <space>=><space>
 " make pack
 map <Leader>m :!make pack<CR>
 
-" make the dmplayer
-map <Leader>mf :!cd flash/dmplayerv4 && make<CR>
-
 " Toggle paste on or off
 map <Leader>sp :call TogglePaste()<CR>
 
 " Toggle mouse on or off
 map <C-m> :call ToggleActiveMouse()<CR>
-
-" Toggle hls
-nmap <silent> <C-n> :silent call ToggleHLSearch()<CR> 
 
 " call the taglist window
 noremap tt :Tlist<Enter>
@@ -159,7 +149,7 @@ map <F3> i<?php<Esc>o<enter>
 map <F5> :call PhpDocSingle()<CR>
 
 " Call the FuzzyFinder file or tag
-map <Leader>ff :FuzzyFinderFile<CR>
+map <Leader>ff :FufFile<CR>
 
 " Execute file within vim
 nmap <F12> :call ExecFile()<Enter>
@@ -171,8 +161,13 @@ endif
 
 vnoremap <F4> :call Surround('<' . surround_tag . '>', '</' . surround_tag . '>')<CR>
 
-" A quick way to comment lines with the feraltogglecommentify.vim plugin
-map <C-c> :TC<CR>j
+" http://stackoverflow.com/questions/6778961/alt-key-shortcuts-not-working-on-gnome-terminal-with-vim
+let c='a'
+while c <= 'z'
+  exec "set <A-".c.">=\e".c
+  exec "imap \e".c." <A-".c.">"
+  let c = nr2char(1+char2nr(c))
+endw
 
 " Switch to the previous buffer
 map <F9> :b!#<Enter>
@@ -194,7 +189,7 @@ nmap <Tab> :bn<Enter>
 nmap <S-Tab> :bp<Enter>
 
 " Quicker way to delete a buffer
-map <del> :bd<Enter>
+map <del> :BD<Enter>
 
 " Press {{, ((, [[ and it will insert the corresponding {, (, [
 inoremap {{ {}<esc>i
@@ -249,16 +244,55 @@ ab dlm dailymotion
 
 " Plugin configuration {{{
 
-" Syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+" vundle
+filetype off                   " required!
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+
+" original repos on github
+"Bundle 'tpope/vim-fugitive'
+"Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Bundle 'tpope/vim-rails.git'
+
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'Align'
+Bundle 'bufkill.vim'
+Bundle 'cecutil'
+Bundle 'FeralToggleCommentify.vim'
+Bundle 'FuzzyFinder'
+Bundle 'matchit.zip'
+Bundle 'minibufexpl.vim'
+Bundle 'project.tar.gz'
+Bundle 'sessionman.vim'
+Bundle 'snipMate'
+Bundle 'Syntastic'
+Bundle 'taglist.vim'
+Bundle 'vcscommand.vim'
+
+" non github repos
+"Bundle 'git://git.wincent.com/command-t.git'
+
+filetype plugin indent on     " required!
+
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle command are not allowed..
 
 " project
 nmap <silent> <Leader>p :Project<CR>
-
-" php doc
-nnoremap <C-P> :call PhpDocSingle()<CR>
 
 "This variable, if set to a non-zero value, causes the temporary result buffers
 "to automatically delete themselves when hidden.
@@ -267,9 +301,6 @@ let VCSCommandDeleteOnHide = 1
 "This variable controls whether the original buffer is replaced ('edit') or
 "split ('split').  If not set, it defaults to 'split'.
 let VCSCommandEdit = 1
-
-" matchit
-filetype plugin on
 
 " minibuf
 "let loaded_minibufexplorer = 1 " desactivate minibufexplorer
