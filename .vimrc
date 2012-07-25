@@ -161,14 +161,6 @@ endif
 
 vnoremap <F4> :call Surround('<' . surround_tag . '>', '</' . surround_tag . '>')<CR>
 
-" http://stackoverflow.com/questions/6778961/alt-key-shortcuts-not-working-on-gnome-terminal-with-vim
-let c='a'
-while c <= 'z'
-  exec "set <A-".c.">=\e".c
-  exec "imap \e".c." <A-".c.">"
-  let c = nr2char(1+char2nr(c))
-endw
-
 " Switch to the previous buffer
 map <F9> :b!#<Enter>
 
@@ -290,6 +282,9 @@ filetype plugin indent on     " required!
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
+
+" FeralToggleCommentify
+map <C-c> :TC<Enter>j
 
 " project
 nmap <silent> <Leader>p :Project<CR>

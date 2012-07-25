@@ -1,3 +1,48 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = git@github.com:inside/oh-my-zsh.git
+[submodule "Align"]
+	path = .vim/bundle/Align
+	url = git@github.com:vim-scripts/Align.git
+[submodule "bufkill.vim"]
+	path = .vim/bundle/bufkill.vim
+	url = git@github.com:vim-scripts/bufkill.vim.git
+[submodule "FeralToggleCommentify"]
+	path = .vim/bundle/FeralToggleCommentify.vim
+	url = git@github.com:vim-scripts/FeralToggleCommentify.vim.git
+[submodule "FuzzyFinder"]
+	path = .vim/bundle/FuzzyFinder
+	url = git@github.com:vim-scripts/FuzzyFinder.git
+[submodule "L9"]
+    path = .vim/bundle/L9
+    url = git@github.com:vim-scripts/L9
+[submodule "Syntastic"]
+    path = .vim/bundle/Syntastic
+    url = git@github.com:vim-scripts/Syntastic
+[submodule "cecutil"]
+    path = .vim/bundle/cecutil
+    url = git@github.com:vim-scripts/cecutil
+[submodule "matchit.zip"]
+    path = .vim/bundle/matchit.zip
+    url = git@github.com:vim-scripts/matchit.zip
+[submodule "project.tar.gz"]
+    path = .vim/bundle/project.tar.gz
+    url = git@github.com:vim-scripts/project.tar.gz
+[submodule "snipMate"]
+    path = .vim/bundle/snipMate
+    url = git@github.com:vim-scripts/snipMate
+[submodule "taglist.vim"]
+    path = .vim/bundle/taglist.vim
+    url = git@github.com:vim-scripts/taglist.vim
+[submodule "vcscommand.vim"]
+    path = .vim/bundle/vcscommand.vim
+    url = git@github.com:vim-scripts/vcscommand.vim
+[submodule "minibufexpl.vim"]
+    path = .vim/bundle/minibufexpl.vim
+    url = git@github.com:vim-scripts/minibufexpl.vim
+[submodule "sessionman.vim"]
+    path = .vim/bundle/sessionman.vim
+    url = git@github.com:vim-scripts/sessionman.vim
+[submodule "vundle"]
+    path = .vim/bundle/vundle
+    url = git@github.com:vim-scripts/vundle
