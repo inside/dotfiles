@@ -45,4 +45,4 @@
     url = git@github.com:vim-scripts/sessionman.vim.git
 [submodule "vundle"]
     path = .vim/bundle/vundle
-    url = git@github.com:vim-scripts/vundle.git
+    url = git@github.com:gmarik/vundle.git
