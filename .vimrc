@@ -284,7 +284,8 @@ filetype plugin indent on     " required!
 " NOTE: comments after Bundle command are not allowed..
 
 " FeralToggleCommentify
-map <C-c> :TC<Enter>j
+au VimEnter * unmap <C-c>
+au VimEnter * map <C-c> :TC<Enter>j
 
 " project
 nmap <silent> <Leader>p :Project<CR>
