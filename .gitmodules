@@ -15,34 +15,34 @@
 	url = git@github.com:vim-scripts/FuzzyFinder.git
 [submodule "L9"]
     path = .vim/bundle/L9
-    url = git@github.com:vim-scripts/L9
+    url = git@github.com:vim-scripts/L9.git
 [submodule "Syntastic"]
     path = .vim/bundle/Syntastic
-    url = git@github.com:vim-scripts/Syntastic
+    url = git@github.com:vim-scripts/Syntastic.git
 [submodule "cecutil"]
     path = .vim/bundle/cecutil
-    url = git@github.com:vim-scripts/cecutil
+    url = git@github.com:vim-scripts/cecutil.git
 [submodule "matchit.zip"]
     path = .vim/bundle/matchit.zip
-    url = git@github.com:vim-scripts/matchit.zip
+    url = git@github.com:vim-scripts/matchit.zip.git
 [submodule "project.tar.gz"]
     path = .vim/bundle/project.tar.gz
-    url = git@github.com:vim-scripts/project.tar.gz
+    url = git@github.com:vim-scripts/project.tar.gz.git
 [submodule "snipMate"]
     path = .vim/bundle/snipMate
-    url = git@github.com:vim-scripts/snipMate
+    url = git@github.com:vim-scripts/snipMate.git
 [submodule "taglist.vim"]
     path = .vim/bundle/taglist.vim
-    url = git@github.com:vim-scripts/taglist.vim
+    url = git@github.com:vim-scripts/taglist.vim.git
 [submodule "vcscommand.vim"]
     path = .vim/bundle/vcscommand.vim
-    url = git@github.com:vim-scripts/vcscommand.vim
+    url = git@github.com:vim-scripts/vcscommand.vim.git
 [submodule "minibufexpl.vim"]
     path = .vim/bundle/minibufexpl.vim
-    url = git@github.com:vim-scripts/minibufexpl.vim
+    url = git@github.com:vim-scripts/minibufexpl.vim.git
 [submodule "sessionman.vim"]
     path = .vim/bundle/sessionman.vim
-    url = git@github.com:vim-scripts/sessionman.vim
+    url = git@github.com:vim-scripts/sessionman.vim.git
 [submodule "vundle"]
     path = .vim/bundle/vundle
-    url = git@github.com:vim-scripts/vundle
+    url = git@github.com:vim-scripts/vundle.git
