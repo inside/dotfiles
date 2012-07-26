@@ -252,6 +252,7 @@ Bundle 'gmarik/vundle'
 "Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Bundle 'tpope/vim-rails.git'
+Bundle 'inside/snipMate'
 
 " vim-scripts repos
 Bundle 'L9'
@@ -264,7 +265,6 @@ Bundle 'matchit.zip'
 Bundle 'minibufexpl.vim'
 Bundle 'project.tar.gz'
 Bundle 'sessionman.vim'
-Bundle 'snipMate'
 Bundle 'Syntastic'
 Bundle 'taglist.vim'
 Bundle 'vcscommand.vim'
