@@ -324,18 +324,10 @@ let Tlist_Sort_Type = 'name'
 "--regex-actionscript=/^[ \t]*class[ \t]+([A-Za-z0-9_]+)[ \t]*/\1/c,class, classes/
 let tlist_actionscript_settings = 'actionscript;c:class;f:method;p:property;v:variable'
 
-" FuzzyFinder
-let g:FuzzyFinderOptions = { 'Base':{}, 'Buffer':{}, 'File':{}, 'Dir':{},
-\                      'MruFile':{}, 'MruCmd':{}, 'Bookmark':{},
-\                      'Tag':{}, 'TaggedFile':{},
-\                      'GivenFile':{}, 'GivenDir':{}, 'GivenCmd':{},
-\                      'CallbackFile':{}, 'CallbackItem':{}, }
-
-let g:FuzzyFinderOptions.Base.ignore_case = 1
-let g:FuzzyFinderOptions.Base.min_length = 3
-let g:FuzzyFinderOptions.File.excluded_path = '\v\~$|\.o$|\.exe$|\.bak$|\.swp$|\.git$|gen'
-let g:FuzzyFinderOptions.Base.abbrev_map  = { 
-\            "DM" : [
+let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+let g:fuf_ignoreCase = 1
+let g:fuf_abbrevMap = {
+\            "dm" : [
 \                "~/dailymotion/css/",
 \                "~/dailymotion/css/**/",
 \                "~/dailymotion/js/",
@@ -343,11 +335,11 @@ let g:FuzzyFinderOptions.Base.abbrev_map  = {
 \                "~/dailymotion/lib/",
 \                "~/dailymotion/lib/**/",
 \            ],
-\            "SF" : [
+\            "sf" : [
 \                "/home/inside/Symfony/",
 \                "/home/inside/Symfony/**/",
 \            ],
-\            "MY" : [
+\            "my" : [
 \                "/var/www/myzf/application/",
 \                "/var/www/myzf/application/**/",
 \                "/var/www/myzf/library/Model/",
