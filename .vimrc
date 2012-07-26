@@ -287,6 +287,9 @@ filetype plugin indent on     " required!
 au VimEnter * unmap <C-c>
 au VimEnter * map <C-c> :TC<Enter>j
 
+" Syntastic
+let g:syntastic_phpcs_disable = 1
+
 " project
 nmap <silent> <Leader>p :Project<CR>
 
