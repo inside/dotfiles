@@ -54,7 +54,7 @@ set nohls
 set ruler
 set vb
 set wildmenu
-set wildmode=list:longest,full 
+set wildmode=list:longest,full
 set guicursor+=a:blinkon0
 " }}}
 
@@ -242,7 +242,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Bundle 'gmarik/vundle'
 
 " My Bundles here:
@@ -268,6 +268,7 @@ Bundle 'sessionman.vim'
 Bundle 'Syntastic'
 Bundle 'taglist.vim'
 Bundle 'vcscommand.vim'
+Bundle 'YankRing.vim'
 
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
@@ -293,6 +294,9 @@ let g:syntastic_phpcs_disable = 1
 " project
 nmap <silent> <Leader>p :Project<CR>
 
+" YankRing.vim
+nnoremap <silent> <Leader>y :YRShow<CR>
+
 "This variable, if set to a non-zero value, causes the temporary result buffers
 "to automatically delete themselves when hidden.
 let VCSCommandDeleteOnHide = 1
@@ -306,7 +310,7 @@ let VCSCommandEdit = 1
 let g:miniBufExplUseSingleClick = 1
 "let g:miniBufExplVSplit = 1
 "let g:miniBufExplMinSize = 20
-"let g:miniBufExplMaxSize =25 
+"let g:miniBufExplMaxSize =25
 
 " Taglist
 let g:Tlist_Use_Horiz_Window = 0
@@ -373,7 +377,7 @@ fun! Surround(s1, s2) range
   endif
 
   exe "normal `ba" . a:s2 . "\<ESC>`ai" . a:s1 . "\<ESC>"
-endfun 
+endfun
 
 function! ToggleActiveMouse()
     if &mouse == "a"
