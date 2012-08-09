@@ -108,8 +108,6 @@ if !exists("autocommands_loaded")
     au BufNewFile,BufRead *.as     set ft=actionscript
 endif
 
-au BufNewFile,BufRead Makefile set noexpandtab
-au BufNewFile,BufRead *.as     set ft=actionscript
 " }}}
 
 " Mappings {{{
@@ -196,9 +194,6 @@ map <Leader>r :!ant run<Enter>
 " }}}
 
 " Useful abbrevs {{{
-iab daylimotion dailymotion
-iab flase false
-iab lfase false
 ab xr print_r($
 ab xv var_dump($
 ab xe error_log(
@@ -231,7 +226,6 @@ ab fform <form action="" method="post" enctype="multipart/form-data">
 ab xhref <a href=""<CR><TAB><TAB>onclick="window.open(this.href); return false;"></a>
 ab xflash <object type="application/x-shockwave-flash" id="f" data="/flash/home.swf"><CR><param name="movie" value="/flash/home.swf" /><CR><param name="quality" value="high" /><CR><param name="bgcolor" value="#ffffff" /><CR></object>
 ab xobject <object type="application/x-oleobject" width="284" height="236" data=""><CR><param name="movie" value="" /><CR><param name="quality" value="high" /><CR><param name="bgcolor" value="#000000" /><CR><embed type="video/x-ms-asf-plugin" width="284" height="236" pluginspage="http://www.microsoft.com/Windows/Downloads/Contents/Products/MediaPlayer/" src="" name="MediaPlayer" ShowStatusBar="0" ShowControls="0"></embed><CR></object>
-ab dlm dailymotion
 " }}}
 
 " Plugin configuration {{{
@@ -253,6 +247,8 @@ Bundle 'gmarik/vundle'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Bundle 'tpope/vim-rails.git'
 Bundle 'inside/snipMate'
+Bundle 'tpope/vim-speeddating'
+Bundle 'tpope/vim-repeat'
 
 " vim-scripts repos
 Bundle 'L9'
