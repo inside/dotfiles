@@ -1,53 +1,31 @@
-" Initialize some variables
+""""""""""""""""""""""""""""
+" Variables initialization "
+""""""""""""""""""""""""""""
+
 let mapleader = ","
 
-" General {{{
+"""""""""""
+" General "
+"""""""""""
 
-let php_sql_query = 1
-set nocp		               " 'compatible' is not set
-
-" Tell vim to look for these directories when doing gf :find , see :h path
-set path+=lib,lib/DM,lib/DM/DBObject,src
-
-" set some tag files generated from ctags -R [dir_to_project]
-" this is mandatory for omni completion of user defined classes, methods, functions
-" see :h new-omni-completion
-"function! SetTag()
-"    if (getcwd() == '/mnt/svn/nakama/branches/revolution')
-"        set tags=~/.vim/tags/nakama_branches_revolution
-"    elseif (getcwd() == '/mnt/svn/nakama/trunk')
-"        set tags=~/.vim/tags/nakama_trunk
-"    elseif (getcwd() == '/home/yann/dailymotion')
-"        set tags=~/.vim/tags/dailymotion
-"    endif
-"endfunction
-"
-"call SetTag()
-set tags=~/.vim/tags/dailymotion
-
-" make dictionary completion source part of the default completion sources
-"set complete-=k complete+=k
-"set dictionary+=~/.vim/dictionary/funclist.txt
-
-"set fileencodings=latin1
-"set encoding=latin1
+set nocp    " 'compatible' is not set
+set path+=lib,lib/DM,lib/DM/DBObject,src    " Tell vim to look for these directories
+                                            " when doing gf :find , see :h path
+set tags=~/.vim/tags/dailymotion    " This is mandatory for omni completion
+                                    " of user defined classes, methods, functions
 set termencoding=utf-8
 set hidden
-" Do not redraw while running macros (much faster) (LazyRedraw)
-set lz
+set lz  " Do not redraw while running macros (much faster) (LazyRedraw)
 set infercase
 set backup
 set backupdir=~/.vim/backup
-" Stores swap files there
-set directory=~/.vim/backup
+set directory=~/.vim/backup " Stores swap files there
 set writebackup
 set mouse=a
-" make mouse work on virtual terms like screen
-set ttymouse=xterm2
+set ttymouse=xterm2 " Make mouse work on virtual terms like screen
 set ww=b,s,<,>
-" }}}
 
-" Visual options {{{
+" Visual options
 set showmatch
 set nonu
 set nohls
@@ -56,9 +34,8 @@ set vb
 set wildmenu
 set wildmode=list:longest,full
 set guicursor+=a:blinkon0
-" }}}
 
-" Text formatting {{{
+" Text formatting
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
@@ -68,49 +45,36 @@ set textwidth=0
 set ai
 set ignorecase
 set foldmethod=syntax
+set nofoldenable    " Folding should only be enabled on small files,
+                    " otherwise it take too much resources
 
-"let php_folding = 1   " fold/unfold classes and functions
-"let php_folding = 2   " fold/unfold any {} blocks
-
-set nofoldenable " folding should anly be enabled on small files, otherwise it take too much resources
-" }}}
-
-" Vim UI {{{
+" Vim UI
 set laststatus=2
-"set statusline=[%04l-%04L,%04v]\ %F%m%r%h%w\ %p%%
 set showcmd
 set showmode
-"set verbose=9
-" vim will correct me if I type if ($foo = $bar)
-" inoreabbr <expr> = getline('.') =~ '\s*if\s*\s([^=]*=$' ? '==' : '='
-" }}}
 
-" Theme/Colors {{{
-set t_Co=256 " See http://www.vim.org/tips/tip.php?tip_id=1312
+" Theme/Colors
+set t_Co=256    " See http://www.vim.org/tips/tip.php?tip_id=1312
 syntax on
 set background=dark
 colorscheme darkburn
-" }}}
 
-" Autocommands {{{
-":augroup my_tab
+""""""""""""""""
+" Autocommands "
+""""""""""""""""
+
 if !exists("autocommands_loaded")
     let autocommands_loaded = 1
-    au BufNewFile,BufRead *.php    set shiftwidth=4 softtabstop=4 tabstop=4
-    " vim will warn me if I type if ($foo = $bar)
-    "au BufNewFile,BufRead *.php match ErrorMsg '\(if\|while\)\s*([^=(!<>]*=[^=].*'
-    au BufNewFile,BufRead *.html   set shiftwidth=4 softtabstop=4 tabstop=4
-    au BufNewFile,BufRead *.css    set shiftwidth=4 softtabstop=4 tabstop=4
-    au BufNewFile,BufRead *.js     set shiftwidth=4 softtabstop=4 tabstop=4
-"    au BufNewFile,BufRead *.tpl    set shiftwidth=2 softtabstop=2 tabstop=2 ft=html syntax=smarty
-"    au BufNewFile,BufRead *.phtml  set shiftwidth=2 softtabstop=2 tabstop=2 ft=php " all my .phtml files ARE php
     au BufNewFile,BufRead Makefile set noexpandtab
     au BufNewFile,BufRead *.as     set ft=actionscript
 endif
 
-" }}}
+au VimEnter * unmap <C-c>
+au VimEnter * map <C-c> :TC<Enter>j
 
-" Mappings {{{
+""""""""""""
+" Mappings "
+""""""""""""
 
 set winaltkeys=no
 
@@ -140,24 +104,11 @@ noremap tt :Tlist<Enter>
 " A quicker way to call the macro a
 map <F2> @a
 
-" Insert php tags when editing a new php file
-map <F3> i<?php<Esc>o<enter>
-
-" Call phpdoc
-map <F5> :call PhpDocSingle()<CR>
-
 " Call the FuzzyFinder file or tag
 map <Leader>ff :FufFile<CR>
 
 " Execute file within vim
 nmap <F12> :call ExecFile()<Enter>
-
-" Surround visual selection with <p> </p> if surround_tag is not defined
-if !exists("surround_tag")
-    let surround_tag = 'p'
-endif
-
-vnoremap <F4> :call Surround('<' . surround_tag . '>', '</' . surround_tag . '>')<CR>
 
 " Switch to the previous buffer
 map <F9> :b!#<Enter>
@@ -165,12 +116,6 @@ map <F9> :b!#<Enter>
 " Control-s seems to be universal for saving files
 " and also quicker than :w<enter>
 map <C-s> :w<enter>
-
-" Switch to next same filetype buffer
-nmap <Leader><Tab> :BufNextSameFT<Enter>
-
-" Switch to previous same filetype buffer
-nmap <Leader><S-Tab> :BufPrevSameFT<Enter>
 
 " Switch to the next buffer
 nmap <Tab> :bn<Enter>
@@ -191,57 +136,43 @@ nmap  :!lynx -accept_all_cookies http://fr2.php.net/\#function.<CR>
 
 " run java
 map <Leader>r :!ant run<Enter>
-" }}}
 
-" Useful abbrevs {{{
+" The Project plugin
+nmap <silent> <Leader>p :Project<CR>
+
+" The YankRing.vim plugin
+nnoremap <silent> <Leader>y :YRShow<CR>
+
+map <Leader>f :call ShowFuncName()<CR>
+
+"""""""""""""""""
+" Abbreviations "
+"""""""""""""""""
+
 ab xr print_r($
 ab xv var_dump($
 ab xe error_log(
 ab cl console.log(
 ab fu function
 ab xhtml <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"<CR>"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><CR><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr"><CR><head><CR><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><CR><title></title><CR></head><CR><body><CR></body><CR></html>
-
-ab xhtmlxml <?php echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"; ?><CR><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"<CR>"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><CR><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr"><CR><head><CR><title></title><CR></head><CR><body><CR></body><CR></html>
-
-ab html401 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"<CR>"http://www.w3.org/TR/html4/strict.dtd"><CR><html><CR><head><CR><title></title><CR></head><CR><body></body><CR></html>
-
-ab xcss <style type="text/css"><CR>/* <![CDATA[ */<CR><CR>/* ]]> */<CR></style>
-ab xjs <script type="text/javascript"><CR>/* <![CDATA[ */<CR><CR>/* ]]> */<CR></script>
+ab xcss <style type="text/css"><CR></style>
+ab xjs <script type="text/javascript"><CR></script>
 ab xlinkcss <link rel="stylesheet" href="" />
 ab xlinkjs <script type="text/javascript" src=""></script>
 
-ab xborder border: 1px solid red;
-ab xback background-color: blue;<CR>opacity: 0.8;
-ab xbgimg background: #000 url() top left;
-ab ftext <input type="text" name="" value="" />
-ab ffile <input type="file" name="" value="" />
-ab fpassword <input type="password" name="" value="" />
-ab fradio <input type="radio" name="" value="" />
-ab fcheckbox <input type="checkbox" name="" value="" />
-ab fsubmit <input type="submit" value="Valider" />
-ab fbutton <input type="button" value="" />
-ab ftextarea <textarea cols="20" rows="20" name=""><CR></textarea>
-ab fselect <select name=""><CR><Tab><option value=""></option><CR></select>
-ab fform <form action="" method="post" enctype="multipart/form-data">
-ab xhref <a href=""<CR><TAB><TAB>onclick="window.open(this.href); return false;"></a>
-ab xflash <object type="application/x-shockwave-flash" id="f" data="/flash/home.swf"><CR><param name="movie" value="/flash/home.swf" /><CR><param name="quality" value="high" /><CR><param name="bgcolor" value="#ffffff" /><CR></object>
-ab xobject <object type="application/x-oleobject" width="284" height="236" data=""><CR><param name="movie" value="" /><CR><param name="quality" value="high" /><CR><param name="bgcolor" value="#000000" /><CR><embed type="video/x-ms-asf-plugin" width="284" height="236" pluginspage="http://www.microsoft.com/Windows/Downloads/Contents/Products/MediaPlayer/" src="" name="MediaPlayer" ShowStatusBar="0" ShowControls="0"></embed><CR></object>
-" }}}
-
-" Plugin configuration {{{
+""""""""""""""""""""""""
+" Plugin configuration "
+""""""""""""""""""""""""
 
 " vundle
-filetype off                   " required!
+filetype off    " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required!
 Bundle 'gmarik/vundle'
 
-" My Bundles here:
-
-" original repos on github
+" Repos on github
 "Bundle 'tpope/vim-fugitive'
 "Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -251,7 +182,7 @@ Bundle 'inside/actionscript.vim'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-repeat'
 
-" vim-scripts repos
+" Github vim-scripts repos
 Bundle 'L9'
 Bundle 'Align'
 Bundle 'bufkill.vim'
@@ -267,10 +198,10 @@ Bundle 'taglist.vim'
 Bundle 'vcscommand.vim'
 Bundle 'YankRing.vim'
 
-" non github repos
+" Non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
 
-filetype plugin indent on     " required!
+filetype plugin indent on   " required!
 
 " Brief help
 " :BundleList          - list configured bundles
@@ -281,33 +212,19 @@ filetype plugin indent on     " required!
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
 
-" FeralToggleCommentify
-au VimEnter * unmap <C-c>
-au VimEnter * map <C-c> :TC<Enter>j
-
 " Syntastic
 let g:syntastic_phpcs_disable = 1
 
-" project
-nmap <silent> <Leader>p :Project<CR>
+" vcscommand
+let VCSCommandDeleteOnHide = 1  " This variable, if set to a non-zero value,
+                                " causes the temporary result buffers
+                                " to automatically delete themselves when hidden.
+let VCSCommandEdit = 1  " This variable controls whether
+                        " the original buffer is replaced ('edit') or
+                        " split ('split').  If not set, it defaults to 'split'.
 
-" YankRing.vim
-nnoremap <silent> <Leader>y :YRShow<CR>
-
-"This variable, if set to a non-zero value, causes the temporary result buffers
-"to automatically delete themselves when hidden.
-let VCSCommandDeleteOnHide = 1
-
-"This variable controls whether the original buffer is replaced ('edit') or
-"split ('split').  If not set, it defaults to 'split'.
-let VCSCommandEdit = 1
-
-" minibuf
-"let loaded_minibufexplorer = 1 " desactivate minibufexplorer
+" minibufexpl
 let g:miniBufExplUseSingleClick = 1
-"let g:miniBufExplVSplit = 1
-"let g:miniBufExplMinSize = 20
-"let g:miniBufExplMaxSize =25
 
 " Taglist
 let g:Tlist_Use_Horiz_Window = 0
@@ -316,18 +233,9 @@ let Tlist_Auto_Highlight_Tag = 0
 let Tlist_Auto_Open = 0
 let Tlist_Show_One_File = 1
 let Tlist_Sort_Type = 'name'
-"let Tlist_Ctags_Cmd = "~/bin/ctags"
-" Actionscript language
-" put this in ~/.ctags
-"--langdef=actionscript
-"--langmap=actionscript:.as
-"--regex-actionscript=/^[ \t]*[(private| public|static) ( \t)]*function[ \t]+([A-Za-z0-9_]+)[ \t]*\(/\1/f, function, functions/
-"--regex-actionscript=/^[ \t]*[(public) ( \t)]*function[ \t]+(set|get) [ \t]+([A-Za-z0-9_]+)[ \t]*\(/\1 \2/p,property, properties/
-"--regex-actionscript=/^[ \t]*[(private| public|static) ( \t)]*var[ \t]+([A-Za-z0-9_]+)[ \t]*/\1/v,variable, variables/
-"--regex-actionscript=/.*\.prototype \.([A-Za-z0-9 ]+)=([ \t]?)function( [ \t]?)*\(/\1/ f,function, functions/
-"--regex-actionscript=/^[ \t]*class[ \t]+([A-Za-z0-9_]+)[ \t]*/\1/c,class, classes/
 let tlist_actionscript_settings = 'actionscript;c:class;f:method;p:property;v:variable'
 
+" FuzzyFinder
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 let g:fuf_ignoreCase = 1
 let g:fuf_abbrevMap = {
@@ -351,30 +259,9 @@ let g:fuf_abbrevMap = {
 \            ],
 \}
 
-" }}}
-
-" User functions {{{
-fun! Surround(s1, s2) range
-  exe "normal vgvmboma\<ESC>"
-  normal `a
-  let lineA = line(".")
-  let columnA = col(".")
-
-  normal `b
-  let lineB = line(".")
-  let columnB = col(".")
-  "exchange marks
-  if lineA > lineB || lineA <= lineB && columnA > columnB
-    " save b in c
-    normal mc
-    " store a in b
-    normal `amb
-    " set a to old b
-    normal `cma
-  endif
-
-  exe "normal `ba" . a:s2 . "\<ESC>`ai" . a:s1 . "\<ESC>"
-endfun
+""""""""""""""""""
+" User functions "
+""""""""""""""""""
 
 function! ToggleActiveMouse()
     if &mouse == "a"
@@ -396,37 +283,6 @@ function! TogglePaste()
     endif
 endfunction
 
-function! ToggleHLSearch()
-    if &hls
-        set nohls
-    else
-        set hls
-    endif
-endfunction
-
-"Get the next or previous buffer which matches pattern,
-"wraps around end/start.
-func! IncrBufFiltered(pat, decr)
-  let fblist =
-    \ filter(range(1, bufnr('$')),
-    \ 'buflisted(v:val) && bufname(v:val) =~ a:pat')
-
-  if empty(fblist) || len(fblist) <= 1
-    return bufnr('%')
-  endif
-  if a:decr == 1
-    let fblist = reverse(fblist)
-  endif
-
-  let key = index(fblist, bufnr('%')) + 1
-
-  if key >= len(fblist)
-    let key = 0
-  endif
-
-  return fblist[key]
-endfun
-
 " Execute the current file trough the appropriate interpreter
 function! ExecFile()
     if &ft == 'ruby'
@@ -445,17 +301,11 @@ function! ExecFile()
 endfunction
 
 fun! ShowFuncName()
-  let lnum = line(".")
-  let col = col(".")
-  echohl ModeMsg
-  "echo getline(search("^[^ \t#/]\\{2}.*[^:]\s*$", 'bW'))
-  echo getline(search("?private\\|public\\|protected\\|procedure\\|function\\s\\+\.*(", 'bW'))
-  echohl None
-  call search("\\%" . lnum . "l" . "\\%" . col . "c")
-endfun
-map <Leader>f :call ShowFuncName()<CR>
-" }}}
+    let lnum = line(".")
+    let col = col(".")
 
-" User commands or aliases
-command! BufNextSameFT exe "bu " . IncrBufFiltered('\.' . expand('%:e') . '$', 0)
-command! BufPrevSameFT exe "bu " . IncrBufFiltered('\.' . expand('%:e') . '$', 1)
+    echohl ModeMsg
+    echo getline(search("?private\\|public\\|protected\\|procedure\\|function\\s\\+\.*(", 'bW'))
+    echohl None
+    call search("\\%" . lnum . "l" . "\\%" . col . "c")
+endfunction
