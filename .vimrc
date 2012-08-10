@@ -247,6 +247,7 @@ Bundle 'gmarik/vundle'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Bundle 'tpope/vim-rails.git'
 Bundle 'inside/snipMate'
+Bundle 'inside/actionscript.vim'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-repeat'
 
