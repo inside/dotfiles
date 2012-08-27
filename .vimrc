@@ -179,6 +179,7 @@ Bundle 'gmarik/vundle'
 "Bundle 'tpope/vim-rails.git'
 Bundle 'inside/snipMate'
 Bundle 'inside/actionscript.vim'
+Bundle 'inside/fortuneod'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-repeat'
 
