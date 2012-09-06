@@ -9,7 +9,7 @@ let mapleader = ","
 """""""""""
 
 set nocp    " 'compatible' is not set
-set path+=lib,lib/DM,lib/DM/DBObject,src    " Tell vim to look for these directories
+set path+=lib,lib/DM,lib/DM/DBObject,src,views    " Tell vim to look for these directories
                                             " when doing gf :find , see :h path
 set tags=~/.vim/tags/dailymotion    " This is mandatory for omni completion
                                     " of user defined classes, methods, functions
@@ -176,6 +176,7 @@ Bundle 'gmarik/vundle'
 "Bundle 'tpope/vim-fugitive'
 "Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'mattn/zencoding-vim'
 "Bundle 'tpope/vim-rails.git'
 Bundle 'inside/snipMate'
 Bundle 'inside/actionscript.vim'
@@ -247,6 +248,10 @@ let g:fuf_abbrevMap = {
 \                "~/dailymotion/js/**/",
 \                "~/dailymotion/lib/",
 \                "~/dailymotion/lib/**/",
+\                "~/dailymotion/views/",
+\                "~/dailymotion/views/**/",
+\                "~/dailymotion/controllers/",
+\                "~/dailymotion/controllers/**/",
 \            ],
 \            "sf" : [
 \                "/home/inside/Symfony/",
