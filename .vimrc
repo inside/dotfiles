@@ -98,8 +98,8 @@ map <Leader>sp :call TogglePaste()<CR>
 " Toggle mouse on or off
 map <C-m> :call ToggleActiveMouse()<CR>
 
-" call the taglist window
-noremap tt :Tlist<Enter>
+" call the tagbar window
+nmap tt :TagbarToggle<CR>
 
 " A quicker way to call the macro a
 map <F2> @a
@@ -183,6 +183,7 @@ Bundle 'inside/actionscript.vim'
 Bundle 'inside/fortuneod'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-repeat'
+Bundle 'majutsushi/tagbar'
 
 " Github vim-scripts repos
 Bundle 'L9'
@@ -196,7 +197,6 @@ Bundle 'minibufexpl.vim'
 Bundle 'project.tar.gz'
 Bundle 'sessionman.vim'
 Bundle 'Syntastic'
-Bundle 'taglist.vim'
 Bundle 'vcscommand.vim'
 Bundle 'YankRing.vim'
 
@@ -227,15 +227,6 @@ let VCSCommandEdit = 1  " This variable controls whether
 
 " minibufexpl
 let g:miniBufExplUseSingleClick = 1
-
-" Taglist
-let g:Tlist_Use_Horiz_Window = 0
-let g:Tlist_Use_Right_Window = 1
-let Tlist_Auto_Highlight_Tag = 0
-let Tlist_Auto_Open = 0
-let Tlist_Show_One_File = 1
-let Tlist_Sort_Type = 'name'
-let tlist_actionscript_settings = 'actionscript;c:class;f:method;p:property;v:variable'
 
 " FuzzyFinder
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
