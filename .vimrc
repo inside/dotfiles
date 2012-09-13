@@ -96,7 +96,7 @@ map <Leader>m :!make pack<CR>
 map <Leader>sp :call TogglePaste()<CR>
 
 " Toggle mouse on or off
-map <C-m> :call ToggleActiveMouse()<CR>
+map <Leader><CR> :call ToggleActiveMouse()<CR>
 
 " call the tagbar window
 nmap tt :TagbarToggle<CR>
@@ -104,8 +104,9 @@ nmap tt :TagbarToggle<CR>
 " A quicker way to call the macro a
 map <F2> @a
 
-" Call the FuzzyFinder file or tag
+" Call the FuzzyFinder
 map <Leader>ff :FufFile<CR>
+map <Leader>fb :FufBuffer<CR>
 
 " Execute file within vim
 nmap <F12> :call ExecFile()<Enter>
@@ -143,7 +144,11 @@ nmap <silent> <Leader>p :Project<CR>
 " The YankRing.vim plugin
 nnoremap <silent> <Leader>y :YRShow<CR>
 
-map <Leader>f :call ShowFuncName()<CR>
+" fugitive
+nnoremap <Leader>gg :Ggrep!<SPACE>
+nnoremap <Leader>gd :Gdiff<CR>
+" switch back to current file and closes fugitive buffer
+nnoremap <Leader>gD :diffoff!<CR><C-W>h:bd<CR> 
 
 """""""""""""""""
 " Abbreviations "
@@ -173,7 +178,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Repos on github
-"Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-fugitive'
 "Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'mattn/zencoding-vim'
@@ -193,11 +198,9 @@ Bundle 'cecutil'
 Bundle 'FeralToggleCommentify.vim'
 Bundle 'FuzzyFinder'
 Bundle 'matchit.zip'
-Bundle 'minibufexpl.vim'
 Bundle 'project.tar.gz'
 Bundle 'sessionman.vim'
 Bundle 'Syntastic'
-Bundle 'vcscommand.vim'
 Bundle 'YankRing.vim'
 
 " Non github repos
@@ -216,17 +219,6 @@ filetype plugin indent on   " required!
 
 " Syntastic
 let g:syntastic_phpcs_disable = 1
-
-" vcscommand
-let VCSCommandDeleteOnHide = 1  " This variable, if set to a non-zero value,
-                                " causes the temporary result buffers
-                                " to automatically delete themselves when hidden.
-let VCSCommandEdit = 1  " This variable controls whether
-                        " the original buffer is replaced ('edit') or
-                        " split ('split').  If not set, it defaults to 'split'.
-
-" minibufexpl
-let g:miniBufExplUseSingleClick = 1
 
 " FuzzyFinder
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
@@ -295,14 +287,4 @@ function! ExecFile()
         :w
         :!./%
     endif
-endfunction
-
-fun! ShowFuncName()
-    let lnum = line(".")
-    let col = col(".")
-
-    echohl ModeMsg
-    echo getline(search("?private\\|public\\|protected\\|procedure\\|function\\s\\+\.*(", 'bW'))
-    echohl None
-    call search("\\%" . lnum . "l" . "\\%" . col . "c")
 endfunction
