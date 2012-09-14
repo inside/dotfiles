@@ -57,7 +57,6 @@ set showmode
 set t_Co=256    " See http://www.vim.org/tips/tip.php?tip_id=1312
 syntax on
 set background=dark
-colorscheme darkburn
 
 """"""""""""""""
 " Autocommands "
@@ -202,6 +201,7 @@ Bundle 'project.tar.gz'
 Bundle 'sessionman.vim'
 Bundle 'Syntastic'
 Bundle 'YankRing.vim'
+Bundle 'darkburn'
 
 " Non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
@@ -247,6 +247,9 @@ let g:fuf_abbrevMap = {
 \                "/var/www/myzf/library/Model/**/",
 \            ],
 \}
+
+" colors
+colorscheme darkburn
 
 """"""""""""""""""
 " User functions "
