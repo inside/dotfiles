@@ -144,7 +144,7 @@ nmap <silent> <Leader>p :Project<CR>
 nnoremap <silent> <Leader>y :YRShow<CR>
 
 " fugitive
-nnoremap <Leader>gg :Ggrep!<SPACE>
+nnoremap <Leader>gg :Ggrep<SPACE>
 nnoremap <Leader>gd :Gdiff<CR>
 " switch back to current file and closes fugitive buffer
 nnoremap <Leader>gD :diffoff!<CR><C-W>h:bd<CR> 
