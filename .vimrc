@@ -68,8 +68,6 @@ if !exists("autocommands_loaded")
     au BufNewFile,BufRead *.as     set ft=actionscript
 endif
 
-au VimEnter * unmap <C-c>
-au VimEnter * map <C-c> :TC<Enter>j
 
 """"""""""""
 " Mappings "
@@ -158,11 +156,6 @@ ab xv var_dump($
 ab xe error_log(
 ab cl console.log(
 ab fu function
-ab xhtml <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"<CR>"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><CR><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr"><CR><head><CR><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><CR><title></title><CR></head><CR><body><CR></body><CR></html>
-ab xcss <style type="text/css"><CR></style>
-ab xjs <script type="text/javascript"><CR></script>
-ab xlinkcss <link rel="stylesheet" href="" />
-ab xlinkjs <script type="text/javascript" src=""></script>
 
 """"""""""""""""""""""""
 " Plugin configuration "
@@ -177,24 +170,24 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Repos on github
-Bundle 'tpope/vim-fugitive'
-"Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'mattn/zencoding-vim'
 "Bundle 'tpope/vim-rails.git'
+Bundle 'tpope/vim-fugitive'
+Bundle 'mattn/zencoding-vim'
 Bundle 'inside/snipMate'
 Bundle 'inside/actionscript.vim'
 Bundle 'inside/fortuneod'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-repeat'
 Bundle 'majutsushi/tagbar'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'Lokaltog/vim-easymotion'
 
 " Github vim-scripts repos
 Bundle 'L9'
 Bundle 'Align'
 Bundle 'bufkill.vim'
 Bundle 'cecutil'
-Bundle 'FeralToggleCommentify.vim'
 Bundle 'FuzzyFinder'
 Bundle 'matchit.zip'
 Bundle 'project.tar.gz'
