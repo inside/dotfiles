@@ -24,6 +24,7 @@ set writebackup
 set mouse=a
 set ttymouse=xterm2 " Make mouse work on virtual terms like screen
 set ww=b,s,<,>
+set wildignore+=*.o,*.obj,*.git*,*cache/*,*gen/*
 
 " Visual options
 set showmatch
@@ -101,9 +102,9 @@ nmap tt :TagbarToggle<CR>
 " A quicker way to call the macro a
 map <F2> @a
 
-" Call the FuzzyFinder
-map <Leader>ff :FufFile<CR>
-map <Leader>fb :FufBuffer<CR>
+" Command-t
+map <Leader>ff :CommandT<space>
+map <Leader>fb :CommandTBuffer<CR>
 
 " Execute file within vim
 nmap <F12> :call ExecFile()<Enter>
@@ -183,13 +184,13 @@ Bundle 'tpope/vim-repeat'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'wincent/Command-T'
 
 " Github vim-scripts repos
 Bundle 'L9'
 Bundle 'Align'
 Bundle 'bufkill.vim'
 Bundle 'cecutil'
-Bundle 'FuzzyFinder'
 Bundle 'matchit.zip'
 Bundle 'project.tar.gz'
 Bundle 'sessionman.vim'
@@ -214,33 +215,8 @@ filetype plugin indent on   " required!
 " Syntastic
 let g:syntastic_phpcs_disable = 1
 
-" FuzzyFinder
-let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
-let g:fuf_ignoreCase = 1
-let g:fuf_abbrevMap = {
-\            "dm" : [
-\                "~/dailymotion/css/",
-\                "~/dailymotion/css/**/",
-\                "~/dailymotion/js/",
-\                "~/dailymotion/js/**/",
-\                "~/dailymotion/lib/",
-\                "~/dailymotion/lib/**/",
-\                "~/dailymotion/views/",
-\                "~/dailymotion/views/**/",
-\                "~/dailymotion/controllers/",
-\                "~/dailymotion/controllers/**/",
-\            ],
-\            "sf" : [
-\                "/home/inside/Symfony/",
-\                "/home/inside/Symfony/**/",
-\            ],
-\            "my" : [
-\                "/var/www/myzf/application/",
-\                "/var/www/myzf/application/**/",
-\                "/var/www/myzf/library/Model/",
-\                "/var/www/myzf/library/Model/**/",
-\            ],
-\}
+" Command-t
+let g:CommandTMaxFiles = 100000
 
 " colors
 colorscheme darkburn
