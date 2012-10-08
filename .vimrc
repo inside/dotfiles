@@ -106,6 +106,9 @@ map <F2> @a
 map <Leader>ff :CommandT<space>
 map <Leader>fb :CommandTBuffer<CR>
 
+" NERDTree
+nmap <Leader>n :NERDTreeToggle<CR>
+
 " Execute file within vim
 nmap <F12> :call ExecFile()<Enter>
 
@@ -138,9 +141,6 @@ map <Leader>r :!ant run<Enter>
 
 " The Project plugin
 nmap <silent> <Leader>p :Project<CR>
-
-" The YankRing.vim plugin
-nnoremap <silent> <Leader>y :YRShow<CR>
 
 " fugitive
 nnoremap <Leader>gg :Ggrep<SPACE>
@@ -183,8 +183,11 @@ Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-repeat'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'wincent/Command-T'
+Bundle 'spolu/dwm.vim'
+Bundle 'miripiruni/CSScomb-for-Vim'
 
 " Github vim-scripts repos
 Bundle 'L9'
@@ -195,7 +198,7 @@ Bundle 'matchit.zip'
 Bundle 'project.tar.gz'
 Bundle 'sessionman.vim'
 Bundle 'Syntastic'
-Bundle 'YankRing.vim'
+Bundle 'ZoomWin'
 Bundle 'darkburn'
 
 " Non github repos
