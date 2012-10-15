@@ -188,6 +188,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'wincent/Command-T'
 Bundle 'spolu/dwm.vim'
 Bundle 'miripiruni/CSScomb-for-Vim'
+Bundle 'vim-scripts/vimwiki'
 
 " Github vim-scripts repos
 Bundle 'L9'
