@@ -189,10 +189,10 @@ Bundle 'wincent/Command-T'
 Bundle 'spolu/dwm.vim'
 Bundle 'miripiruni/CSScomb-for-Vim'
 Bundle 'vim-scripts/vimwiki'
+Bundle 'godlygeek/tabular'
 
 " Github vim-scripts repos
 Bundle 'L9'
-Bundle 'Align'
 Bundle 'bufkill.vim'
 Bundle 'cecutil'
 Bundle 'matchit.zip'
