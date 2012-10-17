@@ -148,6 +148,9 @@ nnoremap <Leader>gd :Gdiff<CR>
 " switch back to current file and closes fugitive buffer
 nnoremap <Leader>gD :diffoff!<CR><C-W>h:bd<CR> 
 
+" numbers
+nnoremap <F4> :NumbersToggle<CR>
+
 """""""""""""""""
 " Abbreviations "
 """""""""""""""""
@@ -190,6 +193,8 @@ Bundle 'spolu/dwm.vim'
 Bundle 'miripiruni/CSScomb-for-Vim'
 Bundle 'vim-scripts/vimwiki'
 Bundle 'godlygeek/tabular'
+Bundle 'myusuf3/numbers.vim'
+"Bundle 'altercation/vim-colors-solarized'
 
 " Github vim-scripts repos
 Bundle 'L9'
@@ -224,6 +229,7 @@ let g:CommandTMaxFiles = 100000
 
 " colors
 colorscheme darkburn
+"colorscheme solarized
 
 """"""""""""""""""
 " User functions "
