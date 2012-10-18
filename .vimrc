@@ -29,7 +29,6 @@ set wildignore+=*.o,*.obj,*.git*,*cache/*,*gen/*
 " Visual options
 set showmatch
 set nonu
-set nohls
 set ruler
 set vb
 set wildmenu
@@ -79,6 +78,9 @@ endif
 """"""""""""
 
 set winaltkeys=no
+
+" Toggles highlight search
+nnoremap <Leader>h :set invhlsearch<CR>
 
 " Edit ~/.vimrc or ~/.zshrc
 map <Leader>es :e ~/.vimrc<Enter>
@@ -153,7 +155,7 @@ nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gD :diffoff!<CR><C-W>h:bd<CR> 
 
 " numbers
-nnoremap <F4> :NumbersToggle<CR>
+nnoremap <Leader>1 :NumbersToggle<CR>
 
 """""""""""""""""
 " Abbreviations "
