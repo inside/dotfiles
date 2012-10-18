@@ -28,7 +28,7 @@ set wildignore+=*.o,*.obj,*.git*,*cache/*,*gen/*
 
 " Visual options
 set showmatch
-set nonu
+set hls
 set ruler
 set vb
 set wildmenu
