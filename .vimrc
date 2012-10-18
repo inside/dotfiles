@@ -55,7 +55,12 @@ set showcmd
 set showmode
 
 " Theme/Colors
-set t_Co=256    " See http://www.vim.org/tips/tip.php?tip_id=1312
+" See http://www.vim.org/tips/tip.php?tip_id=1312
+" 256 colors may be needed for any other colorscheme exexpt solarized
+"set t_Co=256
+" Needed for solarized: Use the 16 colors terminal option to get VIM to look
+" like GVIM with solarized colors.
+set t_Co=16
 syntax on
 set background=dark
 
@@ -68,7 +73,6 @@ if !exists("autocommands_loaded")
     au BufNewFile,BufRead Makefile set noexpandtab
     au BufNewFile,BufRead *.as     set ft=actionscript
 endif
-
 
 """"""""""""
 " Mappings "
@@ -194,7 +198,7 @@ Bundle 'miripiruni/CSScomb-for-Vim'
 Bundle 'vim-scripts/vimwiki'
 Bundle 'godlygeek/tabular'
 Bundle 'myusuf3/numbers.vim'
-"Bundle 'altercation/vim-colors-solarized'
+Bundle 'altercation/vim-colors-solarized'
 
 " Github vim-scripts repos
 Bundle 'L9'
@@ -227,9 +231,11 @@ let g:syntastic_phpcs_disable = 1
 " Command-t
 let g:CommandTMaxFiles = 100000
 
-" colors
-colorscheme darkburn
-"colorscheme solarized
+" Colors
+" When solarized is not configured on the terminal,
+" my prefered colorscheme is darkburn.
+"colorscheme darkburn
+colorscheme solarized
 
 """"""""""""""""""
 " User functions "
