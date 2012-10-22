@@ -52,6 +52,7 @@ set nofoldenable    " Folding should only be enabled on small files,
 set laststatus=2
 set showcmd
 set showmode
+set cursorline
 
 " Theme/Colors
 " See http://www.vim.org/tips/tip.php?tip_id=1312
