@@ -10,7 +10,7 @@ let mapleader = ","
 
 set nocp    " 'compatible' is not set
 set path+=lib,lib/DM,lib/DM/DBObject,src,views    " Tell vim to look for these directories
-                                            " when doing gf :find , see :h path
+                                                  " when doing gf :find , see :h path
 set tags=~/.vim/tags/dailymotion    " This is mandatory for omni completion
                                     " of user defined classes, methods, functions
 set termencoding=utf-8
@@ -210,6 +210,7 @@ Bundle 'sessionman.vim'
 Bundle 'Syntastic'
 Bundle 'ZoomWin'
 Bundle 'darkburn'
+Bundle 'DBGPavim'
 
 " Non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
@@ -225,11 +226,15 @@ filetype plugin indent on   " required!
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
 
+" DBGPavim
+let g:dbgPavimPort            = 9001
+let g:dbgPavimBreakAtEntry    = 0
+
 " Syntastic
 let g:syntastic_phpcs_disable = 1
 
 " Command-t
-let g:CommandTMaxFiles = 100000
+let g:CommandTMaxFiles        = 100000
 
 " Colors
 " When solarized is not configured on the terminal,
