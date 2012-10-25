@@ -106,9 +106,6 @@ map <Leader><CR> :call ToggleActiveMouse()<CR>
 " call the tagbar window
 nmap tt :TagbarToggle<CR>
 
-" A quicker way to call the macro a
-map <F2> @a
-
 " Command-t
 map <Leader>ff :CommandT<space>
 map <Leader>fb :CommandTBuffer<CR>
