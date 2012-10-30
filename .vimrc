@@ -72,6 +72,7 @@ if !exists("autocommands_loaded")
     let autocommands_loaded = 1
     au BufNewFile,BufRead Makefile set noexpandtab
     au BufNewFile,BufRead *.as     set ft=actionscript
+    "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 endif
 
 """"""""""""
@@ -155,6 +156,12 @@ nnoremap <Leader>gD :diffoff!<CR><C-W>h:bd<CR>
 " numbers
 nnoremap <Leader>1 :NumbersToggle<CR>
 
+" PDV-revised
+nnoremap <C-p> :call PhpDoc()<cr>
+
+" Tabs
+nnoremap <Leader><Tab> :tabNext<cr>
+
 """""""""""""""""
 " Abbreviations "
 """""""""""""""""
@@ -186,6 +193,7 @@ Bundle 'inside/snipMate'
 Bundle 'inside/actionscript.vim'
 Bundle 'inside/fortuneod'
 Bundle 'inside/selfinder'
+Bundle 'inside/phpcomplete.vim'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-repeat'
 Bundle 'majutsushi/tagbar'
@@ -211,6 +219,8 @@ Bundle 'Syntastic'
 Bundle 'ZoomWin'
 Bundle 'darkburn'
 Bundle 'DBGPavim'
+Bundle 'PDV--phpDocumentor-for-Vim'
+"Bundle 'SuperTab-continued.'
 
 " Non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
@@ -235,6 +245,14 @@ let g:syntastic_phpcs_disable = 1
 
 " Command-t
 let g:CommandTMaxFiles        = 100000
+
+" Supertab
+" See: :h compl-generic this might help not having to type <c-x><c-p> but just
+" <c-p>
+let g:SuperTabDefaultCompletionType        = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-x><c-p>"
+let g:SuperTabCompletionContexts           = ['s:ContextText', 's:ContextDiscover']
+let g:SuperTabContextDiscoverDiscovery     = ['&omnifunc:<c-x><c-o>']
 
 " Colors
 " When solarized is not configured on the terminal,
@@ -282,3 +300,19 @@ function! ExecFile()
         :!./%
     endif
 endfunction
+
+"function! SuperCleverTab()
+    "if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+        "return "\<Tab>"
+    "else
+        "if &omnifunc != ''
+            "return "\<C-X>\<C-O>"
+        "elseif &dictionary != ''
+            "return "\<C-K>"
+        "else
+            "return "\<C-N>"
+        "endif
+    "endif
+"endfunction
+
+"inoremap <Leader><Tab> <C-R>=SuperCleverTab()<cr>
