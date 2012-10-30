@@ -220,7 +220,6 @@ Bundle 'ZoomWin'
 Bundle 'darkburn'
 Bundle 'DBGPavim'
 Bundle 'PDV--phpDocumentor-for-Vim'
-"Bundle 'SuperTab-continued.'
 
 " Non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
@@ -245,14 +244,6 @@ let g:syntastic_phpcs_disable = 1
 
 " Command-t
 let g:CommandTMaxFiles        = 100000
-
-" Supertab
-" See: :h compl-generic this might help not having to type <c-x><c-p> but just
-" <c-p>
-let g:SuperTabDefaultCompletionType        = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-p>"
-let g:SuperTabCompletionContexts           = ['s:ContextText', 's:ContextDiscover']
-let g:SuperTabContextDiscoverDiscovery     = ['&omnifunc:<c-x><c-o>']
 
 " Colors
 " When solarized is not configured on the terminal,
@@ -301,18 +292,22 @@ function! ExecFile()
     endif
 endfunction
 
-"function! SuperCleverTab()
-    "if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-        "return "\<Tab>"
-    "else
-        "if &omnifunc != ''
-            "return "\<C-X>\<C-O>"
-        "elseif &dictionary != ''
-            "return "\<C-K>"
-        "else
-            "return "\<C-N>"
-        "endif
-    "endif
-"endfunction
+" This can conflict with the default mappings provided by snipmate.
+" See the after directory in .vim/bundle/snipMate/after
+function! SuperCleverTab()
+    if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+        return "\<Tab>"
+    else
+        if &omnifunc != ''
+            return "\<C-X>\<C-O>"
+        elseif &dictionary != ''
+            return "\<C-K>"
+        else
+            return "\<C-N>"
+        endif
+    endif
+endfunction
 
-"inoremap <Leader><Tab> <C-R>=SuperCleverTab()<cr>
+inoremap <Leader><Tab> <C-R>=SuperCleverTab()<cr>
+inoremap <Tab> <c-n>
+inoremap <S-Tab> <c-p>
