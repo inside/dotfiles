@@ -8,11 +8,19 @@ let mapleader = ","
 " General "
 """""""""""
 
-set nocp    " 'compatible' is not set
-set path+=lib,lib/DM,lib/DM/DBObject,src,views    " Tell vim to look for these directories
-                                                  " when doing gf :find , see :h path
-set tags=~/.vim/tags/dailymotion    " This is mandatory for omni completion
-                                    " of user defined classes, methods, functions
+" 'compatible' is not set
+set nocp
+
+" Tell vim to look for these directories
+" when doing gf :find , see :h path
+set path+=lib,lib/DM,lib/DM/DBObject,src,views
+
+" Useful for jumps
+set tags=~/.vim/tags/dailymotion
+
+" Don't look for tags when completing
+set complete-=t
+
 set termencoding=utf-8
 set hidden
 set lz  " Do not redraw while running macros (much faster) (LazyRedraw)
@@ -80,6 +88,9 @@ endif
 """"""""""""
 
 set winaltkeys=no
+
+" Quick way to recall macro a
+nnoremap <Leader>2 @a
 
 " Toggles highlight search
 nnoremap <Leader>h :set invhlsearch<CR>
@@ -297,6 +308,8 @@ endfunction
 function! SuperCleverTab()
     if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
         return "\<Tab>"
+    elseif pumvisible()
+        return "\<c-n>"
     else
         if &omnifunc != ''
             return "\<C-X>\<C-O>"
@@ -308,6 +321,17 @@ function! SuperCleverTab()
     endif
 endfunction
 
-inoremap <Leader><Tab> <C-R>=SuperCleverTab()<cr>
-inoremap <Tab> <c-n>
-inoremap <S-Tab> <c-p>
+" <C-R> explained:
+" You can insert the result of a Vim expression in insert mode using the <C-R>=
+" command. For example, the following command creates an insert mode map command
+" that inserts the current directory:
+" :inoremap <F2> <C-R>=expand('%:p:h')<CR>
+"inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+
+"inoremap <Tab> <c-n>
+"inoremap <S-Tab> <c-p>
+
+" See :h <expr>
+"inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
