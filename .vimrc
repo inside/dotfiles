@@ -34,6 +34,9 @@ set ttymouse=xterm2 " Make mouse work on virtual terms like screen
 set ww=b,s,<,>
 set wildignore+=*.o,*.obj,*.git*,*cache/*,*gen/*
 
+" See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
+set keywordprg=pman
+
 " Visual options
 set showmatch
 set hls
@@ -245,6 +248,9 @@ filetype plugin indent on   " required!
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
+
+" zencoding
+let g:user_zen_leader_key = '<Leader>z'
 
 " DBGPavim
 let g:dbgPavimPort            = 9001
