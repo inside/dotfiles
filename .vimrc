@@ -96,7 +96,7 @@ set winaltkeys=no
 nnoremap <Leader>2 @a
 
 " Toggles highlight search
-nnoremap <Leader>h :set invhlsearch<CR>
+nnoremap <silent> <Leader>h :set invhlsearch<CR>
 
 " Edit ~/.vimrc or ~/.zshrc
 map <Leader>es :e ~/.vimrc<Enter>
@@ -262,6 +262,9 @@ let g:syntastic_phpcs_disable = 1
 " Command-t
 let g:CommandTMaxFiles        = 100000
 
+" Fortuneod
+let g:fortuneod_botright_split = 0
+
 " Colors
 " When solarized is not configured on the terminal,
 " my prefered colorscheme is darkburn.
@@ -274,38 +277,21 @@ colorscheme solarized
 
 function! ToggleActiveMouse()
     if &mouse == "a"
-        exe "set mouse="
+        set mouse=
         echo "Mouse is off"
     else
-        exe "set mouse=a"
+        set mouse=a
         echo "Mouse is on"
     endif
 endfunction
 
 function! TogglePaste()
-    if &paste == "0"
-        exe "set paste"
+    set invpaste
+
+    if &paste == "1"
         echo "Set paste called"
     else
-        exe "set nopaste"
         echo "Set nopaste called"
-    endif
-endfunction
-
-" Execute the current file trough the appropriate interpreter
-function! ExecFile()
-    if &ft == 'ruby'
-        :w
-        :!ruby %
-    elseif &ft == 'actionscript'
-        :w
-        :!mxmlc -debug % && fdb Main.swf
-    elseif &ft == 'php'
-        :w
-        :!php %
-    else
-        :w
-        :!./%
     endif
 endfunction
 
@@ -332,12 +318,4 @@ endfunction
 " command. For example, the following command creates an insert mode map command
 " that inserts the current directory:
 " :inoremap <F2> <C-R>=expand('%:p:h')<CR>
-"inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 inoremap <Tab> <C-R>=SuperCleverTab()<cr>
-
-"inoremap <Tab> <c-n>
-"inoremap <S-Tab> <c-p>
-
-" See :h <expr>
-"inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-"inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
