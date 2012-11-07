@@ -34,9 +34,6 @@ set ttymouse=xterm2 " Make mouse work on virtual terms like screen
 set ww=b,s,<,>
 set wildignore+=*.o,*.obj,*.git*,*cache/*,*gen/*
 
-" See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
-set keywordprg=pman
-
 " Visual options
 set showmatch
 set hls
@@ -83,7 +80,8 @@ if !exists("autocommands_loaded")
     let autocommands_loaded = 1
     au BufNewFile,BufRead Makefile set noexpandtab
     au BufNewFile,BufRead *.as     set ft=actionscript
-    "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+    " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
+    autocmd FileType php setlocal keywordprg=pman
 endif
 
 """"""""""""
@@ -225,12 +223,10 @@ Bundle 'altercation/vim-colors-solarized'
 " Github vim-scripts repos
 Bundle 'L9'
 Bundle 'bufkill.vim'
-Bundle 'cecutil'
 Bundle 'matchit.zip'
 Bundle 'project.tar.gz'
 Bundle 'sessionman.vim'
 Bundle 'Syntastic'
-Bundle 'ZoomWin'
 Bundle 'darkburn'
 Bundle 'DBGPavim'
 Bundle 'PDV--phpDocumentor-for-Vim'
