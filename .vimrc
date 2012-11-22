@@ -80,6 +80,7 @@ if !exists("autocommands_loaded")
     let autocommands_loaded = 1
     au BufNewFile,BufRead Makefile set noexpandtab
     au BufNewFile,BufRead *.as     set ft=actionscript
+    au BufNewFile,BufRead *.html   set ft=html.twig
     " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
     autocmd FileType php setlocal keywordprg=pman
 endif
@@ -132,9 +133,9 @@ nmap <F12> :call ExecFile()<Enter>
 " Switch to the previous buffer
 map <F9> :b!#<Enter>
 
-" Control-s seems to be universal for saving files
-" and also quicker than :w<enter>
-map <C-s> :w<enter>
+" save file whether in insert or normal mode
+inoremap <c-s> <c-o>:w<cr>
+nnoremap <c-s> :w<cr>
 
 " Switch to the next buffer
 nmap <Tab> :bn<Enter>
@@ -219,6 +220,7 @@ Bundle 'vim-scripts/vimwiki'
 Bundle 'godlygeek/tabular'
 Bundle 'myusuf3/numbers.vim'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'beyondwords/vim-twig'
 
 " Github vim-scripts repos
 Bundle 'L9'
@@ -283,12 +285,7 @@ endfunction
 
 function! TogglePaste()
     set invpaste
-
-    if &paste == "1"
-        echo "Set paste called"
-    else
-        echo "Set nopaste called"
-    endif
+    echo &paste == "1" ? "Set paste called" : "Set nopaste called"
 endfunction
 
 " This can conflict with the default mappings provided by snipmate.
