@@ -33,6 +33,7 @@ set mouse=a
 set ttymouse=xterm2 " Make mouse work on virtual terms like screen
 set ww=b,s,<,>
 set wildignore+=*.o,*.obj,*.git*,*cache/*,*gen/*
+set history=200
 
 " Visual options
 set showmatch
@@ -40,7 +41,7 @@ set hls
 set ruler
 set vb
 set wildmenu
-set wildmode=list:longest,full
+set wildmode=full
 set guicursor+=a:blinkon0
 
 " Text formatting
@@ -54,7 +55,7 @@ set ai
 set ignorecase
 set foldmethod=syntax
 set nofoldenable    " Folding should only be enabled on small files,
-                    " otherwise it take too much resources
+                " otherwise it take too much resources
 
 " Vim UI
 set laststatus=2
@@ -94,6 +95,9 @@ set winaltkeys=no
 " Quick way to recall macro a
 nnoremap <Leader>2 @a
 
+" Quick way to recall last command
+nnoremap <Leader>3 @:
+
 " Toggles highlight search
 nnoremap <silent> <Leader>h :set invhlsearch<CR>
 
@@ -130,9 +134,6 @@ nmap <Leader>n :NERDTreeToggle<CR>
 " Execute file within vim
 nmap <F12> :call ExecFile()<Enter>
 
-" Switch to the previous buffer
-map <F9> :b!#<Enter>
-
 " save file whether in insert or normal mode
 inoremap <c-s> <c-o>:w<cr>
 nnoremap <c-s> :w<cr>
@@ -150,9 +151,6 @@ map <del> :BD<Enter>
 inoremap {{ {}<esc>i
 inoremap (( ()<esc>i
 inoremap [[ []<esc>i
-
-" Opens lynx and search php.net for the word under the cursor
-nmap  :!lynx -accept_all_cookies http://fr2.php.net/\#function.<CR>
 
 " run java
 map <Leader>r :!ant run<Enter>
@@ -174,6 +172,14 @@ nnoremap <C-p> :call PhpDoc()<cr>
 
 " Tabs
 nnoremap <Leader><Tab> :tabNext<cr>
+
+" Remap , since it's my <Leader>
+" Useful to go back to the previous occurence when using the f{char} motion
+nnoremap \ ,
+
+" Centers the found search
+noremap <Leader>n nzz
+noremap <Leader>N Nzz
 
 """""""""""""""""
 " Abbreviations "
@@ -201,6 +207,7 @@ Bundle 'gmarik/vundle'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Bundle 'tpope/vim-rails.git'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
 Bundle 'mattn/zencoding-vim'
 Bundle 'inside/snipMate'
 Bundle 'inside/actionscript.vim'
@@ -248,7 +255,7 @@ filetype plugin indent on   " required!
 " NOTE: comments after Bundle command are not allowed..
 
 " zencoding
-let g:user_zen_leader_key = '<Leader>z'
+let g:user_zen_leader_key = '<c-k>'
 
 " DBGPavim
 let g:dbgPavimPort            = 9001
