@@ -10,6 +10,7 @@ let mapleader = ","
 
 " 'compatible' is not set
 set nocp
+set incsearch
 
 " Tell vim to look for these directories
 " when doing gf :find , see :h path
@@ -18,30 +19,30 @@ set path+=lib,lib/DM,lib/DM/DBObject,src,views
 " Useful for jumps
 set tags=~/.vim/tags/dailymotion
 
-" Don't look for tags when completing
-set complete-=t
 
+set complete-=t " Don't look for tags when completing
+set complete-=i " Don't look for included files
 set termencoding=utf-8
 set hidden
-set lz  " Do not redraw while running macros (much faster) (LazyRedraw)
-set infercase
+set lazyredraw  " Do not redraw while running macros (much faster)
+set infercase   " Case sensitive insert completion even if ingorecase is set
 set backup
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup " Stores swap files there
 set writebackup
 set mouse=a
 set ttymouse=xterm2 " Make mouse work on virtual terms like screen
-set ww=b,s,<,>
+set whichwrap=b,s,<,>
 set wildignore+=*.o,*.obj,*.git*,*cache/*,*gen/*
 set history=200
 
 " Visual options
 set showmatch
-set hls
+set nohls
 set ruler
-set vb
+set visualbell
 set wildmenu
-set wildmode=full
+set wildmode=list:longest,full
 set guicursor+=a:blinkon0
 
 " Text formatting
@@ -49,13 +50,14 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 set expandtab
-set bs=2
+set backspace=2
 set textwidth=0
-set ai
+set autoindent
 set ignorecase
+set smartcase
 set foldmethod=syntax
 set nofoldenable    " Folding should only be enabled on small files,
-                " otherwise it take too much resources
+                    " otherwise it take too much resources
 
 " Vim UI
 set laststatus=2
@@ -102,7 +104,7 @@ nnoremap <Leader>3 @:
 nnoremap <silent> <Leader>h :set invhlsearch<CR>
 
 " Edit ~/.vimrc or ~/.zshrc
-map <Leader>es :e ~/.vimrc<Enter>
+map <Leader>es :e $MYVIMRC<Enter>
 map <Leader>ez :e ~/.zshrc<Enter>
 
 " Source ~/.vimrc or ~/.zshrc
@@ -128,21 +130,20 @@ nmap tt :TagbarToggle<CR>
 map <Leader>ff :CommandT<space>
 map <Leader>fb :CommandTBuffer<CR>
 
-" NERDTree
-nmap <Leader>n :NERDTreeToggle<CR>
-
 " Execute file within vim
 nmap <F12> :call ExecFile()<Enter>
 
 " save file whether in insert or normal mode
-inoremap <c-s> <c-o>:w<cr>
+inoremap <c-s> <c-o>:w<cr><esc>
 nnoremap <c-s> :w<cr>
 
-" Switch to the next buffer
-nmap <Tab> :bn<Enter>
+" Switch to the next/previous buffer
+nmap <Leader><Tab> :bn<Enter>
+nmap <Leader><S-Tab> :bp<Enter>
 
-" Switch to the previous buffer
-nmap <S-Tab> :bp<Enter>
+" Switch to the next/previous tab
+nmap <Leader><Leader><Tab> :tabnext<Enter>
+nmap <Leader><Leader><S-Tab> :tabprevious<Enter>
 
 " Quicker way to delete a buffer
 map <del> :BD<Enter>
@@ -164,14 +165,9 @@ nnoremap <Leader>gd :Gdiff<CR>
 " switch back to current file and closes fugitive buffer
 nnoremap <Leader>gD :diffoff!<CR><C-W>h:bd<CR> 
 
-" numbers
-nnoremap <Leader>1 :NumbersToggle<CR>
 
 " PDV-revised
 nnoremap <C-p> :call PhpDoc()<cr>
-
-" Tabs
-nnoremap <Leader><Tab> :tabNext<cr>
 
 " Remap , since it's my <Leader>
 " Useful to go back to the previous occurence when using the f{char} motion
@@ -219,13 +215,10 @@ Bundle 'tpope/vim-repeat'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
-Bundle 'Lokaltog/vim-easymotion'
 Bundle 'wincent/Command-T'
-Bundle 'spolu/dwm.vim'
 Bundle 'inside/CSScomb-for-Vim'
 Bundle 'vim-scripts/vimwiki'
 Bundle 'godlygeek/tabular'
-Bundle 'myusuf3/numbers.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'beyondwords/vim-twig'
 
@@ -239,6 +232,7 @@ Bundle 'Syntastic'
 Bundle 'darkburn'
 Bundle 'DBGPavim'
 Bundle 'PDV--phpDocumentor-for-Vim'
+Bundle 'Smooth-Scroll'
 
 " Non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
