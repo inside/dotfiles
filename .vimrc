@@ -19,7 +19,6 @@ set path+=lib,lib/DM,lib/DM/DBObject,src,views
 " Useful for jumps
 set tags=~/.vim/tags/dailymotion
 
-
 set complete-=t " Don't look for tags when completing
 set complete-=i " Don't look for included files
 set termencoding=utf-8
@@ -257,6 +256,7 @@ let g:dbgPavimBreakAtEntry    = 0
 
 " Syntastic
 let g:syntastic_phpcs_disable = 1
+let g:syntastic_mode_map = {'passive_filetypes': ['html']}
 
 " Command-t
 let g:CommandTMaxFiles        = 100000
