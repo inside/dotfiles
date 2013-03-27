@@ -93,6 +93,9 @@ endif
 
 set winaltkeys=no
 
+" Get to know the current pattern count match
+nnoremap <Leader>o :%s///gn<CR>
+
 " Quick way to recall macro a
 nnoremap <Leader>2 @a
 
