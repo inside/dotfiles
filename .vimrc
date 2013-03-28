@@ -132,9 +132,6 @@ nmap tt :TagbarToggle<CR>
 map <Leader>ff :CommandT<space>
 map <Leader>fb :CommandTBuffer<CR>
 
-" Execute file within vim
-nmap <F12> :call ExecFile()<Enter>
-
 " save file whether in insert or normal mode
 inoremap <c-s> <c-o>:w<cr><esc>
 nnoremap <c-s> :w<cr>
