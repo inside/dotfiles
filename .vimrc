@@ -80,9 +80,9 @@ set background=dark
 
 if !exists("autocommands_loaded")
     let autocommands_loaded = 1
-    au BufNewFile,BufRead Makefile set noexpandtab
-    au BufNewFile,BufRead *.as     set ft=actionscript
-    au BufNewFile,BufRead *.html   set ft=html.twig
+    autocmd BufNewFile,BufRead Makefile set noexpandtab
+    autocmd BufNewFile,BufRead *.as     set ft=actionscript
+    autocmd BufNewFile,BufRead *.html   set ft=html.twig
     " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
     autocmd FileType php setlocal keywordprg=pman
 endif
@@ -106,12 +106,8 @@ nnoremap <Leader>3 @:
 nnoremap <silent> <Leader>h :set invhlsearch<CR>
 
 " Edit ~/.vimrc or ~/.zshrc
-map <Leader>es :e $MYVIMRC<Enter>
-map <Leader>ez :e ~/.zshrc<Enter>
-
-" Source ~/.vimrc or ~/.zshrc
-map <Leader>so :w<Enter>:source ~/.vimrc<Enter>
-map <Leader>sz :w<Enter>:!source ~/.zshrc<Enter>
+map <Leader>E :e $MYVIMRC<Enter>
+map <Leader>Z :e ~/.zshrc<Enter>
 
 " Hashrocket shortcut compliments of TextMate
 imap <C-L> <space>=><space>
@@ -232,6 +228,8 @@ Bundle 'darkburn'
 Bundle 'DBGPavim'
 Bundle 'PDV--phpDocumentor-for-Vim'
 Bundle 'Smooth-Scroll'
+Bundle 'Toggle'
+Bundle 'camelcasemotion'
 
 " Non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
@@ -263,6 +261,12 @@ let g:CommandTMaxFiles        = 100000
 
 " Fortuneod
 let g:fortuneod_botright_split = 0
+
+" Toggle
+nmap <Leader>t :call Toggle()<CR>
+
+" Vimwiki
+nmap <Leader>W <Plug>VimwikiIndex
 
 " Colors
 " When solarized is not configured on the terminal,
