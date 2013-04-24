@@ -3,6 +3,8 @@
 """"""""""""""""""""""""""""
 
 let mapleader = ","
+" Disables match paren from the pi_paren standard plugin
+let g:loaded_matchparen = 1
 
 """""""""""
 " General "
@@ -216,6 +218,7 @@ Bundle 'vim-scripts/vimwiki'
 Bundle 'godlygeek/tabular'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'beyondwords/vim-twig'
+Bundle 'nelstrom/vim-visual-star-search'
 
 " Github vim-scripts repos
 Bundle 'L9'
