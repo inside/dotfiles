@@ -201,6 +201,7 @@ Bundle 'gmarik/vundle'
 "Bundle 'tpope/vim-rails.git'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-abolish'
 Bundle 'mattn/zencoding-vim'
 Bundle 'inside/snipMate'
 Bundle 'inside/actionscript.vim'
@@ -256,7 +257,9 @@ let g:dbgPavimPort            = 9001
 let g:dbgPavimBreakAtEntry    = 0
 
 " Syntastic
-let g:syntastic_phpcs_disable = 1
+" Available checkers are: php, phpcs, phpmd.
+" Let's stick to the php executable only.
+let g:syntastic_php_checkers=['php']
 let g:syntastic_mode_map = {'passive_filetypes': ['html']}
 
 " Command-t
