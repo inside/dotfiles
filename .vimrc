@@ -145,11 +145,6 @@ nmap <Leader><Leader><S-Tab> :tabprevious<Enter>
 " Quicker way to delete a buffer
 map <del> :BD<Enter>
 
-" Press {{, ((, [[ and it will insert the corresponding {, (, [
-inoremap {{ {}<esc>i
-inoremap (( ()<esc>i
-inoremap [[ []<esc>i
-
 " run java
 map <Leader>r :!ant run<Enter>
 
@@ -220,6 +215,7 @@ Bundle 'godlygeek/tabular'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'beyondwords/vim-twig'
 Bundle 'nelstrom/vim-visual-star-search'
+Bundle 'Raimondi/delimitMate'
 
 " Github vim-scripts repos
 Bundle 'L9'
