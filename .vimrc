@@ -270,6 +270,9 @@ nmap <Leader>t :call Toggle()<CR>
 " Vimwiki
 nmap <Leader>W <Plug>VimwikiIndex
 
+" delimitMate
+let delimitMate_expand_cr = 1
+
 " Colors
 " When solarized is not configured on the terminal,
 " my prefered colorscheme is darkburn.
