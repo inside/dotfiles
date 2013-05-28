@@ -11,7 +11,7 @@ let g:loaded_matchparen = 1
 """""""""""
 
 " 'compatible' is not set
-set nocp
+set nocompatible
 set incsearch
 
 " Tell vim to look for these directories
@@ -39,7 +39,7 @@ set history=200
 
 " Visual options
 set showmatch
-set nohls
+set nohlsearch
 set ruler
 set visualbell
 set wildmenu
@@ -155,8 +155,7 @@ nmap <silent> <Leader>p :Project<CR>
 nnoremap <Leader>gg :Ggrep<SPACE>
 nnoremap <Leader>gd :Gdiff<CR>
 " switch back to current file and closes fugitive buffer
-nnoremap <Leader>gD :diffoff!<CR><C-W>h:bd<CR> 
-
+nnoremap <Leader>gD :diffoff!<CR><C-W>h:bd<CR>
 
 " PDV-revised
 nnoremap <C-p> :call PhpDoc()<cr>
@@ -216,6 +215,8 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'beyondwords/vim-twig'
 Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'Raimondi/delimitMate'
+Bundle 'othree/xml.vim'
+Bundle 'tomtom/quickfixsigns_vim'
 
 " Github vim-scripts repos
 Bundle 'L9'
@@ -272,6 +273,9 @@ nmap <Leader>W <Plug>VimwikiIndex
 
 " delimitMate
 let delimitMate_expand_cr = 1
+
+" quickfixsigns
+let g:quickfixsigns_classes = ['qfl', 'loc', 'vcsdiff']
 
 " Colors
 " When solarized is not configured on the terminal,
