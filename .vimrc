@@ -276,6 +276,9 @@ let delimitMate_expand_cr = 1
 
 " quickfixsigns
 let g:quickfixsigns_classes = ['qfl', 'loc', 'vcsdiff']
+" Show the signs column even if it is empty
+autocmd BufEnter * sign define dummy
+autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
 
 " Colors
 " When solarized is not configured on the terminal,
