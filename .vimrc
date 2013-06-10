@@ -108,48 +108,48 @@ nnoremap <Leader>3 @:
 nnoremap <silent> <Leader>h :set invhlsearch<CR>
 
 " Edit ~/.vimrc or ~/.zshrc
-map <Leader>E :e $MYVIMRC<Enter>
-map <Leader>Z :e ~/.zshrc<Enter>
+nnoremap <Leader>E :e $MYVIMRC<Enter>
+nnoremap <Leader>Z :e ~/.zshrc<Enter>
 
 " Hashrocket shortcut compliments of TextMate
-imap <C-L> <space>=><space>
+inoremap <C-L> <space>=><space>
 
 " make pack
-map <Leader>m :!make pack<CR>
+nnoremap <Leader>m :!make pack<CR>
 
 " Toggle paste on or off
-map <Leader>sp :call TogglePaste()<CR>
+nnoremap <Leader>sp :call TogglePaste()<CR>
 
 " Toggle mouse on or off
-map <Leader><CR> :call ToggleActiveMouse()<CR>
+nnoremap <Leader><CR> :call ToggleActiveMouse()<CR>
 
 " call the tagbar window
-nmap tt :TagbarToggle<CR>
+nnoremap tt :TagbarToggle<CR>
 
 " Command-t
-map <Leader>ff :CommandT<space>
-map <Leader>fb :CommandTBuffer<CR>
+nnoremap <Leader>ff :CommandT<space>
+nnoremap <Leader>fb :CommandTBuffer<CR>
 
 " save file whether in insert or normal mode
 inoremap <c-s> <c-o>:w<cr><esc>
 nnoremap <c-s> :w<cr>
 
 " Switch to the next/previous buffer
-nmap <Leader><Tab> :bn<Enter>
-nmap <Leader><S-Tab> :bp<Enter>
+noremap <Leader><Tab> :bn<Enter>
+noremap <Leader><S-Tab> :bp<Enter>
 
 " Switch to the next/previous tab
-nmap <Leader><Leader><Tab> :tabnext<Enter>
-nmap <Leader><Leader><S-Tab> :tabprevious<Enter>
+noremap <Leader><Leader><Tab> :tabnext<Enter>
+noremap <Leader><Leader><S-Tab> :tabprevious<Enter>
 
 " Quicker way to delete a buffer
-map <del> :BD<Enter>
+nnoremap <del> :BD<Enter>
 
 " run java
-map <Leader>r :!ant run<Enter>
+nnoremap <Leader>r :!ant run<Enter>
 
 " The Project plugin
-nmap <silent> <Leader>p :Project<CR>
+noremap <silent> <Leader>p :Project<CR>
 
 " fugitive
 nnoremap <Leader>gg :Ggrep<SPACE>
@@ -266,10 +266,10 @@ let g:CommandTMaxFiles        = 100000
 let g:fortuneod_botright_split = 0
 
 " Toggle
-nmap <Leader>t :call Toggle()<CR>
+noremap <Leader>t :call Toggle()<CR>
 
 " Vimwiki
-nmap <Leader>W <Plug>VimwikiIndex
+noremap <Leader>W <Plug>VimwikiIndex
 
 " delimitMate
 let delimitMate_expand_cr = 1
