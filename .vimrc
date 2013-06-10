@@ -31,7 +31,6 @@ set backup
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup " Stores swap files there
 set writebackup
-set mouse=a
 set ttymouse=xterm2 " Make mouse work on virtual terms like screen
 set whichwrap=b,s,<,>
 set wildignore+=*.o,*.obj,*.git*,*cache/*,*gen/*
@@ -291,11 +290,11 @@ colorscheme solarized
 """"""""""""""""""
 
 function! ToggleActiveMouse()
-    if &mouse == "a"
+    if &mouse == "nv"
         set mouse=
         echo "Mouse is off"
     else
-        set mouse=a
+        set mouse=nv
         echo "Mouse is on"
     endif
 endfunction
