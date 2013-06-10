@@ -79,14 +79,27 @@ set background=dark
 " Autocommands "
 """"""""""""""""
 
-if !exists("autocommands_loaded")
-    let autocommands_loaded = 1
+"if !exists("autocommands_loaded")
+    "let autocommands_loaded = 1
+    "autocmd BufNewFile,BufRead Makefile set noexpandtab
+    "autocmd BufNewFile,BufRead *.as     set ft=actionscript
+    "autocmd BufNewFile,BufRead *.html   set ft=html.twig
+    "" See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
+    "autocmd FileType php setlocal keywordprg=pman
+"endif
+
+augroup mygroup
+    " clear the group's autocommand
+    autocmd!
     autocmd BufNewFile,BufRead Makefile set noexpandtab
     autocmd BufNewFile,BufRead *.as     set ft=actionscript
     autocmd BufNewFile,BufRead *.html   set ft=html.twig
     " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
     autocmd FileType php setlocal keywordprg=pman
-endif
+    " Show the signs column even if it is empty, useful for the quickfixsigns plugin
+    autocmd BufEnter * sign define dummy
+    autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
+augroup END
 
 """"""""""""
 " Mappings "
@@ -275,9 +288,6 @@ let delimitMate_expand_cr = 1
 
 " quickfixsigns
 let g:quickfixsigns_classes = ['qfl', 'loc', 'vcsdiff']
-" Show the signs column even if it is empty
-autocmd BufEnter * sign define dummy
-autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
 
 " Colors
 " When solarized is not configured on the terminal,
