@@ -1,14 +1,45 @@
-""""""""""""""""""""""""""""
-" Variables initialization "
-""""""""""""""""""""""""""""
-
+" Variables initialization {{{
 let mapleader = ","
 " Disables match paren from the pi_paren standard plugin
 let g:loaded_matchparen = 1
+" }}}
 
-"""""""""""
-" General "
-"""""""""""
+" User functions {{{
+function! ToggleActiveMouse()
+    if &mouse == "nv"
+        set mouse=
+        echo "Mouse is off"
+    else
+        set mouse=nv
+        echo "Mouse is on"
+    endif
+endfunction
+
+function! TogglePaste()
+    set invpaste
+    echo &paste == "1" ? "Set paste called" : "Set nopaste called"
+endfunction
+
+" This can conflict with the default mappings provided by snipmate.
+" See the after directory in .vim/bundle/snipMate/after
+function! SuperCleverTab()
+    if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+        return "\<Tab>"
+    elseif pumvisible()
+        return "\<c-n>"
+    else
+        if &omnifunc != ''
+            return "\<C-X>\<C-O>"
+        elseif &dictionary != ''
+            return "\<C-K>"
+        else
+            return "\<C-N>"
+        endif
+    endif
+endfunction
+" }}}
+
+" General options {{{
 
 " 'compatible' is not set
 set nocompatible
@@ -35,8 +66,9 @@ set ttymouse=xterm2 " Make mouse work on virtual terms like screen
 set whichwrap=b,s,<,>
 set wildignore+=*.o,*.obj,*.git*,*cache/*,*gen/*
 set history=200
+" }}}
 
-" Visual options
+" Visual options {{{
 set showmatch
 set nohlsearch
 set ruler
@@ -44,8 +76,9 @@ set visualbell
 set wildmenu
 set wildmode=list:longest,full
 set guicursor+=a:blinkon0
+" }}}
 
-" Text formatting
+" Text formatting options {{{
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
@@ -55,17 +88,16 @@ set textwidth=0
 set autoindent
 set ignorecase
 set smartcase
-set foldmethod=syntax
-set nofoldenable    " Folding should only be enabled on small files,
-                    " otherwise it take too much resources
+" }}}
 
-" Vim UI
+" Vim UI options {{{
 set laststatus=2
 set showcmd
 set showmode
 set cursorline
+" }}}
 
-" Theme/Colors
+" Color options {{{
 " See http://www.vim.org/tips/tip.php?tip_id=1312
 " 256 colors may be needed for any other colorscheme exexpt solarized
 "set t_Co=256
@@ -74,28 +106,25 @@ set cursorline
 set t_Co=16
 syntax on
 set background=dark
+" }}}
 
-""""""""""""""""
-" Autocommands "
-""""""""""""""""
-
+" Autocommands {{{
 augroup mygroup
     " clear the group's autocommand
     autocmd!
-    autocmd BufNewFile,BufRead Makefile set noexpandtab
-    autocmd BufNewFile,BufRead *.as     set ft=actionscript
-    autocmd BufNewFile,BufRead *.html   set ft=html.twig
+    autocmd FileType vim setlocal foldmethod=marker
+    autocmd FileType make setlocal noexpandtab
     " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
     autocmd FileType php setlocal keywordprg=pman
+    autocmd BufNewFile,BufRead *.as     set filetype=actionscript
+    autocmd BufNewFile,BufRead *.html   set filetype=html.twig
     " Show the signs column even if it is empty, useful for the quickfixsigns plugin
     autocmd BufEnter * sign define dummy
     autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
 augroup END
+" }}}
 
-""""""""""""
-" Mappings "
-""""""""""""
-
+" Mappings {{{
 set winaltkeys=no
 
 " Get to know the current pattern count match
@@ -171,19 +200,23 @@ nnoremap \ ,
 noremap <Leader>n nzz
 noremap <Leader>N Nzz
 
-"""""""""""""""""
-" Abbreviations "
-"""""""""""""""""
+" <C-R> explained:
+" You can insert the result of a Vim expression in insert mode using the <C-R>=
+" command. For example, the following command creates an insert mode map command
+" that inserts the current directory:
+" :inoremap <F2> <C-R>=expand('%:p:h')<CR>
+inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+" }}}
 
+" Abbreviations {{{
 ab xr print_r($
 ab xv var_dump($
 ab xe error_log(
 ab cl console.log(
 ab fu function
+" }}}
 
-""""""""""""""""""""""""
-" Plugin configuration "
-""""""""""""""""""""""""
+" Plugin configuration {{{
 
 " vundle
 filetype off    " required!
@@ -279,53 +312,11 @@ let delimitMate_expand_cr = 1
 
 " quickfixsigns
 let g:quickfixsigns_classes = ['qfl', 'loc', 'vcsdiff']
+" }}}
 
-" Colors
+" Colorscheme {{{
 " When solarized is not configured on the terminal,
 " my prefered colorscheme is darkburn.
 "colorscheme darkburn
 colorscheme solarized
-
-""""""""""""""""""
-" User functions "
-""""""""""""""""""
-
-function! ToggleActiveMouse()
-    if &mouse == "nv"
-        set mouse=
-        echo "Mouse is off"
-    else
-        set mouse=nv
-        echo "Mouse is on"
-    endif
-endfunction
-
-function! TogglePaste()
-    set invpaste
-    echo &paste == "1" ? "Set paste called" : "Set nopaste called"
-endfunction
-
-" This can conflict with the default mappings provided by snipmate.
-" See the after directory in .vim/bundle/snipMate/after
-function! SuperCleverTab()
-    if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-        return "\<Tab>"
-    elseif pumvisible()
-        return "\<c-n>"
-    else
-        if &omnifunc != ''
-            return "\<C-X>\<C-O>"
-        elseif &dictionary != ''
-            return "\<C-K>"
-        else
-            return "\<C-N>"
-        endif
-    endif
-endfunction
-
-" <C-R> explained:
-" You can insert the result of a Vim expression in insert mode using the <C-R>=
-" command. For example, the following command creates an insert mode map command
-" that inserts the current directory:
-" :inoremap <F2> <C-R>=expand('%:p:h')<CR>
-inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+" }}}
