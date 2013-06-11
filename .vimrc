@@ -79,15 +79,6 @@ set background=dark
 " Autocommands "
 """"""""""""""""
 
-"if !exists("autocommands_loaded")
-    "let autocommands_loaded = 1
-    "autocmd BufNewFile,BufRead Makefile set noexpandtab
-    "autocmd BufNewFile,BufRead *.as     set ft=actionscript
-    "autocmd BufNewFile,BufRead *.html   set ft=html.twig
-    "" See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
-    "autocmd FileType php setlocal keywordprg=pman
-"endif
-
 augroup mygroup
     " clear the group's autocommand
     autocmd!
@@ -278,10 +269,10 @@ let g:CommandTMaxFiles        = 100000
 let g:fortuneod_botright_split = 0
 
 " Toggle
-noremap <Leader>t :call Toggle()<CR>
+nnoremap <Leader>t :call Toggle()<CR>
 
 " Vimwiki
-noremap <Leader>W <Plug>VimwikiIndex
+nmap <Leader>W <Plug>VimwikiIndex
 
 " delimitMate
 let delimitMate_expand_cr = 1
