@@ -216,7 +216,7 @@ ab cl console.log(
 ab fu function
 " }}}
 
-" Plugin configuration {{{
+" Vundle plugins {{{
 
 " vundle
 filetype off    " required!
@@ -281,22 +281,24 @@ filetype plugin indent on   " required!
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
+" }}}
 
+" Plugins configuration {{{
 " zencoding
 let g:user_zen_leader_key = '<c-k>'
 
 " DBGPavim
-let g:dbgPavimPort            = 9001
-let g:dbgPavimBreakAtEntry    = 0
+let g:dbgPavimPort = 9001
+let g:dbgPavimBreakAtEntry = 0
 
 " Syntastic
 " Available checkers are: php, phpcs, phpmd.
 " Let's stick to the php executable only.
-let g:syntastic_php_checkers=['php']
+let g:syntastic_php_checkers = ['php']
 let g:syntastic_mode_map = {'passive_filetypes': ['html']}
 
 " Command-t
-let g:CommandTMaxFiles        = 100000
+let g:CommandTMaxFiles = 100000
 
 " Fortuneod
 let g:fortuneod_botright_split = 0
@@ -305,6 +307,7 @@ let g:fortuneod_botright_split = 0
 nnoremap <Leader>t :call Toggle()<CR>
 
 " Vimwiki
+" Don't use noremap
 nmap <Leader>W <Plug>VimwikiIndex
 
 " delimitMate
