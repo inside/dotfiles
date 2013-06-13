@@ -128,83 +128,86 @@ augroup END
 set winaltkeys=no
 
 " Get to know the current pattern count match
-nnoremap <Leader>o :%s///gn<CR>
+nnoremap <leader>o :%s///gn<cr>
 
 " Quick way to recall macro a
-nnoremap <Leader>2 @a
+nnoremap <leader>2 @a
 
 " Quick way to recall last command
-nnoremap <Leader>3 @:
+nnoremap <leader>3 @:
 
 " Toggles highlight search
-nnoremap <silent> <Leader>h :set invhlsearch<CR>
+nnoremap <silent> <leader>h :set invhlsearch<cr>
 
 " Edit ~/.vimrc or ~/.zshrc
-nnoremap <Leader>E :e $MYVIMRC<Enter>
-nnoremap <Leader>Z :e ~/.zshrc<Enter>
+nnoremap <leader>E :edit $MYVIMRC<cr>
+nnoremap <leader>Z :edit ~/.zshrc<cr>
+
+" Source my vimrc
+nnoremap <leader>S :source $MYVIMRC<cr>
 
 " Hashrocket shortcut compliments of TextMate
-inoremap <C-L> <space>=><space>
+inoremap <c-l> <space>=><space>
 
 " make pack
-nnoremap <Leader>m :!make pack<CR>
+nnoremap <leader>m :!make pack<cr>
 
 " Toggle paste on or off
-nnoremap <Leader>sp :call TogglePaste()<CR>
+nnoremap <leader>sp :call TogglePaste()<cr>
 
 " Toggle mouse on or off
-nnoremap <Leader><CR> :call ToggleActiveMouse()<CR>
+nnoremap <leader><cr> :call ToggleActiveMouse()<cr>
 
 " call the tagbar window
-nnoremap tt :TagbarToggle<CR>
+nnoremap tt :TagbarToggle<cr>
 
 " Command-t
-nnoremap <Leader>ff :CommandT<space>
-nnoremap <Leader>fb :CommandTBuffer<CR>
+nnoremap <leader>ff :CommandT<space>
+nnoremap <leader>fb :CommandTBuffer<cr>
 
 " save file whether in insert or normal mode
 inoremap <c-s> <c-o>:w<cr><esc>
 nnoremap <c-s> :w<cr>
 
 " Switch to the next/previous buffer
-noremap <Leader><Tab> :bn<Enter>
-noremap <Leader><S-Tab> :bp<Enter>
+noremap <leader><Tab> :bn<cr>
+noremap <leader><S-Tab> :bp<cr>
 
 " Switch to the next/previous tab
-noremap <Leader><Leader><Tab> :tabnext<Enter>
-noremap <Leader><Leader><S-Tab> :tabprevious<Enter>
+noremap <leader><leader><Tab> :tabnext<cr>
+noremap <leader><leader><S-Tab> :tabprevious<cr>
 
 " Quicker way to delete a buffer
-nnoremap <del> :BD<Enter>
+nnoremap <del> :BD<cr>
 
 " run java
-nnoremap <Leader>r :!ant run<Enter>
+nnoremap <leader>r :!ant run<cr>
 
 " The Project plugin
-noremap <silent> <Leader>p :Project<CR>
+noremap <silent> <leader>p :Project<cr>
 
 " fugitive
-nnoremap <Leader>gg :Ggrep<SPACE>
-nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <leader>gg :Ggrep<SPACE>
+nnoremap <leader>gd :Gdiff<cr>
 " switch back to current file and closes fugitive buffer
-nnoremap <Leader>gD :diffoff!<CR><C-W>h:bd<CR>
+nnoremap <leader>gD :diffoff!<cr><C-W>h:bd<cr>
 
 " PDV-revised
 nnoremap <C-p> :call PhpDoc()<cr>
 
-" Remap , since it's my <Leader>
+" Remap , since it's my <leader>
 " Useful to go back to the previous occurence when using the f{char} motion
 nnoremap \ ,
 
 " Centers the found search
-noremap <Leader>n nzz
-noremap <Leader>N Nzz
+noremap <leader>n nzz
+noremap <leader>N Nzz
 
 " <C-R> explained:
 " You can insert the result of a Vim expression in insert mode using the <C-R>=
 " command. For example, the following command creates an insert mode map command
 " that inserts the current directory:
-" :inoremap <F2> <C-R>=expand('%:p:h')<CR>
+" :inoremap <F2> <C-R>=expand('%:p:h')<cr>
 inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 " }}}
 
@@ -304,11 +307,11 @@ let g:CommandTMaxFiles = 100000
 let g:fortuneod_botright_split = 0
 
 " Toggle
-nnoremap <Leader>t :call Toggle()<CR>
+nnoremap <leader>t :call Toggle()<cr>
 
 " Vimwiki
 " Don't use noremap
-nmap <Leader>W <Plug>VimwikiIndex
+nmap <leader>W <Plug>VimwikiIndex
 
 " delimitMate
 let delimitMate_expand_cr = 1
