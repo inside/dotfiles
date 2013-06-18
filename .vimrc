@@ -66,6 +66,7 @@ set ttymouse=xterm2 " Make mouse work on virtual terms like screen
 set whichwrap=b,s,<,>
 set wildignore+=*.o,*.obj,*.git*,*cache/*,*gen/*
 set history=200
+set grepprg=git\ grep\ -n\ $*
 " }}}
 
 " Visual options {{{
@@ -241,6 +242,7 @@ Bundle 'inside/actionscript.vim'
 Bundle 'inside/fortuneod'
 Bundle 'inside/selfinder'
 Bundle 'inside/phpcomplete.vim'
+Bundle 'inside/vim-grep-operator'
 Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-repeat'
 Bundle 'majutsushi/tagbar'
