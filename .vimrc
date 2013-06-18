@@ -188,10 +188,10 @@ nnoremap <leader>r :!ant run<cr>
 noremap <silent> <leader>p :Project<cr>
 
 " fugitive
-nnoremap <leader>gg :Ggrep<SPACE>
-nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>Gg :Ggrep<SPACE>
+nnoremap <leader>Gd :Gdiff<cr>
 " switch back to current file and closes fugitive buffer
-nnoremap <leader>gD :diffoff!<cr><C-W>h:bd<cr>
+nnoremap <leader>GD :diffoff!<cr><C-W>h:bd<cr>
 
 " PDV-revised
 nnoremap <C-p> :call PhpDoc()<cr>
@@ -320,6 +320,10 @@ let delimitMate_expand_cr = 1
 
 " quickfixsigns
 let g:quickfixsigns_classes = ['qfl', 'loc', 'vcsdiff']
+
+" vim-grep-operator
+nmap <unique> <Leader>g <Plug>GrepOperator
+vmap <unique> <Leader>g <Plug>GrepOperator
 " }}}
 
 " Colorscheme {{{
