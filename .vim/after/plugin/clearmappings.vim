@@ -17,3 +17,5 @@ nunmap <Leader>bb
 
 " Toggle
 iunmap <C-T>
+nunmap +
+vunmap +
