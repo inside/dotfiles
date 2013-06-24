@@ -14,3 +14,6 @@ nunmap <Leader>bd
 nunmap <Leader>bun
 nunmap <Leader>bf
 nunmap <Leader>bb
+
+" Toggle
+iunmap <C-T>
