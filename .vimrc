@@ -84,7 +84,7 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 set expandtab
-set backspace=2
+set backspace=indent,eol,start
 set textwidth=0
 set autoindent
 set ignorecase
@@ -322,8 +322,10 @@ let delimitMate_expand_cr = 1
 let g:quickfixsigns_classes = ['qfl', 'loc', 'vcsdiff']
 
 " vim-grep-operator
-nmap <unique> <Leader>g <Plug>GrepOperator
-vmap <unique> <Leader>g <Plug>GrepOperator
+nmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
+vmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
+nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
+vmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
 " }}}
 
 " Colorscheme {{{
