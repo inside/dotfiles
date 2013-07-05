@@ -119,7 +119,7 @@ augroup mygroup
     autocmd FileType php setlocal keywordprg=pman
     autocmd BufNewFile,BufRead *.as     set filetype=actionscript
     autocmd BufNewFile,BufRead *.html   set filetype=html.twig
-    " Show the signs column even if it is empty, useful for the quickfixsigns plugin
+    " Show the signs column even if it is empty, useful for the vim-git-gutter plugin
     autocmd BufEnter * sign define dummy
     autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
 augroup END
@@ -174,10 +174,6 @@ nnoremap <c-s> :w<cr>
 noremap <leader><Tab> :bn<cr>
 noremap <leader><S-Tab> :bp<cr>
 
-" Switch to the next/previous tab
-noremap <leader><leader><Tab> :tabnext<cr>
-noremap <leader><leader><S-Tab> :tabprevious<cr>
-
 " Quicker way to delete a buffer
 nnoremap <del> :BD<cr>
 
@@ -215,8 +211,8 @@ inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 " Abbreviations {{{
 ab xr print_r($
 ab xv var_dump($
-ab xe error_log(
-ab cl console.log(
+iabbrev xe error_log();<esc>hi
+iabbrev cl console.log();<esc>hi
 ab fu function
 " }}}
 
@@ -257,7 +253,7 @@ Bundle 'beyondwords/vim-twig'
 Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'Raimondi/delimitMate'
 Bundle 'othree/xml.vim'
-Bundle 'tomtom/quickfixsigns_vim'
+Bundle 'airblade/vim-gitgutter'
 
 " Github vim-scripts repos
 Bundle 'L9'
@@ -318,14 +314,15 @@ nmap <leader>W <Plug>VimwikiIndex
 " delimitMate
 let delimitMate_expand_cr = 1
 
-" quickfixsigns
-let g:quickfixsigns_classes = ['qfl', 'loc', 'vcsdiff']
+" vim-git-gutter
+let g:gitgutter_eager = 0
 
 " vim-grep-operator
 nmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
 vmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
 nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
 vmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
+
 " }}}
 
 " Colorscheme {{{
