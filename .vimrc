@@ -122,6 +122,7 @@ augroup mygroup
     " Show the signs column even if it is empty, useful for the vim-git-gutter plugin
     autocmd BufEnter * sign define dummy
     autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
+    autocmd FileType unite call s:unite_settings()
 augroup END
 " }}}
 
@@ -162,9 +163,23 @@ nnoremap <leader><cr> :call ToggleActiveMouse()<cr>
 " call the tagbar window
 nnoremap tt :TagbarToggle<cr>
 
-" Command-t
-nnoremap <leader>ff :CommandT<space>
-nnoremap <leader>fb :CommandTBuffer<cr>
+" Unite
+nnoremap <silent> <leader>ff
+            \ :<c-u>Unite
+            \ -no-split -buffer-name=files -start-insert
+            \ file_rec/async<cr>
+nnoremap <silent> <leader>fb
+            \ :<c-u>Unite
+            \ -no-split -buffer-name=buffers -start-insert
+            \ buffer<cr>
+nnoremap <silent> <leader>fo
+            \ :<c-u>Unite
+            \ -no-split -buffer-name=outline -start-insert
+            \ outline<cr>
+nnoremap <silent> <leader>fl
+            \ :<c-u>Unite
+            \ -no-split -buffer-name=lines -start-insert
+            \ line<cr>
 
 " save file whether in insert or normal mode
 inoremap <c-s> <c-o>:w<cr><esc>
@@ -206,6 +221,23 @@ noremap <leader>N Nzz
 " that inserts the current directory:
 " :inoremap <F2> <C-R>=expand('%:p:h')<cr>
 inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+
+" vim-grep-operator
+nmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
+vmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
+nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
+vmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
+
+" Custom mappings for the unite buffer
+function! s:unite_settings()
+    imap <buffer> <c-c> <Plug>(unite_exit)
+    nmap <buffer> <c-c> <Plug>(unite_exit)
+    nmap <buffer> <esc> <Plug>(unite_exit)
+    imap <buffer> <F5>  <Plug>(unite_redraw)
+    nmap <buffer> <F5>  <Plug>(unite_redraw)
+    imap <buffer> <c-j> <Plug>(unite_select_next_line)
+    imap <buffer> <c-k> <Plug>(unite_select_previous_line)
+endfunction
 " }}}
 
 " Abbreviations {{{
@@ -232,20 +264,21 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-abolish'
-Bundle 'mattn/zencoding-vim'
+Bundle 'tpope/vim-speeddating'
+Bundle 'tpope/vim-repeat'
 Bundle 'inside/snipMate'
 Bundle 'inside/actionscript.vim'
 Bundle 'inside/fortuneod'
-Bundle 'inside/selfinder'
-Bundle 'inside/phpcomplete.vim'
 Bundle 'inside/vim-grep-operator'
-Bundle 'tpope/vim-speeddating'
-Bundle 'tpope/vim-repeat'
+Bundle 'inside/CSScomb-for-Vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
-Bundle 'wincent/Command-T'
-Bundle 'inside/CSScomb-for-Vim'
+Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/unite-outline'
+Bundle 'Shougo/vimproc.vim'
+Bundle 'tsukkee/unite-tag'
+Bundle 'kmnk/vim-unite-giti'
 Bundle 'vim-scripts/vimwiki'
 Bundle 'godlygeek/tabular'
 Bundle 'altercation/vim-colors-solarized'
@@ -285,8 +318,6 @@ filetype plugin indent on   " required!
 " }}}
 
 " Plugins configuration {{{
-" zencoding
-let g:user_zen_leader_key = '<c-k>'
 
 " DBGPavim
 let g:dbgPavimPort = 9001
@@ -298,8 +329,8 @@ let g:dbgPavimBreakAtEntry = 0
 let g:syntastic_php_checkers = ['php']
 let g:syntastic_mode_map = {'passive_filetypes': ['html']}
 
-" Command-t
-let g:CommandTMaxFiles = 100000
+" Unite
+let g:unite_source_rec_max_cache_files = 100000
 
 " Fortuneod
 let g:fortuneod_botright_split = 0
@@ -316,12 +347,6 @@ let delimitMate_expand_cr = 1
 
 " vim-git-gutter
 let g:gitgutter_eager = 0
-
-" vim-grep-operator
-nmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
-vmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
-nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
-vmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
 
 " }}}
 
