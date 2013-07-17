@@ -331,6 +331,7 @@ let g:syntastic_mode_map = {'passive_filetypes': ['html']}
 
 " Unite
 let g:unite_source_rec_max_cache_files = 100000
+let g:unite_prompt = '» '
 
 " Fortuneod
 let g:fortuneod_botright_split = 0
