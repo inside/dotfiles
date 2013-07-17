@@ -195,9 +195,6 @@ nnoremap <del> :BD<cr>
 " run java
 nnoremap <leader>r :!ant run<cr>
 
-" The Project plugin
-noremap <silent> <leader>p :Project<cr>
-
 " fugitive
 nnoremap <leader>Gg :Ggrep<SPACE>
 nnoremap <leader>Gd :Gdiff<cr>
@@ -277,7 +274,6 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/unite-outline'
 Bundle 'Shougo/vimproc.vim'
-Bundle 'tsukkee/unite-tag'
 Bundle 'kmnk/vim-unite-giti'
 Bundle 'vim-scripts/vimwiki'
 Bundle 'godlygeek/tabular'
