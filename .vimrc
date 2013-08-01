@@ -274,6 +274,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/unite-outline'
 Bundle 'Shougo/vimproc.vim'
+Bundle 'inside/unite-argument'
 Bundle 'kmnk/vim-unite-giti'
 Bundle 'vim-scripts/vimwiki'
 Bundle 'godlygeek/tabular'
@@ -283,6 +284,7 @@ Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'Raimondi/delimitMate'
 Bundle 'othree/xml.vim'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'bling/vim-airline'
 
 " Github vim-scripts repos
 Bundle 'L9'
@@ -344,6 +346,10 @@ let delimitMate_expand_cr = 1
 
 " vim-git-gutter
 let g:gitgutter_eager = 0
+
+" vim-airline
+let g:airline_enable_syntastic = 0
+let g:airline_theme = 'solarized'
 
 " }}}
 
