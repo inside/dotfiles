@@ -37,6 +37,22 @@ function! SuperCleverTab()
         endif
     endif
 endfunction
+
+" Better complete menu navigation
+" found here: http://stackoverflow.com/a/2170800/70778
+function! OmniPopup(action)
+    if pumvisible()
+        if a:action == 'j'
+            return "\<c-n>"
+        elseif a:action == 'k'
+            return "\<c-p>"
+        endif
+    endif
+    return a:action
+endfunction
+
+inoremap <silent><c-j> <c-r>=OmniPopup('j')<cr>
+inoremap <silent><c-k> <c-r>=OmniPopup('k')<cr>
 " }}}
 
 " General options {{{
@@ -107,23 +123,6 @@ set cursorline
 set t_Co=16
 syntax on
 set background=dark
-" }}}
-
-" Autocommands {{{
-augroup mygroup
-    " clear the group's autocommand
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-    autocmd FileType make setlocal noexpandtab
-    " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
-    autocmd FileType php setlocal keywordprg=pman
-    autocmd BufNewFile,BufRead *.as     set filetype=actionscript
-    autocmd BufNewFile,BufRead *.html   set filetype=html.twig
-    " Show the signs column even if it is empty, useful for the vim-git-gutter plugin
-    autocmd BufEnter * sign define dummy
-    autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
-    autocmd FileType unite call s:unite_settings()
-augroup END
 " }}}
 
 " Mappings {{{
@@ -208,9 +207,9 @@ nnoremap <C-p> :call PhpDoc()<cr>
 " Useful to go back to the previous occurence when using the f{char} motion
 nnoremap \ ,
 
-" Centers the found search
-noremap <leader>n nzz
-noremap <leader>N Nzz
+" Centers the searched keyword
+noremap n nzz
+noremap N Nzz
 
 " <C-R> explained:
 " You can insert the result of a Vim expression in insert mode using the <C-R>=
@@ -280,11 +279,14 @@ Bundle 'vim-scripts/vimwiki'
 Bundle 'godlygeek/tabular'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'beyondwords/vim-twig'
+Bundle 'mattn/emmet-vim'
 Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'Raimondi/delimitMate'
 Bundle 'othree/xml.vim'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'bling/vim-airline'
+Bundle 'inside/jedi-vim'
+Bundle 'hynek/vim-python-pep8-indent'
 
 " Github vim-scripts repos
 Bundle 'L9'
@@ -296,7 +298,6 @@ Bundle 'Syntastic'
 Bundle 'darkburn'
 Bundle 'DBGPavim'
 Bundle 'PDV--phpDocumentor-for-Vim'
-Bundle 'Smooth-Scroll'
 Bundle 'Toggle'
 Bundle 'camelcasemotion'
 
@@ -351,6 +352,14 @@ let g:gitgutter_eager = 0
 let g:airline_enable_syntastic = 0
 let g:airline_theme = 'solarized'
 
+" emmet
+let g:user_emmet_leader_key = '<c-e>'
+let g:user_emmet_mode = 'iv'  " enable zencoding in insert and visual modes
+
+" jedi-vim
+let g:jedi#goto_assignments_command = ''
+let g:jedi#rename_command = ''
+
 " }}}
 
 " Colorscheme {{{
@@ -358,4 +367,24 @@ let g:airline_theme = 'solarized'
 " my prefered colorscheme is darkburn.
 "colorscheme darkburn
 colorscheme solarized
+" }}}
+
+" Autocommands {{{
+augroup mygroup
+    " clear the group's autocommand
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+    autocmd FileType make setlocal noexpandtab
+    " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
+    autocmd FileType php setlocal keywordprg=pman
+    autocmd BufNewFile,BufRead *.as     set filetype=actionscript
+    autocmd BufNewFile,BufRead *.html   set filetype=html.twig
+    " Show the signs column even if it is empty, useful for the vim-git-gutter plugin
+    autocmd BufEnter * sign define dummy
+    autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
+    autocmd FileType unite call s:unite_settings()
+    " I don't want the docstring window to popup during completion
+    autocmd FileType python setlocal completeopt-=preview
+    "autocmd FileType python setlocal omnifunc=jedi#completions
+augroup END
 " }}}
