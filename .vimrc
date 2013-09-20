@@ -147,9 +147,6 @@ nnoremap <leader>Z :edit ~/.zshrc<cr>
 " Source my vimrc
 nnoremap <leader>S :source $MYVIMRC<cr>
 
-" Hashrocket shortcut compliments of TextMate
-inoremap <c-l> <space>=><space>
-
 " make pack
 nnoremap <leader>m :!make pack<cr>
 
