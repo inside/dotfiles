@@ -204,9 +204,9 @@ nnoremap <C-p> :call PhpDoc()<cr>
 " Useful to go back to the previous occurence when using the f{char} motion
 nnoremap \ ,
 
-" Centers the searched keyword
-noremap n nzz
-noremap N Nzz
+" Inserts the relative filname
+"inoremap <leader>fn <c-r>=expand("%:p")<cr>
+inoremap <c-f>n <c-r>=expand("%:p")<cr>
 
 " <C-R> explained:
 " You can insert the result of a Vim expression in insert mode using the <C-R>=
