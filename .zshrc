@@ -49,6 +49,7 @@ setopt HIST_NO_STORE                     # N'enregistre pas la cmd history
 setopt noflowcontrol                     # restores the use of the keys ctrl-s, ctrl-q
 
 alias vi=~/bin/vim
+alias bower='noglob bower'
 
 # Variables
 export PAGER=$(which less)
