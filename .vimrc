@@ -231,6 +231,21 @@ function! s:unite_settings()
     imap <buffer> <c-j> <Plug>(unite_select_next_line)
     imap <buffer> <c-k> <Plug>(unite_select_previous_line)
 endfunction
+
+" Quicker way to go into command mode
+nnoremap ; :
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;
+
+" ZZ remaped to <leader>z
+nnoremap <leader>z ZZ
+
+" vim-search-pulse
+nmap n nzv<Plug>PulseCursorLine
+nmap N Nzv<Plug>PulseCursorLine
+nmap * *zv<Plug>PulseCursorLine
+nmap # #zv<Plug>PulseCursorLine
 " }}}
 
 " Abbreviations {{{
@@ -263,6 +278,7 @@ Bundle 'inside/snipMate'
 Bundle 'inside/actionscript.vim'
 Bundle 'inside/fortuneod'
 Bundle 'inside/vim-grep-operator'
+Bundle 'inside/vim-search-pulse'
 Bundle 'inside/CSScomb-for-Vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/nerdcommenter'
@@ -284,6 +300,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'bling/vim-airline'
 Bundle 'inside/jedi-vim'
 Bundle 'hynek/vim-python-pep8-indent'
+"Bundle 'ivyl/vim-bling'
 
 " Github vim-scripts repos
 Bundle 'L9'
@@ -297,6 +314,7 @@ Bundle 'DBGPavim'
 Bundle 'PDV--phpDocumentor-for-Vim'
 Bundle 'Toggle'
 Bundle 'camelcasemotion'
+Bundle 'CursorLineCurrentWindow'
 
 " Non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
