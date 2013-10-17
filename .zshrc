@@ -18,7 +18,7 @@ export DISABLE_AUTO_UPDATE="true"
 # export DISABLE_LS_COLORS="true"
 
 # Uncomment following line if you want to disable autosetting terminal title.
-# export DISABLE_AUTO_TITLE="true"
+export DISABLE_AUTO_TITLE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -48,10 +48,13 @@ unsetopt EXTENDED_HISTORY                # Historique avec timings = bof
 setopt HIST_NO_STORE                     # N'enregistre pas la cmd history
 setopt noflowcontrol                     # restores the use of the keys ctrl-s, ctrl-q
 
+alias vi=~/bin/vim
+alias bower='noglob bower'
+
 # Variables
 export PAGER=$(which less)
 export EDITOR=$(which vim)
-export PATH=~/sdk/android-sdk-linux/tools:~/sdk/android-sdk-linux/platform-tools:/data/texlive/2010/bin/i386-linux:$PATH:~/bin:/var/lib/gems/1.8/bin:~/scripts/git:~/scripts:/opt/flex/bin
+export PATH=~/node_modules/.bin:/data/texlive/2010/bin/i386-linux:$PATH:~/bin:/var/lib/gems/1.8/bin:~/scripts/git:~/scripts:~/bin/git
 export APACHE_RUN_USER=www-data
 export APACHE_RUN_GROUP=www-data
 export FLEX_HOME=/opt/flex

@@ -37,6 +37,22 @@ function! SuperCleverTab()
         endif
     endif
 endfunction
+
+" Better complete menu navigation
+" found here: http://stackoverflow.com/a/2170800/70778
+function! OmniPopup(action)
+    if pumvisible()
+        if a:action == 'j'
+            return "\<c-n>"
+        elseif a:action == 'k'
+            return "\<c-p>"
+        endif
+    endif
+    return a:action
+endfunction
+
+inoremap <silent><c-j> <c-r>=OmniPopup('j')<cr>
+inoremap <silent><c-k> <c-r>=OmniPopup('k')<cr>
 " }}}
 
 " General options {{{
@@ -109,22 +125,6 @@ syntax on
 set background=dark
 " }}}
 
-" Autocommands {{{
-augroup mygroup
-    " clear the group's autocommand
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-    autocmd FileType make setlocal noexpandtab
-    " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
-    autocmd FileType php setlocal keywordprg=pman
-    autocmd BufNewFile,BufRead *.as     set filetype=actionscript
-    autocmd BufNewFile,BufRead *.html   set filetype=html.twig
-    " Show the signs column even if it is empty, useful for the quickfixsigns plugin
-    autocmd BufEnter * sign define dummy
-    autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
-augroup END
-" }}}
-
 " Mappings {{{
 set winaltkeys=no
 
@@ -147,9 +147,6 @@ nnoremap <leader>Z :edit ~/.zshrc<cr>
 " Source my vimrc
 nnoremap <leader>S :source $MYVIMRC<cr>
 
-" Hashrocket shortcut compliments of TextMate
-inoremap <c-l> <space>=><space>
-
 " make pack
 nnoremap <leader>m :!make pack<cr>
 
@@ -162,9 +159,23 @@ nnoremap <leader><cr> :call ToggleActiveMouse()<cr>
 " call the tagbar window
 nnoremap tt :TagbarToggle<cr>
 
-" Command-t
-nnoremap <leader>ff :CommandT<space>
-nnoremap <leader>fb :CommandTBuffer<cr>
+" Unite
+nnoremap <silent> <leader>ff
+            \ :<c-u>Unite
+            \ -no-split -buffer-name=files -start-insert
+            \ file_rec/async<cr>
+nnoremap <silent> <leader>fb
+            \ :<c-u>Unite
+            \ -no-split -buffer-name=buffers -start-insert
+            \ buffer<cr>
+nnoremap <silent> <leader>fo
+            \ :<c-u>Unite
+            \ -no-split -buffer-name=outline -start-insert
+            \ outline<cr>
+nnoremap <silent> <leader>fl
+            \ :<c-u>Unite
+            \ -no-split -buffer-name=lines -start-insert
+            \ line<cr>
 
 " save file whether in insert or normal mode
 inoremap <c-s> <c-o>:w<cr><esc>
@@ -174,18 +185,11 @@ nnoremap <c-s> :w<cr>
 noremap <leader><Tab> :bn<cr>
 noremap <leader><S-Tab> :bp<cr>
 
-" Switch to the next/previous tab
-noremap <leader><leader><Tab> :tabnext<cr>
-noremap <leader><leader><S-Tab> :tabprevious<cr>
-
 " Quicker way to delete a buffer
 nnoremap <del> :BD<cr>
 
 " run java
 nnoremap <leader>r :!ant run<cr>
-
-" The Project plugin
-noremap <silent> <leader>p :Project<cr>
 
 " fugitive
 nnoremap <leader>Gg :Ggrep<SPACE>
@@ -200,9 +204,9 @@ nnoremap <C-p> :call PhpDoc()<cr>
 " Useful to go back to the previous occurence when using the f{char} motion
 nnoremap \ ,
 
-" Centers the found search
-noremap <leader>n nzz
-noremap <leader>N Nzz
+" Inserts the relative filname
+"inoremap <leader>fn <c-r>=expand("%:p")<cr>
+inoremap <c-f>n <c-r>=expand("%:p")<cr>
 
 " <C-R> explained:
 " You can insert the result of a Vim expression in insert mode using the <C-R>=
@@ -210,13 +214,45 @@ noremap <leader>N Nzz
 " that inserts the current directory:
 " :inoremap <F2> <C-R>=expand('%:p:h')<cr>
 inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+
+" vim-grep-operator
+nmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
+vmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
+nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
+vmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
+
+" Custom mappings for the unite buffer
+function! s:unite_settings()
+    imap <buffer> <c-c> <Plug>(unite_exit)
+    nmap <buffer> <c-c> <Plug>(unite_exit)
+    nmap <buffer> <esc> <Plug>(unite_exit)
+    imap <buffer> <F5>  <Plug>(unite_redraw)
+    nmap <buffer> <F5>  <Plug>(unite_redraw)
+    imap <buffer> <c-j> <Plug>(unite_select_next_line)
+    imap <buffer> <c-k> <Plug>(unite_select_previous_line)
+endfunction
+
+" Quicker way to go into command mode
+nnoremap ; :
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;
+
+" ZZ remaped to <leader>z
+nnoremap <leader>z ZZ
+
+" vim-search-pulse
+nmap n nzv<Plug>PulseCursorLine
+nmap N Nzv<Plug>PulseCursorLine
+nmap * *zv<Plug>PulseCursorLine
+nmap # #zv<Plug>PulseCursorLine
 " }}}
 
 " Abbreviations {{{
 ab xr print_r($
 ab xv var_dump($
-ab xe error_log(
-ab cl console.log(
+iabbrev xe error_log();<esc>hi
+iabbrev cl console.log();<esc>hi
 ab fu function
 " }}}
 
@@ -236,28 +272,35 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-abolish'
-Bundle 'mattn/zencoding-vim'
+Bundle 'tpope/vim-speeddating'
+Bundle 'tpope/vim-repeat'
 Bundle 'inside/snipMate'
 Bundle 'inside/actionscript.vim'
 Bundle 'inside/fortuneod'
-Bundle 'inside/selfinder'
-Bundle 'inside/phpcomplete.vim'
 Bundle 'inside/vim-grep-operator'
-Bundle 'tpope/vim-speeddating'
-Bundle 'tpope/vim-repeat'
+Bundle 'inside/vim-search-pulse'
+Bundle 'inside/CSScomb-for-Vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
-Bundle 'wincent/Command-T'
-Bundle 'inside/CSScomb-for-Vim'
+Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/unite-outline'
+Bundle 'Shougo/vimproc.vim'
+Bundle 'inside/unite-argument'
+Bundle 'kmnk/vim-unite-giti'
 Bundle 'vim-scripts/vimwiki'
 Bundle 'godlygeek/tabular'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'beyondwords/vim-twig'
+Bundle 'mattn/emmet-vim'
 Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'Raimondi/delimitMate'
 Bundle 'othree/xml.vim'
-Bundle 'tomtom/quickfixsigns_vim'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'bling/vim-airline'
+Bundle 'inside/jedi-vim'
+Bundle 'hynek/vim-python-pep8-indent'
+"Bundle 'ivyl/vim-bling'
 
 " Github vim-scripts repos
 Bundle 'L9'
@@ -269,9 +312,9 @@ Bundle 'Syntastic'
 Bundle 'darkburn'
 Bundle 'DBGPavim'
 Bundle 'PDV--phpDocumentor-for-Vim'
-Bundle 'Smooth-Scroll'
 Bundle 'Toggle'
 Bundle 'camelcasemotion'
+Bundle 'CursorLineCurrentWindow'
 
 " Non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
@@ -289,8 +332,6 @@ filetype plugin indent on   " required!
 " }}}
 
 " Plugins configuration {{{
-" zencoding
-let g:user_zen_leader_key = '<c-k>'
 
 " DBGPavim
 let g:dbgPavimPort = 9001
@@ -302,8 +343,9 @@ let g:dbgPavimBreakAtEntry = 0
 let g:syntastic_php_checkers = ['php']
 let g:syntastic_mode_map = {'passive_filetypes': ['html']}
 
-" Command-t
-let g:CommandTMaxFiles = 100000
+" Unite
+let g:unite_source_rec_max_cache_files = 100000
+let g:unite_prompt = '» '
 
 " Fortuneod
 let g:fortuneod_botright_split = 0
@@ -318,14 +360,21 @@ nmap <leader>W <Plug>VimwikiIndex
 " delimitMate
 let delimitMate_expand_cr = 1
 
-" quickfixsigns
-let g:quickfixsigns_classes = ['qfl', 'loc', 'vcsdiff']
+" vim-git-gutter
+let g:gitgutter_eager = 0
 
-" vim-grep-operator
-nmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
-vmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
-nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
-vmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
+" vim-airline
+let g:airline_enable_syntastic = 0
+let g:airline_theme = 'solarized'
+
+" emmet
+let g:user_emmet_leader_key = '<c-e>'
+let g:user_emmet_mode = 'iv'  " enable zencoding in insert and visual modes
+
+" jedi-vim
+let g:jedi#goto_assignments_command = ''
+let g:jedi#rename_command = ''
+
 " }}}
 
 " Colorscheme {{{
@@ -333,4 +382,24 @@ vmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
 " my prefered colorscheme is darkburn.
 "colorscheme darkburn
 colorscheme solarized
+" }}}
+
+" Autocommands {{{
+augroup mygroup
+    " clear the group's autocommand
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+    autocmd FileType make setlocal noexpandtab
+    " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
+    autocmd FileType php setlocal keywordprg=pman
+    autocmd BufNewFile,BufRead *.as     set filetype=actionscript
+    autocmd BufNewFile,BufRead *.html   set filetype=html.twig
+    " Show the signs column even if it is empty, useful for the vim-git-gutter plugin
+    autocmd BufEnter * sign define dummy
+    autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
+    autocmd FileType unite call s:unite_settings()
+    " I don't want the docstring window to popup during completion
+    autocmd FileType python setlocal completeopt-=preview
+    "autocmd FileType python setlocal omnifunc=jedi#completions
+augroup END
 " }}}
