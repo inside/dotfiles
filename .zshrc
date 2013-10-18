@@ -1,35 +1,52 @@
-# Path to your oh-my-zsh configuration.
-export ZSH=$HOME/.oh-my-zsh
+# vi mode
+bindkey -v
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#export ZSH_THEME="robbyrussell"
-export ZSH_THEME="inside"
-
-# Set to this to use case-sensitive completion
-# export CASE_SENSITIVE="true"
-
-# Comment this out to disable weekly auto-update checks
-export DISABLE_AUTO_UPDATE="true"
-
-# Uncomment following line if you want to disable colors in ls
-# export DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-export DISABLE_AUTO_TITLE="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# my git plugin is custom
-plugins=(git vi-mode dailymotion inside)
-
-source $ZSH/oh-my-zsh.sh
-
-# Customize to your needs...
-
+# Disables ctrl-s/ctrl-q stop/enable shell flow
 stty stop undef
+
+# Connects to a virtual machine
+vmxpie() {
+    if [ -z "$1" ]
+    then
+        echo "Usage : $(basename $0) 6|7|8|9 [host number]"
+        return
+    fi
+
+    host="vmie$1"
+    echo "connecting to $host"
+    rdesktop -u 'y.thomas-gerard' -d 'DAILY' -f -a 16 -k fr -z -xb -P "$host"
+}
+
+# Will return the current branch name
+# Usage example: git pull origin $(current_branch)
+function current_branch() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo ${ref#refs/heads/}
+}
+
+alias devdm="ssh-add; ssh -A inside@inside"
+alias devcloud="ssh-add; ssh -A ytg@devcloud"
+alias devmysql="mysql -h devdb -u dev -p"
+alias stage="ssh-add; ssh -A dev@prov"
+alias logprod="ssh dev@syslog-02"
+alias log="sudo tail -f /var/log/apache2/dailymotion-error.log"
+alias ra="sudo /etc/init.d/apache2 restart"
+alias ls="ls -G"
+alias ll="ls -G -l"
+alias fgrep="fgrep --color=always --exclude='*.git*'"
+alias lynx="lynx -accept_all_cookies"
+alias flashlog="tail -f ~/.macromedia/Flash_Player/Logs/flashlog.txt"
+alias gs="git status"
+alias gd="git diff"
+alias gc="git checkout"
+alias gl="git log"
+alias gp="git pull --rebase"
+alias gf="git fetch"
+alias ggrep="git grep"
+alias ge="git-edit"
+alias gpush="git push origin $(current_branch)"
+alias vi=~/bin/vim
+alias bower='noglob bower'
 
 setopt ALWAYS_TO_END                     # Saute apres le mot si completion
 setopt AUTO_CD                           # CD facultatif
@@ -48,17 +65,23 @@ unsetopt EXTENDED_HISTORY                # Historique avec timings = bof
 setopt HIST_NO_STORE                     # N'enregistre pas la cmd history
 setopt noflowcontrol                     # restores the use of the keys ctrl-s, ctrl-q
 
-alias vi=~/bin/vim
-alias bower='noglob bower'
-
 # Variables
+PROMPT=$(echo "\
+%{$fg_bold[green]%}%n@%m\
+%{$fg_no_bold[green]%}:%~ \
+%{$fg_bold[red]%}$(current_branch)\
+%{$fg_no_bold[cyan]%} %D{%b %e %T} \
+P%j\n%{$reset_color%}\
+%# ")
+
 export PAGER=$(which less)
 export EDITOR=$(which vim)
-export PATH=~/node_modules/.bin:/data/texlive/2010/bin/i386-linux:$PATH:~/bin:/var/lib/gems/1.8/bin:~/scripts/git:~/scripts:~/bin/git
+export PATH=~/node_modules/.bin:$PATH:~/bin:~/bin/git:~/scripts:~/scripts/git
 export APACHE_RUN_USER=www-data
 export APACHE_RUN_GROUP=www-data
-export FLEX_HOME=/opt/flex
-export MYSQL_PS1="(\u@\h) [\d]> "
+# Set TERM to xterm-256color in your .bashrc, and put term screen-256color in
+# your .screenrc
+export TERM=xterm-256color
 
 # http://vim.wikia.com/wiki/Configuring_the_cursor
 echo -ne "\033]12;#ffffff\007"
@@ -69,3 +92,8 @@ zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character t
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+
+# Autoload screen if we aren't in it
+if [[ $STY = '' ]] then
+    screen -xR
+fi
