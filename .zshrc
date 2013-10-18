@@ -66,13 +66,13 @@ setopt HIST_NO_STORE                     # N'enregistre pas la cmd history
 setopt noflowcontrol                     # restores the use of the keys ctrl-s, ctrl-q
 
 # Variables
-PROMPT=$(echo "\
+PROMPT=$(echo '\
 %{$fg_bold[green]%}%n@%m\
 %{$fg_no_bold[green]%}:%~ \
 %{$fg_bold[red]%}$(current_branch)\
 %{$fg_no_bold[cyan]%} %D{%b %e %T} \
 P%j\n%{$reset_color%}\
-%# ")
+%# ')
 
 export PAGER=$(which less)
 export EDITOR=$(which vim)
