@@ -1,0 +1,15 @@
+# skip the startup message
+startup_message off
+
+# For example if you start vim, its content won't be left in the screen when
+# you leave vim
+altscreen on
+
+# Display a caption string below, appearing like tabs and
+# displaying the window number and application name (by default).
+caption always
+caption string "%{kw}%-w%{wr}%n %t%{-}%+w"
+
+# Set TERM to xterm-256color in your .bashrc, and put term screen-256color in
+# your .screenrc
+term screen-256color
