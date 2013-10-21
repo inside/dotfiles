@@ -94,6 +94,6 @@ zstyle ':completion:*' menu select=2
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 
 # Autoload screen if we aren't in it
-if [[ $STY = '' ]] then
+if [[ $STY = '' ]] && [[ $SSH_CLIENT != '' ]] then
     screen -xR
 fi
