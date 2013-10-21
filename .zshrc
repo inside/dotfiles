@@ -1,3 +1,7 @@
+# Enables colors
+autoload -U colors
+colors
+
 # vi mode
 bindkey -v
 
@@ -31,8 +35,8 @@ alias stage="ssh-add; ssh -A dev@prov"
 alias logprod="ssh dev@syslog-02"
 alias log="sudo tail -f /var/log/apache2/dailymotion-error.log"
 alias ra="sudo /etc/init.d/apache2 restart"
-alias ls="ls -G"
-alias ll="ls -G -l"
+alias ls="ls -G --color"
+alias ll="ls -G -l --color"
 alias fgrep="fgrep --color=always --exclude='*.git*'"
 alias lynx="lynx -accept_all_cookies"
 alias flashlog="tail -f ~/.macromedia/Flash_Player/Logs/flashlog.txt"
