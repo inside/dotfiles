@@ -246,6 +246,9 @@ nmap n nzv<Plug>PulseCursorLine
 nmap N Nzv<Plug>PulseCursorLine
 nmap * *zv<Plug>PulseCursorLine
 nmap # #zv<Plug>PulseCursorLine
+
+" The nerdtree
+nnoremap <leader>nt :NERDTreeToggle<cr>
 " }}}
 
 " Abbreviations {{{
@@ -400,6 +403,9 @@ augroup mygroup
     autocmd FileType unite call s:unite_settings()
     " I don't want the docstring window to popup during completion
     autocmd FileType python setlocal completeopt-=preview
-    "autocmd FileType python setlocal omnifunc=jedi#completions
+
+    " Thanks to http://tilvim.com/2013/05/29/comment-prefix.html
+    " I don't want comment prefixing on a new line
+    autocmd FileType * setlocal formatoptions-=o | setlocal formatoptions-=r
 augroup END
 " }}}
