@@ -83,6 +83,10 @@ set whichwrap=b,s,<,>
 set wildignore+=*.o,*.obj,*.git*,*cache/*,*gen/*
 set history=200
 set grepprg=git\ grep\ -n\ $*
+
+" Disable setting options by file like /* vim: set sw=2: */
+set nomodeline
+set colorcolumn=80
 " }}}
 
 " Visual options {{{
@@ -242,10 +246,11 @@ vnoremap : ;
 nnoremap <leader>z ZZ
 
 " vim-search-pulse
-nmap n nzv<Plug>PulseCursorLine
-nmap N Nzv<Plug>PulseCursorLine
-nmap * *zv<Plug>PulseCursorLine
-nmap # #zv<Plug>PulseCursorLine
+nmap n n<Plug>PulseCursorLine
+nmap N N<Plug>PulseCursorLine
+nmap * *<Plug>PulseCursorLine
+nmap # #<Plug>PulseCursorLine
+cmap <enter> <Plug>PulseFirst
 
 " The nerdtree
 nnoremap <leader>nt :NERDTreeToggle<cr>
