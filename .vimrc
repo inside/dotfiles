@@ -262,6 +262,10 @@ vnoremap <f1> <nop>
 " Remaps esc to something easier to type
 inoremap jk <esc>
 inoremap <esc> <nop>
+
+" Easy up and down on wrapped long lines
+nnoremap j gj
+nnoremap k gk
 " }}}
 
 " Abbreviations {{{
