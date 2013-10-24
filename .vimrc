@@ -61,10 +61,6 @@ inoremap <silent><c-k> <c-r>=OmniPopup('k')<cr>
 set nocompatible
 set incsearch
 
-" Tell vim to look for these directories
-" when doing gf :find , see :h path
-set path+=lib,lib/DM,lib/DM/DBObject,src,views
-
 " Useful for jumps
 set tags=~/.vim/tags/dailymotion
 
@@ -87,6 +83,9 @@ set grepprg=git\ grep\ -n\ $*
 " Disable setting options by file like /* vim: set sw=2: */
 set nomodeline
 set colorcolumn=80
+" Use only 1 space after "." when joining lines instead of 2
+set nojoinspaces
+set showbreak=↪\ " Character to precede line wraps
 " }}}
 
 " Visual options {{{
@@ -254,6 +253,15 @@ cmap <enter> <Plug>PulseFirst
 
 " The nerdtree
 nnoremap <leader>nt :NERDTreeToggle<cr>
+
+" Remaps <f1> to nothing, when you try to reach <esc> you often hit <f1>
+inoremap <f1> <nop>
+nnoremap <f1> <nop>
+vnoremap <f1> <nop>
+
+" Remaps esc to something easier to type
+inoremap jk <esc>
+inoremap <esc> <nop>
 " }}}
 
 " Abbreviations {{{
@@ -318,7 +326,6 @@ Bundle 'project.tar.gz'
 Bundle 'sessionman.vim'
 Bundle 'Syntastic'
 Bundle 'darkburn'
-Bundle 'DBGPavim'
 Bundle 'PDV--phpDocumentor-for-Vim'
 Bundle 'Toggle'
 Bundle 'camelcasemotion'
@@ -340,10 +347,6 @@ filetype plugin indent on   " required!
 " }}}
 
 " Plugins configuration {{{
-
-" DBGPavim
-let g:dbgPavimPort = 9001
-let g:dbgPavimBreakAtEntry = 0
 
 " Syntastic
 " Available checkers are: php, phpcs, phpmd.
