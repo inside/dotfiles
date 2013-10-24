@@ -86,6 +86,8 @@ set colorcolumn=80
 " Use only 1 space after "." when joining lines instead of 2
 set nojoinspaces
 set showbreak=↪\ " Character to precede line wraps
+" Always show 3 lines above or below the cursor
+set scrolloff=3
 " }}}
 
 " Visual options {{{
