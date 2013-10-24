@@ -269,11 +269,11 @@ nnoremap k gk
 " }}}
 
 " Abbreviations {{{
-ab xr print_r($
-ab xv var_dump($
-iabbrev xe error_log();<esc>hi
-iabbrev cl console.log();<esc>hi
-ab fu function
+inoreabbrev xr print_r($
+inoreabbrev xv var_dump($
+inoreabbrev fu function
+inoreabbrev xe error_log();<esc>hi
+inoreabbrev cl console.log();<esc>hi
 " }}}
 
 " Vundle plugins {{{
