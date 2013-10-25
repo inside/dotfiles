@@ -85,7 +85,9 @@ set nomodeline
 set colorcolumn=80
 " Use only 1 space after "." when joining lines instead of 2
 set nojoinspaces
-set showbreak=↪\ " Character to precede line wraps
+" Character to precede line wraps
+" Using let instead of set to be able to use quotes
+let &showbreak='↪ '
 " Always show 3 lines above or below the cursor
 set scrolloff=3
 " }}}
