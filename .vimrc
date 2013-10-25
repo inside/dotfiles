@@ -96,7 +96,9 @@ set scrolloff=3
 set showmatch
 set nohlsearch
 set ruler
+" If 't_vb' is cleared and 'visualbell' is set, no beep and no flash will ever occur
 set visualbell
+set t_vb=
 set wildmenu
 set wildmode=list:longest,full
 set guicursor+=a:blinkon0
