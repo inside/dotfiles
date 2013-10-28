@@ -51,8 +51,23 @@ function! OmniPopup(action)
     return a:action
 endfunction
 
-inoremap <silent><c-j> <c-r>=OmniPopup('j')<cr>
-inoremap <silent><c-k> <c-r>=OmniPopup('k')<cr>
+inoremap <silent> <expr> <c-j> OmniPopup('j')
+inoremap <silent> <expr> <c-k> OmniPopup('k')
+
+" Go to next/previous SGML tag
+" Credit goes to https://github.com/tejr/nextag/blob/master/plugin/nextag.vim
+function! NextTag(direction)
+    let ptn = '\m<\/\?\w\+[^>]*>'
+
+    if a:direction == 'next'
+        call search(ptn)
+    elseif a:direction == 'previous'
+        call search(ptn, 'b')
+    endif
+endfunction
+
+nnoremap <silent> tn :call NextTag('next')<cr>
+nnoremap <silent> tp :call NextTag('previous')<cr>
 " }}}
 
 " General options {{{
