@@ -80,7 +80,7 @@ P%j\n%{$reset_color%}\
 
 export PAGER=$(which less)
 export EDITOR=$(which vim)
-export PATH=~/node_modules/.bin:$PATH:~/bin:~/bin/git:~/scripts:~/scripts/git
+export PATH=$PATH:~/bin:~/bin/git:~/scripts:~/scripts/git
 export APACHE_RUN_USER=www-data
 export APACHE_RUN_GROUP=www-data
 # Set TERM to xterm-256color in your .bashrc, and put term screen-256color in
