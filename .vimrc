@@ -265,13 +265,6 @@ vnoremap : ;
 " ZZ remaped to <leader>z
 nnoremap <leader>z ZZ
 
-" vim-search-pulse
-nmap n n<Plug>PulseCursorLine
-nmap N N<Plug>PulseCursorLine
-nmap * *<Plug>PulseCursorLine
-nmap # #<Plug>PulseCursorLine
-cmap <enter> <Plug>PulseFirst
-
 " The nerdtree
 nnoremap <leader>nt :NERDTreeToggle<cr>
 
