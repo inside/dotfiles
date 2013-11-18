@@ -280,6 +280,14 @@ inoremap <esc> <nop>
 " Easy up and down on wrapped long lines
 nnoremap j gj
 nnoremap k gk
+
+" Bring each tag attribute/value on its own line
+" For example <a href="/foo" class="foo" id="foo"> becomes:
+" <a
+" href="/foo"
+" class="foo"
+" id="foo">
+nnoremap <leader><leader>b /=<cr>bXi<cr><esc>n
 " }}}
 
 " Abbreviations {{{
