@@ -20,6 +20,12 @@ function! TogglePaste()
     echo &paste == "1" ? "Set paste called" : "Set nopaste called"
 endfunction
 
+function! ToggleHelpType()
+    let ft = &filetype == 'text' ? 'help' : 'text'
+    execute 'set filetype=' . ft
+    set filetype?
+endfunction
+
 " This can conflict with the default mappings provided by snipmate.
 " See the after directory in .vim/bundle/snipMate/after
 function! SuperCleverTab()
@@ -288,6 +294,9 @@ nnoremap k gk
 " class="foo"
 " id="foo">
 nnoremap <leader><leader>b /=<cr>bXi<cr><esc>n
+
+" Toggles help file type
+nnoremap <leader>sh :call ToggleHelpType()<cr>
 " }}}
 
 " Abbreviations {{{
@@ -343,6 +352,7 @@ Bundle 'bling/vim-airline'
 Bundle 'inside/jedi-vim'
 Bundle 'hynek/vim-python-pep8-indent'
 "Bundle 'ivyl/vim-bling'
+Bundle 'bronson/vim-trailing-whitespace'
 
 " Github vim-scripts repos
 Bundle 'L9'
@@ -412,6 +422,8 @@ let g:user_emmet_mode = 'iv'  " enable zencoding in insert and visual modes
 let g:jedi#goto_assignments_command = ''
 let g:jedi#rename_command = ''
 
+" Search pulse
+let g:vim_search_pulse_mode = 'pattern'
 " }}}
 
 " Colorscheme {{{
