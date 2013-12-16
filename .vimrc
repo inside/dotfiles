@@ -297,6 +297,14 @@ nnoremap <leader><leader>b /=<cr>bXi<cr><esc>n
 
 " Toggles help file type
 nnoremap <leader>sh :call ToggleHelpType()<cr>
+
+" Tabs
+nnoremap <leader>tn :tabnew<cr>
+nnoremap <leader>tc :tabclose<cr>
+
+" CoffeeScript
+nnoremap <leader>co :CoffeeCompile<cr>
+
 " }}}
 
 " Abbreviations {{{
@@ -353,6 +361,8 @@ Bundle 'inside/jedi-vim'
 Bundle 'hynek/vim-python-pep8-indent'
 "Bundle 'ivyl/vim-bling'
 Bundle 'bronson/vim-trailing-whitespace'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'nathanaelkane/vim-indent-guides'
 
 " Github vim-scripts repos
 Bundle 'L9'
@@ -439,10 +449,12 @@ augroup mygroup
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
     autocmd FileType make setlocal noexpandtab
+    autocmd FileType coffee setlocal shiftwidth=2
     " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
     autocmd FileType php setlocal keywordprg=pman
     autocmd BufNewFile,BufRead *.as     set filetype=actionscript
     autocmd BufNewFile,BufRead *.html   set filetype=html.twig
+    autocmd BufNewFile,BufRead *.ejs    set filetype=html
     " Show the signs column even if it is empty, useful for the vim-git-gutter plugin
     autocmd BufEnter * sign define dummy
     autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
