@@ -447,6 +447,6 @@ augroup mygroup
 
     " Thanks to http://tilvim.com/2013/05/29/comment-prefix.html
     " I don't want comment prefixing on a new line
-    autocmd FileType * setlocal formatoptions-=o | setlocal formatoptions-=r
+    autocmd FileType * setlocal formatoptions-=o formatoptions-=r
 augroup END
 " }}}
