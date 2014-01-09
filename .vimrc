@@ -358,6 +358,7 @@ Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'salsifis/vim-transpose'
 
 " Github vim-scripts repos
 Bundle 'L9'
@@ -431,6 +432,7 @@ augroup mygroup
     autocmd FileType vim setlocal foldmethod=marker
     autocmd FileType make setlocal noexpandtab
     autocmd FileType coffee setlocal shiftwidth=2
+    autocmd FileType html setlocal shiftwidth=2
     " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
     autocmd FileType php setlocal keywordprg=pman
     autocmd BufNewFile,BufRead *.as     set filetype=actionscript
