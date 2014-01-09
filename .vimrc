@@ -326,12 +326,9 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Repos on github
-"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-"Bundle 'tpope/vim-rails.git'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-speeddating'
 Bundle 'tpope/vim-repeat'
 Bundle 'inside/snipMate'
 Bundle 'inside/actionscript.vim'
@@ -345,7 +342,6 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/unite-outline'
 Bundle 'Shougo/vimproc.vim'
-Bundle 'inside/unite-argument'
 Bundle 'kmnk/vim-unite-giti'
 Bundle 'vim-scripts/vimwiki'
 Bundle 'godlygeek/tabular'
@@ -354,42 +350,27 @@ Bundle 'beyondwords/vim-twig'
 Bundle 'mattn/emmet-vim'
 Bundle 'nelstrom/vim-visual-star-search'
 Bundle 'Raimondi/delimitMate'
-Bundle 'othree/xml.vim'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'bling/vim-airline'
 Bundle 'inside/jedi-vim'
 Bundle 'hynek/vim-python-pep8-indent'
-"Bundle 'ivyl/vim-bling'
 Bundle 'bronson/vim-trailing-whitespace'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'michaeljsmith/vim-indent-object'
 
 " Github vim-scripts repos
 Bundle 'L9'
 Bundle 'bufkill.vim'
 Bundle 'matchit.zip'
-Bundle 'project.tar.gz'
 Bundle 'sessionman.vim'
 Bundle 'Syntastic'
 Bundle 'darkburn'
-Bundle 'PDV--phpDocumentor-for-Vim'
 Bundle 'Toggle'
 Bundle 'camelcasemotion'
 Bundle 'CursorLineCurrentWindow'
 
-" Non github repos
-"Bundle 'git://git.wincent.com/command-t.git'
-
 filetype plugin indent on   " required!
-
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
 " }}}
 
 " Plugins configuration {{{
