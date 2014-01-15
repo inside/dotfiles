@@ -450,3 +450,9 @@ augroup mygroup
     autocmd FileType * setlocal formatoptions-=o formatoptions-=r
 augroup END
 " }}}
+
+" Loads a local configuration {{{
+if filereadable($HOME . '/.vimrc.local')
+    source $HOME/.vimrc.local
+endif
+" }}}
