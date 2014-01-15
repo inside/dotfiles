@@ -81,10 +81,6 @@ nnoremap <silent> tp :call NextTag('previous')<cr>
 " 'compatible' is not set
 set nocompatible
 set incsearch
-
-" Useful for jumps
-set tags=~/.vim/tags/dailymotion
-
 set complete-=t " Don't look for tags when completing
 set complete-=i " Don't look for included files
 set termencoding=utf-8
@@ -97,7 +93,7 @@ set directory=~/.vim/backup " Stores swap files there
 set writebackup
 set ttymouse=xterm2 " Make mouse work on virtual terms like screen
 set whichwrap=b,s,<,>
-set wildignore+=*.o,*.obj,*.git*,*cache/*,*gen/*
+set wildignore+=*.git*
 set history=200
 set grepprg=git\ grep\ -n\ $*
 
@@ -177,9 +173,6 @@ nnoremap <leader>Z :edit ~/.zshrc<cr>
 " Source my vimrc
 nnoremap <leader>S :source $MYVIMRC<cr>
 
-" make pack
-nnoremap <leader>m :!make pack<cr>
-
 " Toggle paste on or off
 nnoremap <leader>sp :call TogglePaste()<cr>
 
@@ -217,9 +210,6 @@ noremap <leader><S-Tab> :bp<cr>
 
 " Quicker way to delete a buffer
 nnoremap <del> :BD<cr>
-
-" run java
-nnoremap <leader>r :!ant run<cr>
 
 " fugitive
 nnoremap <leader>Gg :Ggrep<SPACE>
