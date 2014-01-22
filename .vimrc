@@ -15,11 +15,6 @@ function! ToggleActiveMouse()
     endif
 endfunction
 
-function! TogglePaste()
-    set invpaste
-    echo &paste == "1" ? "Set paste called" : "Set nopaste called"
-endfunction
-
 function! ToggleHelpType()
     let ft = &filetype == 'text' ? 'help' : 'text'
     execute 'set filetype=' . ft
@@ -173,9 +168,6 @@ nnoremap <leader>Z :edit ~/.zshrc<cr>
 " Source my vimrc
 nnoremap <leader>S :source $MYVIMRC<cr>
 
-" Toggle paste on or off
-nnoremap <leader>sp :call TogglePaste()<cr>
-
 " Toggle mouse on or off
 nnoremap <leader><cr> :call ToggleActiveMouse()<cr>
 
@@ -295,6 +287,12 @@ nnoremap <leader>tc :tabclose<cr>
 " CoffeeScript
 nnoremap <leader>co :CoffeeCompile<cr>
 
+" Inspired by https://github.com/tpope/vim-unimpaired
+" Sets paste on and set nopaste when leaving insert mode
+" using an autocommand
+nnoremap <silent> yo  :set paste<cr>o
+nnoremap <silent> yO  :set paste<cr>O
+
 " }}}
 
 " Abbreviations {{{
@@ -349,6 +347,7 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'salsifis/vim-transpose'
+Bundle 'sjl/gundo.vim'
 
 " Github vim-scripts repos
 Bundle 'L9'
@@ -370,6 +369,8 @@ filetype plugin indent on   " required!
 " Available checkers are: php, phpcs, phpmd.
 " Let's stick to the php executable only.
 let g:syntastic_php_checkers = ['php']
+let g:syntastic_coffee_checkers = ['coffeelint']
+let g:syntastic_coffee_coffeelint_args = "--csv -f ~/.coffeelint.json"
 let g:syntastic_mode_map = {'passive_filetypes': ['html']}
 
 " Unite
@@ -406,6 +407,9 @@ let g:jedi#rename_command = ''
 
 " Search pulse
 let g:vim_search_pulse_mode = 'pattern'
+
+" CoffeeScript
+let g:coffee_lint_options = '-f ~/.coffeelint.json'
 " }}}
 
 " Colorscheme {{{
@@ -422,7 +426,7 @@ augroup mygroup
     autocmd FileType vim setlocal foldmethod=marker
     autocmd FileType make setlocal noexpandtab
     autocmd FileType coffee setlocal shiftwidth=2
-    autocmd FileType html setlocal shiftwidth=2
+    "autocmd FileType html setlocal shiftwidth=2
     " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
     autocmd FileType php setlocal keywordprg=pman
     autocmd BufNewFile,BufRead *.as     set filetype=actionscript
@@ -438,6 +442,12 @@ augroup mygroup
     " Thanks to http://tilvim.com/2013/05/29/comment-prefix.html
     " I don't want comment prefixing on a new line
     autocmd FileType * setlocal formatoptions-=o formatoptions-=r
+
+    " Disables paste mode when leaving insert mode
+    autocmd InsertLeave *
+        \ if &paste == 1 |
+        \     set nopaste |
+        \ endif
 augroup END
 " }}}
 

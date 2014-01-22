@@ -1,17 +1,16 @@
 #!/bin/bash
 #
 # "borrowed" from Jonathan Palardy (http://github.com/jpalardy/etc_config/tree/master)
- 
+
 DOTFILES_DIR=~/github/dotfiles/
 
-function relink()
-{
+function relink() {
     rm -i $1
     ln -s $2 $1
 }
- 
+
 cd
- 
+
 for I in $(ls -a $DOTFILES_DIR)
 do
     if [[ \
