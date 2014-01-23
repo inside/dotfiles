@@ -72,6 +72,10 @@ unsetopt EXTENDED_HISTORY                # Historique avec timings = bof
 setopt HIST_NO_STORE                     # N'enregistre pas la cmd history
 setopt noflowcontrol                     # restores the use of the keys ctrl-s, ctrl-q
 
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.history
+
 # Variables
 PROMPT=$(echo '\
 %{$fg_bold[green]%}%n@%m\
