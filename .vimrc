@@ -15,12 +15,6 @@ function! ToggleActiveMouse()
     endif
 endfunction
 
-function! ToggleHelpType()
-    let ft = &filetype == 'text' ? 'help' : 'text'
-    execute 'set filetype=' . ft
-    set filetype?
-endfunction
-
 " This can conflict with the default mappings provided by snipmate.
 " See the after directory in .vim/bundle/snipMate/after
 function! SuperCleverTab()
@@ -193,8 +187,8 @@ nnoremap <silent> <leader>fl
             \ line<cr>
 
 " save file whether in insert or normal mode
-inoremap <c-s> <c-o>:w<cr><esc>
-nnoremap <c-s> :w<cr>
+inoremap <leader>s <c-o>:w<cr><esc>
+nnoremap <leader>s :w<cr>
 
 " Switch to the next/previous buffer
 noremap <leader><Tab> :bn<cr>
@@ -210,7 +204,7 @@ nnoremap <leader>Gd :Gdiff<cr>
 nnoremap <leader>GD :diffoff!<cr><C-W>h:bd<cr>
 
 " PDV-revised
-nnoremap <C-p> :call PhpDoc()<cr>
+nnoremap <c-p> :call PhpDoc()<cr>
 
 " Remap , since it's my <leader>
 " Useful to go back to the previous occurence when using the f{char} motion
@@ -276,9 +270,6 @@ nnoremap k gk
 " class="foo"
 " id="foo">
 nnoremap <leader><leader>b /=<cr>bXi<cr><esc>n
-
-" Toggles help file type
-nnoremap <leader>sh :call ToggleHelpType()<cr>
 
 " Tabs
 nnoremap <leader>tn :tabnew<cr>
