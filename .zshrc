@@ -5,6 +5,9 @@ colors
 # vi mode
 bindkey -v
 
+# maps jk to escape, same as in my .vimrc
+bindkey -M viins 'jk' vi-cmd-mode
+
 # Disables ctrl-s/ctrl-q stop/enable shell flow
 stty stop undef
 
