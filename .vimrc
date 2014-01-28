@@ -108,12 +108,16 @@ set t_vb=
 set wildmenu
 set wildmode=list:longest,full
 set guicursor+=a:blinkon0
+set relativenumber
 " }}}
 
 " Text formatting options {{{
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+" For clarity's sake use the same value for these 3 options.
+" See http://vimcasts.org/episodes/tabs-and-spaces/ for a full explanation.
+set shiftwidth=4 softtabstop=4 tabstop=4
+" Inserts spaces instead of tabs.
+" If you want to use tab characters, don't touch shiftwidth, softtabstop and
+" tabstop, just set noexpandtab.
 set expandtab
 set backspace=indent,eol,start
 set textwidth=0
@@ -269,7 +273,7 @@ nnoremap k gk
 " href="/foo"
 " class="foo"
 " id="foo">
-nnoremap <leader><leader>b /=<cr>bXi<cr><esc>n
+nnoremap <leader><leader>b /=<cr>BXi<cr><esc>n
 
 " Tabs
 nnoremap <leader>tn :tabnew<cr>
@@ -309,6 +313,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-abolish'
 Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-markdown'
 Bundle 'inside/snipMate'
 Bundle 'inside/actionscript.vim'
 Bundle 'inside/fortuneod'
@@ -416,8 +421,7 @@ augroup mygroup
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
     autocmd FileType make setlocal noexpandtab
-    autocmd FileType coffee setlocal shiftwidth=2
-    "autocmd FileType html setlocal shiftwidth=2
+    autocmd FileType coffee setlocal shiftwidth=2 softtabstop=2 tabstop=2
     " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
     autocmd FileType php setlocal keywordprg=pman
     autocmd BufNewFile,BufRead *.as     set filetype=actionscript
