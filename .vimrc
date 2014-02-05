@@ -135,7 +135,7 @@ set cursorline
 
 " Color options {{{
 " See http://www.vim.org/tips/tip.php?tip_id=1312
-" 256 colors may be needed for any other colorscheme exexpt solarized
+" 256 colors may be needed for any other colorscheme except solarized
 "set t_Co=256
 " Needed for solarized: Use the 16 colors terminal option to get VIM to look
 " like GVIM with solarized colors.
@@ -344,6 +344,7 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'salsifis/vim-transpose'
 Bundle 'sjl/gundo.vim'
+Bundle 'flazz/vim-colorschemes'
 
 " Github vim-scripts repos
 Bundle 'L9'
