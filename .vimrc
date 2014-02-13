@@ -2,6 +2,7 @@
 let mapleader = ","
 " Disables match paren from the pi_paren standard plugin
 let g:loaded_matchparen = 1
+let g:last_active_tab = 1
 " }}}
 
 " User functions {{{
@@ -109,6 +110,8 @@ set wildmenu
 set wildmode=list:longest,full
 set guicursor+=a:blinkon0
 set relativenumber
+set list
+let &listchars='tab:▸ '
 " }}}
 
 " Text formatting options {{{
@@ -288,6 +291,8 @@ nnoremap <leader>co :CoffeeCompile<cr>
 nnoremap <silent> yo  :set paste<cr>o
 nnoremap <silent> yO  :set paste<cr>O
 
+" Toggles between the active and last active tab
+nnoremap <leader>gt :execute 'tabnext ' . g:last_active_tab<cr>
 " }}}
 
 " Abbreviations {{{
@@ -444,7 +449,11 @@ augroup mygroup
         \ if &paste == 1 |
         \     set nopaste |
         \ endif
+
+    " Toggles between the active and last active tab
+    autocmd TabLeave * let g:last_active_tab = tabpagenr()
 augroup END
+
 " }}}
 
 " Loads a local configuration {{{
