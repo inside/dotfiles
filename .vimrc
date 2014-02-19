@@ -293,6 +293,9 @@ nnoremap <silent> yO  :set paste<cr>O
 
 " Toggles between the active and last active tab
 nnoremap <leader>gt :execute 'tabnext ' . g:last_active_tab<cr>
+
+" http://vim.wikia.com/wiki/Selecting_your_pasted_text
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 " }}}
 
 " Abbreviations {{{
@@ -350,6 +353,7 @@ Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'salsifis/vim-transpose'
 Bundle 'sjl/gundo.vim'
 Bundle 'flazz/vim-colorschemes'
+Bundle 'mattsacks/vim-symbol'
 
 " Github vim-scripts repos
 Bundle 'L9'
