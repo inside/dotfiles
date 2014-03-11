@@ -354,7 +354,7 @@ Bundle 'michaeljsmith/vim-indent-object'
 Bundle 'salsifis/vim-transpose'
 Bundle 'sjl/gundo.vim'
 Bundle 'flazz/vim-colorschemes'
-Bundle 'mattsacks/vim-symbol'
+Bundle 'editorconfig/editorconfig-vim'
 
 " Github vim-scripts repos
 Bundle 'L9'
@@ -432,7 +432,6 @@ augroup mygroup
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
     autocmd FileType make setlocal noexpandtab
-    autocmd FileType coffee setlocal shiftwidth=2 softtabstop=2 tabstop=2
     " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
     autocmd FileType php setlocal keywordprg=pman
     autocmd BufNewFile,BufRead *.as     set filetype=actionscript
