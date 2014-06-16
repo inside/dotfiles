@@ -10,6 +10,7 @@
 [alias]
     st = status
 [alias]
+    ru = remote update
     co = checkout
     st = status
     ba = branch -v -a
