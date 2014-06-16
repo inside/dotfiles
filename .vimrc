@@ -303,7 +303,6 @@ inoreabbrev xr print_r($
 inoreabbrev xv var_dump($
 inoreabbrev fu function
 inoreabbrev xe error_log();<esc>hi
-inoreabbrev cl console.log();<esc>hi
 " }}}
 
 " Vundle plugins {{{
@@ -311,63 +310,64 @@ inoreabbrev cl console.log();<esc>hi
 " vundle
 filetype off    " required!
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#begin()
 
 " let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " Repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-markdown'
-Bundle 'inside/snipMate'
-Bundle 'inside/actionscript.vim'
-Bundle 'inside/fortuneod'
-Bundle 'inside/vim-grep-operator'
-Bundle 'inside/vim-search-pulse'
-Bundle 'inside/CSScomb-for-Vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/unite-outline'
-Bundle 'tsukkee/unite-tag'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'kmnk/vim-unite-giti'
-Bundle 'vim-scripts/vimwiki'
-Bundle 'godlygeek/tabular'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'beyondwords/vim-twig'
-Bundle 'mattn/emmet-vim'
-Bundle 'nelstrom/vim-visual-star-search'
-Bundle 'Raimondi/delimitMate'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'bling/vim-airline'
-Bundle 'inside/jedi-vim'
-Bundle 'hynek/vim-python-pep8-indent'
-Bundle 'bronson/vim-trailing-whitespace'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'salsifis/vim-transpose'
-Bundle 'sjl/gundo.vim'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'editorconfig/editorconfig-vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-markdown'
+Plugin 'inside/snipMate'
+Plugin 'inside/actionscript.vim'
+Plugin 'inside/fortuneod'
+Plugin 'inside/vim-grep-operator'
+Plugin 'inside/vim-search-pulse'
+Plugin 'inside/CSScomb-for-Vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/unite-outline'
+Plugin 'tsukkee/unite-tag'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'kmnk/vim-unite-giti'
+Plugin 'vim-scripts/vimwiki'
+Plugin 'godlygeek/tabular'
+Plugin 'beyondwords/vim-twig'
+Plugin 'mattn/emmet-vim'
+Plugin 'nelstrom/vim-visual-star-search'
+Plugin 'Raimondi/delimitMate'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'bling/vim-airline'
+Plugin 'inside/jedi-vim'
+Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'salsifis/vim-transpose'
+Plugin 'sjl/gundo.vim'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'tpope/vim-dispatch'
+Plugin 'AndrewRadev/splitjoin.vim'
 
 " Github vim-scripts repos
-Bundle 'L9'
-Bundle 'bufkill.vim'
-Bundle 'matchit.zip'
-Bundle 'sessionman.vim'
-Bundle 'Syntastic'
-Bundle 'darkburn'
-Bundle 'Toggle'
-Bundle 'camelcasemotion'
-Bundle 'CursorLineCurrentWindow'
+Plugin 'L9'
+Plugin 'bufkill.vim'
+Plugin 'matchit.zip'
+Plugin 'sessionman.vim'
+Plugin 'Syntastic'
+Plugin 'Toggle'
+Plugin 'camelcasemotion'
+Plugin 'CursorLineCurrentWindow'
 
-filetype plugin indent on   " required!
+call vundle#end() " required
+filetype plugin indent on " required
 " }}}
 
 " Plugins configuration {{{
@@ -450,12 +450,20 @@ augroup mygroup
 
     " Disables paste mode when leaving insert mode
     autocmd InsertLeave *
-        \ if &paste == 1 |
-        \     set nopaste |
-        \ endif
+                \ if &paste == 1 |
+                \     set nopaste |
+                \ endif
 
     " Toggles between the active and last active tab
     autocmd TabLeave * let g:last_active_tab = tabpagenr()
+
+    "autocmd BufRead,BufNewFile,BufEnter *
+    autocmd BufEnter *
+                \ silent! unabbreviate cl |
+                \ if &filetype == 'coffee' |
+                \     inoreabbrev cl console.log |
+                \ elseif index(['javascript', 'ejs'], &filetype) != -1 |
+                \     inoreabbrev cl console.log();<esc>hi
 augroup END
 
 " }}}
