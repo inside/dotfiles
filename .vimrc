@@ -296,6 +296,15 @@ nnoremap <leader>gt :execute 'tabnext ' . g:last_active_tab<cr>
 
 " http://vim.wikia.com/wiki/Selecting_your_pasted_text
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+
+" Quicker window movement
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
+" Redraws the screen
+nnoremap <leader>l <c-l>
 " }}}
 
 " Abbreviations {{{
@@ -464,8 +473,23 @@ augroup mygroup
                 \     inoreabbrev cl console.log |
                 \ elseif index(['javascript', 'ejs'], &filetype) != -1 |
                 \     inoreabbrev cl console.log();<esc>hi
+
+    autocmd Filetype qf setlocal nowrap
 augroup END
 
+" }}}
+
+" User defined commands {{{
+
+" Implements my own grep command:
+" grep!, we don't wan't to jump to the first match.
+" silent, suppress the default full screen grep output.
+" copen, open the quickfix window.
+" redraw, clears and redraws the screen, I don't wan't to spend my time hitting
+" CTRL-L
+command! -complete=file -nargs=+ G execute 'silent grep! <args>'
+            \ | copen
+            \ | redraw!
 " }}}
 
 " Loads a local configuration {{{
