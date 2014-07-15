@@ -294,6 +294,10 @@ nnoremap <silent> yO  :set paste<cr>O
 " Toggles between the active and last active tab
 nnoremap <leader>gt :execute 'tabnext ' . g:last_active_tab<cr>
 
+" Switch from tab to tab quickly
+nnoremap <s-h> gT
+nnoremap <s-l> gt
+
 " http://vim.wikia.com/wiki/Selecting_your_pasted_text
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
@@ -487,9 +491,7 @@ augroup END
 " copen, open the quickfix window.
 " redraw, clears and redraws the screen, I don't wan't to spend my time hitting
 " CTRL-L
-command! -complete=file -nargs=+ G execute 'silent grep! <args>'
-            \ | copen
-            \ | redraw!
+command! -complete=file -nargs=+ G silent grep! <args> | copen | redraw!
 " }}}
 
 " Loads a local configuration {{{
