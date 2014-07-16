@@ -8,6 +8,10 @@ bindkey -v
 # maps jk to escape, same as in my .vimrc
 bindkey -M viins 'jk' vi-cmd-mode
 
+# maps insert mode ctrl-j and ctrl-k to move in the history list
+bindkey -M viins '^j' vi-down-line-or-history
+bindkey -M viins '^k' vi-up-line-or-history
+
 # Disables ctrl-s/ctrl-q stop/enable shell flow
 stty stop undef
 
