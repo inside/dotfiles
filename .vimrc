@@ -306,6 +306,10 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
+nnoremap <c-w>j <nop>
+nnoremap <c-w>k <nop>
+nnoremap <c-w>h <nop>
+nnoremap <c-w>l <nop>
 
 " Redraws the screen
 nnoremap <leader>l <c-l>
