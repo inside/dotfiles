@@ -372,6 +372,7 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'digitaltoad/vim-jade'
 
 " Github vim-scripts repos
 Plugin 'L9'
