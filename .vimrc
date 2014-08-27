@@ -373,6 +373,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'mileszs/ack.vim'
 
 " Github vim-scripts repos
 Plugin 'L9'
@@ -435,6 +436,9 @@ let g:vim_search_pulse_mode = 'pattern'
 
 " CoffeeScript
 let g:coffee_lint_options = '-f ~/.coffeelint.json'
+
+" The vim grep operator
+let g:grep_operator = 'Ack'
 " }}}
 
 " Colorscheme {{{
