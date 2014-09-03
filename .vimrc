@@ -325,6 +325,7 @@ inoreabbrev xe error_log();<esc>hi
 " Vundle plugins {{{
 
 " vundle
+let g:vundle_default_git_proto = 'git'
 filetype off    " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
@@ -349,6 +350,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/unite-outline'
+Plugin 'Shougo/neomru.vim'
 Plugin 'tsukkee/unite-tag'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'kmnk/vim-unite-giti'
@@ -402,6 +404,8 @@ let g:syntastic_mode_map = {'passive_filetypes': ['html']}
 " Unite
 let g:unite_source_rec_max_cache_files = 100000
 let g:unite_prompt = '» '
+let g:unite_source_rec_async_command =
+            \ 'ag --follow --nocolor --nogroup --hidden -g ""'
 
 " Fortuneod
 let g:fortuneod_botright_split = 0
@@ -437,8 +441,8 @@ let g:vim_search_pulse_mode = 'pattern'
 " CoffeeScript
 let g:coffee_lint_options = '-f ~/.coffeelint.json'
 
-" The vim grep operator
-let g:grep_operator = 'Ack'
+" trailing-whitespace
+let g:extra_whitespace_ignored_filetypes = ['unite']
 " }}}
 
 " Colorscheme {{{
