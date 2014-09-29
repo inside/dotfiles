@@ -68,7 +68,6 @@ nnoremap <silent> tp :call NextTag('previous')<cr>
 
 " General options {{{
 
-" 'compatible' is not set
 set nocompatible
 set incsearch
 set complete-=t " Don't look for tags when completing
@@ -85,7 +84,11 @@ set ttymouse=xterm2 " Make mouse work on virtual terms like screen
 set whichwrap=b,s,<,>
 set wildignore+=*.git*
 set history=200
-set grepprg=git\ grep\ -n\ $*
+" The --vimgrep option is implemented in my fork of ag:
+" https://github.com/inside/the_silver_searcher
+set grepprg=ag\ --vimgrep\ $*
+" file name, line number, column number, error message
+set grepformat=%f:%l:%c:%m
 
 " Disable setting options by file like /* vim: set sw=2: */
 set nomodeline
@@ -112,6 +115,8 @@ set guicursor+=a:blinkon0
 set relativenumber
 set list
 let &listchars='tab:▸ '
+" Don't colorize syntax after 512 characters
+set synmaxcol=512
 " }}}
 
 " Text formatting options {{{
@@ -502,8 +507,7 @@ augroup END
 " grep!, we don't wan't to jump to the first match.
 " silent, suppress the default full screen grep output.
 " copen, open the quickfix window.
-" redraw, clears and redraws the screen, I don't wan't to spend my time hitting
-" CTRL-L
+" redraw, clears and redraws the screen because it gets often broken
 command! -complete=file -nargs=+ G silent grep! <args> | copen | redraw!
 " }}}
 
