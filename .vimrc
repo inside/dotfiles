@@ -84,11 +84,6 @@ set ttymouse=xterm2 " Make mouse work on virtual terms like screen
 set whichwrap=b,s,<,>
 set wildignore+=*.git*
 set history=200
-" The --vimgrep option is implemented in my fork of ag:
-" https://github.com/inside/the_silver_searcher
-set grepprg=ag\ --vimgrep\ $*
-" file name, line number, column number, error message
-set grepformat=%f:%l:%c:%m
 
 " Disable setting options by file like /* vim: set sw=2: */
 set nomodeline
@@ -345,8 +340,6 @@ Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-markdown'
 Plugin 'inside/snipMate'
-Plugin 'inside/actionscript.vim'
-Plugin 'inside/fortuneod'
 Plugin 'inside/vim-grep-operator'
 Plugin 'inside/vim-search-pulse'
 Plugin 'inside/CSScomb-for-Vim'
@@ -380,11 +373,11 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'digitaltoad/vim-jade'
-Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
+Plugin 'mhinz/vim-startify'
 
 " Github vim-scripts repos
 Plugin 'L9'
-Plugin 'bufkill.vim'
 Plugin 'matchit.zip'
 Plugin 'sessionman.vim'
 Plugin 'Syntastic'
@@ -411,9 +404,6 @@ let g:unite_source_rec_max_cache_files = 100000
 let g:unite_prompt = '» '
 let g:unite_source_rec_async_command =
             \ 'ag --follow --nocolor --nogroup --hidden -g ""'
-
-" Fortuneod
-let g:fortuneod_botright_split = 0
 
 " Toggle
 nnoremap <leader>t :call Toggle()<cr>
@@ -448,6 +438,14 @@ let g:coffee_lint_options = '-f ~/.coffeelint.json'
 
 " trailing-whitespace
 let g:extra_whitespace_ignored_filetypes = ['unite']
+
+" ag.vim
+" The --vimgrep option is implemented in my fork of ag:
+" https://github.com/inside/the_silver_searcher
+let g:agprg = 'ag --vimgrep'
+
+" The vim grep operator
+let g:grep_operator = 'Ag'
 " }}}
 
 " Colorscheme {{{
@@ -503,12 +501,8 @@ augroup END
 
 " User defined commands {{{
 
-" Implements my own grep command:
-" grep!, we don't wan't to jump to the first match.
-" silent, suppress the default full screen grep output.
-" copen, open the quickfix window.
-" redraw, clears and redraws the screen because it gets often broken
-command! -complete=file -nargs=+ G silent grep! <args> | copen | redraw!
+" Shortcut to :Ag
+command! -complete=file -nargs=+ G :Ag! <args>
 " }}}
 
 " Loads a local configuration {{{
