@@ -159,9 +159,6 @@ nnoremap <leader>2 @a
 " Quick way to recall last command
 nnoremap <leader>3 @:
 
-" Toggles highlight search
-nnoremap <silent> <leader>h :set invhlsearch<cr>
-
 " Edit ~/.vimrc or ~/.zshrc
 nnoremap <leader>E :edit $MYVIMRC<cr>
 nnoremap <leader>Z :edit ~/.zshrc<cr>
@@ -201,17 +198,11 @@ nnoremap <leader>s :w<cr>
 noremap <leader><Tab> :bn<cr>
 noremap <leader><S-Tab> :bp<cr>
 
-" Quicker way to delete a buffer
-nnoremap <del> :BD<cr>
-
 " fugitive
 nnoremap <leader>Gg :Ggrep<SPACE>
 nnoremap <leader>Gd :Gdiff<cr>
 " switch back to current file and closes fugitive buffer
 nnoremap <leader>GD :diffoff!<cr><C-W>h:bd<cr>
-
-" PDV-revised
-nnoremap <c-p> :call PhpDoc()<cr>
 
 " Remap , since it's my <leader>
 " Useful to go back to the previous occurence when using the f{char} motion
@@ -403,7 +394,10 @@ let g:syntastic_mode_map = {'passive_filetypes': ['html']}
 let g:unite_source_rec_max_cache_files = 100000
 let g:unite_prompt = '» '
 let g:unite_source_rec_async_command =
-            \ 'ag --follow --nocolor --nogroup --hidden -g ""'
+            \ 'ag --follow --nocolor --nogroup -g ""'
+"let g:unite_source_rec_async_command =
+            "\ 'ag --follow --nocolor --nogroup --hidden -g ""'
+"let g:unite_source_rec_async_command = 'git grep --name-only ""'
 
 " Toggle
 nnoremap <leader>t :call Toggle()<cr>
@@ -446,6 +440,26 @@ let g:agprg = 'ag --vimgrep'
 
 " The vim grep operator
 let g:grep_operator = 'Ag'
+
+" Startify
+let g:startify_change_to_dir = 0
+let g:startify_change_to_vcs_root = 1
+let g:startify_custom_indices = ['a', 'f', 'h']
+let g:startify_enable_special = 0
+let g:startify_list_order = [
+            \ ['  Sessions:'],
+            \ 'sessions',
+            \ ['  Last recently opened files:'],
+            \ 'files',
+            \ ['  Last recently modified files in the current directory:'],
+            \ 'dir',
+            \ ['  Bookmarks:'],
+            \ 'bookmarks',
+            \ ]
+let g:startify_relative_path = 1
+let g:startify_session_delete_buffers = 1
+let g:startify_session_dir = '~/.vimsessions'
+let g:startify_session_persistence = 1
 " }}}
 
 " Colorscheme {{{
