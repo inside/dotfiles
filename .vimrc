@@ -7,44 +7,44 @@ let g:last_active_tab = 1
 
 " User functions {{{
 function! ToggleActiveMouse()
-    if &mouse == "nv"
-        set mouse=
-        echo "Mouse is off"
-    else
-        set mouse=nv
-        echo "Mouse is on"
-    endif
+  if &mouse == "nv"
+    set mouse=
+    echo "Mouse is off"
+  else
+    set mouse=nv
+    echo "Mouse is on"
+  endif
 endfunction
 
 " This can conflict with the default mappings provided by snipmate.
 " See the after directory in .vim/bundle/snipMate/after
 function! SuperCleverTab()
-    if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-        return "\<Tab>"
-    elseif pumvisible()
-        return "\<c-n>"
+  if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+    return "\<Tab>"
+  elseif pumvisible()
+    return "\<c-n>"
+  else
+    if &omnifunc != ''
+      return "\<C-X>\<C-O>"
+    elseif &dictionary != ''
+      return "\<C-K>"
     else
-        if &omnifunc != ''
-            return "\<C-X>\<C-O>"
-        elseif &dictionary != ''
-            return "\<C-K>"
-        else
-            return "\<C-N>"
-        endif
+      return "\<C-N>"
     endif
+  endif
 endfunction
 
 " Better complete menu navigation
 " found here: http://stackoverflow.com/a/2170800/70778
 function! OmniPopup(action)
-    if pumvisible()
-        if a:action == 'j'
-            return "\<c-n>"
-        elseif a:action == 'k'
-            return "\<c-p>"
-        endif
+  if pumvisible()
+    if a:action == 'j'
+      return "\<c-n>"
+    elseif a:action == 'k'
+      return "\<c-p>"
     endif
-    return a:action
+  endif
+  return a:action
 endfunction
 
 inoremap <silent> <expr> <c-j> OmniPopup('j')
@@ -53,13 +53,13 @@ inoremap <silent> <expr> <c-k> OmniPopup('k')
 " Go to next/previous SGML tag
 " Credit goes to https://github.com/tejr/nextag/blob/master/plugin/nextag.vim
 function! NextTag(direction)
-    let ptn = '\m<\/\?\w\+[^>]*>'
+  let ptn = '\m<\/\?\w\+[^>]*>'
 
-    if a:direction == 'next'
-        call search(ptn)
-    elseif a:direction == 'previous'
-        call search(ptn, 'b')
-    endif
+  if a:direction == 'next'
+    call search(ptn)
+  elseif a:direction == 'previous'
+    call search(ptn, 'b')
+  endif
 endfunction
 
 nnoremap <silent> tn :call NextTag('next')<cr>
@@ -174,21 +174,21 @@ nnoremap tt :TagbarToggle<cr>
 
 " Unite
 nnoremap <silent> <leader>ff
-            \ :<c-u>Unite
-            \ -no-split -buffer-name=files -start-insert
-            \ file_rec/async<cr>
+      \ :<c-u>Unite
+      \ -no-split -buffer-name=files -start-insert
+      \ file_rec/async<cr>
 nnoremap <silent> <leader>fb
-            \ :<c-u>Unite
-            \ -no-split -buffer-name=buffers -start-insert
-            \ buffer<cr>
+      \ :<c-u>Unite
+      \ -no-split -buffer-name=buffers -start-insert
+      \ buffer<cr>
 nnoremap <silent> <leader>fo
-            \ :<c-u>Unite
-            \ -no-split -buffer-name=outline -start-insert
-            \ outline<cr>
+      \ :<c-u>Unite
+      \ -no-split -buffer-name=outline -start-insert
+      \ outline<cr>
 nnoremap <silent> <leader>fl
-            \ :<c-u>Unite
-            \ -no-split -buffer-name=lines -start-insert
-            \ line<cr>
+      \ :<c-u>Unite
+      \ -no-split -buffer-name=lines -start-insert
+      \ line<cr>
 
 " save file whether in insert or normal mode
 inoremap <leader>s <c-o>:w<cr><esc>
@@ -221,26 +221,26 @@ inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 
 " vim-grep-operator
 nmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
-vmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
+xmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
 nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
-vmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
+xmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
 
 " Custom mappings for the unite buffer
 function! s:unite_settings()
-    imap <buffer> <c-c> <Plug>(unite_exit)
-    nmap <buffer> <c-c> <Plug>(unite_exit)
-    nmap <buffer> <esc> <Plug>(unite_exit)
-    imap <buffer> <c-l>  <Plug>(unite_redraw)
-    nmap <buffer> <c-l>  <Plug>(unite_redraw)
-    imap <buffer> <c-j> <Plug>(unite_select_next_line)
-    imap <buffer> <c-k> <Plug>(unite_select_previous_line)
+  imap <buffer> <c-c> <Plug>(unite_exit)
+  nmap <buffer> <c-c> <Plug>(unite_exit)
+  nmap <buffer> <esc> <Plug>(unite_exit)
+  imap <buffer> <c-l> <Plug>(unite_redraw)
+  nmap <buffer> <c-l> <Plug>(unite_redraw)
+  imap <buffer> <c-j> <Plug>(unite_select_next_line)
+  imap <buffer> <c-k> <Plug>(unite_select_previous_line)
 endfunction
 
 " Quicker way to go into command mode
 nnoremap ; :
 nnoremap : ;
-vnoremap ; :
-vnoremap : ;
+xnoremap ; :
+xnoremap : ;
 
 " ZZ remaped to <leader>z
 nnoremap <leader>z ZZ
@@ -251,7 +251,7 @@ nnoremap <leader>nt :NERDTreeToggle<cr>
 " Remaps <f1> to nothing, when you try to reach <esc> you often hit <f1>
 inoremap <f1> <nop>
 nnoremap <f1> <nop>
-vnoremap <f1> <nop>
+xnoremap <f1> <nop>
 
 " Remaps esc to something easier to type
 inoremap jk <esc>
@@ -316,7 +316,6 @@ inoreabbrev xe error_log();<esc>hi
 " Vundle plugins {{{
 
 " vundle
-let g:vundle_default_git_proto = 'git'
 filetype off    " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
@@ -394,10 +393,7 @@ let g:syntastic_mode_map = {'passive_filetypes': ['html']}
 let g:unite_source_rec_max_cache_files = 100000
 let g:unite_prompt = '» '
 let g:unite_source_rec_async_command =
-            \ 'ag --follow --nocolor --nogroup -g ""'
-"let g:unite_source_rec_async_command =
-            "\ 'ag --follow --nocolor --nogroup --hidden -g ""'
-"let g:unite_source_rec_async_command = 'git grep --name-only ""'
+      \ 'ag --follow --nocolor --nogroup -g ""'
 
 " Toggle
 nnoremap <leader>t :call Toggle()<cr>
@@ -447,15 +443,15 @@ let g:startify_change_to_vcs_root = 1
 let g:startify_custom_indices = ['a', 'f', 'h']
 let g:startify_enable_special = 0
 let g:startify_list_order = [
-            \ ['  Sessions:'],
-            \ 'sessions',
-            \ ['  Last recently opened files:'],
-            \ 'files',
-            \ ['  Last recently modified files in the current directory:'],
-            \ 'dir',
-            \ ['  Bookmarks:'],
-            \ 'bookmarks',
-            \ ]
+      \ ['  Sessions:'],
+      \ 'sessions',
+      \ ['  Last recently opened files:'],
+      \ 'files',
+      \ ['  Last recently modified files in the current directory:'],
+      \ 'dir',
+      \ ['  Bookmarks:'],
+      \ 'bookmarks',
+      \ ]
 let g:startify_relative_path = 1
 let g:startify_session_delete_buffers = 1
 let g:startify_session_dir = '~/.vimsessions'
@@ -471,46 +467,45 @@ colorscheme solarized
 
 " Autocommands {{{
 augroup mygroup
-    " clear the group's autocommand
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-    autocmd FileType make setlocal noexpandtab
-    " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
-    autocmd FileType php setlocal keywordprg=pman
-    autocmd BufNewFile,BufRead *.as     set filetype=actionscript
-    autocmd BufNewFile,BufRead *.html   set filetype=html.twig
-    autocmd BufNewFile,BufRead *.ejs    set filetype=html
-    " Show the signs column even if it is empty, useful for the vim-git-gutter plugin
-    autocmd BufEnter * sign define dummy
-    autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
-    autocmd FileType unite call s:unite_settings()
-    " I don't want the docstring window to popup during completion
-    autocmd FileType python setlocal completeopt-=preview
+  " clear the group's autocommand
+  autocmd!
+  autocmd FileType vim setlocal foldmethod=marker
+  autocmd FileType make setlocal noexpandtab
+  " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
+  autocmd FileType php setlocal keywordprg=pman
+  autocmd BufNewFile,BufRead *.as     set filetype=actionscript
+  autocmd BufNewFile,BufRead *.html   set filetype=html.twig
+  autocmd BufNewFile,BufRead *.ejs    set filetype=html
+  " Show the signs column even if it is empty, useful for the vim-git-gutter plugin
+  autocmd BufEnter * sign define dummy
+  autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
+  autocmd FileType unite call s:unite_settings()
+  " I don't want the docstring window to popup during completion
+  autocmd FileType python setlocal completeopt-=preview
 
-    " Thanks to http://tilvim.com/2013/05/29/comment-prefix.html
-    " I don't want comment prefixing on a new line
-    autocmd FileType * setlocal formatoptions-=o formatoptions-=r
+  " Thanks to http://tilvim.com/2013/05/29/comment-prefix.html
+  " I don't want comment prefixing on a new line
+  autocmd FileType * setlocal formatoptions-=o formatoptions-=r
 
-    " Disables paste mode when leaving insert mode
-    autocmd InsertLeave *
-                \ if &paste == 1 |
-                \     set nopaste |
-                \ endif
+  " Disables paste mode when leaving insert mode
+  autocmd InsertLeave *
+        \ if &paste == 1 |
+        \   set nopaste |
+        \ endif
 
-    " Toggles between the active and last active tab
-    autocmd TabLeave * let g:last_active_tab = tabpagenr()
+  " Toggles between the active and last active tab
+  autocmd TabLeave * let g:last_active_tab = tabpagenr()
 
-    "autocmd BufRead,BufNewFile,BufEnter *
-    autocmd BufEnter *
-                \ silent! unabbreviate cl |
-                \ if &filetype == 'coffee' |
-                \     inoreabbrev cl console.log |
-                \ elseif index(['javascript', 'ejs'], &filetype) != -1 |
-                \     inoreabbrev cl console.log();<esc>hi
+  "autocmd BufRead,BufNewFile,BufEnter *
+  autocmd BufEnter *
+        \ silent! unabbreviate cl |
+        \ if &filetype == 'coffee' |
+        \   inoreabbrev cl console.log |
+        \ elseif index(['javascript', 'ejs'], &filetype) != -1 |
+        \   inoreabbrev cl console.log();<esc>hi
 
-    autocmd Filetype qf setlocal nowrap
+  autocmd Filetype qf setlocal nowrap
 augroup END
-
 " }}}
 
 " User defined commands {{{
@@ -521,6 +516,6 @@ command! -complete=file -nargs=+ G :Ag! <args>
 
 " Loads a local configuration {{{
 if filereadable($HOME . '/.vimrc.local')
-    source $HOME/.vimrc.local
+  source $HOME/.vimrc.local
 endif
 " }}}
