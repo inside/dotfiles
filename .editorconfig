@@ -10,7 +10,10 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[{*.vim,.vimrc}]
+[*.vim]
+indent_size = 2
+
+[.vimrc]
 indent_size = 2
 
 [*.md]
