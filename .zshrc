@@ -99,9 +99,6 @@ export APACHE_RUN_GROUP=www-data
 # your .screenrc
 export TERM=xterm-256color
 
-# http://vim.wikia.com/wiki/Configuring_the_cursor
-echo -ne "\033]12;#ffffff\007"
-
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
