@@ -112,6 +112,10 @@ set list
 let &listchars='tab:▸ '
 " Don't colorize syntax after 512 characters
 set synmaxcol=512
+" For at least vim >= 7.4.338
+if v:version > 704 || v:version == 704 && has('patch338')
+  set breakindent
+endif
 " }}}
 
 " Text formatting options {{{
