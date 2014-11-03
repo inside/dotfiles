@@ -34,22 +34,6 @@ function! SuperCleverTab()
   endif
 endfunction
 
-" Better complete menu navigation
-" found here: http://stackoverflow.com/a/2170800/70778
-function! OmniPopup(action)
-  if pumvisible()
-    if a:action == 'j'
-      return "\<c-n>"
-    elseif a:action == 'k'
-      return "\<c-p>"
-    endif
-  endif
-  return a:action
-endfunction
-
-inoremap <silent> <expr> <c-j> OmniPopup('j')
-inoremap <silent> <expr> <c-k> OmniPopup('k')
-
 " Go to next/previous SGML tag
 " Credit goes to https://github.com/tejr/nextag/blob/master/plugin/nextag.vim
 function! NextTag(direction)
@@ -315,6 +299,16 @@ nnoremap <up> <c-w>+
 nnoremap <down> <c-w>-
 nnoremap <left> <c-w><
 nnoremap <right> <c-w>>
+
+" Jump outside any parentheses or quotes:
+inoremap jj <esc>/[)}"'\]>]<cr>a<space>
+
+" Quicker way to trigger keyword completion and navigate through the match
+" list
+inoremap <c-j> <c-n>
+inoremap <c-k> <c-p>
+inoremap <c-n> <nop>
+inoremap <c-p> <nop>
 " }}}
 
 " Abbreviations {{{
