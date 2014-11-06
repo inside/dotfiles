@@ -368,6 +368,8 @@ Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'rking/ag.vim'
 Plugin 'mhinz/vim-startify'
+Plugin 'tobyS/vmustache'
+Plugin 'tobyS/pdv'
 
 " Github vim-scripts repos
 Plugin 'L9'
@@ -395,6 +397,7 @@ let g:unite_source_rec_max_cache_files = 100000
 let g:unite_prompt = '» '
 let g:unite_source_rec_async_command =
       \ 'ag --follow --nocolor --nogroup -g ""'
+let g:unite_data_directory = expand('~/.cache/unite')
 
 " Toggle
 nnoremap <leader>t :call Toggle()<cr>
@@ -457,6 +460,11 @@ let g:startify_relative_path = 1
 let g:startify_session_delete_buffers = 1
 let g:startify_session_dir = '~/.vimsessions'
 let g:startify_session_persistence = 1
+
+" pdv
+let g:pdv_template_dir = expand('~/.vim/bundle/pdv/templates')
+nnoremap <c-p> :call pdv#DocumentCurrentLine()<cr>
+
 " }}}
 
 " Colorscheme {{{
