@@ -20,3 +20,5 @@
     flog = log --name-only
     ci = commit
     br = branch -v
+[rerere]
+	enabled = true
