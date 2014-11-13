@@ -373,6 +373,7 @@ Plug 'vim-scripts/L9'
 Plug 'vim-scripts/Syntastic'
 Plug 'vim-scripts/Toggle'
 Plug 'vim-scripts/camelcasemotion'
+Plug 'vim-scripts/matchit.zip'
 
 call plug#end()
 " }}}
