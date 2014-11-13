@@ -38,7 +38,7 @@ function current_branch() {
 alias devdm="ssh-add; ssh -A inside@inside"
 alias devcloud="ssh-add; ssh -A ytg@devcloud"
 alias devmysql="mysql -h devdb -u dev -p"
-alias stage="ssh-add; ssh -A dev@prov"
+alias stage="ssh-add; ssh -A dev@prov-stages"
 alias logprod="ssh dev@syslog-02"
 alias log="sudo tail -f /var/log/apache2/dailymotion-error.log"
 alias ra="sudo /etc/init.d/apache2 restart"
