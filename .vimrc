@@ -100,6 +100,7 @@ set synmaxcol=512
 if v:version > 704 || v:version == 704 && has('patch338')
   set breakindent
 endif
+set linebreak
 " }}}
 
 " Text formatting options {{{
