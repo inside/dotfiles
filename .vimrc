@@ -318,68 +318,63 @@ inoreabbrev fu function
 inoreabbrev xe error_log();<esc>hi
 " }}}
 
-" Vundle plugins {{{
+" Plugins {{{
 
-" vundle
-filetype off    " required!
-set rtp+=~/.vim/bundle/vundle/
-call vundle#begin()
+" vim-plug
+" https://github.com/junegunn/vim-plug
 
-" let Vundle manage Vundle
-Plugin 'gmarik/vundle'
+call plug#begin('~/.vim/bundle')
+let g:plug_url_format = 'git@github.com:%s.git'
 
 " Repos on github
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-markdown'
-Plugin 'inside/snipMate'
-Plugin 'inside/vim-grep-operator'
-Plugin 'inside/vim-search-pulse'
-Plugin 'inside/CSScomb-for-Vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/unite-outline'
-Plugin 'Shougo/neomru.vim'
-Plugin 'tsukkee/unite-tag'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'kmnk/vim-unite-giti'
-Plugin 'inside/vimwiki'
-Plugin 'beyondwords/vim-twig'
-Plugin 'mattn/emmet-vim'
-Plugin 'nelstrom/vim-visual-star-search'
-Plugin 'Raimondi/delimitMate'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'bling/vim-airline'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'sjl/gundo.vim'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'tpope/vim-dispatch'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'rking/ag.vim'
-Plugin 'mhinz/vim-startify'
-Plugin 'tobyS/vmustache'
-Plugin 'tobyS/pdv'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'Raimondi/delimitMate'
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/unite-outline'
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'beyondwords/vim-twig', {'for': 'html'}
+Plug 'bling/vim-airline'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'digitaltoad/vim-jade', {'for': 'jade'}
+Plug 'editorconfig/editorconfig-vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
+Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
+Plug 'inside/snipMate'
+Plug 'inside/vim-grep-operator'
+Plug 'inside/vim-search-pulse'
+Plug 'inside/vimwiki'
+Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
+Plug 'kmnk/vim-unite-giti'
+Plug 'majutsushi/tagbar'
+Plug 'mattn/emmet-vim', {'for': 'html'}
+Plug 'mhinz/vim-startify'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'rking/ag.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'sjl/gundo.vim'
+Plug 'tobyS/pdv', {'for': 'php'}
+Plug 'tobyS/vmustache', {'for': 'php'}
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-markdown', {'for': 'markdown'}
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tsukkee/unite-tag'
+Plug 'vim-scripts/CursorLineCurrentWindow'
+Plug 'vim-scripts/L9'
+Plug 'vim-scripts/Syntastic'
+Plug 'vim-scripts/Toggle'
+Plug 'vim-scripts/camelcasemotion'
 
-" Github vim-scripts repos
-Plugin 'L9'
-Plugin 'Syntastic'
-Plugin 'Toggle'
-Plugin 'camelcasemotion'
-Plugin 'CursorLineCurrentWindow'
-
-call vundle#end() " required
-filetype plugin indent on " required
+call plug#end()
 " }}}
 
 " Plugins configuration {{{

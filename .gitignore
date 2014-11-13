@@ -3,3 +3,4 @@
 .vim/tags
 .vim/doc/tags
 .vim/bundle
+.vim/autoload/plug.vim
