@@ -333,7 +333,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite-outline'
 Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'airblade/vim-gitgutter'
 Plug 'beyondwords/vim-twig', {'for': 'html'}
 Plug 'bling/vim-airline'
