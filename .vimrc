@@ -79,6 +79,8 @@ set nojoinspaces
 let &showbreak='↪ '
 " Always show 3 lines above or below the cursor
 set scrolloff=3
+set undofile
+set undodir=~/.vim/undofiles
 " }}}
 
 " Visual options {{{
