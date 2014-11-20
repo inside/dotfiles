@@ -304,7 +304,7 @@ nnoremap <left> <c-w><
 nnoremap <right> <c-w>>
 
 " Jump outside any parentheses or quotes:
-inoremap jj <esc>/[)}"'\]>]<cr>a<space>
+inoremap jj <esc>/[)}"'\]>]<cr>a
 
 " Quicker way to trigger keyword completion and navigate through the match
 " list
