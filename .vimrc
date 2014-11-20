@@ -337,23 +337,23 @@ Plug 'Shougo/unite-outline'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'airblade/vim-gitgutter'
-Plug 'beyondwords/vim-twig', {'for': 'html'}
+Plug 'beyondwords/vim-twig'
 Plug 'bling/vim-airline'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'digitaltoad/vim-jade', {'for': 'jade'}
+Plug 'digitaltoad/vim-jade'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'flazz/vim-colorschemes'
-Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
+Plug 'hynek/vim-python-pep8-indent'
 Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
 Plug 'inside/snipMate'
 Plug 'inside/vim-grep-operator'
 Plug 'inside/vim-search-pulse'
 Plug 'inside/vimwiki'
-Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
+Plug 'kchmck/vim-coffee-script'
 Plug 'kmnk/vim-unite-giti'
 Plug 'majutsushi/tagbar'
-Plug 'mattn/emmet-vim', {'for': 'html'}
+Plug 'mattn/emmet-vim', {'for': ['html', 'html.twig']}
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -362,12 +362,12 @@ Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'sjl/gundo.vim'
-Plug 'tobyS/pdv', {'for': 'php'}
-Plug 'tobyS/vmustache', {'for': 'php'}
+Plug 'tobyS/pdv'
+Plug 'tobyS/vmustache'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-markdown', {'for': 'markdown'}
+Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tsukkee/unite-tag'
