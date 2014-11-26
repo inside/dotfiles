@@ -247,6 +247,8 @@ xnoremap <f1> <nop>
 " Remaps esc to something easier to type
 inoremap jk <esc>
 inoremap <esc> <nop>
+cnoremap jk <esc>
+cnoremap <esc> <nop>
 
 " Easy up and down on wrapped long lines:
 " http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
