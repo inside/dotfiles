@@ -344,6 +344,7 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'digitaltoad/vim-jade'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'flazz/vim-colorschemes'
+Plug 'haya14busa/incsearch.vim'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
 Plug 'inside/snipMate'
@@ -423,9 +424,6 @@ let g:user_emmet_mode = 'iv'  " enable zencoding in insert and visual modes
 let g:jedi#goto_assignments_command = ''
 let g:jedi#rename_command = ''
 
-" Search pulse
-let g:vim_search_pulse_mode = 'pattern'
-
 " CoffeeScript
 let g:coffee_lint_options = '-f ~/.coffeelint.json'
 
@@ -463,6 +461,26 @@ let g:startify_session_persistence = 1
 " pdv
 let g:pdv_template_dir = expand('~/.vim/bundle/pdv/templates')
 nnoremap <c-p> :call pdv#DocumentCurrentLine()<cr>
+
+" incsearch and vim search pulse
+let g:vim_search_pulse_disable_auto_mappings = 1
+let g:vim_search_pulse_mode = 'pattern'
+let g:incsearch#auto_nohlsearch = 1
+map / <Plug>(incsearch-forward)
+map ? <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+" Next or previous match is followed by a Pulse
+map n <Plug>(incsearch-nohl-n)<Plug>Pulse
+map N <Plug>(incsearch-nohl-N)<Plug>Pulse
+map * <Plug>(incsearch-nohl-*)<Plug>Pulse
+map # <Plug>(incsearch-nohl-#)<Plug>Pulse
+map g* <Plug>(incsearch-nohl-g*)<Plug>Pulse
+map g# <Plug>(incsearch-nohl-g#)<Plug>Pulse
+
+" Pulses the first match after hitting the enter key
+autocmd! User IncSearchExecute
+autocmd User IncSearchExecute :call search_pulse#Pulse()
 
 " }}}
 
