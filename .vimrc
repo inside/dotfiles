@@ -252,6 +252,8 @@ inoremap <esc> <nop>
 " http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
 nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
 nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
+xnoremap <expr> j v:count == 0 ? 'gj' : 'j'
+xnoremap <expr> k v:count == 0 ? 'gk' : 'k'
 
 " Bring each tag attribute/value on its own line
 " For example <a href="/foo" class="foo" id="foo"> becomes:
