@@ -89,7 +89,6 @@ PROMPT=$(echo '\
 P%j\n%{$reset_color%}\
 %# ')
 
-export LC_ALL=en_US.UTF8
 export PAGER=$(which less)
 export EDITOR=$(which vim)
 export PATH=$PATH:~/bin:~/bin/git:~/dailymotion/scripts:~/dailymotion/scripts/git
