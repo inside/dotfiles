@@ -352,6 +352,7 @@ Plug 'inside/snipMate'
 Plug 'inside/vim-grep-operator'
 Plug 'inside/vim-search-pulse'
 Plug 'inside/vimwiki'
+Plug 'jpalardy/vim-slime'
 Plug 'kchmck/vim-coffee-script'
 Plug 'kmnk/vim-unite-giti'
 Plug 'majutsushi/tagbar'
@@ -465,6 +466,9 @@ let g:startify_session_persistence = 1
 " pdv
 let g:pdv_template_dir = expand('~/.vim/bundle/pdv/templates')
 nnoremap <c-p> :call pdv#DocumentCurrentLine()<cr>
+
+" vim-slime
+let g:slime_target = 'tmux'
 
 " }}}
 

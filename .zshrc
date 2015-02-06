@@ -106,7 +106,8 @@ zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 
+# Let's give up screen for tmux for a while
 # Autoload screen if we aren't in it
-if [[ $STY = '' ]] && [[ $SSH_CLIENT != '' ]] then
-    screen -xR
-fi
+#if [[ $STY = '' ]] && [[ $SSH_CLIENT != '' ]] then
+    #screen -xR
+#fi
