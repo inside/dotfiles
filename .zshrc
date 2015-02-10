@@ -35,10 +35,10 @@ function current_branch() {
   echo ${ref#refs/heads/}
 }
 
-alias devdm="ssh-add; ssh -A inside@inside"
-alias devcloud="ssh-add; ssh -A ytg@devcloud"
+alias devdm="ssh -A inside@inside"
+alias devcloud="ssh -A ytg@devcloud"
 alias devmysql="mysql -h devdb -u dev -p"
-alias stage="ssh-add; ssh -A dev@prov-stages"
+alias stage="ssh -A dev@prov-stages"
 alias logprod="ssh dev@syslog-02"
 alias log="sudo tail -f /var/log/apache2/dailymotion-error.log"
 alias ra="sudo /etc/init.d/apache2 restart"
