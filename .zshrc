@@ -111,3 +111,13 @@ zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p
 #if [[ $STY = '' ]] && [[ $SSH_CLIENT != '' ]] then
     #screen -xR
 #fi
+
+# Predictable SSH authentication socket location.
+# http://qq.is/tutorial/2011/11/17/ssh-keys-through-screen.html
+SOCK="/tmp/ssh-agent-$USER-screen"
+if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ]
+then
+    rm -f /tmp/ssh-agent-$USER-screen
+    ln -sf $SSH_AUTH_SOCK $SOCK
+    export SSH_AUTH_SOCK=$SOCK
+fi
