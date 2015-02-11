@@ -1,4 +1,5 @@
 # Start vim in the first window
+send-key 'cd ~/dailymotion' C-m
 send-key vi C-m
 
 # Creates a new window and start the my log command
