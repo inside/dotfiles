@@ -1,0 +1,10 @@
+# Start vim in the first window
+send-key 'cd ~/dailymotion' C-m
+send-key vi C-m
+
+# Creates a new window and start the my log command
+new-window -a -n log -c ~/dailymotion
+send-key log C-m
+
+# Focus on the first window
+select-window -t 0
