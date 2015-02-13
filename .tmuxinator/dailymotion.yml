@@ -1,0 +1,10 @@
+name: dailymotion
+root: ~/dailymotion
+
+windows:
+  - editor: vi
+  - devlogs: log
+  - make:
+  - stage:
+      - stage
+      - cd /data/web/stage-06
