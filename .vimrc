@@ -34,6 +34,20 @@ function! SuperCleverTab()
   endif
 endfunction
 
+let g:tmux_pane_open = 0
+
+function! ToggleTmuxPane()
+  if g:tmux_pane_open == 0
+    call system('tmux split-window -v -p 20')
+    let g:tmux_pane_open = 1
+  else
+    call system('tmux kill-pane -t 0.1')
+    let g:tmux_pane_open = 0
+  endif
+endfunction
+
+nnoremap <leader>to :call ToggleTmuxPane()<cr>
+
 " Go to next/previous SGML tag
 " Credit goes to https://github.com/tejr/nextag/blob/master/plugin/nextag.vim
 function! NextTag(direction)
