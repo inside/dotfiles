@@ -1,0 +1,12 @@
+name: dm
+root: ~/dailymotion
+
+windows:
+  - editor: vi
+  - devlogs:
+      # Can't set window activity in tmux.conf as the window doesn't exist yet
+      - tmux set-window-option -tdm:devlogs monitor-activity on
+      - log
+  - make:
+  - stage:
+      - stage

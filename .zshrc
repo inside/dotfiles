@@ -35,6 +35,12 @@ function current_branch() {
   echo ${ref#refs/heads/}
 }
 
+function monitorcmd() {
+    clear;
+    eval $@
+    echo '==== Process finished'
+}
+
 alias devdm="ssh-add; ssh -A inside@inside"
 alias devcloud="ssh-add; ssh -A ytg@devcloud"
 alias devmysql="mysql -h devdb -u dev -p"
