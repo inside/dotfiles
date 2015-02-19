@@ -34,7 +34,10 @@ function! SuperCleverTab()
   endif
 endfunction
 
-let g:tmux_pane_open = 0
+" Prevents variable from being over written when sourcing ~/.vimrc
+if exists('g:tmux_pane_open') == 0
+  let g:tmux_pane_open = 0
+endif
 
 function! ToggleTmuxPane()
   if g:tmux_pane_open == 0
@@ -194,6 +197,10 @@ nnoremap <silent> <leader>fl
       \ :<c-u>Unite
       \ -no-split -buffer-name=lines -start-insert
       \ line<cr>
+nnoremap <silent> <leader>fm
+      \ :<c-u>Unite
+      \ -no-split -buffer-name=lines -start-insert
+      \ file_mru<cr>
 
 " save file whether in insert or normal mode
 inoremap <leader>s <c-o>:w<cr><esc>
@@ -366,7 +373,7 @@ Plug 'inside/snipMate'
 Plug 'inside/vim-grep-operator'
 Plug 'inside/vim-search-pulse'
 Plug 'inside/vimwiki'
-Plug 'jpalardy/vim-slime'
+Plug 'inside/vim-slime'
 Plug 'kchmck/vim-coffee-script'
 Plug 'kmnk/vim-unite-giti'
 Plug 'majutsushi/tagbar'
@@ -483,6 +490,7 @@ nnoremap <c-p> :call pdv#DocumentCurrentLine()<cr>
 
 " vim-slime
 let g:slime_target = 'tmux'
+let g:slime_default_config = {'socket_name': 'default', 'target_pane': '1'}
 
 " }}}
 
