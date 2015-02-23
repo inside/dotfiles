@@ -98,6 +98,13 @@ let &showbreak='↪ '
 set scrolloff=3
 set undofile
 set undodir=~/.vim/undofiles
+
+" https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
+" Open new split panes to right and bottom, which feels more natural than
+" Vim's default
+set splitbelow
+set splitright
+
 " }}}
 
 " Visual options {{{
@@ -363,6 +370,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'beyondwords/vim-twig'
 Plug 'bling/vim-airline'
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'digitaltoad/vim-jade'
 Plug 'editorconfig/editorconfig-vim'
@@ -372,8 +380,8 @@ Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
 Plug 'inside/snipMate'
 Plug 'inside/vim-grep-operator'
 Plug 'inside/vim-search-pulse'
-Plug 'inside/vimwiki'
 Plug 'inside/vim-slime'
+Plug 'inside/vimwiki'
 Plug 'kchmck/vim-coffee-script'
 Plug 'kmnk/vim-unite-giti'
 Plug 'majutsushi/tagbar'
