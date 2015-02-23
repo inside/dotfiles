@@ -112,11 +112,6 @@ zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:
 zstyle ':completion:*' menu select=2
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 
-# Autoload tmux if we aren't in it
-if [[ $TMUX = '' ]] && [[ $SSH_CLIENT != '' ]] then
-    tmux attach
-fi
-
 # Predictable SSH authentication socket location.
 # http://qq.is/tutorial/2011/11/17/ssh-keys-through-screen.html
 SOCK="/tmp/ssh-agent-$USER-screen"
@@ -125,4 +120,10 @@ then
     rm -f /tmp/ssh-agent-$USER-screen
     ln -sf $SSH_AUTH_SOCK $SOCK
     export SSH_AUTH_SOCK=$SOCK
+fi
+
+# Autoload tmux if we aren't in it
+# Put this as last command
+if [[ $TMUX = '' ]] && [[ $SSH_CLIENT != '' ]] then
+    tmux attach
 fi
