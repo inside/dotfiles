@@ -35,6 +35,11 @@ function current_branch() {
   echo ${ref#refs/heads/}
 }
 
+function gp() {
+    CURRENT_BRANCH=$(current_branch)
+    git push origin $CURRENT_BRANCH
+}
+
 function monitorcmd() {
     clear;
     eval $@
@@ -57,11 +62,9 @@ alias gs="git status"
 alias gd="git diff"
 alias gc="git checkout"
 alias gl="git log"
-alias gp="git pull --rebase"
 alias gf="git fetch"
 alias ggrep="git grep"
 alias ge="git-edit"
-alias gpush="git push origin $(current_branch)"
 alias vi=~/bin/vim
 alias bower='noglob bower'
 
