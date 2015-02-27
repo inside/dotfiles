@@ -98,6 +98,7 @@ PROMPT=$(echo '\
 P%j\n%{$reset_color%}\
 %# ')
 
+export CDPATH=.:~/github:~/.vim/bundle
 export LC_ALL=en_US.UTF8
 export PAGER=$(which less)
 export EDITOR=$(which vim)
