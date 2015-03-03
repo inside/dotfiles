@@ -31,12 +31,19 @@ vmxpie() {
 # Will return the current branch name
 # Usage example: git pull origin $(current_branch)
 function current_branch() {
-  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo ${ref#refs/heads/}
+  ref=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD 2> /dev/null) \
+      || return
+  echo $ref
 }
 
 function gp() {
     CURRENT_BRANCH=$(current_branch)
+
+    if [ -z "$CURRENT_BRANCH" ]
+    then
+        return
+    fi
+
     git push origin $CURRENT_BRANCH
 }
 
