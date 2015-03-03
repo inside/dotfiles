@@ -5,3 +5,10 @@
 .vim/doc/tags
 .vim/bundle
 .vim/autoload/plug.vim
+.vim-basic/undofiles
+.vim-basic/backup
+.vim-basic/sessions
+.vim-basic/tags
+.vim-basic/doc/tags
+.vim-basic/bundle
+.vim-basic/autoload/plug.vim
