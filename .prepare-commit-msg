@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Put this file in .git/hooks/prepare-commit-msg
 # This script prepares the commit message by inserting
 # [PROJECT_NAME] (BRANCH) at the top of the message.
 # PROJECT_NAME is your own environment variable,
