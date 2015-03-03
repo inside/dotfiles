@@ -355,6 +355,8 @@ inoreabbrev xe error_log();<esc>hi
 
 " vim-plug
 " https://github.com/junegunn/vim-plug
+" Installation:
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 call plug#begin('~/.vim/bundle')
 let g:plug_url_format = 'git@github.com:%s.git'
