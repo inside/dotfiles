@@ -19,6 +19,7 @@ function current_branch()
 # If $2 is empty, prepare the commit message.
 # See what are the values of $2 there:
 # http://git-scm.com/docs/githooks#_prepare_commit_msg
+# Useful for leaving the commit message untouched on a merge.
 if [ -z "$2" ]
 then
     BRANCH=$(current_branch)
