@@ -2,6 +2,9 @@
 
 # This script prepares the commit message by inserting
 # [PROJECT_NAME] (BRANCH) at the top of the message.
+# PROJECT_NAME is your own environment variable,
+# you can set it like this:
+# $ export PROJECT_NAME=MY_PROJECT_NAME
 # You'll just have to enter your message describing the commit.
 
 function current_branch()
@@ -10,10 +13,15 @@ function current_branch()
     echo ${ref#refs/heads/}
 }
 
-BRANCH=$(current_branch)
-TIME=$(date +%s)
-TEMPORARY_COMMIT_FILE="/tmp/temporary_commit_file.$TIME"
-PROJECT_NAME=''
+# If $2 is empty, prepare the commit message.
+# See what are the values of $2 there:
+# http://git-scm.com/docs/githooks#_prepare_commit_msg
+if [ -z "$2" ]
+then
+    BRANCH=$(current_branch)
+    TIME=$(date +%s)
+    TEMPORARY_COMMIT_FILE="/tmp/temporary_commit_file.$TIME"
 
-echo "[$PROJECT_NAME] ($BRANCH)" | cat - "$1" > $TEMPORARY_COMMIT_FILE
-mv $TEMPORARY_COMMIT_FILE "$1"
+    echo "[$PROJECT_NAME] ($BRANCH)" | cat - "$1" > $TEMPORARY_COMMIT_FILE
+    mv $TEMPORARY_COMMIT_FILE "$1"
+fi
