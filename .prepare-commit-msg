@@ -6,7 +6,8 @@
 # PROJECT_NAME is your own environment variable,
 # you can set it like this:
 # $ export PROJECT_NAME=MY_PROJECT_NAME
-# You'll just have to enter your message describing the commit.
+# or don't set it, you'll just have empty brackets.
+# Then you just have to write the commit message.
 
 function current_branch()
 {
