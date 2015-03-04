@@ -9,7 +9,7 @@
 # or don't set it, you'll just have empty brackets.
 # Then you just have to write the commit message.
 
-function current_branch()
+current_branch()
 {
     ref=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD 2> /dev/null) \
         || return
