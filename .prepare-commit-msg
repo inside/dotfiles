@@ -11,7 +11,7 @@
 
 current_branch()
 {
-    ref=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD 2> /dev/null) \
+    ref=$(git rev-parse --abbrev-ref HEAD 2> /dev/null) \
         || return
     echo $ref
 }
