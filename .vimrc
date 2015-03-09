@@ -358,6 +358,17 @@ inoreabbrev xe error_log();<esc>hi
 " Installation:
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+" Auto installation
+let s:needs_plugins = 0
+
+if !filereadable($HOME . '/.vim/autoload/plug.vim')
+  echom 'Plugin manager was not found, installing...'
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  echom 'Plugin manager done.'
+  let s:needs_plugins = 1
+endif
+
 call plug#begin('~/.vim/bundle')
 let g:plug_url_format = 'git@github.com:%s.git'
 
@@ -415,6 +426,12 @@ Plug 'vim-scripts/camelcasemotion'
 Plug 'vim-scripts/matchit.zip'
 
 call plug#end()
+
+if s:needs_plugins
+  echom 'Installing plugins...'
+  PlugInstall
+  let s:needs_plugins = 0
+endif
 " }}}
 
 " Plugins configuration {{{
