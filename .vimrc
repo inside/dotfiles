@@ -465,7 +465,7 @@ let delimitMate_expand_cr = 1
 let g:gitgutter_eager = 0
 
 " vim-airline
-let g:airline_enable_syntastic = 0
+let g:airline#extensions#syntastic#enabled = 1
 let g:airline_theme = 'solarized'
 
 " emmet
