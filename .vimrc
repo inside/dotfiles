@@ -342,6 +342,12 @@ inoremap <c-j> <c-n>
 inoremap <c-k> <c-p>
 inoremap <c-n> <nop>
 inoremap <c-p> <nop>
+
+" I use visual line more than visual character mode
+nnoremap v V
+xnoremap v V
+nnoremap V v
+xnoremap V v
 " }}}
 
 " Abbreviations {{{
