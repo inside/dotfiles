@@ -371,6 +371,7 @@ Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'airblade/vim-gitgutter'
 Plug 'beyondwords/vim-twig'
 Plug 'bling/vim-airline'
+Plug 'breuckelen/vim-resize'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
@@ -396,6 +397,7 @@ Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'sjl/gundo.vim'
+Plug 'thinca/vim-qfreplace'
 Plug 'tobyS/pdv'
 Plug 'tobyS/vmustache'
 Plug 'tpope/vim-abolish'
