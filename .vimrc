@@ -118,6 +118,27 @@ set wildmenu
 set wildmode=list:longest,full
 set guicursor+=a:blinkon0
 set relativenumber
+set number
+
+augroup vimrc_linenumbering
+  autocmd!
+  autocmd WinLeave *
+        \ if &number |
+        \   set norelativenumber |
+        \ endif
+  autocmd WinEnter *
+        \ if &number |
+        \   set relativenumber |
+        \ endif
+augroup END
+
+function! ToggleNumbers()
+  set invnumber
+  set invrelativenumber
+endfunction
+
+nnoremap <leader>nn :call ToggleNumbers()<cr>
+
 set list
 let &listchars='tab:▸ '
 " Don't colorize syntax after 512 characters
