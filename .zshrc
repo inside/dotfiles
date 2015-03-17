@@ -31,9 +31,19 @@ vmxpie() {
 # Will return the current branch name
 # Usage example: git pull origin $(current_branch)
 function current_branch() {
-  ref=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD 2> /dev/null) \
+  ref=$(git rev-parse --abbrev-ref HEAD 2> /dev/null) \
       || return
   echo $ref
+}
+
+function gcob() {
+    if [ -z "$1" ]
+    then
+        echo "Usage $0 branch_name"
+        return
+    fi
+
+    git checkout -b "$1" origin/master
 }
 
 function gp() {
@@ -67,9 +77,7 @@ alias lynx="lynx -accept_all_cookies"
 alias flashlog="tail -f ~/.macromedia/Flash_Player/Logs/flashlog.txt"
 alias gs="git status"
 alias gd="git diff"
-alias gc="git checkout"
 alias gl="git log"
-alias gf="git fetch"
 alias ggrep="git grep"
 alias ge="git-edit"
 alias vi=~/bin/vim
