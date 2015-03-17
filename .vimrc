@@ -364,11 +364,6 @@ inoremap <c-k> <c-p>
 inoremap <c-n> <nop>
 inoremap <c-p> <nop>
 
-" I use visual line more than visual character mode
-nnoremap v V
-xnoremap v V
-nnoremap V v
-xnoremap V v
 " }}}
 
 " Abbreviations {{{
@@ -401,6 +396,7 @@ let g:plug_url_format = 'git@github.com:%s.git'
 
 " Repos on github
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'PeterRincker/vim-argumentative'
 Plug 'Raimondi/delimitMate'
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite-outline'
@@ -547,6 +543,18 @@ nnoremap <c-p> :call pdv#DocumentCurrentLine()<cr>
 " vim-slime
 let g:slime_target = 'tmux'
 let g:slime_default_config = {'socket_name': 'default', 'target_pane': '1'}
+
+" vim-argumentative
+nmap [a <Plug>Argumentative_Prev
+nmap ]a <Plug>Argumentative_Next
+xmap [a <Plug>Argumentative_XPrev
+xmap ]a <Plug>Argumentative_XNext
+nmap <a <Plug>Argumentative_MoveLeft
+nmap >a <Plug>Argumentative_MoveRight
+xmap ia <Plug>Argumentative_InnerTextObject
+xmap aa <Plug>Argumentative_OuterTextObject
+omap ia <Plug>Argumentative_OpPendingInnerTextObject
+omap aa <Plug>Argumentative_OpPendingOuterTextObject
 
 " }}}
 
