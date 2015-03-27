@@ -364,6 +364,11 @@ inoremap <c-k> <c-p>
 inoremap <c-n> <nop>
 inoremap <c-p> <nop>
 
+" Bubble lines
+nmap <C-Up> <Plug>BubbleLinesUp
+nmap <C-Down> <Plug>BubbleLinesDown
+xmap <C-Up> <Plug>BubbleLinesVisualUp
+xmap <C-Down> <Plug>BubbleLinesVisualDown
 " }}}
 
 " Abbreviations {{{
@@ -415,6 +420,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
 Plug 'inside/snipMate'
+Plug 'inside/vim-bubble-lines'
 Plug 'inside/vim-grep-operator'
 Plug 'inside/vim-search-pulse'
 Plug 'inside/vim-slime'
