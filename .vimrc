@@ -365,10 +365,8 @@ inoremap <c-n> <nop>
 inoremap <c-p> <nop>
 
 " Bubble lines
-nmap <C-Up> <Plug>BubbleLinesUp
-nmap <C-Down> <Plug>BubbleLinesDown
-xmap <C-Up> <Plug>BubbleLinesVisualUp
-xmap <C-Down> <Plug>BubbleLinesVisualDown
+xmap <c-k> <Plug>BubbleLinesVisualUp
+xmap <c-j> <Plug>BubbleLinesVisualDown
 " }}}
 
 " Abbreviations {{{
