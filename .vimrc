@@ -348,12 +348,6 @@ nnoremap <c-w>l <nop>
 " Redraws the screen
 nnoremap <leader>l <c-l>
 
-" Window resize
-nnoremap <up> <c-w>+
-nnoremap <down> <c-w>-
-nnoremap <left> <c-w><
-nnoremap <right> <c-w>>
-
 " Jump outside any parentheses or quotes:
 inoremap jj <esc>/[)}"'\]>]<cr>a
 
