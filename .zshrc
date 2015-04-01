@@ -75,13 +75,9 @@ alias ll="ls -G -l --color"
 alias fgrep="fgrep --color=always --exclude='*.git*'"
 alias lynx="lynx -accept_all_cookies"
 alias flashlog="tail -f ~/.macromedia/Flash_Player/Logs/flashlog.txt"
-alias gs="git status"
-alias gd="git diff"
-alias gl="git log"
-alias ggrep="git grep"
-alias ge="git-edit"
 alias vi=~/bin/vim
 alias bower='noglob bower'
+alias g='git'
 
 setopt ALWAYS_TO_END                     # Saute apres le mot si completion
 setopt AUTO_CD                           # CD facultatif
