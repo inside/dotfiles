@@ -229,6 +229,10 @@ nnoremap <silent> <leader>fm
       \ :<c-u>Unite
       \ -no-split -buffer-name=lines -start-insert
       \ file_mru<cr>
+nnoremap <silent> <leader>fc
+      \ :<c-u>UniteWithBufferDir
+      \ -no-split -buffer-name=lines -start-insert
+      \ file_rec/async<cr>
 
 " save file whether in insert or normal mode
 inoremap <leader>s <c-o>:w<cr><esc>
