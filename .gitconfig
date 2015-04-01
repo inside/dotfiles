@@ -1,5 +1,5 @@
 [user]
-    name = Yann Thomas-Gerard
+    name = Yann Thomas-Gérard
     email = inside@gmail.com
 [color]
     diff = auto
@@ -8,17 +8,16 @@
 [core]
     pager = less
 [alias]
-    st = status
-[alias]
+    a = add
+    d = diff
+    e = edit
+    g = grep
+    l = log
+    s = status
     ru = remote update
     co = checkout
-    st = status
-    ba = branch -v -a
-    slog = log --pretty=oneline
-    nlog = log --name-status
-    dlog = log -p
-    flog = log --name-only
+    flog = log --name-status
     ci = commit
     br = branch -v
 [rerere]
-	enabled = true
+    enabled = true
