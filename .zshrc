@@ -36,27 +36,6 @@ function current_branch() {
   echo $ref
 }
 
-function gcob() {
-    if [ -z "$1" ]
-    then
-        echo "Usage $0 branch_name"
-        return
-    fi
-
-    git checkout -b "$1" origin/master
-}
-
-function gp() {
-    CURRENT_BRANCH=$(current_branch)
-
-    if [ -z "$CURRENT_BRANCH" ]
-    then
-        return
-    fi
-
-    git push origin $CURRENT_BRANCH
-}
-
 function monitorcmd() {
     clear;
     eval $@
