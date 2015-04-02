@@ -12,12 +12,23 @@
     d = diff
     e = edit
     g = grep
+    ; Push the branch you are on to the remote
+    p = push origin HEAD
     l = log
     s = status
-    ru = remote update
+    br = branch
     co = checkout
-    flog = log --name-status
     ci = commit
-    br = branch -v
+    ru = remote update
+    ; Checkout branch name from master
+    cob = "!f() {\
+        if [ -z \"$1\" ];\
+        then\
+            echo \"Usage: git cob branch_name\";\
+            return;\
+        fi;\
+        git checkout -b "$1" origin/master;\
+    }; f"
+    flog = log --name-status
 [rerere]
     enabled = true
