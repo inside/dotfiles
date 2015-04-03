@@ -154,6 +154,8 @@ set linebreak
 " For clarity's sake use the same value for these 3 options.
 " See http://vimcasts.org/episodes/tabs-and-spaces/ for a full explanation.
 set shiftwidth=4 softtabstop=4 tabstop=4
+" Always round the indent to a multiple of 'shiftwidth'
+set shiftround
 " Inserts spaces instead of tabs.
 " If you want to use tab characters, don't touch shiftwidth, softtabstop and
 " tabstop, just set noexpandtab.
@@ -291,6 +293,8 @@ nnoremap <leader>z ZZ
 
 " The nerdtree
 nnoremap <leader>nt :NERDTreeToggle<cr>
+" Find the current file in the tree
+nnoremap <leader>nf :NERDTreeFind<cr>
 
 " Remaps <f1> to nothing, when you try to reach <esc> you often hit <f1>
 inoremap <f1> <nop>
