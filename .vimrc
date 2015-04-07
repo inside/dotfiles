@@ -477,6 +477,7 @@ let g:syntastic_coffee_checkers = ['coffeelint']
 let g:syntastic_coffee_coffeelint_args = "--csv -f ~/.coffeelint.json"
 
 " Twig templates
+" See https://github.com/asm89/twig-lint
 let g:syntastic_twig_twiglint_exec = 'php'
 let g:syntastic_twig_twiglint_exe = 'php ~/bin/twig-lint.phar'
 
