@@ -466,12 +466,19 @@ endif
 " Plugins configuration {{{
 
 " Syntastic
+let g:syntastic_mode_map = {'passive_filetypes': ['html']}
+
 " Available checkers are: php, phpcs, phpmd.
 " Let's stick to the php executable only.
 let g:syntastic_php_checkers = ['php']
+
+" Coffee Script
 let g:syntastic_coffee_checkers = ['coffeelint']
 let g:syntastic_coffee_coffeelint_args = "--csv -f ~/.coffeelint.json"
-let g:syntastic_mode_map = {'passive_filetypes': ['html']}
+
+" Twig templates
+let g:syntastic_twig_twiglint_exec = 'php'
+let g:syntastic_twig_twiglint_exe = 'php ~/bin/twig-lint.phar'
 
 " Unite
 let g:unite_source_rec_max_cache_files = 100000
@@ -579,9 +586,8 @@ augroup mygroup
   autocmd FileType make setlocal noexpandtab
   " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
   autocmd FileType php setlocal keywordprg=pman
-  autocmd BufNewFile,BufRead *.as     set filetype=actionscript
-  autocmd BufNewFile,BufRead *.html   set filetype=html.twig
-  autocmd BufNewFile,BufRead *.ejs    set filetype=html
+  autocmd BufNewFile,BufRead *.as set filetype=actionscript
+  autocmd BufNewFile,BufRead *.ejs set filetype=html
   " Show the signs column even if it is empty, useful for the vim-git-gutter plugin
   autocmd BufEnter * sign define dummy
   autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
