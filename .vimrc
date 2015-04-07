@@ -466,8 +466,6 @@ endif
 " Plugins configuration {{{
 
 " Syntastic
-let g:syntastic_mode_map = {'passive_filetypes': ['html']}
-
 " Available checkers are: php, phpcs, phpmd.
 " Let's stick to the php executable only.
 let g:syntastic_php_checkers = ['php']
