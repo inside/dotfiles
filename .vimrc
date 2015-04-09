@@ -65,6 +65,16 @@ endfunction
 
 nnoremap <silent> tn :call NextTag('next')<cr>
 nnoremap <silent> tp :call NextTag('previous')<cr>
+
+" Helper to create aliases for vim commands.
+" Thanks to
+" http://vim.wikia.com/wiki/Replace_a_builtin_command_using_cabbrev
+func! Alias(alias, cmd)
+  execute
+        \ printf('cnoreabbrev %s ', a:alias) .
+        \ '<c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? ' .
+        \ printf('"%s" : "%s"<cr>', a:cmd, a:alias)
+endf
 " }}}
 
 " General options {{{
@@ -621,8 +631,14 @@ augroup END
 
 " User defined commands {{{
 
+" Create an alias
+command! -nargs=+ Alias call Alias(<f-args>)
+
 " Shortcut to :Ag
 command! -complete=file -nargs=+ G :Ag! <args>
+
+" Save one key stroke for grepping
+Alias g G
 " }}}
 
 " Loads a local configuration {{{
