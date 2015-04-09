@@ -15,6 +15,7 @@
     ; Push the branch you are on to the remote
     p = push origin HEAD
     l = log
+    lp = log -p
     s = status
     br = branch
     co = checkout
