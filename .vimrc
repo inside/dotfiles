@@ -379,6 +379,18 @@ inoremap <c-p> <nop>
 " Bubble lines
 xmap <c-k> <Plug>BubbleLinesVisualUp
 xmap <c-j> <Plug>BubbleLinesVisualDown
+
+" Most of the time I want to search for literal strings using /\V
+nnoremap / /\V
+nnoremap ? ?\V
+
+" Make those behave like ci' , ci"
+nnoremap ci( f(ci(
+nnoremap ci{ f{ci{
+nnoremap ci[ f[ci[
+
+cnoremap <c-j> <down>
+cnoremap <c-k> <up>
 " }}}
 
 " Abbreviations {{{
