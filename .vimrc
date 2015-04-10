@@ -384,11 +384,6 @@ xmap <c-j> <Plug>BubbleLinesVisualDown
 nnoremap / /\V
 nnoremap ? ?\V
 
-" Make those behave like ci' , ci"
-nnoremap ci( f(ci(
-nnoremap ci{ f{ci{
-nnoremap ci[ f[ci[
-
 cnoremap <c-j> <down>
 cnoremap <c-k> <up>
 " }}}
