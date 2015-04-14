@@ -12,6 +12,11 @@ bindkey -M viins 'jk' vi-cmd-mode
 bindkey -M viins '^j' vi-down-line-or-history
 bindkey -M viins '^k' vi-up-line-or-history
 
+# Allow command line editing in an external editor
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line # v to edit in an external editor.
+
 # Disables ctrl-s/ctrl-q stop/enable shell flow
 stty stop undef
 
@@ -55,8 +60,8 @@ alias fgrep="fgrep --color=always --exclude='*.git*'"
 alias lynx="lynx -accept_all_cookies"
 alias flashlog="tail -f ~/.macromedia/Flash_Player/Logs/flashlog.txt"
 alias vi=~/bin/vim
-alias bower='noglob bower'
-alias g='git'
+alias bower="noglob bower"
+alias g="hub"
 
 setopt ALWAYS_TO_END                     # Saute apres le mot si completion
 setopt AUTO_CD                           # CD facultatif

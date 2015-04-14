@@ -10,3 +10,5 @@ windows:
   - make:
   - stage:
       - stage
+  - webpack:
+      - make submodule compile webpack-watch
