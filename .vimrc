@@ -255,7 +255,6 @@ noremap <leader><Tab> :bn<cr>
 noremap <leader><S-Tab> :bp<cr>
 
 " fugitive
-nnoremap <leader>Gg :Ggrep<SPACE>
 nnoremap <leader>Gd :Gdiff<cr>
 " switch back to current file and closes fugitive buffer
 nnoremap <leader>GD :diffoff!<cr><C-W>h:bd<cr>
@@ -298,8 +297,8 @@ nnoremap : ;
 xnoremap ; :
 xnoremap : ;
 
-" ZZ remaped to <leader>z
-nnoremap <leader>z ZZ
+" ZZ remaped to write and quit all buffers
+nnoremap <leader>z :wqa<cr>
 
 " The nerdtree
 nnoremap <leader>nt :NERDTreeToggle<cr>
@@ -429,6 +428,7 @@ Plug 'beyondwords/vim-twig'
 Plug 'bling/vim-airline'
 Plug 'breuckelen/vim-resize'
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'chrisbra/NrrwRgn'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'digitaltoad/vim-jade'
@@ -445,6 +445,7 @@ Plug 'inside/vimwiki'
 Plug 'kchmck/vim-coffee-script'
 Plug 'kmnk/vim-unite-giti'
 Plug 'majutsushi/tagbar'
+Plug 'marijnh/tern_for_vim', {'do': 'npm install'}
 Plug 'mattn/emmet-vim', {'for': ['html', 'html.twig']}
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
