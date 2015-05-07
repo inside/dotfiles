@@ -320,6 +320,8 @@ nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
 nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
 xnoremap <expr> j v:count == 0 ? 'gj' : 'j'
 xnoremap <expr> k v:count == 0 ? 'gk' : 'k'
+nnoremap gj j
+nnoremap gk k
 
 " Bring each tag attribute/value on its own line
 " For example <a href="/foo" class="foo" id="foo"> becomes:
@@ -392,6 +394,7 @@ inoreabbrev xr print_r($
 inoreabbrev xv var_dump($
 inoreabbrev fu function
 inoreabbrev xe error_log();<esc>hi
+inoreabbrev t> $this-><esc>s
 " }}}
 
 " Plugins {{{
