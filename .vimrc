@@ -247,8 +247,10 @@ nnoremap <silent> <leader>fc
       \ file_rec/async<cr>
 
 " save file whether in insert or normal mode
-inoremap <leader>s <c-o>:w<cr><esc>
-nnoremap <leader>s :w<cr>
+"inoremap <leader>s <c-o>:w<cr><esc>
+inoremap <leader>s <Nop>
+"nnoremap <leader>s :w<cr>
+nnoremap <leader>s <Nop>
 
 " Switch to the next/previous buffer
 noremap <leader><Tab> :bn<cr>
@@ -419,6 +421,7 @@ call plug#begin('~/.vim/bundle')
 let g:plug_url_format = 'git@github.com:%s.git'
 
 " Repos on github
+Plug '907th/vim-auto-save'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'PeterRincker/vim-argumentative'
 Plug 'Raimondi/delimitMate'
@@ -589,12 +592,16 @@ xmap aa <Plug>Argumentative_OuterTextObject
 omap ia <Plug>Argumentative_OpPendingInnerTextObject
 omap aa <Plug>Argumentative_OpPendingOuterTextObject
 
+" vim-auto-save
+let g:auto_save = 1
+" Do not display the auto-save notification
+let g:auto_save_silent = 1
+" Do not save while in insert mode
+let g:auto_save_in_insert_mode = 0
+
 " }}}
 
 " Colorscheme {{{
-" When solarized is not configured on the terminal,
-" my prefered colorscheme is darkburn.
-"colorscheme darkburn
 colorscheme solarized
 " }}}
 
