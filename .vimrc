@@ -395,10 +395,17 @@ cnoremap <c-k> <up>
 nnoremap <leader>s a<c-x><c-s>
 
 " Lowercase inner word
-nnoremap <leader>u guiw
+func! s:ChangeInnerWordCase(case)
+  let col = virtcol('.')
+
+  execute 'normal ' . (a:case == 'lower' ? 'guiw' : 'gUiw')
+  execute 'normal ' . col . '|'
+endf
+
+nnoremap <leader>u :call <sid>ChangeInnerWordCase('lower')<cr>
 
 " Uppercase inner word
-nnoremap <leader>U gUiw
+nnoremap <leader>U :call <sid>ChangeInnerWordCase('upper')<cr>
 " }}}
 
 " Abbreviations {{{
@@ -467,6 +474,7 @@ Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'nelstrom/vim-visual-star-search'
+Plug 'rhysd/committia.vim'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/Syntastic'
 Plug 'scrooloose/nerdcommenter'
