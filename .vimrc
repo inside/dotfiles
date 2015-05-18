@@ -6,7 +6,7 @@ let g:last_active_tab = 1
 " }}}
 
 " User functions {{{
-function! ToggleActiveMouse()
+func! s:ToggleActiveMouse()
   if &mouse == "nv"
     set mouse=
     echo "Mouse is off"
@@ -14,11 +14,11 @@ function! ToggleActiveMouse()
     set mouse=nv
     echo "Mouse is on"
   endif
-endfunction
+endf
 
 " This can conflict with the default mappings provided by snipmate.
 " See the after directory in .vim/bundle/snipMate/after
-function! SuperCleverTab()
+func! s:SuperCleverTab()
   if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
     return "\<Tab>"
   elseif pumvisible()
@@ -32,14 +32,14 @@ function! SuperCleverTab()
       return "\<C-N>"
     endif
   endif
-endfunction
+endf
 
 " Prevents variable from being over written when sourcing ~/.vimrc
 if exists('g:tmux_pane_open') == 0
   let g:tmux_pane_open = 0
 endif
 
-function! ToggleTmuxPane()
+func! s:ToggleTmuxPane()
   if g:tmux_pane_open == 0
     call system('tmux split-window -v -p 20')
     let g:tmux_pane_open = 1
@@ -47,13 +47,13 @@ function! ToggleTmuxPane()
     call system('tmux kill-pane -t 0.1')
     let g:tmux_pane_open = 0
   endif
-endfunction
+endf
 
-nnoremap <leader>to :call ToggleTmuxPane()<cr>
+nnoremap <leader>to :call <sid>ToggleTmuxPane()<cr>
 
 " Go to next/previous SGML tag
 " Credit goes to https://github.com/tejr/nextag/blob/master/plugin/nextag.vim
-function! NextTag(direction)
+func! s:NextTag(direction)
   let ptn = '\m<\/\?\w\+[^>]*>'
 
   if a:direction == 'next'
@@ -61,15 +61,15 @@ function! NextTag(direction)
   elseif a:direction == 'previous'
     call search(ptn, 'b')
   endif
-endfunction
+endf
 
-nnoremap <silent> tn :call NextTag('next')<cr>
-nnoremap <silent> tp :call NextTag('previous')<cr>
+nnoremap <silent> tn :call <sid>NextTag('next')<cr>
+nnoremap <silent> tp :call <sid>NextTag('previous')<cr>
 
 " Helper to create aliases for vim commands.
 " Thanks to
 " http://vim.wikia.com/wiki/Replace_a_builtin_command_using_cabbrev
-func! Alias(alias, cmd)
+func! s:Alias(alias, cmd)
   execute
         \ printf('cnoreabbrev %s ', a:alias) .
         \ '<c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? ' .
@@ -142,12 +142,12 @@ augroup vimrc_linenumbering
         \ endif
 augroup END
 
-function! ToggleNumbers()
+func! s:ToggleNumbers()
   set invnumber
   set invrelativenumber
-endfunction
+endf
 
-nnoremap <leader>nn :call ToggleNumbers()<cr>
+nnoremap <leader>nn :call <sid>ToggleNumbers()<cr>
 
 set list
 let &listchars='tab:▸ '
@@ -202,20 +202,20 @@ set winaltkeys=no
 nnoremap <leader>o :%s///gn<cr>
 
 " Quick way to recall macro a
-nnoremap <leader>2 @a
+nnoremap <leader>2 @q
 
 " Quick way to recall last command
 nnoremap <leader>3 @:
 
 " Edit ~/.vimrc or ~/.zshrc
-nnoremap <leader>E :edit $MYVIMRC<cr>
-nnoremap <leader>Z :edit ~/.zshrc<cr>
+nnoremap <leader>ev :edit $MYVIMRC<cr>
+nnoremap <leader>ez :edit ~/.zshrc<cr>
 
 " Source my vimrc
-nnoremap <leader>S :source $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Toggle mouse on or off
-nnoremap <leader><cr> :call ToggleActiveMouse()<cr>
+nnoremap <leader><cr> :call <sid>ToggleActiveMouse()<cr>
 
 " call the tagbar window
 nnoremap tt :TagbarToggle<cr>
@@ -274,7 +274,7 @@ inoremap <c-f>n <c-r>=expand("%:p")<cr>
 " command. For example, the following command creates an insert mode map command
 " that inserts the current directory:
 " :inoremap <F2> <C-R>=expand('%:p:h')<cr>
-inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+inoremap <Tab> <C-R>=<sid>SuperCleverTab()<cr>
 
 " vim-grep-operator
 nmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
@@ -283,7 +283,7 @@ nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
 xmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
 
 " Custom mappings for the unite buffer
-function! s:unite_settings()
+func! s:unite_settings()
   imap <buffer> <c-c> <Plug>(unite_exit)
   nmap <buffer> <c-c> <Plug>(unite_exit)
   nmap <buffer> <esc> <Plug>(unite_exit)
@@ -291,7 +291,7 @@ function! s:unite_settings()
   nmap <buffer> <c-l> <Plug>(unite_redraw)
   imap <buffer> <c-j> <Plug>(unite_select_next_line)
   imap <buffer> <c-k> <Plug>(unite_select_previous_line)
-endfunction
+endf
 
 " Quicker way to go into command mode
 nnoremap ; :
@@ -387,8 +387,18 @@ xmap <c-j> <Plug>BubbleLinesVisualDown
 nnoremap / /\V
 nnoremap ? ?\V
 
+" Command mode history navigation
 cnoremap <c-j> <down>
 cnoremap <c-k> <up>
+
+" See spell checking correction suggestion quicker
+nnoremap <leader>s a<c-x><c-s>
+
+" Lowercase inner word
+nnoremap <leader>u guiw
+
+" Uppercase inner word
+nnoremap <leader>U gUiw
 " }}}
 
 " Abbreviations {{{
@@ -650,7 +660,7 @@ augroup END
 " User defined commands {{{
 
 " Create an alias
-command! -nargs=+ Alias call Alias(<f-args>)
+command! -nargs=+ Alias call <sid>Alias(<f-args>)
 
 " Shortcut to :Ag
 command! -complete=file -nargs=+ G :Ag! <args>
