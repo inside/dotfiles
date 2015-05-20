@@ -7,7 +7,7 @@ let g:last_active_tab = 1
 
 " User functions {{{
 func! s:ToggleActiveMouse()
-  if &mouse == "nv"
+  if &mouse ==# "nv"
     set mouse=
     echo "Mouse is off"
   else
@@ -56,9 +56,9 @@ nnoremap <leader>to :call <sid>ToggleTmuxPane()<cr>
 func! s:NextTag(direction)
   let ptn = '\m<\/\?\w\+[^>]*>'
 
-  if a:direction == 'next'
+  if a:direction ==# 'next'
     call search(ptn)
-  elseif a:direction == 'previous'
+  elseif a:direction ==# 'previous'
     call search(ptn, 'b')
   endif
 endf
@@ -398,7 +398,7 @@ nnoremap <leader>s a<c-x><c-s>
 func! s:ChangeInnerWordCase(case)
   let col = virtcol('.')
 
-  execute 'normal ' . (a:case == 'lower' ? 'guiw' : 'gUiw')
+  execute 'normal ' . (a:case ==# 'lower' ? 'guiw' : 'gUiw')
   execute 'normal ' . col . '|'
 endf
 
@@ -474,7 +474,6 @@ Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'nelstrom/vim-visual-star-search'
-Plug 'rhysd/committia.vim'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/Syntastic'
 Plug 'scrooloose/nerdcommenter'
@@ -656,7 +655,7 @@ augroup mygroup
   "autocmd BufRead,BufNewFile,BufEnter *
   autocmd BufEnter *
         \ silent! unabbreviate cl |
-        \ if &filetype == 'coffee' |
+        \ if &filetype ==# 'coffee' |
         \   inoreabbrev cl console.log |
         \ elseif index(['javascript', 'ejs'], &filetype) != -1 |
         \   inoreabbrev cl console.log();<esc>hi
