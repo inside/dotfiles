@@ -18,18 +18,24 @@ inoremap jk <esc>
 inoremap <esc> <nop>
 inoremap <leader>s <c-o>:w<cr><esc>
 nnoremap <leader>s :w<cr>
-nnoremap <leader>E :edit ~/.vimrc-basic<cr>
+nnoremap <leader>ev :edit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " vim-plug
 " https://github.com/junegunn/vim-plug
 " Installation:
 " curl -fLo ~/.vim-basic/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-
 call plug#begin('~/.vim-basic/bundle')
 let g:plug_url_format = 'git@github.com:%s.git'
 
-Plug 'inside/vim-search-pulse'
-let g:vim_search_pulse_mode = 'pattern'
+Plug 'rhysd/committia.vim'
 
 call plug#end()
+
+" committia
+let g:committia_hooks = {}
+
+func! g:committia_hooks.edit_open(info)
+  startinsert
+endf
