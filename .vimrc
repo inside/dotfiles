@@ -406,6 +406,7 @@ nnoremap <leader>u :call <sid>ChangeInnerWordCase('lower')<cr>
 " Uppercase inner word
 nnoremap <leader>U :call <sid>ChangeInnerWordCase('upper')<cr>
 
+" Page up and down with the spacebar
 nnoremap <space> <c-f>
 nnoremap <leader><space> <c-b>
 " }}}
@@ -623,7 +624,7 @@ let g:auto_save_in_insert_mode = 0
 let g:committia_hooks = {}
 
 func! g:committia_hooks.edit_open(info)
-  let file_head = filereadable(expand('%:p:h'))
+  let file_head = expand('%:p:h')
 
   if !filereadable(file_head . '/MERGE_MSG') &&
         \ !filereadable(file_head . '/SQUASH_MSG')
