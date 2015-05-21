@@ -405,6 +405,9 @@ nnoremap <leader>u :call <sid>ChangeInnerWordCase('lower')<cr>
 
 " Uppercase inner word
 nnoremap <leader>U :call <sid>ChangeInnerWordCase('upper')<cr>
+
+nnoremap <space> <c-f>
+nnoremap <leader><space> <c-b>
 " }}}
 
 " Abbreviations {{{
