@@ -628,7 +628,8 @@ func! g:committia_hooks.edit_open(info)
 
   if !filereadable(file_head . '/MERGE_MSG') &&
         \ !filereadable(file_head . '/SQUASH_MSG')
-    normal f(
+    " Note the trailing space at the end of the normal command
+    execute 'normal f(i '
     startinsert
   endif
 
