@@ -314,7 +314,6 @@ xnoremap <f1> <nop>
 
 " Remaps esc to something easier to type
 inoremap jk <esc>
-inoremap <esc> <nop>
 
 " Easy up and down on wrapped long lines:
 " http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
@@ -474,6 +473,7 @@ Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'nelstrom/vim-visual-star-search'
+Plug 'rhysd/committia.vim'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/Syntastic'
 Plug 'scrooloose/nerdcommenter'
@@ -615,7 +615,6 @@ let g:auto_save = 1
 let g:auto_save_silent = 1
 " Do not save while in insert mode
 let g:auto_save_in_insert_mode = 0
-
 " }}}
 
 " Colorscheme {{{
