@@ -618,6 +618,22 @@ let g:auto_save = 1
 let g:auto_save_silent = 1
 " Do not save while in insert mode
 let g:auto_save_in_insert_mode = 0
+
+" committia
+let g:committia_hooks = {}
+
+func! g:committia_hooks.edit_open(info)
+  let file_head = filereadable(expand('%:p:h'))
+
+  if !filereadable(file_head . '/MERGE_MSG') &&
+        \ !filereadable(file_head . '/SQUASH_MSG')
+    normal f(
+    startinsert
+  endif
+
+  imap <buffer><C-d> <Plug>(committia-scroll-diff-down-half)
+  imap <buffer><C-u> <Plug>(committia-scroll-diff-up-half)
+endf
 " }}}
 
 " Colorscheme {{{
