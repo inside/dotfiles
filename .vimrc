@@ -688,6 +688,11 @@ command! -complete=file -nargs=+ G :Ag! <args>
 
 " Save one key stroke for grepping
 Alias g G
+Alias gr Gread
+Alias gw Gwrite
+Alias gs Gstatus
+Alias gci Gcommit
+Alias gd Gdiff
 " }}}
 
 " Loads a local configuration {{{
