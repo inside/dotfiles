@@ -20,6 +20,11 @@ bindkey -M vicmd v edit-command-line # v to edit in an external editor.
 # Disables ctrl-s/ctrl-q stop/enable shell flow
 stty stop undef
 
+# This way git commands are even shorter
+command_not_found_handler () {
+    git $* || return 127
+}
+
 # Connects to a virtual machine
 vmxpie() {
     if [ -z "$1" ]
@@ -59,7 +64,7 @@ alias ll="ls -G -l --color"
 alias fgrep="fgrep --color=always --exclude='*.git*'"
 alias lynx="lynx -accept_all_cookies"
 alias flashlog="tail -f ~/.macromedia/Flash_Player/Logs/flashlog.txt"
-alias vi=~/bin/vim
+alias v=~/bin/vim
 alias bower="noglob bower"
 alias g="hub"
 
