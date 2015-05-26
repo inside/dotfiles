@@ -75,6 +75,17 @@ func! s:Alias(alias, cmd)
         \ '<c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? ' .
         \ printf('"%s" : "%s"<cr>', a:cmd, a:alias)
 endf
+
+func! s:PrepageCommitMessage()
+  let file_head = expand('%:p:h')
+
+  if !filereadable(file_head . '/MERGE_MSG') &&
+        \ !filereadable(file_head . '/SQUASH_MSG')
+    " Note the trailing space at the end of the normal command
+    execute 'normal f(i '
+    startinsert
+  endif
+endf
 " }}}
 
 " General options {{{
@@ -654,7 +665,6 @@ augroup mygroup
   " Toggles between the active and last active tab
   autocmd TabLeave * let g:last_active_tab = tabpagenr()
 
-  "autocmd BufRead,BufNewFile,BufEnter *
   autocmd BufEnter *
         \ silent! unabbreviate cl |
         \ if &filetype ==# 'coffee' |
@@ -663,6 +673,8 @@ augroup mygroup
         \   inoreabbrev cl console.log();<esc>hi
 
   autocmd Filetype qf setlocal nowrap
+
+  autocmd BufRead COMMIT_EDITMSG call <sid>PrepageCommitMessage()
 augroup END
 " }}}
 
