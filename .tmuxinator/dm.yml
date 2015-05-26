@@ -2,7 +2,9 @@ name: dm
 root: ~/dailymotion
 
 windows:
-  - editor: vi
+  - editor:
+      # v is an alias for vim
+      - v
   - devlogs:
       # Can't set window activity in tmux.conf as the window doesn't exist yet
       - tmux set-window-option -tdm:devlogs monitor-activity on
