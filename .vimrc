@@ -720,11 +720,16 @@ command! -complete=file -nargs=+ G :Ag! <args>
 
 " Save one key stroke for grepping
 Alias g G
+
+" Fugitive aliases
 Alias gr Gread
 Alias gw Gwrite
 Alias gs Gstatus
 Alias gci Gcommit
 Alias gd Gdiff
+Alias gm Gmerge
+Alias gb Gblame
+Alias gi Git
 " }}}
 
 " Loads a local configuration {{{
