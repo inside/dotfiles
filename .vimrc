@@ -417,9 +417,39 @@ nnoremap <leader>u :call <sid>ChangeInnerWordCase('lower')<cr>
 " Uppercase inner word
 nnoremap <leader>U :call <sid>ChangeInnerWordCase('upper')<cr>
 
-" Page up and down with the spacebar
+" Page down with the spacebar
 nnoremap <space> <c-f>
-nnoremap <leader><space> <c-b>
+" Page up with control spacebar,
+" see: http://stackoverflow.com/questions/23189568/control-space-vim-key-binding-in-normal-mode-does-not-work
+nnoremap <C-@> <c-b>
+
+
+" Motion for "next/last object". For example, "din(" would go to the next "()" pair
+" and delete its contents.
+" https://gist.github.com/sjl/1171642
+onoremap an :<c-u>call <sid>NextTextObject('a', 'f')<cr>
+xnoremap an :<c-u>call <sid>NextTextObject('a', 'f')<cr>
+onoremap in :<c-u>call <sid>NextTextObject('i', 'f')<cr>
+xnoremap in :<c-u>call <sid>NextTextObject('i', 'f')<cr>
+
+onoremap al :<c-u>call <sid>NextTextObject('a', 'F')<cr>
+xnoremap al :<c-u>call <sid>NextTextObject('a', 'F')<cr>
+onoremap il :<c-u>call <sid>NextTextObject('i', 'F')<cr>
+xnoremap il :<c-u>call <sid>NextTextObject('i', 'F')<cr>
+
+func! s:NextTextObject(motion, dir)
+  let text_object = nr2char(getchar())
+
+  if text_object ==# 'b'
+    let text_object = '('
+  elseif text_object ==# 'B'
+    let text_object = '{'
+  elseif text_object ==# 'd'
+    let text_object = '['
+  endif
+
+   execute 'normal! ' . a:dir . text_object . 'v' . a:motion . text_object
+endf
 " }}}
 
 " Abbreviations {{{
