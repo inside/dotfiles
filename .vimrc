@@ -126,6 +126,8 @@ set undodir=~/.vim/undofiles
 set splitbelow
 set splitright
 
+" Reloads the file if it has been changed ousite of vim.
+set autoread
 " }}}
 
 " Visual options {{{
