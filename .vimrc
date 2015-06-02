@@ -82,13 +82,13 @@ func! s:PrepageCommitMessage()
   endif
 endf
 
-" To consume the space typed after an abbreviation
+" To consume the character typed after an abbreviation
 " See :helpgrep Eatchar
-func s:Eatchar(pat)
+func! s:Eatchar(pat)
   let c = nr2char(getchar(0))
 
-  return (c =~ a:pat) ? '' : c
-endfunc
+  return (c =~# a:pat) ? '' : c
+endf
 
 func! s:ToggleNumbers()
   set invnumber
