@@ -49,8 +49,6 @@ func! s:ToggleTmuxPane()
   endif
 endf
 
-nnoremap <leader>to :call <sid>ToggleTmuxPane()<cr>
-
 " Go to next/previous SGML tag
 " Credit goes to https://github.com/tejr/nextag/blob/master/plugin/nextag.vim
 func! s:NextTag(direction)
@@ -62,9 +60,6 @@ func! s:NextTag(direction)
     call search(ptn, 'b')
   endif
 endf
-
-nnoremap <silent> tn :call <sid>NextTag('next')<cr>
-nnoremap <silent> tp :call <sid>NextTag('previous')<cr>
 
 " Helper to create aliases for vim commands.
 " Thanks to
@@ -86,24 +81,68 @@ func! s:PrepageCommitMessage()
     startinsert
   endif
 endf
+
+" To consume the space typed after an abbreviation
+" See :helpgrep Eatchar
+func s:Eatchar(pat)
+  let c = nr2char(getchar(0))
+
+  return (c =~ a:pat) ? '' : c
+endfunc
+
+func! s:ToggleNumbers()
+  set invnumber
+  set invrelativenumber
+endf
+
+" Custom mappings for the unite buffer
+func! s:unite_settings()
+  imap <buffer> <c-c> <Plug>(unite_exit)
+  nmap <buffer> <c-c> <Plug>(unite_exit)
+  nmap <buffer> <esc> <Plug>(unite_exit)
+  imap <buffer> <c-l> <Plug>(unite_redraw)
+  nmap <buffer> <c-l> <Plug>(unite_redraw)
+  imap <buffer> <c-j> <Plug>(unite_select_next_line)
+  imap <buffer> <c-k> <Plug>(unite_select_previous_line)
+endf
+
+" Lowercase inner word
+func! s:ChangeInnerWordCase(case)
+  let col = virtcol('.')
+
+  execute 'normal ' . (a:case ==# 'lower' ? 'guiw' : 'gUiw')
+  execute 'normal ' . col . '|'
+endf
+
+func! s:NextTextObject(motion, dir)
+  let text_object = nr2char(getchar())
+
+  if text_object ==# 'b'
+    let text_object = '('
+  elseif text_object ==# 'B'
+    let text_object = '{'
+  elseif text_object ==# 'd'
+    let text_object = '['
+  endif
+
+   execute 'normal! ' . a:dir . text_object . 'v' . a:motion . text_object
+endf
 " }}}
 
 " General options {{{
-
 set nocompatible
 set incsearch
 set complete-=t " Don't look for tags when completing
 set complete-=i " Don't look for included files
 set termencoding=utf-8
 set hidden
-set lazyredraw  " Do not redraw while running macros (much faster)
-set infercase   " Case sensitive insert completion even if ingorecase is set
+set lazyredraw " Do not redraw while running macros (much faster)
+set infercase " Case sensitive insert completion even if ingorecase is set
 set backup
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup " Stores swap files there
 set writebackup
 set ttymouse=xterm2 " Make mouse work on virtual terms like screen
-set whichwrap=b,s,<,>
 set wildignore+=*.git*
 set history=200
 
@@ -128,6 +167,7 @@ set splitright
 
 " Reloads the file if it has been changed ousite of vim.
 set autoread
+set winaltkeys=no
 " }}}
 
 " Visual options {{{
@@ -142,34 +182,16 @@ set wildmode=list:longest,full
 set guicursor+=a:blinkon0
 set relativenumber
 set number
-
-augroup vimrc_linenumbering
-  autocmd!
-  autocmd WinLeave *
-        \ if &number |
-        \   set norelativenumber |
-        \ endif
-  autocmd WinEnter *
-        \ if &number |
-        \   set relativenumber |
-        \ endif
-augroup END
-
-func! s:ToggleNumbers()
-  set invnumber
-  set invrelativenumber
-endf
-
-nnoremap <leader>nn :call <sid>ToggleNumbers()<cr>
-
 set list
 let &listchars='tab:▸ '
 " Don't colorize syntax after 512 characters
 set synmaxcol=512
+
 " For at least vim >= 7.4.338
-if v:version > 704 || v:version == 704 && has('patch338')
+if has('patch-7.4.338')
   set breakindent
 endif
+
 set linebreak
 " }}}
 
@@ -209,8 +231,6 @@ set background=dark
 " }}}
 
 " Mappings {{{
-set winaltkeys=no
-
 " Get to know the current pattern count match
 nnoremap <leader>o :%s///gn<cr>
 
@@ -258,6 +278,10 @@ nnoremap <silent> <leader>fc
       \ :<c-u>UniteWithBufferDir
       \ -no-split -buffer-name=lines -start-insert
       \ file_rec/async<cr>
+nnoremap <silent> <leader>fa
+      \ :<c-u>Unite
+      \ -no-split -buffer-name=buffers -start-insert
+      \ argument<cr>
 
 " save file whether in insert or normal mode
 "inoremap <leader>s <c-o>:w<cr><esc>
@@ -294,17 +318,6 @@ nmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
 xmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
 nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
 xmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
-
-" Custom mappings for the unite buffer
-func! s:unite_settings()
-  imap <buffer> <c-c> <Plug>(unite_exit)
-  nmap <buffer> <c-c> <Plug>(unite_exit)
-  nmap <buffer> <esc> <Plug>(unite_exit)
-  imap <buffer> <c-l> <Plug>(unite_redraw)
-  nmap <buffer> <c-l> <Plug>(unite_redraw)
-  imap <buffer> <c-j> <Plug>(unite_select_next_line)
-  imap <buffer> <c-k> <Plug>(unite_select_previous_line)
-endf
 
 " Quicker way to go into command mode
 nnoremap ; :
@@ -348,9 +361,6 @@ nnoremap <leader><leader>b /=<cr>BXi<cr><esc>n
 " Tabs
 nnoremap <leader>tn :tabnew<cr>
 nnoremap <leader>tc :tabclose<cr>
-
-" CoffeeScript
-nnoremap <leader>co :CoffeeCompile<cr>
 
 " Inspired by https://github.com/tpope/vim-unimpaired
 " Sets paste on and set nopaste when leaving insert mode
@@ -406,14 +416,6 @@ cnoremap <c-k> <up>
 " See spell checking correction suggestion quicker
 nnoremap <leader>s a<c-x><c-s>
 
-" Lowercase inner word
-func! s:ChangeInnerWordCase(case)
-  let col = virtcol('.')
-
-  execute 'normal ' . (a:case ==# 'lower' ? 'guiw' : 'gUiw')
-  execute 'normal ' . col . '|'
-endf
-
 nnoremap <leader>u :call <sid>ChangeInnerWordCase('lower')<cr>
 
 " Uppercase inner word
@@ -424,7 +426,6 @@ nnoremap <space> <c-f>
 " Page up with control spacebar,
 " see: http://stackoverflow.com/questions/23189568/control-space-vim-key-binding-in-normal-mode-does-not-work
 nnoremap <C-@> <c-b>
-
 
 " Motion for "next/last object". For example, "din(" would go to the next "()" pair
 " and delete its contents.
@@ -439,31 +440,42 @@ xnoremap al :<c-u>call <sid>NextTextObject('a', 'F')<cr>
 onoremap il :<c-u>call <sid>NextTextObject('i', 'F')<cr>
 xnoremap il :<c-u>call <sid>NextTextObject('i', 'F')<cr>
 
-func! s:NextTextObject(motion, dir)
-  let text_object = nr2char(getchar())
+" Quickly add/remove current file to/from the argument list
+nnoremap <leader>aa :argadd %<cr>
+nnoremap <leader>ad :argdelete %<cr>
 
-  if text_object ==# 'b'
-    let text_object = '('
-  elseif text_object ==# 'B'
-    let text_object = '{'
-  elseif text_object ==# 'd'
-    let text_object = '['
-  endif
+" To be consistent with other normal commands like D, C
+nnoremap Y y$
+nnoremap <leader>to :call <sid>ToggleTmuxPane()<cr>
+nnoremap <silent> tn :call <sid>NextTag('next')<cr>
+nnoremap <silent> tp :call <sid>NextTag('previous')<cr>
+nnoremap <leader>nn :call <sid>ToggleNumbers()<cr>
 
-   execute 'normal! ' . a:dir . text_object . 'v' . a:motion . text_object
-endf
+" Vimwiki
+" Don't use noremap
+nmap <leader>W <Plug>VimwikiIndex
+
+nnoremap <c-p> :call pdv#DocumentCurrentLine()<cr>
+
+" vim-argumentative
+nmap [a <Plug>Argumentative_Prev
+nmap ]a <Plug>Argumentative_Next
+xmap [a <Plug>Argumentative_XPrev
+xmap ]a <Plug>Argumentative_XNext
+nmap <a <Plug>Argumentative_MoveLeft
+nmap >a <Plug>Argumentative_MoveRight
+xmap ia <Plug>Argumentative_InnerTextObject
+xmap aa <Plug>Argumentative_OuterTextObject
+omap ia <Plug>Argumentative_OpPendingInnerTextObject
+omap aa <Plug>Argumentative_OpPendingOuterTextObject
+
 " }}}
 
 " Abbreviations {{{
-inoreabbrev xr print_r($
-inoreabbrev xv var_dump($
 inoreabbrev fu function
-inoreabbrev xe error_log();<esc>hi
-inoreabbrev t> $this-><esc>s
 " }}}
 
 " Plugins {{{
-
 " vim-plug
 " https://github.com/junegunn/vim-plug
 " Installation:
@@ -496,7 +508,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'beyondwords/vim-twig'
 Plug 'bling/vim-airline'
 Plug 'breuckelen/vim-resize'
-Plug 'bronson/vim-trailing-whitespace'
+"Plug 'bronson/vim-trailing-whitespace'
 Plug 'chrisbra/NrrwRgn'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
@@ -506,6 +518,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
 Plug 'inside/snipMate'
+Plug 'inside/unite-argument'
 Plug 'inside/vim-bubble-lines'
 Plug 'inside/vim-grep-operator'
 Plug 'inside/vim-search-pulse'
@@ -515,7 +528,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'kmnk/vim-unite-giti'
 Plug 'majutsushi/tagbar'
 Plug 'marijnh/tern_for_vim', {'do': 'npm install'}
-Plug 'mattn/emmet-vim', {'for': ['html', 'html.twig']}
+Plug 'mattn/emmet-vim', {'for': ['html', 'html.twig', 'ejs']}
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -573,13 +586,6 @@ let g:unite_source_rec_async_command =
       \ 'ag --follow --nocolor --nogroup -g ""'
 let g:unite_data_directory = expand('~/.cache/unite')
 
-" Toggle
-nnoremap <leader>t :call Toggle()<cr>
-
-" Vimwiki
-" Don't use noremap
-nmap <leader>W <Plug>VimwikiIndex
-
 " delimitMate
 let delimitMate_expand_cr = 1
 
@@ -592,7 +598,7 @@ let g:airline_theme = 'solarized'
 
 " emmet
 let g:user_emmet_leader_key = '<c-e>'
-let g:user_emmet_mode = 'iv'  " enable zencoding in insert and visual modes
+let g:user_emmet_mode = 'iv' " enable zencoding in insert and visual modes
 
 " jedi-vim
 let g:jedi#goto_assignments_command = ''
@@ -637,23 +643,10 @@ let g:startify_session_persistence = 1
 
 " pdv
 let g:pdv_template_dir = expand('~/.vim/bundle/pdv/templates')
-nnoremap <c-p> :call pdv#DocumentCurrentLine()<cr>
 
 " vim-slime
 let g:slime_target = 'tmux'
 let g:slime_default_config = {'socket_name': 'default', 'target_pane': '1'}
-
-" vim-argumentative
-nmap [a <Plug>Argumentative_Prev
-nmap ]a <Plug>Argumentative_Next
-xmap [a <Plug>Argumentative_XPrev
-xmap ]a <Plug>Argumentative_XNext
-nmap <a <Plug>Argumentative_MoveLeft
-nmap >a <Plug>Argumentative_MoveRight
-xmap ia <Plug>Argumentative_InnerTextObject
-xmap aa <Plug>Argumentative_OuterTextObject
-omap ia <Plug>Argumentative_OpPendingInnerTextObject
-omap aa <Plug>Argumentative_OpPendingOuterTextObject
 
 " vim-auto-save
 let g:auto_save = 1
@@ -672,46 +665,57 @@ augroup mygroup
   " clear the group's autocommand
   autocmd!
   autocmd FileType vim setlocal foldmethod=marker
+  " Get the vim help from the word under the cursor
+  autocmd FileType vim nnoremap <buffer> <leader>he :help <c-r><c-w><cr>
+  " Quits window like the Gstatus, Gblame, Nerdtree or taglist splits
+  autocmd FileType help,qf nnoremap <buffer> q :quit<cr>
+  " Make files use the tab character for indentation
   autocmd FileType make setlocal noexpandtab
   " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
   autocmd FileType php setlocal keywordprg=pman
-  autocmd BufNewFile,BufRead *.as set filetype=actionscript
-  autocmd BufNewFile,BufRead *.ejs set filetype=html
+  autocmd BufNewFile,BufRead *.ejs set filetype=ejs
   " Show the signs column even if it is empty, useful for the vim-git-gutter plugin
   autocmd BufEnter * sign define dummy
   autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
   autocmd FileType unite call s:unite_settings()
   " I don't want the docstring window to popup during completion
   autocmd FileType python setlocal completeopt-=preview
-
   " Thanks to http://tilvim.com/2013/05/29/comment-prefix.html
   " I don't want comment prefixing on a new line
   autocmd FileType * setlocal formatoptions-=o formatoptions-=r
-
   " Disables paste mode when leaving insert mode
   autocmd InsertLeave *
         \ if &paste == 1 |
         \   set nopaste |
         \ endif
-
   " Toggles between the active and last active tab
   autocmd TabLeave * let g:last_active_tab = tabpagenr()
-
-  autocmd BufEnter *
-        \ silent! unabbreviate cl |
-        \ if &filetype ==# 'coffee' |
-        \   inoreabbrev cl console.log |
-        \ elseif index(['javascript', 'ejs'], &filetype) != -1 |
-        \   inoreabbrev cl console.log();<esc>hi
-
+  " Debugging functions for various languages
+  autocmd Filetype javascript,ejs inoreabbrev <buffer> cl console.log();<esc>hi<c-r>=<sid>Eatchar('\s')<cr>
+  autocmd Filetype coffee inoreabbrev <buffer> cl console.log
+  autocmd Filetype php inoreabbrev <buffer> cl error_log();<esc>hi<c-r>=<sid>Eatchar('\s')<cr>
+  autocmd Filetype php inoreabbrev <buffer> cr print_r();<esc>hi<c-r>=<sid>Eatchar('\s')<cr>
+  autocmd Filetype php inoreabbrev <buffer> cv var_dump();<esc>hi<c-r>=<sid>Eatchar('\s')<cr>
+  autocmd Filetype php inoreabbrev <buffer> $t $this-><c-r>=<sid>Eatchar('\s')<cr>
   autocmd Filetype qf setlocal nowrap
-
   autocmd BufRead COMMIT_EDITMSG call <sid>PrepageCommitMessage()
 augroup END
+
+augroup linenumbering
+  autocmd!
+  autocmd WinLeave *
+        \ if &number |
+        \   set norelativenumber |
+        \ endif
+  autocmd WinEnter *
+        \ if &number |
+        \   set relativenumber |
+        \ endif
+augroup END
+
 " }}}
 
 " User defined commands {{{
-
 " Create an alias
 command! -nargs=+ Alias call <sid>Alias(<f-args>)
 
