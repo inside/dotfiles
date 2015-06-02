@@ -325,8 +325,11 @@ nnoremap : ;
 xnoremap ; :
 xnoremap : ;
 
-" ZZ remaped to write and quit all buffers
+" Write and quit all buffers
 nnoremap <leader>z :wqa<cr>
+
+" Quit current window
+nnoremap <leader>q :q<cr>
 
 " The nerdtree
 nnoremap <leader>nt :NERDTreeToggle<cr>
