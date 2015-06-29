@@ -329,7 +329,10 @@ xnoremap : ;
 nnoremap <leader>z :wqa<cr>
 
 " Quit current window
-nnoremap <leader>q :q<cr>
+nnoremap q :q<cr>
+
+" Record macros using Q
+nnoremap Q q
 
 " The nerdtree
 nnoremap <leader>nt :NERDTreeToggle<cr>
@@ -449,6 +452,7 @@ nnoremap <leader>ad :argdelete %<cr>
 
 " To be consistent with other normal commands like D, C
 nnoremap Y y$
+
 nnoremap <leader>to :call <sid>ToggleTmuxPane()<cr>
 nnoremap <silent> tn :call <sid>NextTag('next')<cr>
 nnoremap <silent> tp :call <sid>NextTag('previous')<cr>
@@ -472,6 +476,8 @@ xmap aa <Plug>Argumentative_OuterTextObject
 omap ia <Plug>Argumentative_OpPendingInnerTextObject
 omap aa <Plug>Argumentative_OpPendingOuterTextObject
 
+" Look for the next/previous number
+noremap <leader>N /\v[0-9]+<cr>
 " }}}
 
 " Abbreviations {{{
@@ -575,7 +581,7 @@ let g:syntastic_php_checkers = ['php']
 
 " Coffee Script
 let g:syntastic_coffee_checkers = ['coffeelint']
-let g:syntastic_coffee_coffeelint_args = "--csv -f ~/.coffeelint.json"
+let g:syntastic_coffee_coffeelint_args = "-f ~/.coffeelint.json"
 
 " Twig templates
 " See https://github.com/asm89/twig-lint
@@ -670,8 +676,6 @@ augroup mygroup
   autocmd FileType vim setlocal foldmethod=marker
   " Get the vim help from the word under the cursor
   autocmd FileType vim nnoremap <buffer> <leader>he :help <c-r><c-w><cr>
-  " Quits window like the Gstatus, Gblame, Nerdtree or taglist splits
-  autocmd FileType help,qf nnoremap <buffer> q :quit<cr>
   " Make files use the tab character for indentation
   autocmd FileType make setlocal noexpandtab
   " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
