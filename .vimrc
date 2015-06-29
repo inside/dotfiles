@@ -220,14 +220,9 @@ set cursorline
 " }}}
 
 " Color options {{{
-" See http://www.vim.org/tips/tip.php?tip_id=1312
-" 256 colors may be needed for any other colorscheme except solarized
-"set t_Co=256
-" Needed for solarized: Use the 16 colors terminal option to get VIM to look
-" like GVIM with solarized colors.
-set t_Co=16
 syntax on
 set background=dark
+Colorscheme solarized
 " }}}
 
 " Mappings {{{
@@ -608,7 +603,6 @@ let g:gitgutter_eager = 0
 
 " vim-airline
 let g:airline#extensions#syntastic#enabled = 1
-let g:airline_theme = 'solarized'
 
 " emmet
 let g:user_emmet_leader_key = '<c-e>'
@@ -670,10 +664,6 @@ let g:auto_save_silent = 1
 let g:auto_save_in_insert_mode = 0
 " }}}
 
-" Colorscheme {{{
-colorscheme solarized
-" }}}
-
 " Autocommands {{{
 augroup mygroup
   " clear the group's autocommand
@@ -730,6 +720,24 @@ augroup END
 " User defined commands {{{
 " Create an alias
 command! -nargs=+ Alias call <sid>Alias(<f-args>)
+
+" My own colorscheme command
+command! -complete=color -nargs=+ Colorscheme call <sid>Colorscheme(<f-args>)
+Alias cs Colorscheme
+
+func! s:Colorscheme(name)
+  if a:name ==# 'solarized'
+    " Needed for solarized: Use the 16 colors terminal option to get VIM to look
+    " like GVIM with solarized colors.
+    set t_Co=16
+  else
+    " See http://www.vim.org/tips/tip.php?tip_id=1312
+    " 256 colors may be needed for any other colorscheme except solarized
+    set t_Co&vim
+  endif
+
+  execute 'colorscheme ' . a:name
+endf
 
 " Shortcut to :Ag
 command! -complete=file -nargs=+ G :Ag! <args>
