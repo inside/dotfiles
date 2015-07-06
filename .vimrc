@@ -141,6 +141,16 @@ func! s:Colorscheme(name)
 
   execute 'colorscheme ' . a:name
 endf
+
+func! s:SetIndentSize(spaces)
+  if type(str2nr(a:spaces)) != 0
+    return
+  endif
+
+  execute 'setlocal shiftwidth=' . a:spaces
+  execute 'setlocal softtabstop=' . a:spaces
+  execute 'setlocal tabstop=' . a:spaces
+endf
 " }}}
 
 " User defined commands {{{
@@ -148,11 +158,15 @@ endf
 command! -nargs=+ Alias call <sid>Alias(<f-args>)
 
 " My own colorscheme command
-command! -complete=color -nargs=+ Colorscheme call <sid>Colorscheme(<f-args>)
+command! -complete=color -nargs=1 Colorscheme call <sid>Colorscheme(<f-args>)
 Alias cs Colorscheme
 
 " Shortcut to :Ag
 command! -complete=file -nargs=+ G :Ag! <args>
+
+" Change indent size quickly
+command! -nargs=1 SetIndentSize call <sid>SetIndentSize(<f-args>)
+Alias sis SetIndentSize
 
 " Save one key stroke for grepping
 Alias g G
