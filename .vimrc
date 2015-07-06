@@ -127,6 +127,45 @@ func! s:NextTextObject(motion, dir)
 
    execute 'normal! ' . a:dir . text_object . 'v' . a:motion . text_object
 endf
+
+func! s:Colorscheme(name)
+  if a:name ==# 'solarized'
+    " Needed for solarized: Use the 16 colors terminal option to get VIM to look
+    " like GVIM with solarized colors.
+    set t_Co=16
+  else
+    " See http://www.vim.org/tips/tip.php?tip_id=1312
+    " 256 colors may be needed for any other colorscheme except solarized
+    set t_Co&vim
+  endif
+
+  execute 'colorscheme ' . a:name
+endf
+" }}}
+
+" User defined commands {{{
+" Create an alias
+command! -nargs=+ Alias call <sid>Alias(<f-args>)
+
+" My own colorscheme command
+command! -complete=color -nargs=+ Colorscheme call <sid>Colorscheme(<f-args>)
+Alias cs Colorscheme
+
+" Shortcut to :Ag
+command! -complete=file -nargs=+ G :Ag! <args>
+
+" Save one key stroke for grepping
+Alias g G
+
+" Fugitive aliases
+Alias gr Gread
+Alias gw Gwrite
+Alias gs Gstatus
+Alias gci Gcommit
+Alias gd Gdiff
+Alias gm Gmerge
+Alias gb Gblame
+Alias gi Git
 " }}}
 
 " General options {{{
@@ -217,12 +256,6 @@ set laststatus=2
 set showcmd
 set showmode
 set cursorline
-" }}}
-
-" Color options {{{
-syntax on
-set background=dark
-Colorscheme solarized
 " }}}
 
 " Mappings {{{
@@ -664,6 +697,12 @@ let g:auto_save_silent = 1
 let g:auto_save_in_insert_mode = 0
 " }}}
 
+" Color options {{{
+syntax on
+set background=dark
+Colorscheme solarized
+" }}}
+
 " Autocommands {{{
 augroup mygroup
   " clear the group's autocommand
@@ -714,46 +753,6 @@ augroup linenumbering
         \   set relativenumber |
         \ endif
 augroup END
-
-" }}}
-
-" User defined commands {{{
-" Create an alias
-command! -nargs=+ Alias call <sid>Alias(<f-args>)
-
-" My own colorscheme command
-command! -complete=color -nargs=+ Colorscheme call <sid>Colorscheme(<f-args>)
-Alias cs Colorscheme
-
-func! s:Colorscheme(name)
-  if a:name ==# 'solarized'
-    " Needed for solarized: Use the 16 colors terminal option to get VIM to look
-    " like GVIM with solarized colors.
-    set t_Co=16
-  else
-    " See http://www.vim.org/tips/tip.php?tip_id=1312
-    " 256 colors may be needed for any other colorscheme except solarized
-    set t_Co&vim
-  endif
-
-  execute 'colorscheme ' . a:name
-endf
-
-" Shortcut to :Ag
-command! -complete=file -nargs=+ G :Ag! <args>
-
-" Save one key stroke for grepping
-Alias g G
-
-" Fugitive aliases
-Alias gr Gread
-Alias gw Gwrite
-Alias gs Gstatus
-Alias gci Gcommit
-Alias gd Gdiff
-Alias gm Gmerge
-Alias gb Gblame
-Alias gi Git
 " }}}
 
 " Loads a local configuration {{{
