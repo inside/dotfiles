@@ -1,5 +1,6 @@
 " Variables initialization {{{
-let mapleader = ","
+" Thanks to http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+let mapleader = "\<space>"
 " Disables match paren from the pi_paren standard plugin
 let g:loaded_matchparen = 1
 let g:last_active_tab = 1
@@ -325,12 +326,6 @@ nnoremap <silent> <leader>fa
       \ -no-split -buffer-name=buffers -start-insert
       \ argument<cr>
 
-" save file whether in insert or normal mode
-"inoremap <leader>s <c-o>:w<cr><esc>
-inoremap <leader>s <Nop>
-"nnoremap <leader>s :w<cr>
-nnoremap <leader>s <Nop>
-
 " Switch to the next/previous buffer
 noremap <leader><Tab> :bn<cr>
 noremap <leader><S-Tab> :bp<cr>
@@ -340,12 +335,7 @@ nnoremap <leader>Gd :Gdiff<cr>
 " switch back to current file and closes fugitive buffer
 nnoremap <leader>GD :diffoff!<cr><C-W>h:bd<cr>
 
-" Remap , since it's my <leader>
-" Useful to go back to the previous occurence when using the f{char} motion
-nnoremap \ ,
-
 " Inserts the relative filname
-"inoremap <leader>fn <c-r>=expand("%:p")<cr>
 inoremap <c-f>n <c-r>=expand("%:p")<cr>
 
 " <C-R> explained:
@@ -469,12 +459,6 @@ nnoremap <leader>u :call <sid>ChangeInnerWordCase('lower')<cr>
 " Uppercase inner word
 nnoremap <leader>U :call <sid>ChangeInnerWordCase('upper')<cr>
 
-" Page down with the spacebar
-nnoremap <space> <c-f>
-" Page up with control spacebar,
-" see: http://stackoverflow.com/questions/23189568/control-space-vim-key-binding-in-normal-mode-does-not-work
-nnoremap <C-@> <c-b>
-
 " Motion for "next/last object". For example, "din(" would go to the next "()" pair
 " and delete its contents.
 " https://gist.github.com/sjl/1171642
@@ -564,7 +548,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'beyondwords/vim-twig'
 Plug 'bling/vim-airline'
 Plug 'breuckelen/vim-resize'
-"Plug 'bronson/vim-trailing-whitespace'
 Plug 'chrisbra/NrrwRgn'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
@@ -594,6 +577,7 @@ Plug 'scrooloose/Syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'sjl/gundo.vim'
+Plug 'terryma/vim-expand-region'
 Plug 'thinca/vim-qfreplace'
 Plug 'tobyS/pdv'
 Plug 'tobyS/vmustache'
@@ -709,6 +693,10 @@ let g:auto_save = 1
 let g:auto_save_silent = 1
 " Do not save while in insert mode
 let g:auto_save_in_insert_mode = 0
+
+" vim-expand-region
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
 " }}}
 
 " Color options {{{
