@@ -503,8 +503,8 @@ omap ia <Plug>Argumentative_OpPendingInnerTextObject
 omap aa <Plug>Argumentative_OpPendingOuterTextObject
 
 " Look for the next/previous number
-noremap <silent> <expr> <leader>N <sid>NextPrevNumber('/')
-noremap <silent> <expr> <leader>B <sid>NextPrevNumber('?')
+nnoremap <silent> <expr> <leader>N <sid>NextPrevNumber('/')
+nnoremap <silent> <expr> <leader>B <sid>NextPrevNumber('?')
 
 func! s:NextPrevNumber(cmd)
   return a:cmd . "\\v[0-9]+\<cr>:call search_pulse#Pulse()\<cr>"
