@@ -509,6 +509,31 @@ nnoremap <silent> <expr> <leader>B <sid>NextPrevNumber('?')
 func! s:NextPrevNumber(cmd)
   return a:cmd . "\\v[0-9]+\<cr>:call search_pulse#Pulse()\<cr>"
 endf
+
+" To search and replace a word, I often use a dot formula pattern described by
+" Drew Neil in Practical vim:
+"
+" 1. press * when the cursor is on the word you want to replace
+" 2. type cw
+" 3. type the new word and go back to normal mode
+" 4. type n. n. n. etc... to find the next match and repeat the change
+"
+" With the mappings below you can get rid of one step and have the benefit
+" of replacing the word under the cursor, not skipping it for later
+" replacement:
+"
+" 1. press <leader>* when the cursor is on the word you want to replace
+" 2. type the new word and go back to normal mode
+" 3. type n. n. n. etc... to find the next match and repeat the change
+
+nnoremap <leader>* *Ncw
+
+" The visual mapping only works if you have a visual star search plugin
+" installed. I use a fork (https://github.com/inside/vim-visual-star-search) of
+" https://github.com/nelstrom/vim-visual-star-search where I removed the
+" <leader>* mappings because I use them for this purpose.
+
+xmap <leader>* *Ngvc
 " }}}
 
 " Abbreviations {{{
