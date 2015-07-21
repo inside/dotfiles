@@ -579,7 +579,7 @@ Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'sjl/gundo.vim'
 Plug 'terryma/vim-expand-region'
 Plug 'thinca/vim-qfreplace'
-Plug 'tobyS/pdv'
+Plug 'tobyS/pdv', {'for': ['php']}
 Plug 'tobyS/vmustache'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-dispatch'
