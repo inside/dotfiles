@@ -534,6 +534,11 @@ nnoremap <leader>* *Ncw
 " <leader>* mappings because I use them for this purpose.
 
 xmap <leader>* *Ngvc
+
+" Quicker indentation
+nnoremap <buffer> <cr> ==
+xnoremap <buffer> <cr> =
+
 " }}}
 
 " Abbreviations {{{
