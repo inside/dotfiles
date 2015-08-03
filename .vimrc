@@ -684,9 +684,7 @@ let g:coffee_lint_options = '-f ~/.coffeelint.json'
 let g:extra_whitespace_ignored_filetypes = ['unite']
 
 " ag.vim
-" The --vimgrep option is implemented in my fork of ag:
-" https://github.com/inside/the_silver_searcher
-let g:agprg = 'ag --vimgrep'
+let g:agprg = 'ag -Q --vimgrep'
 
 " The vim grep operator
 let g:grep_operator = 'Ag'
