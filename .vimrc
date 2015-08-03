@@ -346,6 +346,7 @@ inoremap <c-f>n <c-r>=expand("%:p")<cr>
 inoremap <Tab> <C-R>=<sid>SuperCleverTab()<cr>
 
 " vim-grep-operator
+let g:grep_operator_set_search_register = 1
 nmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
 xmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
 nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
