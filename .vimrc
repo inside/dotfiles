@@ -595,6 +595,7 @@ Plug 'inside/vim-search-pulse'
 Plug 'inside/vim-slime'
 Plug 'inside/vim-visual-star-search'
 Plug 'inside/vimwiki'
+Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'kmnk/vim-unite-giti'
 Plug 'majutsushi/tagbar'
@@ -608,7 +609,6 @@ Plug 'scrooloose/Syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'sjl/gundo.vim'
-Plug 'terryma/vim-expand-region'
 Plug 'thinca/vim-qfreplace'
 Plug 'tobyS/pdv', {'for': ['php']}
 Plug 'tobyS/vmustache'
@@ -776,6 +776,9 @@ augroup mygroup
   autocmd Filetype php inoreabbrev <buffer> $t $this-><c-r>=<sid>Eatchar('\s')<cr>
   autocmd Filetype qf setlocal nowrap
   autocmd BufRead COMMIT_EDITMSG call <sid>PrepageCommitMessage()
+
+  " rainbow_parentheses
+  autocmd VimEnter * RainbowParentheses
 
   " Remaps the enter key for the qf and cmd windows
   " because I remap enter to ==
