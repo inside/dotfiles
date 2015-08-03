@@ -537,8 +537,8 @@ nnoremap <leader>* *Ncw
 xmap <leader>* *Ngvc
 
 " Quicker indentation
-nnoremap <buffer> <cr> ==
-xnoremap <buffer> <cr> =
+nnoremap <cr> ==
+xnoremap <cr> =
 
 " }}}
 
@@ -776,6 +776,11 @@ augroup mygroup
   autocmd Filetype php inoreabbrev <buffer> $t $this-><c-r>=<sid>Eatchar('\s')<cr>
   autocmd Filetype qf setlocal nowrap
   autocmd BufRead COMMIT_EDITMSG call <sid>PrepageCommitMessage()
+
+  " Remaps the enter key for the qf and cmd windows
+  " because I remap enter to ==
+  autocmd Filetype qf nnoremap <buffer> <cr> <cr>
+  autocmd CmdwinEnter * nnoremap <buffer> <cr> <cr>
 augroup END
 
 augroup linenumbering
