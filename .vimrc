@@ -346,6 +346,7 @@ inoremap <c-f>n <c-r>=expand("%:p")<cr>
 inoremap <Tab> <C-R>=<sid>SuperCleverTab()<cr>
 
 " vim-grep-operator
+let g:grep_operator_set_search_register = 1
 nmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
 xmap <leader>g <Plug>GrepOperatorOnCurrentDirectory
 nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
@@ -536,8 +537,8 @@ nnoremap <leader>* *Ncw
 xmap <leader>* *Ngvc
 
 " Quicker indentation
-nnoremap <buffer> <cr> ==
-xnoremap <buffer> <cr> =
+nnoremap <cr> ==
+xnoremap <cr> =
 
 " }}}
 
@@ -594,6 +595,7 @@ Plug 'inside/vim-search-pulse'
 Plug 'inside/vim-slime'
 Plug 'inside/vim-visual-star-search'
 Plug 'inside/vimwiki'
+Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'kchmck/vim-coffee-script'
 Plug 'kmnk/vim-unite-giti'
 Plug 'majutsushi/tagbar'
@@ -607,7 +609,6 @@ Plug 'scrooloose/Syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'sjl/gundo.vim'
-Plug 'terryma/vim-expand-region'
 Plug 'thinca/vim-qfreplace'
 Plug 'tobyS/pdv', {'for': ['php']}
 Plug 'tobyS/vmustache'
@@ -683,9 +684,7 @@ let g:coffee_lint_options = '-f ~/.coffeelint.json'
 let g:extra_whitespace_ignored_filetypes = ['unite']
 
 " ag.vim
-" The --vimgrep option is implemented in my fork of ag:
-" https://github.com/inside/the_silver_searcher
-let g:agprg = 'ag --vimgrep'
+let g:agprg = 'ag -Q --vimgrep'
 
 " The vim grep operator
 let g:grep_operator = 'Ag'
@@ -723,13 +722,6 @@ let g:auto_save = 1
 let g:auto_save_silent = 1
 " Do not save while in insert mode
 let g:auto_save_in_insert_mode = 0
-" Insert completion menu is dismissed too soon if you lower the updateime
-" option
-let g:auto_save_no_updatetime = 1
-
-" vim-expand-region
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
 " }}}
 
 " Color options {{{
@@ -775,6 +767,14 @@ augroup mygroup
   autocmd Filetype php inoreabbrev <buffer> $t $this-><c-r>=<sid>Eatchar('\s')<cr>
   autocmd Filetype qf setlocal nowrap
   autocmd BufRead COMMIT_EDITMSG call <sid>PrepageCommitMessage()
+
+  " rainbow_parentheses
+  autocmd VimEnter * RainbowParentheses
+
+  " Remaps the enter key for the qf and cmd windows
+  " because I remap enter to ==
+  autocmd Filetype qf nnoremap <buffer> <cr> <cr>
+  autocmd CmdwinEnter * nnoremap <buffer> <cr> <cr>
 augroup END
 
 augroup linenumbering
