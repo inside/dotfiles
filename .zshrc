@@ -101,7 +101,7 @@ P%j\n%{$reset_color%}\
 export CDPATH=.:~/github:~/.vim/bundle
 export LC_ALL=en_US.UTF8
 export PAGER=$(which less)
-export EDITOR=$(which vim)
+export EDITOR=~/bin/vim
 export PATH=$PATH:~/bin:~/bin/git:~/dailymotion/scripts:~/dailymotion/scripts/git
 export APACHE_RUN_USER=www-data
 export APACHE_RUN_GROUP=www-data
