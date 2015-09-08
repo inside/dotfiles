@@ -566,7 +566,6 @@ endif
 call plug#begin('~/.vim/bundle')
 let g:plug_url_format = 'git@github.com:%s.git'
 
-" Repos on github
 Plug '907th/vim-auto-save'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'PeterRincker/vim-argumentative'
@@ -575,6 +574,7 @@ Plug 'Shougo/neomru.vim'
 Plug 'Shougo/unite-outline'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
+Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'beyondwords/vim-twig'
 Plug 'bling/vim-airline'
@@ -585,9 +585,9 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'digitaltoad/vim-jade'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'flazz/vim-colorschemes'
+Plug 'honza/vim-snippets'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
-Plug 'inside/snipMate'
 Plug 'inside/unite-argument'
 Plug 'inside/vim-bubble-lines'
 Plug 'inside/vim-grep-operator'
