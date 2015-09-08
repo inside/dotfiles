@@ -315,11 +315,11 @@ nnoremap <silent> <leader>fl
       \ line<cr>
 nnoremap <silent> <leader>fm
       \ :<c-u>Unite
-      \ -no-split -buffer-name=lines -start-insert
+      \ -no-split -buffer-name=files -start-insert
       \ file_mru<cr>
 nnoremap <silent> <leader>fc
       \ :<c-u>UniteWithBufferDir
-      \ -no-split -buffer-name=lines -start-insert
+      \ -no-split -buffer-name=files -start-insert
       \ file_rec/async<cr>
 nnoremap <silent> <leader>fa
       \ :<c-u>Unite
