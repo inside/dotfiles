@@ -662,6 +662,8 @@ let delimitMate_expand_cr = 1
 
 " vim-git-gutter
 let g:gitgutter_eager = 0
+nmap [h <Plug>GitGutterPrevHunk
+nmap ]h <Plug>GitGutterNextHunk
 
 " vim-airline
 let g:airline#extensions#syntastic#enabled = 1
@@ -717,11 +719,18 @@ let g:slime_target = 'tmux'
 let g:slime_default_config = {'socket_name': 'default', 'target_pane': '1'}
 
 " vim-auto-save
+" Enable auto save
 let g:auto_save = 1
 " Do not display the auto-save notification
 let g:auto_save_silent = 1
 " Do not save while in insert mode
 let g:auto_save_in_insert_mode = 0
+
+" Ultisnips
+let g:UltiSnipsExpandTrigger = '<c-l>'
+let g:UltiSnipsJumpForwardTrigger = '<c-l>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-b>'
+
 " }}}
 
 " Color options {{{
