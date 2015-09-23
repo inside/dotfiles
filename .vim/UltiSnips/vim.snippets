@@ -1,24 +1,17 @@
 snippet if
-if ($1)
-{
+if $1
 	${2:${VISUAL}}
-}$0
+endif$0
 endsnippet
 
 snippet elif
-else if ($1)
-{
+elseif $1
 	${2:${VISUAL}}
-}$0
+endif$0
 endsnippet
 
 snippet else
 else
-{
 	${1:${VISUAL}}
-}$0
-endsnippet
-
-snippet clr
-error_log(print_r(${1:${VISUAL}}, true));
+endif$0
 endsnippet
