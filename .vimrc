@@ -628,10 +628,12 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'html.twig', 'ejs']}
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'rhysd/clever-f.vim'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/Syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'sgur/unite-qf'
 Plug 'sjl/gundo.vim'
 Plug 'thinca/vim-qfreplace'
 Plug 'tobyS/pdv', {'for': ['php']}
@@ -647,6 +649,7 @@ Plug 'vim-scripts/CursorLineCurrentWindow'
 Plug 'vim-scripts/L9'
 Plug 'vim-scripts/Toggle'
 Plug 'vim-scripts/camelcasemotion'
+Plug 'vim-scripts/loremipsum'
 Plug 'vim-scripts/matchit.zip'
 Plug 'whatyouhide/vim-textobj-xmlattr'
 
@@ -755,6 +758,10 @@ let g:auto_save_in_insert_mode = 0
 let g:UltiSnipsExpandTrigger = '<c-l>'
 let g:UltiSnipsJumpForwardTrigger = '<c-l>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-b>'
+
+" clever-f
+let g:clever_f_across_no_line = 1
+let g:clever_f_chars_match_any_signs = '.'
 
 " vim-textobj-user
 " Like ab, ib and aB, iB but for brackets
