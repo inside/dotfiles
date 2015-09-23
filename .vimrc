@@ -371,10 +371,13 @@ nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
 xmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
 
 " Quicker way to go into command mode
-nnoremap ; :
-nnoremap : ;
-xnoremap ; :
-xnoremap : ;
+" This is actually ctrl-space
+nnoremap <nul> :
+xnoremap <nul> :
+
+" Quicker indentation
+nnoremap <cr> ==
+xnoremap <cr> =
 
 " Write and quit all buffers
 nnoremap <leader>z :wqa<cr>
@@ -555,9 +558,8 @@ nnoremap <leader>* *Ncw
 
 xmap <leader>* *Ngvc
 
-" Quicker indentation
-nnoremap <cr> ==
-xnoremap <cr> =
+" Split line == the opposite of J
+nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>
 
 " }}}
 
