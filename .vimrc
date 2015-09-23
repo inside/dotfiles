@@ -606,6 +606,7 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'digitaltoad/vim-jade'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'flazz/vim-colorschemes'
+Plug 'glts/vim-textobj-comment'
 Plug 'godlygeek/windowlayout'
 Plug 'honza/vim-snippets'
 Plug 'hynek/vim-python-pep8-indent'
@@ -618,6 +619,7 @@ Plug 'inside/vim-slime'
 Plug 'inside/vim-visual-star-search'
 Plug 'inside/vimwiki'
 Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'kana/vim-textobj-user'
 Plug 'kchmck/vim-coffee-script'
 Plug 'kmnk/vim-unite-giti'
 Plug 'majutsushi/tagbar'
@@ -646,6 +648,7 @@ Plug 'vim-scripts/L9'
 Plug 'vim-scripts/Toggle'
 Plug 'vim-scripts/camelcasemotion'
 Plug 'vim-scripts/matchit.zip'
+Plug 'whatyouhide/vim-textobj-xmlattr'
 
 call plug#end()
 
@@ -753,6 +756,15 @@ let g:UltiSnipsExpandTrigger = '<c-l>'
 let g:UltiSnipsJumpForwardTrigger = '<c-l>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-b>'
 
+" vim-textobj-user
+" Like ab, ib and aB, iB but for brackets
+call textobj#user#plugin('bracket', {
+            \   '-': {
+            \     'pattern': ['\[', '\]'],
+            \     'select-a': 'am',
+            \     'select-i': 'im',
+            \   },
+            \ })
 " }}}
 
 " Color options {{{
