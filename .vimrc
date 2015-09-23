@@ -152,6 +152,20 @@ func! s:SetIndentSize(spaces)
   execute 'setlocal softtabstop=' . a:spaces
   execute 'setlocal tabstop=' . a:spaces
 endf
+
+" requires https://github.com/godlygeek/windowlayout
+func! s:UndoCloseTab()
+  if exists("s:layout") && !empty(s:layout)
+    tabnew
+    call windowlayout#SetLayout(s:layout)
+    unlet s:layout
+  endif
+endf
+
+func! s:CloseTab()
+  let s:layout = windowlayout#GetLayout()
+  tabclose
+endf
 " }}}
 
 " User defined commands {{{
@@ -168,6 +182,10 @@ command! -complete=file -nargs=+ G :Ag! <args>
 " Change indent size quickly
 command! -nargs=1 SetIndentSize call <sid>SetIndentSize(<f-args>)
 Alias sis SetIndentSize
+
+" For restoring a closed tab and its window layout
+command! UndoCloseTab call s:UndoCloseTab()
+command! CloseTab call s:CloseTab()
 
 " Save one key stroke for grepping
 Alias g G
@@ -399,7 +417,8 @@ nnoremap <leader><leader>b /=<cr>BXi<cr><esc>n
 
 " Tabs
 nnoremap <leader>tn :tabnew<cr>
-nnoremap <leader>tc :tabclose<cr>
+nnoremap <Leader>tc :<C-u>CloseTab<cr>
+nnoremap <Leader>tu :<C-u>UndoCloseTab<cr>
 
 " Inspired by https://github.com/tpope/vim-unimpaired
 " Sets paste on and set nopaste when leaving insert mode
@@ -585,6 +604,7 @@ Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'digitaltoad/vim-jade'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'flazz/vim-colorschemes'
+Plug 'godlygeek/windowlayout'
 Plug 'honza/vim-snippets'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
