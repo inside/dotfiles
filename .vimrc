@@ -15,7 +15,7 @@ func! s:ToggleActiveMouse()
     set mouse=nv
     echo "Mouse is on"
   endif
-endf
+endfunc
 
 " This can conflict with the default mappings provided by snipmate.
 " See the after directory in .vim/bundle/snipMate/after
@@ -33,7 +33,7 @@ func! s:SuperCleverTab()
       return "\<C-N>"
     endif
   endif
-endf
+endfunc
 
 " Prevents variable from being over written when sourcing ~/.vimrc
 if exists('g:tmux_pane_open') == 0
@@ -48,7 +48,7 @@ func! s:ToggleTmuxPane()
     call system('tmux kill-pane -t 0.1')
     let g:tmux_pane_open = 0
   endif
-endf
+endfunc
 
 " Go to next/previous SGML tag
 " Credit goes to https://github.com/tejr/nextag/blob/master/plugin/nextag.vim
@@ -60,7 +60,7 @@ func! s:NextTag(direction)
   elseif a:direction ==# 'previous'
     call search(ptn, 'b')
   endif
-endf
+endfunc
 
 " Helper to create aliases for vim commands.
 " Thanks to
@@ -70,7 +70,7 @@ func! s:Alias(alias, cmd)
         \ printf('cnoreabbrev %s ', a:alias) .
         \ '<c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? ' .
         \ printf('"%s" : "%s"<cr>', a:cmd, a:alias)
-endf
+endfunc
 
 func! s:PrepageCommitMessage()
   let file_head = expand('%:p:h')
@@ -81,7 +81,7 @@ func! s:PrepageCommitMessage()
     execute 'normal f(i '
     startinsert
   endif
-endf
+endfunc
 
 " To consume the character typed after an abbreviation
 " See :helpgrep Eatchar
@@ -89,12 +89,12 @@ func! s:Eatchar(pat)
   let c = nr2char(getchar(0))
 
   return (c =~# a:pat) ? '' : c
-endf
+endfunc
 
 func! s:ToggleNumbers()
   set invnumber
   set invrelativenumber
-endf
+endfunc
 
 " Custom mappings for the unite buffer
 func! s:unite_settings()
@@ -105,7 +105,7 @@ func! s:unite_settings()
   nmap <buffer> <c-l> <Plug>(unite_redraw)
   imap <buffer> <c-j> <Plug>(unite_select_next_line)
   imap <buffer> <c-k> <Plug>(unite_select_previous_line)
-endf
+endfunc
 
 " Lowercase inner word
 func! s:ChangeInnerWordCase(case)
@@ -113,7 +113,7 @@ func! s:ChangeInnerWordCase(case)
 
   execute 'normal ' . (a:case ==# 'lower' ? 'guiw' : 'gUiw')
   execute 'normal ' . col . '|'
-endf
+endfunc
 
 func! s:NextTextObject(motion, dir)
   let text_object = nr2char(getchar())
@@ -127,7 +127,7 @@ func! s:NextTextObject(motion, dir)
   endif
 
    execute 'normal! ' . a:dir . text_object . 'v' . a:motion . text_object
-endf
+endfunc
 
 func! s:Colorscheme(name)
   if a:name ==# 'solarized'
@@ -141,7 +141,7 @@ func! s:Colorscheme(name)
   endif
 
   execute 'colorscheme ' . a:name
-endf
+endfunc
 
 func! s:SetIndentSize(spaces)
   if type(str2nr(a:spaces)) != 0
@@ -151,7 +151,7 @@ func! s:SetIndentSize(spaces)
   execute 'setlocal shiftwidth=' . a:spaces
   execute 'setlocal softtabstop=' . a:spaces
   execute 'setlocal tabstop=' . a:spaces
-endf
+endfunc
 
 " requires https://github.com/godlygeek/windowlayout
 func! s:UndoCloseTab()
@@ -160,12 +160,12 @@ func! s:UndoCloseTab()
     call windowlayout#SetLayout(s:layout)
     unlet s:layout
   endif
-endf
+endfunc
 
 func! s:CloseTab()
   let s:layout = windowlayout#GetLayout()
   tabclose
-endf
+endfunc
 " }}}
 
 " User defined commands {{{
@@ -531,7 +531,7 @@ nnoremap <silent> <expr> <leader>B <sid>NextPrevNumber('?')
 
 func! s:NextPrevNumber(cmd)
   return a:cmd . "\\v[0-9]+\<cr>:call search_pulse#Pulse()\<cr>"
-endf
+endfunc
 
 " To search and replace a word, I often use a dot formula pattern described by
 " Drew Neil in Practical vim:
