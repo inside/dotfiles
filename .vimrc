@@ -561,6 +561,12 @@ xmap <leader>* *Ngvc
 " Split line == the opposite of J
 nnoremap S i<cr><esc>^mwgk:silent! s/\v +$//<cr>:noh<cr>
 
+" Shortcut for []
+onoremap im i[
+onoremap am a[
+xnoremap im i[
+xnoremap am a[
+
 " }}}
 
 " Abbreviations {{{
@@ -762,16 +768,6 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-b>'
 " clever-f
 let g:clever_f_across_no_line = 1
 let g:clever_f_chars_match_any_signs = '.'
-
-" vim-textobj-user
-" Like ab, ib and aB, iB but for brackets
-call textobj#user#plugin('bracket', {
-            \   '-': {
-            \     'pattern': ['\[', '\]'],
-            \     'select-a': 'am',
-            \     'select-i': 'im',
-            \   },
-            \ })
 " }}}
 
 " Color options {{{
