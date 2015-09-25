@@ -122,11 +122,11 @@ func! s:NextTextObject(motion, dir)
     let text_object = '('
   elseif text_object ==# 'B'
     let text_object = '{'
-  elseif text_object ==# 'd'
+  elseif text_object ==# 'm'
     let text_object = '['
   endif
 
-   execute 'normal! ' . a:dir . text_object . 'v' . a:motion . text_object
+  execute 'normal! ' . a:dir . text_object . 'v' . a:motion . text_object
 endfunc
 
 func! s:Colorscheme(name)
