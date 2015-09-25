@@ -83,14 +83,6 @@ func! s:PrepageCommitMessage()
   endif
 endfunc
 
-" To consume the character typed after an abbreviation
-" See :helpgrep Eatchar
-func! s:Eatchar(pat)
-  let c = nr2char(getchar(0))
-
-  return (c =~# a:pat) ? '' : c
-endfunc
-
 func! s:ToggleNumbers()
   set invnumber
   set invrelativenumber
@@ -805,13 +797,6 @@ augroup mygroup
         \ endif
   " Toggles between the active and last active tab
   autocmd TabLeave * let g:last_active_tab = tabpagenr()
-  " Debugging functions for various languages
-  autocmd Filetype javascript,ejs inoreabbrev <buffer> cl console.log();<esc>hi<c-r>=<sid>Eatchar('\s')<cr>
-  autocmd Filetype coffee inoreabbrev <buffer> cl console.log
-  autocmd Filetype php inoreabbrev <buffer> cl error_log();<esc>hi<c-r>=<sid>Eatchar('\s')<cr>
-  autocmd Filetype php inoreabbrev <buffer> cr print_r();<esc>hi<c-r>=<sid>Eatchar('\s')<cr>
-  autocmd Filetype php inoreabbrev <buffer> cv var_dump();<esc>hi<c-r>=<sid>Eatchar('\s')<cr>
-  autocmd Filetype php inoreabbrev <buffer> $t $this-><c-r>=<sid>Eatchar('\s')<cr>
   autocmd Filetype qf setlocal nowrap
   autocmd BufRead COMMIT_EDITMSG call <sid>PrepageCommitMessage()
 
