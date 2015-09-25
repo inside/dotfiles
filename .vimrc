@@ -688,8 +688,8 @@ let g:syntastic_twig_twiglint_exe = 'php ~/bin/twig-lint.phar'
 let g:unite_source_rec_max_cache_files = 100000
 let g:unite_prompt = '» '
 let g:unite_source_rec_async_command =
-      \ ['ag', '--follow', '--nocolor', '--nogroup',
-      \  '--hidden', '-g', '']
+      \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', '']
+
 let g:unite_data_directory = expand('~/.cache/unite')
 
 " delimitMate
