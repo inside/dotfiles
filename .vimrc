@@ -45,7 +45,7 @@ func! s:ToggleTmuxPane()
     call system('tmux split-window -v -p 20')
     let g:tmux_pane_open = 1
   else
-    call system('tmux kill-pane -t 0.1')
+    call system('tmux kill-pane -t 1.2')
     let g:tmux_pane_open = 0
   endif
 endfunc
