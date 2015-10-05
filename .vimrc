@@ -751,7 +751,7 @@ let g:pdv_template_dir = expand('~/.vim/bundle/pdv/templates')
 
 " vim-slime
 let g:slime_target = 'tmux'
-let g:slime_default_config = {'socket_name': 'default', 'target_pane': '1'}
+let g:slime_default_config = {'socket_name': 'default', 'target_pane': '2'}
 
 " vim-auto-save
 " Enable auto save
