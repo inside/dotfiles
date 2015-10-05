@@ -83,6 +83,14 @@ func! s:PrepageCommitMessage()
   endif
 endfunc
 
+" To consume the character typed after an abbreviation
+" See :helpgrep Eatchar
+func! s:Eatchar(pat)
+  let c = nr2char(getchar(0))
+
+  return (c =~# a:pat) ? '' : c
+endfunc
+
 func! s:ToggleNumbers()
   set invnumber
   set invrelativenumber
@@ -807,6 +815,9 @@ augroup mygroup
   " because I remap enter to ==
   autocmd Filetype qf nnoremap <buffer> <cr> <cr>
   autocmd CmdwinEnter * nnoremap <buffer> <cr> <cr>
+
+  " Abbreviations
+  autocmd Filetype php inoreabbrev <buffer> tt $this-><c-r>=<sid>Eatchar('\s')<cr>
 augroup END
 
 augroup linenumbering
