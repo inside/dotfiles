@@ -19,3 +19,6 @@ nunmap <Leader>w<Leader>i
 iunmap <C-T>
 nunmap +
 vunmap +
+
+" godlygeek/windowlayout
+nunmap <C-W>o
