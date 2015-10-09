@@ -166,6 +166,13 @@ func! s:CloseTab()
   let s:layout = windowlayout#GetLayout()
   tabclose
 endfunc
+
+function! s:LineMotion(dir)
+  if v:count == 0
+    return 'g' . a:dir
+  endif
+  return ":\<C-u>normal! m'" . v:count . a:dir . "\<CR>"
+endfunction
 " }}}
 
 " User defined commands {{{
@@ -401,15 +408,6 @@ xnoremap <f1> <nop>
 " Remaps esc to something easier to type
 inoremap jk <esc>
 
-" Easy up and down on wrapped long lines:
-" http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
-nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
-nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
-xnoremap <expr> j v:count == 0 ? 'gj' : 'j'
-xnoremap <expr> k v:count == 0 ? 'gk' : 'k'
-nnoremap gj j
-nnoremap gk k
-
 " Bring each tag attribute/value on its own line
 " For example <a href="/foo" class="foo" id="foo"> becomes:
 " <a
@@ -567,6 +565,16 @@ onoremap am a[
 xnoremap im i[
 xnoremap am a[
 
+" LineMotion
+" https://www.reddit.com/r/vim/comments/3npf1z/using_jk_for_wrapped_lines_and_adding_jk_with_a/cvqe1no
+nnoremap <expr> <silent> j <sid>LineMotion('j')
+nnoremap <expr> <silent> k <sid>LineMotion('k')
+xnoremap <expr> <silent> j <sid>LineMotion('j')
+xnoremap <expr> <silent> k <sid>LineMotion('k')
+nnoremap gj j
+nnoremap gk k
+xnoremap gj j
+xnoremap gk k
 " }}}
 
 " Abbreviations {{{
