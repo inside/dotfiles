@@ -221,7 +221,11 @@ set backup
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup " Stores swap files there
 set writebackup
-set ttymouse=xterm2 " Make mouse work on virtual terms like screen
+
+if !has('nvim')
+  set ttymouse=xterm2 " Make mouse work on virtual terms like screen
+endif
+
 set wildignore+=*.git*
 set history=200
 
