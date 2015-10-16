@@ -1,0 +1,27 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "node": true,
+        "browser": true
+    },
+    "settings": {
+        "ecmascript": 7,
+        "modules": true,
+        "jsx": true
+    },
+    "rules": {
+        "quotes": [1, "single"],
+        "no-underscore-dangle": 0,
+        "semi": [2, "never"],
+        "react/jsx-no-undef": 1,
+        "key-spacing": 2,
+        "no-trailing-spaces": 1,
+        "no-multi-spaces": 0,
+        "no-unused-expressions": 0,
+        "yoda": 0,
+        "key-spacing": 0
+    },
+    "plugins": [
+        "react" // https://www.npmjs.com/package/eslint-plugin-react
+    ]
+}
