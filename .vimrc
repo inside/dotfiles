@@ -209,7 +209,6 @@ Alias gi Git
 " }}}
 
 " General options {{{
-set nocompatible
 set incsearch
 set complete-=t " Don't look for tags when completing
 set complete-=i " Don't look for included files
@@ -221,9 +220,11 @@ set backup
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup " Stores swap files there
 set writebackup
+set mouse=
 
 if !has('nvim')
   set ttymouse=xterm2 " Make mouse work on virtual terms like screen
+  set nocompatible
 endif
 
 set wildignore+=*.git*
@@ -579,6 +580,19 @@ nnoremap gj j
 nnoremap gk k
 xnoremap gj j
 xnoremap gk k
+
+if has('nvim')
+  tnoremap <c-h> <C-\><C-n><C-w>h
+  tnoremap <c-j> <C-\><C-n><C-w>j
+  tnoremap <c-k> <C-\><C-n><C-w>k
+  tnoremap <c-l> <C-\><C-n><C-w>l
+endif
+
+" Shorcut to paste and preserve indenting
+nnoremap <leader>p ]p
+nnoremap <leader>P ]P
+xnoremap <leader>p ]p
+xnoremap <leader>P ]P
 " }}}
 
 " Abbreviations {{{
@@ -683,6 +697,13 @@ endif
 " Plugins configuration {{{
 
 " Syntastic
+let g:syntastic_filetype_map = {
+    \ "javascript.jsx": "jsx",
+    \ }
+let g:syntastic_mode_map = {
+    \ "passive_filetypes": ["jsx"],
+    \ }
+
 " Available checkers are: php, phpcs, phpmd.
 " Let's stick to the php executable only.
 let g:syntastic_php_checkers = ['php']
@@ -801,6 +822,7 @@ augroup mygroup
   " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
   autocmd FileType php setlocal keywordprg=pman
   autocmd BufNewFile,BufRead *.ejs set filetype=ejs
+  autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
   " Show the signs column even if it is empty, useful for the vim-git-gutter plugin
   autocmd BufEnter * sign define dummy
   autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
@@ -830,6 +852,10 @@ augroup mygroup
 
   " Abbreviations
   autocmd Filetype php inoreabbrev <buffer> tt $this-><c-r>=<sid>Eatchar('\s')<cr>
+
+  " no wrap for css
+  autocmd Filetype css setlocal nowrap
+  autocmd Filetype scss setlocal nowrap
 augroup END
 
 augroup linenumbering
