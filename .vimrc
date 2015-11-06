@@ -115,6 +115,14 @@ func! s:ChangeInnerWordCase(case)
   execute 'normal ' . col . '|'
 endfunc
 
+" Toggle capitalize inner word
+func! s:ToggleCapitalizeInnerWord()
+  let col = virtcol('.')
+
+  execute 'normal b~'
+  execute 'normal ' . col . '|'
+endfunc
+
 func! s:NextTextObject(motion, dir)
   let text_object = nr2char(getchar())
 
@@ -485,6 +493,9 @@ nnoremap <leader>u :call <sid>ChangeInnerWordCase('lower')<cr>
 " Uppercase inner word
 nnoremap <leader>U :call <sid>ChangeInnerWordCase('upper')<cr>
 
+" Toggle capitalize inner word
+nnoremap <leader>` :call <sid>ToggleCapitalizeInnerWord()<cr>
+
 " Motion for "next/last object". For example, "din(" would go to the next "()" pair
 " and delete its contents.
 " https://gist.github.com/sjl/1171642
@@ -732,6 +743,7 @@ let delimitMate_expand_cr = 1
 let g:gitgutter_eager = 0
 nmap [h <Plug>GitGutterPrevHunk
 nmap ]h <Plug>GitGutterNextHunk
+nmap <leader>sh <Plug>GitGutterStageHunk
 
 " vim-airline
 let g:airline#extensions#syntastic#enabled = 1
