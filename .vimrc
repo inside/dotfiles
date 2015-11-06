@@ -762,18 +762,18 @@ let g:grep_operator = 'Ag'
 " Startify
 let g:startify_change_to_dir = 0
 let g:startify_change_to_vcs_root = 1
-let g:startify_custom_indices = ['a', 'f', 'h']
+let g:startify_custom_indices = ['f', 'g', 'h']
 let g:startify_enable_special = 0
 let g:startify_list_order = [
-      \ ['  Sessions:'],
-      \ 'sessions',
-      \ ['  Last recently opened files:'],
-      \ 'files',
-      \ ['  Last recently modified files in the current directory:'],
-      \ 'dir',
-      \ ['  Bookmarks:'],
-      \ 'bookmarks',
-      \ ]
+            \ ['* Last recently opened files'],
+            \ 'files',
+            \ ['* Last recently modified files in the current directory'],
+            \ 'dir',
+            \ ['* Bookmarks'],
+            \ 'bookmarks',
+            \ ['* Sessions'],
+            \ 'sessions',
+            \ ]
 let g:startify_relative_path = 1
 let g:startify_session_delete_buffers = 1
 let g:startify_session_dir = '~/.vimsessions'
