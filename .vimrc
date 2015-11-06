@@ -260,6 +260,9 @@ set splitright
 " Reloads the file if it has been changed outside of vim.
 set autoread
 set winaltkeys=no
+
+" Used for the CursorHold autocommand event and thud by the auto-save plugin
+set updatetime=750
 " }}}
 
 " Visual options {{{
@@ -805,6 +808,10 @@ let g:auto_save = 1
 let g:auto_save_silent = 1
 " Do not save while in insert mode
 let g:auto_save_in_insert_mode = 0
+" Do not change the 'updatetime' option
+" It is set to 400ms by this plugin
+" Prefer to use 750ms
+let g:auto_save_no_updatetime = 1
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger = '<c-l>'
