@@ -754,7 +754,7 @@ let g:coffee_lint_options = '-f ~/.coffeelint.json'
 let g:extra_whitespace_ignored_filetypes = ['unite']
 
 " ag.vim
-let g:agprg = 'ag -Q --vimgrep'
+let g:ag_prg = 'ag -Q --vimgrep'
 
 " The vim grep operator
 let g:grep_operator = 'Ag'
