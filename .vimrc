@@ -491,9 +491,8 @@ cnoremap <c-k> <up>
 " See spell checking correction suggestion quicker
 nnoremap <leader>s a<c-x><c-s>
 
+" Upper or lower case inner word
 nnoremap <leader>u :call <sid>ChangeInnerWordCase('lower')<cr>
-
-" Uppercase inner word
 nnoremap <leader>U :call <sid>ChangeInnerWordCase('upper')<cr>
 
 " Toggle capitalize inner word
