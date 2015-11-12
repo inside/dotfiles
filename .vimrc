@@ -887,6 +887,37 @@ augroup linenumbering
         \   set relativenumber |
         \ endif
 augroup END
+
+" Auto capitalize caracter when typing
+" Inspired by:
+" https://davidxmoody.com/vim-auto-capitalisation/
+let s:capitalizer_pattern  = '\v' " Start very magic pattern matching mode
+let s:capitalizer_pattern .= '(' " Begin of atom
+let s:capitalizer_pattern .= '%^' " Start of the file
+let s:capitalizer_pattern .= '|' " Or
+let s:capitalizer_pattern .= '[.!?]\_s+' " Matches either of these punctuation
+                                         " signs. Followed be one or more
+                                         " whitespace which may or may not
+                                         " include newlines
+let s:capitalizer_pattern .= '|' " Or
+let s:capitalizer_pattern .= '^\[[^\]]*\]\s+' " Matches '[foo] ' at the start
+                                              " of the line. Useful for my git
+                                              " commit messages
+let s:capitalizer_pattern .= ')' " End of atom
+let s:capitalizer_pattern .= '%#' " Matches at the cursor
+
+func! s:Capitalizer()
+  if search(s:capitalizer_pattern, 'bcnW') != 0
+    let v:char = toupper(v:char)
+  endif
+endfunc
+
+augroup sentences
+  autocmd!
+  autocmd InsertCharPre COMMIT_EDITMSG call s:Capitalizer()
+  autocmd InsertCharPre *.md call s:Capitalizer()
+  autocmd InsertCharPre *.txt call s:Capitalizer()
+augroup END
 " }}}
 
 " Loads a local configuration {{{
