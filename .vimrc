@@ -658,6 +658,7 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
 Plug 'inside/unite-argument'
 Plug 'inside/vim-bubble-lines'
+Plug 'inside/vim-capitalizer'
 Plug 'inside/vim-grep-operator'
 Plug 'inside/vim-search-pulse'
 Plug 'inside/vim-slime'
@@ -888,35 +889,11 @@ augroup linenumbering
         \ endif
 augroup END
 
-" Auto capitalize caracter when typing
-" Inspired by:
-" https://davidxmoody.com/vim-auto-capitalisation/
-let s:capitalizer_pattern  = '\v' " Start very magic pattern matching mode
-let s:capitalizer_pattern .= '(' " Begin of atom
-let s:capitalizer_pattern .= '%^' " Start of the file
-let s:capitalizer_pattern .= '|' " Or
-let s:capitalizer_pattern .= '[.!?]\_s+' " Matches either of these punctuation
-                                         " signs. Followed be one or more
-                                         " whitespace which may or may not
-                                         " include newlines
-let s:capitalizer_pattern .= '|' " Or
-let s:capitalizer_pattern .= '^\[[^\]]*\]\s+' " Matches '[foo] ' at the start
-                                              " of the line. Useful for my git
-                                              " commit messages
-let s:capitalizer_pattern .= ')' " End of atom
-let s:capitalizer_pattern .= '%#' " Matches at the cursor
-
-func! s:Capitalizer()
-  if search(s:capitalizer_pattern, 'bcnW') != 0
-    let v:char = toupper(v:char)
-  endif
-endfunc
-
-augroup sentences
+augroup capitalizer
   autocmd!
-  autocmd InsertCharPre COMMIT_EDITMSG call s:Capitalizer()
-  autocmd InsertCharPre *.md call s:Capitalizer()
-  autocmd InsertCharPre *.txt call s:Capitalizer()
+  autocmd InsertCharPre COMMIT_EDITMSG call capitalizer#Capitalize()
+  autocmd InsertCharPre *.md call capitalizer#Capitalize()
+  autocmd InsertCharPre *.txt call capitalizer#Capitalize()
 augroup END
 " }}}
 
