@@ -769,7 +769,9 @@ let g:coffee_lint_options = '-f ~/.coffeelint.json'
 let g:extra_whitespace_ignored_filetypes = ['unite']
 
 " ag.vim
-let g:ag_prg = 'ag -Q --vimgrep'
+" From https://stackoverflow.com/a/26650258/2140421
+" Prevents very long lines from blowing up the quickfix window
+let g:ag_prg = 'true ; f() { ag -Q --vimgrep "$@" \| cut -c 1-1000 }; f'
 
 " The vim grep operator
 let g:grep_operator = 'Ag'
