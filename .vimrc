@@ -658,7 +658,7 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
 Plug 'inside/unite-argument'
 Plug 'inside/vim-bubble-lines'
-Plug 'inside/vim-capitalizer'
+Plug 'inside/vim-toup'
 Plug 'inside/vim-grep-operator'
 Plug 'inside/vim-search-pulse'
 Plug 'inside/vim-slime'
@@ -698,6 +698,7 @@ Plug 'vim-scripts/camelcasemotion'
 Plug 'vim-scripts/loremipsum'
 Plug 'vim-scripts/matchit.zip'
 Plug 'whatyouhide/vim-textobj-xmlattr'
+Plug 'zef/vim-cycle'
 
 call plug#end()
 
@@ -875,8 +876,7 @@ augroup mygroup
   autocmd Filetype php inoreabbrev <buffer> tt $this-><c-r>=<sid>Eatchar('\s')<cr>
 
   " no wrap for css
-  autocmd Filetype css setlocal nowrap
-  autocmd Filetype scss setlocal nowrap
+  autocmd Filetype css,scss setlocal nowrap
 augroup END
 
 augroup linenumbering
@@ -891,11 +891,21 @@ augroup linenumbering
         \ endif
 augroup END
 
-augroup capitalizer
+" User patterns to auto capitalize the first letter of a word while typing
+let s:toup = {}
+let s:toup['text'] = []
+let s:toup['text'] += [toup#patterns['bof']]
+let s:toup['text'] += [toup#patterns['after_punctuation']]
+let s:toup['text'] += [toup#patterns['lists']]
+
+" Matches '[foo] ' at the start of the line. Useful for my git commit messages
+let s:toup['git'] = ['^\[[^\]]*\]\s+']
+let s:toup['git'] += s:toup['text']
+
+augroup toup
   autocmd!
-  autocmd InsertCharPre COMMIT_EDITMSG call capitalizer#Capitalize()
-  autocmd InsertCharPre *.md call capitalizer#Capitalize()
-  autocmd InsertCharPre *.txt call capitalizer#Capitalize()
+  autocmd InsertCharPre COMMIT_EDITMSG call toup#up('git', s:toup['git'])
+  autocmd InsertCharPre *.md,*.txt call toup#up('text', s:toup['text'])
 augroup END
 " }}}
 
