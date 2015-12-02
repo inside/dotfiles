@@ -897,15 +897,21 @@ let s:toup['text'] = []
 let s:toup['text'] += [toup#patterns['bof']]
 let s:toup['text'] += [toup#patterns['after_punctuation']]
 let s:toup['text'] += [toup#patterns['lists']]
+let s:toup['text'] += [toup#patterns['paragraphs']]
 
 " Matches '[foo] ' at the start of the line. Useful for my git commit messages
 let s:toup['git'] = ['^\[[^\]]*\]\s+']
 let s:toup['git'] += s:toup['text']
 
+" Markdown
+let s:toup['markdown'] = [toup#patterns['markdown_headings']]
+let s:toup['markdown'] += s:toup['text']
+
 augroup toup
   autocmd!
   autocmd InsertCharPre COMMIT_EDITMSG call toup#up('git', s:toup['git'])
-  autocmd InsertCharPre *.md,*.txt call toup#up('text', s:toup['text'])
+  autocmd InsertCharPre *.txt call toup#up('text', s:toup['text'])
+  autocmd InsertCharPre *.md call toup#up('markdown', s:toup['markdown'])
 augroup END
 " }}}
 
