@@ -907,8 +907,12 @@ let s:toup['git'] += s:toup['text']
 let s:toup['markdown'] = [toup#patterns['markdown_headings']]
 let s:toup['markdown'] += s:toup['text']
 
+" Comments inside source code
+let g:toup#comment_patterns = s:toup['text']
+
 augroup toup
   autocmd!
+  autocmd InsertEnter * call toup#handle_comments()
   autocmd InsertCharPre COMMIT_EDITMSG call toup#up('git', s:toup['git'])
   autocmd InsertCharPre *.txt call toup#up('text', s:toup['text'])
   autocmd InsertCharPre *.md call toup#up('markdown', s:toup['markdown'])
