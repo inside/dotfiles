@@ -881,10 +881,10 @@ augroup mygroup
 
   " https://github.com/maksimr/vim-jsbeautify
   autocmd Filetype javascript vnoremap <buffer> <leader>b :call RangeJsBeautify()<cr>
-  autocmd FileType json vnoremap <buffer> <c-b> :call RangeJsonBeautify()<cr>
-  autocmd FileType jsx vnoremap <buffer> <c-b> :call RangeJsxBeautify()<cr>
-  autocmd FileType html vnoremap <buffer> <c-b> :call RangeHtmlBeautify()<cr>
-  autocmd FileType css vnoremap <buffer> <c-b> :call RangeCSSBeautify()<cr>
+  autocmd FileType json vnoremap <buffer> <leader>b :call RangeJsonBeautify()<cr>
+  autocmd FileType jsx vnoremap <buffer> <leader>b :call RangeJsxBeautify()<cr>
+  autocmd FileType html vnoremap <buffer> <leader>b :call RangeHtmlBeautify()<cr>
+  autocmd FileType css vnoremap <buffer> <leader>b :call RangeCSSBeautify()<cr>
 augroup END
 
 augroup linenumbering
