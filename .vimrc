@@ -669,6 +669,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'kchmck/vim-coffee-script'
 Plug 'kmnk/vim-unite-giti'
 Plug 'majutsushi/tagbar'
+Plug 'maksimr/vim-jsbeautify'
 Plug 'marijnh/tern_for_vim', {'do': 'npm install'}
 Plug 'mattn/emmet-vim', {'for': ['html', 'html.twig', 'ejs']}
 Plug 'mhinz/vim-startify'
@@ -877,6 +878,13 @@ augroup mygroup
 
   " no wrap for css
   autocmd Filetype css,scss setlocal nowrap
+
+  " https://github.com/maksimr/vim-jsbeautify
+  autocmd Filetype javascript vnoremap <buffer> <leader>b :call RangeJsBeautify()<cr>
+  autocmd FileType json vnoremap <buffer> <c-b> :call RangeJsonBeautify()<cr>
+  autocmd FileType jsx vnoremap <buffer> <c-b> :call RangeJsxBeautify()<cr>
+  autocmd FileType html vnoremap <buffer> <c-b> :call RangeHtmlBeautify()<cr>
+  autocmd FileType css vnoremap <buffer> <c-b> :call RangeCSSBeautify()<cr>
 augroup END
 
 augroup linenumbering
