@@ -826,6 +826,15 @@ let g:UltiSnipsJumpBackwardTrigger = '<c-b>'
 " clever-f
 let g:clever_f_across_no_line = 1
 let g:clever_f_chars_match_any_signs = '.'
+
+" vim-resize
+let g:vim_resize_disable_auto_mappings = 1
+
+nnoremap <silent> <left> :CmdResizeLeft<cr>
+nnoremap <silent> <down> :CmdResizeDown<cr>
+nnoremap <silent> <up> :CmdResizeUp<cr>
+nnoremap <silent> <right> :CmdResizeRight<cr>
+
 " }}}
 
 " Color options {{{
