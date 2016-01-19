@@ -886,8 +886,11 @@ augroup mygroup
   " Abbreviations
   autocmd Filetype php inoreabbrev <buffer> tt $this-><c-r>=<sid>Eatchar('\s')<cr>
 
-  " no wrap for css
+  " No wrap for css
   autocmd Filetype css,scss setlocal nowrap
+
+  " Special suffix for css
+  autocmd Filetype scss setlocal suffixesadd=.scss
 
   " https://github.com/maksimr/vim-jsbeautify
   autocmd Filetype javascript vnoremap <buffer> <leader>b :call RangeJsBeautify()<cr>
