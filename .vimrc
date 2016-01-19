@@ -668,6 +668,7 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kchmck/vim-coffee-script'
 Plug 'kmnk/vim-unite-giti'
+Plug 'kopischke/vim-fetch'
 Plug 'majutsushi/tagbar'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'marijnh/tern_for_vim', {'do': 'npm install'}
