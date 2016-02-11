@@ -643,7 +643,6 @@ Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'beyondwords/vim-twig'
-Plug 'bling/vim-airline'
 Plug 'breuckelen/vim-resize'
 Plug 'chrisbra/NrrwRgn'
 Plug 'christoomey/vim-tmux-navigator'
@@ -658,10 +657,10 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
 Plug 'inside/unite-argument'
 Plug 'inside/vim-bubble-lines'
-Plug 'inside/vim-toup'
 Plug 'inside/vim-grep-operator'
 Plug 'inside/vim-search-pulse'
 Plug 'inside/vim-slime'
+Plug 'inside/vim-toup'
 Plug 'inside/vim-visual-star-search'
 Plug 'inside/vimwiki'
 Plug 'junegunn/rainbow_parentheses.vim'
@@ -676,6 +675,7 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'html.twig', 'ejs']}
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'quickfix-reflector.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/Syntastic'
@@ -693,6 +693,8 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tsukkee/unite-tag'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/CursorLineCurrentWindow'
 Plug 'vim-scripts/L9'
 Plug 'vim-scripts/Toggle'
@@ -929,11 +931,13 @@ let s:toup['markdown'] = [toup#patterns['markdown_headings']]
 let s:toup['markdown'] += s:toup['text']
 
 " Comments inside source code
-let g:toup#comment_patterns = s:toup['text']
+"let g:toup#comment_patterns = []
+"let g:toup#comment_patterns = [toup#patterns['after_punctuation_c']]
+"let g:toup#comment_patterns = [toup#patterns['paragraphs_c']]
 
 augroup toup
   autocmd!
-  autocmd InsertEnter * call toup#handle_comments()
+  "autocmd InsertEnter * call toup#handle_comments()
   autocmd InsertCharPre COMMIT_EDITMSG call toup#up('git', s:toup['git'])
   autocmd InsertCharPre *.txt call toup#up('text', s:toup['text'])
   autocmd InsertCharPre *.md call toup#up('markdown', s:toup['markdown'])
