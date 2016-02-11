@@ -32,5 +32,6 @@
         git checkout -b "$1" origin/master;\
     }; f"
     flog = log --name-status
+    jls = jira list
 [rerere]
     enabled = true
