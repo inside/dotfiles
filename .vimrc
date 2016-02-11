@@ -683,7 +683,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'sgur/unite-qf'
 Plug 'sjl/gundo.vim'
-Plug 'thinca/vim-qfreplace'
 Plug 'tobyS/pdv', {'for': ['php']}
 Plug 'tobyS/vmustache'
 Plug 'tpope/vim-abolish'
