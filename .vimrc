@@ -175,12 +175,28 @@ func! s:CloseTab()
   tabclose
 endfunc
 
-function! s:LineMotion(dir)
+func! s:LineMotion(dir)
   if v:count == 0
     return 'g' . a:dir
   endif
   return ":\<C-u>normal! m'" . v:count . a:dir . "\<CR>"
-endfunction
+endfunc
+
+" Toggles the quickfix window open or close
+" The quickfix-reflector.vim plugin is needed for this to work
+" because it sets the quickfix buffer name to quickfix-reflector-n (n being a
+" number)
+func! QuickfixToggle()
+  let qf_name = bufname('quickfix-reflector')
+
+  " The quickfix is not in the buffer list or not visible, let's open it
+  if qf_name ==# '' || bufwinnr(qf_name) == -1
+    copen
+  " The quickfix is visible, let's close it
+  else
+    cclose
+  endif
+endfunc
 " }}}
 
 " User defined commands {{{
@@ -606,10 +622,16 @@ nnoremap <leader>p ]p
 nnoremap <leader>P ]P
 xnoremap <leader>p ]p
 xnoremap <leader>P ]P
+
+nnoremap <leader>q :call QuickfixToggle()<cr>
+
+" Don't loose my yank after a visual paste
+xnoremap <silent> p p:let @" = @0<cr>
 " }}}
 
 " Abbreviations {{{
 inoreabbrev fu function
+cnoreabbrev gp Gpush origin HEAD
 " }}}
 
 " Plugins {{{
