@@ -21,6 +21,8 @@
     br = branch
     co = checkout
     ci = commit
+    ca = commit -a
+    caa = commit -a --amend
     ru = remote update
     ; Checkout branch name from master
     cob = "!f() {\
