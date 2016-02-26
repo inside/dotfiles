@@ -627,6 +627,9 @@ nnoremap <leader>q :call QuickfixToggle()<cr>
 
 " Don't loose my yank after a visual paste
 xnoremap <silent> p p:let @" = @0<cr>
+
+" Goto to file if file exists else open the file in a new buffer
+nnoremap gf :e <cfile><cr>
 " }}}
 
 " Abbreviations {{{
