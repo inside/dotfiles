@@ -137,20 +137,6 @@ func! s:NextTextObject(motion, dir)
   execute 'normal! ' . a:dir . text_object . 'v' . a:motion . text_object
 endfunc
 
-func! s:Colorscheme(name)
-  if a:name ==# 'solarized'
-    " Needed for solarized: Use the 16 colors terminal option to get VIM to look
-    " like GVIM with solarized colors.
-    set t_Co=16
-  else
-    " See http://www.vim.org/tips/tip.php?tip_id=1312
-    " 256 colors may be needed for any other colorscheme except solarized
-    set t_Co&vim
-  endif
-
-  execute 'colorscheme ' . a:name
-endfunc
-
 func! s:SetIndentSize(spaces)
   if type(str2nr(a:spaces)) != 0
     return
@@ -202,10 +188,6 @@ endfunc
 " User defined commands {{{
 " Create an alias
 command! -nargs=+ Alias call <sid>Alias(<f-args>)
-
-" My own colorscheme command
-command! -complete=color -nargs=1 Colorscheme call <sid>Colorscheme(<f-args>)
-Alias cs Colorscheme
 
 " Shortcut to :Ag
 command! -complete=file -nargs=+ G :Ag! <args>
@@ -727,6 +709,7 @@ Plug 'vim-scripts/loremipsum'
 Plug 'vim-scripts/matchit.zip'
 Plug 'whatyouhide/vim-textobj-xmlattr'
 Plug 'zef/vim-cycle'
+Plug 'ap/vim-css-color'
 
 call plug#end()
 
@@ -866,7 +849,8 @@ nnoremap <silent> <right> :CmdResizeRight<cr>
 " Color options {{{
 syntax on
 set background=dark
-Colorscheme solarized
+colorscheme solarized
+set t_Co=256
 " }}}
 
 " Autocommands {{{
