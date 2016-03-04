@@ -40,16 +40,6 @@ if exists('g:tmux_pane_open') == 0
   let g:tmux_pane_open = 0
 endif
 
-func! s:ToggleTmuxPane()
-  if g:tmux_pane_open == 0
-    call system('tmux split-window -v -p 20')
-    let g:tmux_pane_open = 1
-  else
-    call system('tmux kill-pane -t 1.2')
-    let g:tmux_pane_open = 0
-  endif
-endfunc
-
 " Go to next/previous SGML tag
 " Credit goes to https://github.com/tejr/nextag/blob/master/plugin/nextag.vim
 func! s:NextTag(direction)
@@ -456,10 +446,6 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-nnoremap <c-w>j <nop>
-nnoremap <c-w>k <nop>
-nnoremap <c-w>h <nop>
-nnoremap <c-w>l <nop>
 
 " Redraws the screen
 nnoremap <leader>l <c-l>
@@ -516,7 +502,6 @@ nnoremap <leader>ad :argdelete %<cr>
 " To be consistent with other normal commands like D, C
 nnoremap Y y$
 
-nnoremap <leader>to :call <sid>ToggleTmuxPane()<cr>
 nnoremap <silent> tn :call <sid>NextTag('next')<cr>
 nnoremap <silent> tp :call <sid>NextTag('previous')<cr>
 nnoremap <leader>nn :call <sid>ToggleNumbers()<cr>
@@ -610,8 +595,8 @@ nnoremap <leader>q :call QuickfixToggle()<cr>
 " Don't loose my yank after a visual paste
 xnoremap <silent> p p:let @" = @0<cr>
 
-" Goto to file if file exists else open the file in a new buffer
-nnoremap gf :e <cfile><cr>
+" Super quick search and replace inspired by -romainl-
+nnoremap <leader>r :%s/\<<c-r>=expand('<cword>')<cr>\>//gc<left><left><left>
 " }}}
 
 " Abbreviations {{{
@@ -649,6 +634,7 @@ Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
+Plug 'ap/vim-css-color'
 Plug 'beyondwords/vim-twig'
 Plug 'breuckelen/vim-resize'
 Plug 'chrisbra/NrrwRgn'
@@ -666,10 +652,10 @@ Plug 'inside/unite-argument'
 Plug 'inside/vim-bubble-lines'
 Plug 'inside/vim-grep-operator'
 Plug 'inside/vim-search-pulse'
-Plug 'inside/vim-slime'
 Plug 'inside/vim-toup'
 Plug 'inside/vim-visual-star-search'
 Plug 'inside/vimwiki'
+Plug 'jebaum/vim-tmuxify'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kchmck/vim-coffee-script'
@@ -709,7 +695,6 @@ Plug 'vim-scripts/loremipsum'
 Plug 'vim-scripts/matchit.zip'
 Plug 'whatyouhide/vim-textobj-xmlattr'
 Plug 'zef/vim-cycle'
-Plug 'ap/vim-css-color'
 
 call plug#end()
 
@@ -811,10 +796,6 @@ let g:startify_session_persistence = 1
 " pdv
 let g:pdv_template_dir = expand('~/.vim/bundle/pdv/templates')
 
-" vim-slime
-let g:slime_target = 'tmux'
-let g:slime_default_config = {'socket_name': 'default', 'target_pane': '2'}
-
 " vim-auto-save
 " Enable auto save
 let g:auto_save = 1
@@ -844,13 +825,15 @@ nnoremap <silent> <down> :CmdResizeDown<cr>
 nnoremap <silent> <up> :CmdResizeUp<cr>
 nnoremap <silent> <right> :CmdResizeRight<cr>
 
+" vim-tmuxify
+let g:tmuxify_custom_command = 'tmux split-window -d -v -p 20'
 " }}}
 
 " Color options {{{
 syntax on
+set t_Co=256
 set background=dark
 colorscheme solarized
-set t_Co=256
 " }}}
 
 " Autocommands {{{
@@ -949,6 +932,12 @@ augroup toup
   autocmd InsertCharPre COMMIT_EDITMSG call toup#up('git', s:toup['git'])
   autocmd InsertCharPre *.txt call toup#up('text', s:toup['text'])
   autocmd InsertCharPre *.md call toup#up('markdown', s:toup['markdown'])
+augroup END
+
+augroup pulse
+  autocmd!
+  autocmd User PrePulse set cursorcolumn
+  autocmd User PostPulse set nocursorcolumn
 augroup END
 " }}}
 
