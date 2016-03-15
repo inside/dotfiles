@@ -719,6 +719,9 @@ let g:syntastic_mode_map = {
 " Let's stick to the php executable only.
 let g:syntastic_php_checkers = ['php']
 
+" Shell scripts
+let g:syntastic_sh_checkers = ['shellcheck']
+
 " Coffee Script
 let g:syntastic_coffee_checkers = ['coffeelint']
 let g:syntastic_coffee_coffeelint_args = "-f ~/.coffeelint.json"
@@ -827,6 +830,9 @@ nnoremap <silent> <right> :CmdResizeRight<cr>
 
 " vim-tmuxify
 let g:tmuxify_custom_command = 'tmux split-window -d -v -p 20'
+
+" The nerdtree
+let g:NERDTreeShowHidden = 1
 " }}}
 
 " Color options {{{
