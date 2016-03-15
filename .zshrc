@@ -132,3 +132,5 @@ fi
 if [[ $TMUX = '' ]] && [[ $SSH_CLIENT != '' ]] then
     tmux attach
 fi
+
+[ -f ~/.local.zsh ] && source ~/.local.zsh
