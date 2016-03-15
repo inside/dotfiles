@@ -382,13 +382,13 @@ nmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
 xmap <leader><leader>g <Plug>GrepOperatorWithFilenamePrompt
 
 " Quicker way to go into command mode
-" This is actually ctrl-space
-nnoremap <nul> :
-xnoremap <nul> :
+nnoremap <cr> :
+xnoremap <cr> :
 
 " Quicker indentation
-nnoremap <cr> ==
-xnoremap <cr> =
+" This is actually ctrl-space
+nnoremap <nul> ==
+xnoremap <nul> =
 
 " Write and quit all buffers
 nnoremap <leader>z :wqa<cr>
