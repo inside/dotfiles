@@ -1,8 +1,21 @@
 " Variables initialization {{{
 " Thanks to http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
 let mapleader = "\<space>"
-" Disables match paren from the pi_paren standard plugin
+
+" Disables some standard plugins I don't use
+let g:loaded_2html_plugin = 1
+let g:loaded_getscriptPlugin = 1
+let g:loaded_gzip = 1
+let g:loaded_logipat = 1
 let g:loaded_matchparen = 1
+let g:loaded_netrwPlugin = 1
+let g:loaded_rrhelper = 1
+let g:loaded_spellfile_plugin = 1
+let g:loaded_tarPlugin = 1
+let g:loaded_vimballPlugin = 1
+let g:loaded_zipPlugin = 1
+
+" Implements a toggle last tab using this global variable
 let g:last_active_tab = 1
 " }}}
 
