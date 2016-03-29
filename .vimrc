@@ -808,6 +808,8 @@ let g:startify_relative_path = 1
 let g:startify_session_delete_buffers = 1
 let g:startify_session_dir = '~/.vimsessions'
 let g:startify_session_persistence = 1
+" Disables custom header
+let g:startify_custom_header = []
 
 " pdv
 let g:pdv_template_dir = expand('~/.vim/bundle/pdv/templates')
