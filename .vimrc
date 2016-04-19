@@ -210,7 +210,7 @@ Alias g G
 Alias gr Gread
 Alias gw Gwrite
 Alias gs Gstatus
-Alias gci Gcommit
+Alias gc Gcommit
 Alias gd Gdiff
 Alias gm Gmerge
 Alias gb Gblame
