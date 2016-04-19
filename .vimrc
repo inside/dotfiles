@@ -855,9 +855,10 @@ let g:NERDTreeShowHidden = 1
 
 " Color options {{{
 syntax on
-set t_Co=256
 set background=dark
-colorscheme solarized
+colorscheme gruvbox
+" To run nicely in tmux: https://github.com/morhetz/gruvbox/issues/81
+set t_ut=
 " }}}
 
 " Autocommands {{{
