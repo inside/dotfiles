@@ -910,6 +910,9 @@ augroup mygroup
   " Special suffix for css
   autocmd Filetype scss setlocal suffixesadd=.scss
 
+  " Suffix for js files
+  autocmd Filetype javascript setlocal suffixesadd=.js
+
   " https://github.com/maksimr/vim-jsbeautify
   autocmd Filetype javascript vnoremap <buffer> <leader>b :call RangeJsBeautify()<cr>
   autocmd FileType json vnoremap <buffer> <leader>b :call RangeJsonBeautify()<cr>
