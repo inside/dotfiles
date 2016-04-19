@@ -614,6 +614,9 @@ nnoremap <leader>r :%s/\<<c-r>=expand('<cword>')<cr>\>//gc<left><left><left>
 
 " Abbreviations {{{
 inoreabbrev fu function
+" Inserts the current date with the format: '%b %d, %Y' == 'Sep 27, 2007'
+inoreabbrev idate <c-r>=strftime('%b %d, %Y')<cr><c-r>=<sid>Eatchar('\s')<cr>
+
 cnoreabbrev gp Gpush origin HEAD
 " }}}
 
