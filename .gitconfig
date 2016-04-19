@@ -37,3 +37,7 @@
     jls = jira list
 [rerere]
     enabled = true
+[pager]
+    log = diff-highlight | more
+    show = diff-highlight | more
+    diff = diff-highlight | more

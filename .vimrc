@@ -614,6 +614,9 @@ nnoremap <leader>r :%s/\<<c-r>=expand('<cword>')<cr>\>//gc<left><left><left>
 
 " Abbreviations {{{
 inoreabbrev fu function
+" Inserts the current date with the format: '%b %d, %Y' == 'Sep 27, 2007'
+inoreabbrev idate <c-r>=strftime('%b %d, %Y')<cr><c-r>=<sid>Eatchar('\s')<cr>
+
 cnoreabbrev gp Gpush origin HEAD
 " }}}
 
@@ -852,9 +855,10 @@ let g:NERDTreeShowHidden = 1
 
 " Color options {{{
 syntax on
-set t_Co=256
 set background=dark
-colorscheme solarized
+colorscheme gruvbox
+" To run nicely in tmux: https://github.com/morhetz/gruvbox/issues/81
+set t_ut=
 " }}}
 
 " Autocommands {{{
@@ -905,6 +909,9 @@ augroup mygroup
 
   " Special suffix for css
   autocmd Filetype scss setlocal suffixesadd=.scss
+
+  " Suffix for js files
+  autocmd Filetype javascript setlocal suffixesadd=.js
 
   " https://github.com/maksimr/vim-jsbeautify
   autocmd Filetype javascript vnoremap <buffer> <leader>b :call RangeJsBeautify()<cr>

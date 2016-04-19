@@ -52,20 +52,13 @@ function monitorcmd() {
     echo '==== Process finished'
 }
 
-alias devdm="ssh-add; ssh -A inside@inside"
-alias devcloud="ssh-add; ssh -A ytg@devcloud"
-alias devmysql="mysql -h devdb -u dev -p"
-alias stage="ssh-add; ssh -A dev@prov-stages"
-alias logprod="ssh dev@syslog-02"
-alias log="sudo tail -f /var/log/apache2/dailymotion-error.log"
 alias ra="sudo /etc/init.d/apache2 restart"
 alias ls="ls -G --color"
 alias ll="ls -G -l --color"
 alias fgrep="fgrep --color=always --exclude='*.git*'"
 alias lynx="lynx -accept_all_cookies"
 alias flashlog="tail -f ~/.macromedia/Flash_Player/Logs/flashlog.txt"
-alias v=~/bin/vim
-alias bower="noglob bower"
+alias v=vim
 alias g="hub"
 
 setopt ALWAYS_TO_END                     # Saute apres le mot si completion
@@ -102,7 +95,7 @@ export NODE_PATH=/usr/lib/node_modules
 export CDPATH=.:~/github:~/.vim/bundle
 export LC_ALL=en_US.UTF8
 export PAGER=$(which less)
-export EDITOR=~/bin/vim
+export EDITOR=vim
 export PATH=$PATH:~/bin:~/bin/git:~/dailymotion/scripts:~/dailymotion/scripts/git
 export APACHE_RUN_USER=www-data
 export APACHE_RUN_GROUP=www-data
