@@ -766,6 +766,7 @@ nmap <leader>sh <Plug>GitGutterStageHunk
 
 " vim-airline
 let g:airline#extensions#syntastic#enabled = 1
+let g:airline_theme = 'monochrome'
 
 " emmet
 let g:user_emmet_leader_key = '<c-e>'
@@ -912,6 +913,9 @@ augroup mygroup
 
   " Suffix for js files
   autocmd Filetype javascript setlocal suffixesadd=.js
+
+  " Suffix for js files
+  autocmd Filetype javascript.jsx setlocal suffixesadd=.jsx
 
   " https://github.com/maksimr/vim-jsbeautify
   autocmd Filetype javascript vnoremap <buffer> <leader>b :call RangeJsBeautify()<cr>
