@@ -766,6 +766,7 @@ nmap <leader>sh <Plug>GitGutterStageHunk
 
 " vim-airline
 let g:airline#extensions#syntastic#enabled = 1
+let g:airline_theme = 'monochrome'
 
 " emmet
 let g:user_emmet_leader_key = '<c-e>'
