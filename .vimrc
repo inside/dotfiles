@@ -367,6 +367,8 @@ nnoremap <silent> <leader>fa
       \ :<c-u>Unite
       \ -no-split -buffer-name=buffers -start-insert
       \ argument<cr>
+nnoremap <silent> <leader>fr
+      \ :<c-u>UniteResume<cr>
 
 " Switch to the next/previous buffer
 noremap <leader><Tab> :bn<cr>
@@ -450,6 +452,10 @@ nnoremap <leader>gt :execute 'tabnext ' . g:last_active_tab<cr>
 " Switch from tab to tab quickly
 nnoremap <s-h> gT
 nnoremap <s-l> gt
+
+" Reorder tabs from keyboard
+nnoremap <leader><s-h> :-tabmove<cr>
+nnoremap <leader><s-l> :+tabmove<cr>
 
 " http://vim.wikia.com/wiki/Selecting_your_pasted_text
 nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
@@ -610,6 +616,13 @@ xnoremap <silent> p p:let @" = @0<cr>
 
 " Super quick search and replace inspired by -romainl-
 nnoremap <leader>r :%s/\<<c-r>=expand('<cword>')<cr>\>//gc<left><left><left>
+
+nnoremap <silent> <Space>j :<C-U>VertigoDown n<CR>
+vnoremap <silent> <Space>j :<C-U>VertigoDown v<CR>
+onoremap <silent> <Space>j :<C-U>VertigoDown o<CR>
+nnoremap <silent> <Space>k :<C-U>VertigoUp n<CR>
+vnoremap <silent> <Space>k :<C-U>VertigoUp v<CR>
+onoremap <silent> <Space>k :<C-U>VertigoUp o<CR>
 " }}}
 
 " Abbreviations {{{
@@ -684,6 +697,7 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'html.twig', 'ejs']}
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'prendradjaja/vim-vertigo'
 Plug 'quickfix-reflector.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'rking/ag.vim'
@@ -915,7 +929,7 @@ augroup mygroup
   autocmd Filetype javascript setlocal suffixesadd=.js
 
   " Suffix for js files
-  autocmd Filetype javascript.jsx setlocal suffixesadd=.jsx
+  autocmd Filetype javascript.jsx setlocal suffixesadd=.jsx,.js
 
   " https://github.com/maksimr/vim-jsbeautify
   autocmd Filetype javascript vnoremap <buffer> <leader>b :call RangeJsBeautify()<cr>
