@@ -375,7 +375,6 @@ noremap <leader><Tab> :bn<cr>
 noremap <leader><S-Tab> :bp<cr>
 
 " fugitive
-nnoremap <leader>Gd :Gdiff<cr>
 " switch back to current file and closes fugitive buffer
 nnoremap <leader>GD :diffoff!<cr><C-W>h:bd<cr>
 
@@ -774,6 +773,7 @@ let delimitMate_expand_cr = 1
 
 " vim-git-gutter
 let g:gitgutter_eager = 0
+let g:gitgutter_realtime = 0
 nmap [h <Plug>GitGutterPrevHunk
 nmap ]h <Plug>GitGutterNextHunk
 nmap <leader>sh <Plug>GitGutterStageHunk
