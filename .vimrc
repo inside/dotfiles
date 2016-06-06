@@ -668,7 +668,7 @@ Plug 'breuckelen/vim-resize'
 Plug 'chrisbra/NrrwRgn'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'digitaltoad/vim-jade'
+Plug 'digitaltoad/vim-pug'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'glts/vim-textobj-comment'
