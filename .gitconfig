@@ -38,6 +38,6 @@
 [rerere]
     enabled = true
 [pager]
-    log = diff-highlight | more
-    show = diff-highlight | more
-    diff = diff-highlight | more
+    log = diff-highlight | less
+    show = diff-highlight | less
+    diff = diff-highlight | less
