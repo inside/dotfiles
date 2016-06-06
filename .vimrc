@@ -723,7 +723,6 @@ Plug 'vim-scripts/camelcasemotion'
 Plug 'vim-scripts/loremipsum'
 Plug 'vim-scripts/matchit.zip'
 Plug 'whatyouhide/vim-textobj-xmlattr'
-Plug 'zef/vim-cycle'
 
 call plug#end()
 
