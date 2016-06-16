@@ -59,8 +59,11 @@ alias fgrep="fgrep --color=always --exclude='*.git*'"
 alias lynx="lynx -accept_all_cookies"
 alias flashlog="tail -f ~/.macromedia/Flash_Player/Logs/flashlog.txt"
 alias v=vim
-alias g="hub"
+alias git=hub
+alias g=git
+alias m=npm
 alias mux=tmuxinator
+compdef hub=git
 
 setopt ALWAYS_TO_END                     # Saute apres le mot si completion
 setopt AUTO_CD                           # CD facultatif
