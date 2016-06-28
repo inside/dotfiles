@@ -16,6 +16,11 @@ RUN apt-get -y update && apt-get install -y \
     python-dev \
     ruby \
     ruby-dev \
+    libx11-dev \
+    libxtst-dev \
+    libxt-dev \
+    libsm-dev \
+    libxpm-dev \
     silversearcher-ag \
     tmux \
     tree \
