@@ -271,6 +271,22 @@ set diffopt+=vertical
 " So the webpack watch will really know when a file has changed
 " https://github.com/webpack/docs/wiki/troubleshooting
 set backupcopy=yes
+
+" vim's clipboard feature
+" Taken from:
+" http://stackoverflow.com/questions/11416069/compile-vim-with-clipboard-and-xterm
+" Exact X.Org packages seem to be: libx11-dev libxtst-dev libxt-dev libsm-dev
+" libxpm-dev That gets all the HAVE_X11 defines except HAVE_X11_XMU_EDITRES_H,
+" which doesn't seem to be enabled by X11/Xmu/Editres.h being added by
+" libxmu-dev, probably only used in gvim.
+"
+" If you set the clipboard like this, it will transparently paste from the
+" clipboard (ctrl-c or mouse selection)
+" http://vimcasts.org/episodes/accessing-the-system-clipboard-from-vim/
+
+if has('unnamedplus')
+  set clipboard=unnamed,unnamedplus
+endif
 " }}}
 
 " Visual options {{{
