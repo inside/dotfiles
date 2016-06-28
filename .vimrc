@@ -264,6 +264,9 @@ set winaltkeys=no
 
 " Used for the CursorHold autocommand event and thud by the auto-save plugin
 set updatetime=750
+
+" Starts diffmode vertically, because it's easier to read
+set diffopt+=vertical
 " }}}
 
 " Visual options {{{
