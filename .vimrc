@@ -703,6 +703,7 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'html.twig', 'ejs']}
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'prendradjaja/vim-vertigo'
 Plug 'quickfix-reflector.vim'
 Plug 'rhysd/clever-f.vim'
