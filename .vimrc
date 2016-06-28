@@ -267,6 +267,10 @@ set updatetime=750
 
 " Starts diffmode vertically, because it's easier to read
 set diffopt+=vertical
+
+" So the webpack watch will really know when a file has changed
+" https://github.com/webpack/docs/wiki/troubleshooting
+set backupcopy=yes
 " }}}
 
 " Visual options {{{
