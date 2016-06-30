@@ -312,6 +312,11 @@ if has('patch-7.4.338')
 endif
 
 set linebreak
+
+" If you're using tmux, be sure to have tmux >= 2.2 when using this setting
+if has('termguicolors')
+  set termguicolors
+endif
 " }}}
 
 " Text formatting options {{{
