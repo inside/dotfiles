@@ -875,6 +875,12 @@ let g:auto_save_in_insert_mode = 0
 " It is set to 400ms by this plugin
 " Prefer to use 750ms
 let g:auto_save_no_updatetime = 1
+" If you have a more recent vim version than: 7.4.493,
+" you can use these autocommands to trigger the save and don't rely on the
+" updatetime option.
+" I found out about a bug here:
+" git log -S TextChanged --since="Sun Jul 10 19:22:53 2014 +0200"
+"let g:auto_save_events = ['TextChanged', 'InsertLeave']
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger = '<c-l>'
