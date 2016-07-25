@@ -13,3 +13,4 @@
 .vim-basic/doc/tags
 .vim-basic/bundle
 .vim-basic/autoload/plug.vim
+.tmux
