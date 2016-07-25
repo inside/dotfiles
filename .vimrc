@@ -650,6 +650,10 @@ onoremap <silent> <Space>j :<C-U>VertigoDown o<CR>
 nnoremap <silent> <Space>k :<C-U>VertigoUp n<CR>
 vnoremap <silent> <Space>k :<C-U>VertigoUp v<CR>
 onoremap <silent> <Space>k :<C-U>VertigoUp o<CR>
+
+" Easier splits
+nnoremap <leader>- <c-w>s
+nnoremap <leader>\| <c-w>v
 " }}}
 
 " Abbreviations {{{
