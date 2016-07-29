@@ -33,6 +33,10 @@
         fi;\
         git checkout -b "$1" origin/master;\
     }; f"
+    ; Edit modified file
+    edit = "!vim `git diff --name-only`"
+    staged = "!vim `git diff --name-only --cached`"
+    all = "!vim `git diff --name-only HEAD`"
     flog = log --name-status
     jls = jira list
 [rerere]
