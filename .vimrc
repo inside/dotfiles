@@ -724,11 +724,12 @@ Plug 'kopischke/vim-fetch'
 Plug 'majutsushi/tagbar'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'marijnh/tern_for_vim', {'do': 'npm install'}
-Plug 'mattn/emmet-vim', {'for': ['html', 'html.twig', 'ejs']}
+Plug 'mattn/emmet-vim', {'for': ['javascript.jsx', 'html', 'html.twig', 'ejs']}
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+Plug 'mxw/vim-jsx', {'for': 'javascript'}
 Plug 'prendradjaja/vim-vertigo'
 Plug 'quickfix-reflector.vim'
 Plug 'rhysd/clever-f.vim'
@@ -769,12 +770,6 @@ endif
 " Plugins configuration {{{
 
 " Syntastic
-let g:syntastic_filetype_map = {
-    \ "javascript.jsx": "jsx",
-    \ }
-let g:syntastic_mode_map = {
-    \ "passive_filetypes": ["jsx"],
-    \ }
 
 " Available checkers are: php, phpcs, phpmd.
 " Let's stick to the php executable only.
@@ -791,6 +786,10 @@ let g:syntastic_coffee_coffeelint_args = "-f ~/.coffeelint.json"
 " See https://github.com/asm89/twig-lint
 let g:syntastic_twig_twiglint_exec = 'php'
 let g:syntastic_twig_twiglint_exe = 'php ~/bin/twig-lint.phar'
+
+" javascript
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = './node_modules/eslint_d/bin/eslint_d.js'
 
 " Unite
 let g:unite_source_rec_max_cache_files = 100000
@@ -882,6 +881,9 @@ let g:auto_save_no_updatetime = 1
 " git log -S TextChanged --since="Sun Jul 10 19:22:53 2014 +0200"
 "let g:auto_save_events = ['TextChanged', 'InsertLeave']
 
+" CursorHold seems to be the best solution for me
+let g:auto_save_events = ['CursorHold']
+
 " Ultisnips
 let g:UltiSnipsExpandTrigger = '<c-l>'
 let g:UltiSnipsJumpForwardTrigger = '<c-l>'
@@ -904,6 +906,9 @@ let g:tmuxify_custom_command = 'tmux split-window -d -v -p 20'
 
 " The nerdtree
 let g:NERDTreeShowHidden = 1
+
+" vim-jsx
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 " }}}
 
 " Color options {{{
@@ -926,7 +931,6 @@ augroup mygroup
   " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
   autocmd FileType php setlocal keywordprg=pman
   autocmd BufNewFile,BufRead *.ejs set filetype=ejs
-  autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
   " Show the signs column even if it is empty, useful for the vim-git-gutter plugin
   autocmd BufEnter * sign define dummy
   autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
@@ -966,13 +970,9 @@ augroup mygroup
   " Suffix for js files
   autocmd Filetype javascript setlocal suffixesadd=.js
 
-  " Suffix for js files
-  autocmd Filetype javascript.jsx setlocal suffixesadd=.jsx,.js
-
   " https://github.com/maksimr/vim-jsbeautify
   autocmd Filetype javascript vnoremap <buffer> <leader>b :call RangeJsBeautify()<cr>
   autocmd FileType json vnoremap <buffer> <leader>b :call RangeJsonBeautify()<cr>
-  autocmd FileType jsx vnoremap <buffer> <leader>b :call RangeJsxBeautify()<cr>
   autocmd FileType html vnoremap <buffer> <leader>b :call RangeHtmlBeautify()<cr>
   autocmd FileType css vnoremap <buffer> <leader>b :call RangeCSSBeautify()<cr>
 augroup END
