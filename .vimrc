@@ -203,6 +203,13 @@ Alias sis SetIndentSize
 command! UndoCloseTab call s:UndoCloseTab()
 command! CloseTab call s:CloseTab()
 
+" pandoc , markdown
+command! -nargs=* RunSilent
+      \ | execute ':silent !'.'<args>'
+      \ | execute ':redraw!'
+nnoremap <leader>dc :RunSilent pandoc -o /tmp/vim-pandoc-out.pdf %<CR>
+nnoremap <leader>do :RunSilent gnome-open /tmp/vim-pandoc-out.pdf<CR>
+
 " Save one key stroke for grepping
 Alias g G
 
