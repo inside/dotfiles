@@ -186,6 +186,13 @@ func! QuickfixToggle()
     cclose
   endif
 endfunc
+
+func! EslintRule()
+  let rule = expand('<cWORD>')
+  let rule = substitute(rule, '\v["|:|'']', '', 'g')
+  let url = 'http://eslint.org/docs/rules/' . rule
+  exec 'silent !xdg-open ' . url
+endfunc
 " }}}
 
 " User defined commands {{{
@@ -963,6 +970,7 @@ augroup mygroup
   autocmd FileType html vnoremap <buffer> <leader>b :call RangeHtmlBeautify()<cr>
   autocmd FileType css vnoremap <buffer> <leader>b :call RangeCSSBeautify()<cr>
   autocmd BufWritePost *.js Neomake
+  autocmd BufRead,BufNewFile .eslintrc nnoremap <buffer> gx :call EslintRule()<cr>
 augroup END
 
 augroup linenumbering

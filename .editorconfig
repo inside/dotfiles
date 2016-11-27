@@ -19,6 +19,9 @@ indent_size = 2
 [*.md]
 trim_trailing_whitespace = false
 
+[*.js]
+indent_size = 2
+
 ; Settings for https://github.com/maksimr/vim-jsbeautify
 [**.js]
 brace_style = expand
