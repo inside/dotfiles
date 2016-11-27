@@ -731,17 +731,17 @@ Plug 'kopischke/vim-fetch'
 Plug 'majutsushi/tagbar'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'marijnh/tern_for_vim', {'do': 'npm install'}
-Plug 'mattn/emmet-vim', {'for': ['javascript.jsx', 'html', 'html.twig', 'ejs']}
+Plug 'mattn/emmet-vim', {'for': ['javascript', 'html', 'html.twig', 'ejs']}
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-Plug 'mxw/vim-jsx', {'for': 'javascript'}
+Plug 'inside/vim-jsx', {'for': 'javascript'}
 Plug 'prendradjaja/vim-vertigo'
 Plug 'quickfix-reflector.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'rking/ag.vim'
-Plug 'scrooloose/Syntastic'
+Plug 'neomake/neomake'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'sgur/unite-qf'
@@ -776,27 +776,11 @@ endif
 
 " Plugins configuration {{{
 
-" Syntastic
-
-" Available checkers are: php, phpcs, phpmd.
-" Let's stick to the php executable only.
-let g:syntastic_php_checkers = ['php']
-
-" Shell scripts
-let g:syntastic_sh_checkers = ['shellcheck']
-
-" Coffee Script
-let g:syntastic_coffee_checkers = ['coffeelint']
-let g:syntastic_coffee_coffeelint_args = "-f ~/.coffeelint.json"
-
-" Twig templates
-" See https://github.com/asm89/twig-lint
-let g:syntastic_twig_twiglint_exec = 'php'
-let g:syntastic_twig_twiglint_exe = 'php ~/bin/twig-lint.phar'
+" Neomake
 
 " javascript
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec = './node_modules/eslint_d/bin/eslint_d.js'
+let g:neomake_javascript_enabled_makers = ['standard']
+let g:neomake_javascript_standard_exe = './node_modules/standard/bin/cmd.js'
 
 " Unite
 let g:unite_source_rec_max_cache_files = 100000
@@ -817,7 +801,6 @@ nmap ]h <Plug>GitGutterNextHunk
 nmap <leader>sh <Plug>GitGutterStageHunk
 
 " vim-airline
-let g:airline#extensions#syntastic#enabled = 1
 let g:airline_theme = 'monochrome'
 
 " emmet
@@ -913,9 +896,6 @@ let g:tmuxify_custom_command = 'tmux split-window -d -v -p 20'
 
 " The nerdtree
 let g:NERDTreeShowHidden = 1
-
-" vim-jsx
-let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 " }}}
 
 " Color options {{{
@@ -982,6 +962,7 @@ augroup mygroup
   autocmd FileType json vnoremap <buffer> <leader>b :call RangeJsonBeautify()<cr>
   autocmd FileType html vnoremap <buffer> <leader>b :call RangeHtmlBeautify()<cr>
   autocmd FileType css vnoremap <buffer> <leader>b :call RangeCSSBeautify()<cr>
+  autocmd BufWritePost *.js Neomake
 augroup END
 
 augroup linenumbering
