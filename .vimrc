@@ -725,7 +725,9 @@ Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
 Plug 'inside/unite-argument'
 Plug 'inside/vim-bubble-lines'
 Plug 'inside/vim-grep-operator'
+Plug 'inside/vim-jsx', {'for': 'javascript'}
 Plug 'inside/vim-search-pulse'
+Plug 'inside/vim-textobj-jsxattr'
 Plug 'inside/vim-toup'
 Plug 'inside/vim-visual-star-search'
 Plug 'inside/vimwiki'
@@ -742,17 +744,17 @@ Plug 'mattn/emmet-vim', {'for': ['javascript', 'html', 'html.twig', 'ejs']}
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'neomake/neomake'
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-Plug 'inside/vim-jsx', {'for': 'javascript'}
 Plug 'prendradjaja/vim-vertigo'
 Plug 'quickfix-reflector.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'rking/ag.vim'
-Plug 'neomake/neomake'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'sgur/unite-qf'
 Plug 'sjl/gundo.vim'
+Plug 'suan/vim-instant-markdown'
 Plug 'tobyS/pdv', {'for': ['php']}
 Plug 'tobyS/vmustache'
 Plug 'tpope/vim-abolish'
@@ -770,7 +772,6 @@ Plug 'vim-scripts/Toggle'
 Plug 'vim-scripts/camelcasemotion'
 Plug 'vim-scripts/loremipsum'
 Plug 'vim-scripts/matchit.zip'
-Plug 'whatyouhide/vim-textobj-xmlattr'
 
 call plug#end()
 
@@ -903,6 +904,10 @@ let g:tmuxify_custom_command = 'tmux split-window -d -v -p 20'
 
 " The nerdtree
 let g:NERDTreeShowHidden = 1
+
+" suan/vim-instant-markdown
+let g:instant_markdown_slow = 1
+let g:instant_markdown_autostart = 0
 " }}}
 
 " Color options {{{
