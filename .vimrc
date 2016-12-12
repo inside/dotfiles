@@ -255,7 +255,7 @@ set history=200
 
 " Disable setting options by file like /* vim: set sw=2: */
 set nomodeline
-set colorcolumn=80
+set colorcolumn=80,100
 " Use only 1 space after "." when joining lines instead of 2
 set nojoinspaces
 " Character to precede line wraps
@@ -725,7 +725,6 @@ Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
 Plug 'inside/unite-argument'
 Plug 'inside/vim-bubble-lines'
 Plug 'inside/vim-grep-operator'
-Plug 'inside/vim-jsx', {'for': 'javascript'}
 Plug 'inside/vim-search-pulse'
 Plug 'inside/vim-textobj-jsxattr'
 Plug 'inside/vim-toup'
@@ -739,13 +738,15 @@ Plug 'kmnk/vim-unite-giti'
 Plug 'kopischke/vim-fetch'
 Plug 'majutsushi/tagbar'
 Plug 'maksimr/vim-jsbeautify'
-Plug 'marijnh/tern_for_vim', {'do': 'npm install'}
+"Plug 'marijnh/tern_for_vim', {'do': 'npm install'}
 Plug 'mattn/emmet-vim', {'for': ['javascript', 'html', 'html.twig', 'ejs']}
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'neomake/neomake'
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+" vim-jsx depends on vim-javascript
+Plug 'inside/vim-jsx', {'for': 'javascript'}
 Plug 'prendradjaja/vim-vertigo'
 Plug 'quickfix-reflector.vim'
 Plug 'rhysd/clever-f.vim'
