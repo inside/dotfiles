@@ -724,6 +724,7 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
 Plug 'inside/unite-argument'
 Plug 'inside/vim-bubble-lines'
+Plug 'inside/vim-es2015-snippets'
 Plug 'inside/vim-grep-operator'
 Plug 'inside/vim-react-snippets'
 Plug 'inside/vim-search-pulse'
