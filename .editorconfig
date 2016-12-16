@@ -25,3 +25,6 @@ indent_size = 2
 ; Settings for https://github.com/maksimr/vim-jsbeautify
 [**.js]
 brace_style = expand
+
+[Makefile]
+indent_style = tab

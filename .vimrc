@@ -725,7 +725,7 @@ Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
 Plug 'inside/unite-argument'
 Plug 'inside/vim-bubble-lines'
 Plug 'inside/vim-grep-operator'
-Plug 'inside/vim-jsx', {'for': 'javascript'}
+Plug 'inside/vim-react-snippets'
 Plug 'inside/vim-search-pulse'
 Plug 'inside/vim-textobj-jsxattr'
 Plug 'inside/vim-toup'
@@ -746,6 +746,7 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'neomake/neomake'
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+Plug 'inside/vim-jsx', {'for': 'javascript'}
 Plug 'prendradjaja/vim-vertigo'
 Plug 'quickfix-reflector.vim'
 Plug 'rhysd/clever-f.vim'
