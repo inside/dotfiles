@@ -80,8 +80,8 @@ func! s:PrepageCommitMessage()
 
   if !filereadable(file_head . '/MERGE_MSG') &&
         \ !filereadable(file_head . '/SQUASH_MSG')
-    " Note the trailing space at the end of the normal command
-    execute 'normal f(i '
+    " Note the two trailing spaces at the end of the normal command
+    execute 'normal A  '
     startinsert
   endif
 endfunc
@@ -511,7 +511,7 @@ nnoremap <c-l> <c-w>l
 nnoremap <leader>l <c-l>
 
 " Jump outside any parentheses or quotes:
-inoremap jj <esc>/[)}"'\]>]<cr>a
+inoremap jj <esc>/[)}"'\]>`]<cr>a
 
 " Quicker way to trigger keyword completion and navigate through the match
 " list
@@ -744,11 +744,13 @@ Plug 'maksimr/vim-jsbeautify'
 Plug 'mattn/emmet-vim', {'for': ['javascript', 'html', 'html.twig', 'ejs']}
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'moll/vim-node'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'neomake/neomake'
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 " vim-jsx depends on vim-javascript
 Plug 'inside/vim-jsx', {'for': 'javascript'}
+Plug 'inside/vim-react-snippets', {'for': 'javascript'}
 Plug 'prendradjaja/vim-vertigo'
 Plug 'quickfix-reflector.vim'
 Plug 'rhysd/clever-f.vim'
@@ -791,7 +793,7 @@ endif
 
 " javascript
 let g:neomake_javascript_enabled_makers = ['standard']
-let g:neomake_javascript_standard_exe = './node_modules/standard/bin/cmd.js'
+let g:neomake_javascript_standard_exe = './node_modules/.bin/standard'
 
 " Unite
 let g:unite_source_rec_max_cache_files = 100000
@@ -977,7 +979,7 @@ augroup mygroup
   autocmd FileType json vnoremap <buffer> <leader>b :call RangeJsonBeautify()<cr>
   autocmd FileType html vnoremap <buffer> <leader>b :call RangeHtmlBeautify()<cr>
   autocmd FileType css vnoremap <buffer> <leader>b :call RangeCSSBeautify()<cr>
-  autocmd BufWritePost *.js Neomake
+  autocmd BufRead,BufWritePost *.js Neomake
   autocmd BufRead,BufNewFile .eslintrc nnoremap <buffer> gx :call EslintRule()<cr>
   au FileType html let b:delimitMate_matchpairs = '(:),[:],{:}'
 augroup END

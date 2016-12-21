@@ -62,8 +62,10 @@ alias v=vim
 alias git=hub
 alias g=git
 alias m=npm
+alias mr=npm\ run
 alias mux=tmuxinator
 compdef hub=git
+alias sudo="sudo "
 
 setopt ALWAYS_TO_END                     # Saute apres le mot si completion
 setopt AUTO_CD                           # CD facultatif
