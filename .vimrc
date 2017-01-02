@@ -979,6 +979,7 @@ augroup mygroup
   autocmd FileType css vnoremap <buffer> <leader>b :call RangeCSSBeautify()<cr>
   autocmd BufWritePost *.js Neomake
   autocmd BufRead,BufNewFile .eslintrc nnoremap <buffer> gx :call EslintRule()<cr>
+  au FileType html let b:delimitMate_matchpairs = '(:),[:],{:}'
 augroup END
 
 augroup linenumbering
