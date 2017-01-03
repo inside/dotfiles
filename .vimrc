@@ -913,6 +913,12 @@ let g:NERDTreeShowHidden = 1
 " suan/vim-instant-markdown
 let g:instant_markdown_slow = 1
 let g:instant_markdown_autostart = 0
+
+" vimwiki
+let g:vimwiki_conceallevel = 0
+
+" nerdcommenter
+let NERDSpaceDelims = 1
 " }}}
 
 " Color options {{{
