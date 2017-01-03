@@ -98,7 +98,7 @@ P%j\n%{$reset_color%}\
 %# ')
 
 export NODE_PATH=/usr/lib/node_modules
-export CDPATH=.:~/github:~/.vim/bundle
+export CDPATH=.:~/github:~/.vim/bundle:~/src
 export LC_ALL=en_US.UTF8
 export PAGER=$(which less)
 export EDITOR=vim
