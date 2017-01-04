@@ -792,8 +792,8 @@ endif
 " Neomake
 
 " javascript
-let g:neomake_javascript_enabled_makers = ['standard']
-let g:neomake_javascript_standard_exe = './node_modules/.bin/standard'
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_javascript_eslint_exe = './node_modules/.bin/eslint'
 
 " Unite
 let g:unite_source_rec_max_cache_files = 100000
