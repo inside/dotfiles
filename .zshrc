@@ -46,12 +46,6 @@ function current_branch() {
   echo $ref
 }
 
-function monitorcmd() {
-    clear;
-    eval $@
-    echo '==== Process finished'
-}
-
 alias ra="sudo /etc/init.d/apache2 restart"
 alias ls="ls -G --color"
 alias ll="ls -G -l --color"
@@ -102,7 +96,11 @@ export CDPATH=.:~/github:~/.vim/bundle:~/src
 export LC_ALL=en_US.UTF8
 export PAGER=$(which less)
 export EDITOR=vim
-export PATH=$PATH:~/bin:~/bin/git:~/dailymotion/scripts:~/dailymotion/scripts/git
+
+# Prevent duplicates to be added to $PATH
+typeset -aU path
+path=( $path ~/bin )
+
 export APACHE_RUN_USER=www-data
 export APACHE_RUN_GROUP=www-data
 # Set TERM to xterm-256color in your .bashrc, and put term screen-256color in
