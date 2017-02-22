@@ -301,6 +301,8 @@ set backupcopy=yes
 if has('unnamedplus')
   set clipboard=unnamed,unnamedplus
 endif
+
+set autochdir
 " }}}
 
 " Visual options {{{
@@ -986,8 +988,11 @@ augroup mygroup
   autocmd FileType html vnoremap <buffer> <leader>b :call RangeHtmlBeautify()<cr>
   autocmd FileType css vnoremap <buffer> <leader>b :call RangeCSSBeautify()<cr>
   autocmd BufRead,BufWritePost *.js Neomake
-  autocmd BufRead,BufNewFile .eslintrc nnoremap <buffer> gx :call EslintRule()<cr>
-  au FileType html let b:delimitMate_matchpairs = '(:),[:],{:}'
+  autocmd FileType html let b:delimitMate_matchpairs = '(:),[:],{:}'
+
+  " useful for filename completion relative to current buffer path
+  autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
+  autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
 augroup END
 
 augroup linenumbering
