@@ -302,7 +302,6 @@ if has('unnamedplus')
   set clipboard=unnamed,unnamedplus
 endif
 
-set autochdir
 " }}}
 
 " Visual options {{{
