@@ -422,7 +422,7 @@ noremap <leader><S-Tab> :bp<cr>
 nnoremap <leader>GD :diffoff!<cr><C-W>h:bd<cr>
 
 " Inserts the relative filname
-inoremap <c-f>n <c-r>=expand("%:p")<cr>
+" inoremap <c-f>n <c-r>=expand("%:p")<cr>
 
 " <C-R> explained:
 " You can insert the result of a Vim expression in insert mode using the <C-R>=
@@ -669,6 +669,9 @@ onoremap <silent> <Space>k :<C-U>VertigoUp o<CR>
 " Easier splits
 nnoremap <leader>- <c-w>s
 nnoremap <leader>\| <c-w>v
+
+inoremap ./ ./<c-x><c-f>
+inoremap <c-f> <c-x><c-f>
 " }}}
 
 " Abbreviations {{{
