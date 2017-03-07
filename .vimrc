@@ -723,6 +723,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'glts/vim-textobj-comment'
 Plug 'godlygeek/windowlayout'
+Plug 'heavenshell/vim-jsdoc'
 Plug 'honza/vim-snippets'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
@@ -781,6 +782,7 @@ Plug 'vim-scripts/Toggle'
 Plug 'vim-scripts/camelcasemotion'
 Plug 'vim-scripts/loremipsum'
 Plug 'vim-scripts/matchit.zip'
+Plug 'alexbyk/vim-ultisnips-js-testing'
 
 call plug#end()
 
@@ -796,8 +798,9 @@ endif
 " Neomake
 
 " javascript
-let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
 let g:neomake_javascript_eslint_exe = './node_modules/.bin/eslint'
+let g:neomake_javascript_flow_exe = './node_modules/.bin/flow'
 
 " Unite
 let g:unite_source_rec_max_cache_files = 100000
@@ -923,6 +926,13 @@ let g:vimwiki_conceallevel = 0
 
 " nerdcommenter
 let NERDSpaceDelims = 1
+
+" vim-javascript
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
+
+" vim-markdown
+let g:markdown_fenced_languages = ['javascript', 'vim']
 " }}}
 
 " Color options {{{
