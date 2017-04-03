@@ -77,6 +77,8 @@ setopt PROMPT_SUBST                      # Prompts etendus
 unsetopt EXTENDED_HISTORY                # Historique avec timings = bof
 setopt HIST_NO_STORE                     # N'enregistre pas la cmd history
 setopt noflowcontrol                     # restores the use of the keys ctrl-s, ctrl-q
+setopt HIST_SAVE_NO_DUPS
+setopt SHARE_HISTORY
 
 HISTSIZE=1000
 SAVEHIST=1000
