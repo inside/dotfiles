@@ -672,6 +672,20 @@ nnoremap <leader>\| <c-w>v
 
 inoremap ./ ./<c-x><c-f>
 inoremap <c-f> <c-x><c-f>
+
+" format a json file
+" nnoremap <leader> %!python -m json.tool
+
+" Eslint fix
+" Courtesy of https://github.com/jackfranklin/dotfiles/commit/a4e210b23ac2895349333420d6c0f6fd305c5331
+func! ESLintFix()
+  silent execute '!./node_modules/.bin/eslint --fix %'
+  edit! %
+  redraw!
+  Neomake
+endfunc
+
+nnoremap <leader>ef :call ESLintFix()<CR>
 " }}}
 
 " Abbreviations {{{
@@ -715,6 +729,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
 Plug 'beyondwords/vim-twig'
 Plug 'breuckelen/vim-resize'
+Plug 'ntpeters/vim-better-whitespace'
 Plug 'chrisbra/NrrwRgn'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
