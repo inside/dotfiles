@@ -1,0 +1,19 @@
+name: mira
+root: ~/src/mira
+
+windows:
+    - editor:
+        -
+    - server:
+        layout: main-horizontal
+        panes:
+            -
+            -
+            - npm run mockery
+    - tests:
+        panes:
+            - npm run test-unit -- --watch
+    - u-dsm:
+        root: ~/src/u-dsm
+        panes:
+            -

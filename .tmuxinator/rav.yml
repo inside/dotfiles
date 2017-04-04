@@ -1,0 +1,22 @@
+name: rav
+root: ~/src/rav
+
+# How to adjust pane layout, taken from:
+# http://stackoverflow.com/questions/9812000/specify-pane-percentage-in-tmuxinator-project
+#
+# First set up your layout just how you like it - you can adjust widths with
+# resize-pane until it is just right for you. Then run tmux list-windows. And
+# then you should be able to use the layout: line from the output unaltered in
+# tmuxinator.conf
+
+windows:
+  - dev:
+      layout: bcc7,185x59,0,0[185x46,0,0,0,185x12,0,47{92x12,0,47,2,92x12,93,47,4}]
+      panes:
+          - editor:
+              - v
+          - dev:
+              - roc dev
+          - doc:
+            - npm run doc:watch
+  - local: # Just a shell
