@@ -1,3 +1,7 @@
+# I use gnome-terminal
+# the font is monospace 12
+# the background color is #002B36
+
 # Enables colors
 autoload -U colors
 colors
