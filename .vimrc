@@ -772,7 +772,7 @@ Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'inside/vim-jsx', {'for': 'javascript'}
 Plug 'inside/vim-react-snippets', {'for': 'javascript'}
 Plug 'prendradjaja/vim-vertigo'
-Plug 'quickfix-reflector.vim'
+Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter'
