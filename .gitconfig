@@ -39,9 +39,13 @@
     all = "!vim `git diff --name-only HEAD`"
     flog = log --name-status
     jls = jira list
+    f = fetch
+    pr = pull-request
 [rerere]
     enabled = true
 [pager]
     log = diff-highlight | less
     show = diff-highlight | less
     diff = diff-highlight | less
+[hub]
+	host = github.schibsted.io
