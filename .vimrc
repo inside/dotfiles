@@ -1,3 +1,4 @@
+" test comment
 " Variables initialization {{{
 " Thanks to http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
 let mapleader = "\<space>"
