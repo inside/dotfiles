@@ -26,9 +26,9 @@ bindkey -M vicmd v edit-command-line # v to edit in an external editor.
 stty stop undef
 
 # This way git commands are even shorter
-command_not_found_handler () {
-    git $* || return 127
-}
+# command_not_found_handler () {
+    # git $* || return 127
+# }
 
 alias s="git status"
 alias d="git diff"
