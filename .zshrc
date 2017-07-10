@@ -1,6 +1,7 @@
 # I use gnome-terminal
 # the font is monospace 12
 # the background color is #002B36
+# the red color should be tomato: #ff6347
 
 # Enables colors
 autoload -U colors
@@ -28,6 +29,10 @@ stty stop undef
 command_not_found_handler () {
     git $* || return 127
 }
+
+alias s="git status"
+alias d="git diff"
+alias p="git push origin HEAD"
 
 # Connects to a virtual machine
 vmxpie() {
@@ -97,7 +102,7 @@ PROMPT=$(echo '\
 P%j\n%{$reset_color%}\
 %# ')
 
-export NODE_PATH=/usr/lib/node_modules
+# export NODE_PATH=/usr/lib/node_modules
 export CDPATH=.:~/github:~/.vim/bundle:~/src
 export LC_ALL=en_US.UTF8
 export PAGER=$(which less)
@@ -137,3 +142,7 @@ if [[ $TMUX = '' ]] && [[ $SSH_CLIENT != '' ]] then
 fi
 
 [ -f ~/.local.zsh ] && source ~/.local.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

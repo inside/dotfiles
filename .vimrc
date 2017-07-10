@@ -1,4 +1,3 @@
-" test comment
 " Variables initialization {{{
 " Thanks to http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
 let mapleader = "\<space>"
@@ -9,7 +8,8 @@ let g:loaded_getscriptPlugin = 1
 let g:loaded_gzip = 1
 let g:loaded_logipat = 1
 let g:loaded_matchparen = 1
-let g:loaded_netrwPlugin = 1
+" netrw is still useful for the gx command
+" let g:loaded_netrwPlugin = 1
 let g:loaded_rrhelper = 1
 let g:loaded_spellfile_plugin = 1
 let g:loaded_tarPlugin = 1
@@ -780,7 +780,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'sgur/unite-qf'
 Plug 'sjl/gundo.vim'
-Plug 'suan/vim-instant-markdown'
+" Plug 'suan/vim-instant-markdown'
 Plug 'tobyS/pdv', {'for': ['php']}
 Plug 'tobyS/vmustache'
 Plug 'tpope/vim-abolish'
@@ -799,6 +799,7 @@ Plug 'vim-scripts/camelcasemotion'
 Plug 'vim-scripts/loremipsum'
 Plug 'vim-scripts/matchit.zip'
 Plug 'alexbyk/vim-ultisnips-js-testing'
+Plug 'shime/vim-livedown'
 
 call plug#end()
 
@@ -814,9 +815,16 @@ endif
 " Neomake
 
 " javascript
-let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
+let g:neomake_javascript_enabled_makers = ['eslint']
+" let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
 let g:neomake_javascript_eslint_exe = './node_modules/.bin/eslint'
-let g:neomake_javascript_flow_exe = './node_modules/.bin/flow'
+" let g:neomake_javascript_flow_exe = './node_modules/.bin/flow'
+
+let g:neomake_scss_enabled_makers = ['stylelint']
+let g:neomake_scss_stylelint_exe = './node_modules/.bin/stylelint'
+
+" let g:neomake_markdown_enabled_makers = ['textlint']
+" let g:neomake_markdown_textlint_exe = './node_modules/.bin/textlint'
 
 " Unite
 let g:unite_source_rec_max_cache_files = 100000
@@ -900,6 +908,7 @@ let g:auto_save_in_insert_mode = 0
 " It is set to 400ms by this plugin
 " Prefer to use 750ms
 let g:auto_save_no_updatetime = 1
+
 " If you have a more recent vim version than: 7.4.493,
 " you can use these autocommands to trigger the save and don't rely on the
 " updatetime option.
@@ -908,7 +917,7 @@ let g:auto_save_no_updatetime = 1
 "let g:auto_save_events = ['TextChanged', 'InsertLeave']
 
 " CursorHold seems to be the best solution for me
-let g:auto_save_events = ['CursorHold']
+" let g:auto_save_events = ['CursorHold']
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger = '<c-l>'
@@ -934,8 +943,14 @@ let g:tmuxify_custom_command = 'tmux split-window -d -v -p 20'
 let g:NERDTreeShowHidden = 1
 
 " suan/vim-instant-markdown
-let g:instant_markdown_slow = 1
-let g:instant_markdown_autostart = 0
+" let g:instant_markdown_slow = 1
+" let g:instant_markdown_autostart = 0
+
+" shime/vim-livedown
+" should the browser window pop-up upon previewing
+let g:livedown_open = 1
+nnoremap gm :LivedownPreview<cr>
+
 
 " vimwiki
 let g:vimwiki_conceallevel = 0
@@ -1015,7 +1030,8 @@ augroup mygroup
   autocmd FileType json vnoremap <buffer> <leader>b :call RangeJsonBeautify()<cr>
   autocmd FileType html vnoremap <buffer> <leader>b :call RangeHtmlBeautify()<cr>
   autocmd FileType css vnoremap <buffer> <leader>b :call RangeCSSBeautify()<cr>
-  autocmd BufRead,BufWritePost *.js Neomake
+  " autocmd BufRead,BufWritePost *.{js,scss,md} Neomake
+  autocmd BufRead,BufWritePost *.{js,scss} Neomake
   autocmd FileType html let b:delimitMate_matchpairs = '(:),[:],{:}'
 
   " useful for filename completion relative to current buffer path

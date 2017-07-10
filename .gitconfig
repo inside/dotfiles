@@ -24,6 +24,7 @@
     ca = commit -a
     caa = commit -a --amend
     ru = remote update
+
     ; Checkout branch name from master
     cob = "!f() {\
         if [ -z \"$1\" ];\
@@ -33,10 +34,15 @@
         fi;\
         git checkout -b "$1" origin/master;\
     }; f"
+
+    ; Fetch git objects and reset hard to master
+    rhard = "!git fetch origin && git reset --hard origin/master"
+
     ; Edit modified file
     edit = "!vim `git diff --name-only`"
     staged = "!vim `git diff --name-only --cached`"
     all = "!vim `git diff --name-only HEAD`"
+
     flog = log --name-status
     jls = jira list
     f = fetch
