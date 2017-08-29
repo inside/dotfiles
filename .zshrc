@@ -33,6 +33,7 @@ stty stop undef
 alias s="git status"
 alias d="git diff"
 alias p="git push origin HEAD"
+alias l="git log"
 
 # Connects to a virtual machine
 vmxpie() {
@@ -69,6 +70,7 @@ alias mr=npm\ run
 alias mux=tmuxinator
 compdef hub=git
 alias sudo="sudo "
+alias pbcopy="xclip -sel clip"
 
 setopt ALWAYS_TO_END                     # Saute apres le mot si completion
 setopt AUTO_CD                           # CD facultatif
@@ -146,3 +148,6 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# added by travis gem
+[ -f /home/yann/.travis/travis.sh ] && source /home/yann/.travis/travis.sh
