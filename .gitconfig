@@ -17,6 +17,7 @@
     p = push origin HEAD
     l = log
     lp = log -p
+    lpe = log -p  -- . ":(exclude)package-lock.json"
     s = status
     br = branch
     co = checkout
