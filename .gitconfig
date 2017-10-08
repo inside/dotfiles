@@ -48,6 +48,8 @@
     jls = jira list
     f = fetch
     pr = pull-request
+    reuse = commit -eF .git/COMMIT_EDITMSG
+    cz = !./node_modules/.bin/git-cz
 [rerere]
     enabled = true
 [pager]
