@@ -687,6 +687,15 @@ func! ESLintFix()
 endfunc
 
 nnoremap <leader>ef :call ESLintFix()<CR>
+
+func! PrettierWrite()
+  silent execute '!./node_modules/.bin/prettier --write %'
+  edit! %
+  redraw!
+  Neomake
+endfunc
+
+nnoremap <leader>ep :call PrettierWrite()<CR>
 " }}}
 
 " Abbreviations {{{
