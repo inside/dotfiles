@@ -32,7 +32,8 @@ stty stop undef
 
 alias s="git status"
 alias d="git diff"
-alias p="git push origin HEAD"
+alias p="git p"
+alias pfw="git pfw"
 alias l="git log"
 
 # Connects to a virtual machine

@@ -15,6 +15,7 @@
     g = grep
     ; Push the branch you are on to the remote
     p = push origin HEAD
+    pfw = push origin HEAD --force-with-lease
     l = log
     lp = log -p
     lpe = log -p  -- . ":(exclude)package-lock.json"
@@ -50,6 +51,7 @@
     pr = pull-request
     reuse = commit -eF .git/COMMIT_EDITMSG
     cz = !./node_modules/.bin/git-cz
+    cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
 [rerere]
     enabled = true
 [pager]
