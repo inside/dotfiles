@@ -60,3 +60,8 @@
     diff = diff-highlight | less
 [hub]
 	host = github.schibsted.io
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
