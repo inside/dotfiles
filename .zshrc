@@ -36,6 +36,8 @@ alias p="git p"
 alias pfw="git pfw"
 alias l="git log"
 
+alias simpleserver="python -m SimpleHTTPServer"
+
 # Connects to a virtual machine
 vmxpie() {
     if [ -z "$1" ]
