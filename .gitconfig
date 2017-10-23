@@ -26,6 +26,7 @@
     ca = commit -a
     caa = commit -a --amend
     ru = remote update
+    prom = pull --rebase origin master
 
     ; Checkout branch name from master
     cob = "!f() {\
