@@ -15,7 +15,9 @@
     g = grep
     ; Push the branch you are on to the remote
     p = push origin HEAD
+    pn = push origin HEAD --no-verify
     pfw = push origin HEAD --force-with-lease
+    pnfw = push origin HEAD --force-with-lease --no-verify
     l = log
     lp = log -p
     lpe = log -p  -- . ":(exclude)package-lock.json"
