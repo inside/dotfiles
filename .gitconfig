@@ -20,6 +20,7 @@
     pnfw = push origin HEAD --force-with-lease --no-verify
     l = log
     lp = log -p
+    lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'
     lpe = log -p  -- . ":(exclude)package-lock.json"
     s = status
     br = branch
