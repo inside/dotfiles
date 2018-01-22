@@ -51,7 +51,7 @@
 
     flog = log --name-status
     jls = jira list
-    f = fetch
+    f = fetch --prune
     pr = pull-request
     reuse = commit -eF .git/COMMIT_EDITMSG
     cz = !./node_modules/.bin/git-cz
