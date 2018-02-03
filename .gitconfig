@@ -30,6 +30,7 @@
     caa = commit -a --amend
     ru = remote update
     prom = pull --rebase origin master
+    c = clone
 
     ; Checkout branch name from master
     cob = "!f() {\
