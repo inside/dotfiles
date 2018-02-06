@@ -729,6 +729,7 @@ endif
 
 call plug#begin('~/.vim/bundle')
 let g:plug_url_format = 'git@github.com:%s.git'
+" let g:neomake_logfile = '/tmp/neomake.log'
 
 Plug '907th/vim-auto-save'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -829,11 +830,11 @@ endif
 " javascript
 let g:neomake_javascript_enabled_makers = ['eslint']
 " let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
-let g:neomake_javascript_eslint_exe = './node_modules/.bin/eslint'
+let g:neomake_javascript_eslint_exe = getcwd() . '/node_modules/.bin/eslint'
 " let g:neomake_javascript_flow_exe = './node_modules/.bin/flow'
 
 let g:neomake_scss_enabled_makers = ['stylelint']
-let g:neomake_scss_stylelint_exe = './node_modules/.bin/stylelint'
+let g:neomake_scss_stylelint_exe = getcwd() . '/node_modules/.bin/stylelint'
 
 let g:neomake_sh_enabled_makers = ['shellcheck']
 
