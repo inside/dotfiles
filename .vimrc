@@ -194,6 +194,38 @@ func! EslintRule()
   let url = 'http://eslint.org/docs/rules/' . rule
   exec 'silent !xdg-open ' . url
 endfunc
+
+func! s:IsSpec(f)
+  let slice = fnamemodify(a:f, ':h:t')
+
+  if slice ==# '__tests__'
+    return 1
+  endif
+
+  return 0
+endfunc
+
+func! s:GetAltFile()
+  let f = expand('%')
+
+  if s:IsSpec(f)
+    let tail = fnamemodify(f, ':t')
+    let root = fnamemodify(tail, ':r')
+    let root = fnamemodify(root, ':r')
+    let altFile = fnamemodify(f, ':h') . '/../' . root . '.js'
+  else
+    let root = fnamemodify(f, ':t')
+    let root = fnamemodify(root, ':r')
+    let altFile = fnamemodify(f, ':h') . '/__tests__/' . root . '.spec.js'
+  endif
+
+  return altFile
+endfunc
+
+func! OpenAltFile()
+    let cmd = "edit " . s:GetAltFile()
+    execute cmd
+endfunc
 " }}}
 
 " User defined commands {{{
@@ -557,10 +589,6 @@ xnoremap al :<c-u>call <sid>NextTextObject('a', 'F')<cr>
 onoremap il :<c-u>call <sid>NextTextObject('i', 'F')<cr>
 xnoremap il :<c-u>call <sid>NextTextObject('i', 'F')<cr>
 
-" Quickly add/remove current file to/from the argument list
-nnoremap <leader>aa :argadd %<cr>
-nnoremap <leader>ad :argdelete %<cr>
-
 " To be consistent with other normal commands like D, C
 nnoremap Y y$
 
@@ -700,6 +728,9 @@ nnoremap <leader>ep :call PrettierWrite()<CR>
 " Copy the current file path to the clipboard
 " http://vim.wikia.com/wiki/Copy_filename_to_clipboard
 nnoremap <leader>yf :let @+=expand('%')<CR>
+
+" Switch between the source and spec file and vice versa
+nnoremap <leader>a :call OpenAltFile()<CR>
 " }}}
 
 " Abbreviations {{{
@@ -756,7 +787,6 @@ Plug 'heavenshell/vim-jsdoc'
 Plug 'honza/vim-snippets'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
-Plug 'inside/unite-argument'
 Plug 'inside/vim-bubble-lines'
 Plug 'inside/vim-es2015-snippets'
 Plug 'inside/vim-grep-operator'
