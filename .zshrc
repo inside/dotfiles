@@ -65,7 +65,7 @@ alias ll="ls -G -l --color"
 alias fgrep="fgrep --color=always --exclude='*.git*'"
 alias lynx="lynx -accept_all_cookies"
 alias flashlog="tail -f ~/.macromedia/Flash_Player/Logs/flashlog.txt"
-alias v=vim
+alias v=/usr/local/bin/vim
 alias git=hub
 alias g=git
 alias m=npm
