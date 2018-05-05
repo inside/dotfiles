@@ -401,9 +401,11 @@ nnoremap <leader>2 @q
 " Quick way to recall last command
 nnoremap <leader>3 @:
 
-" Edit ~/.vimrc or ~/.zshrc
+" Edit ~/.vimrc, ~/.zshrc, etc...
 nnoremap <leader>ev :edit $MYVIMRC<cr>
 nnoremap <leader>ez :edit ~/.zshrc<cr>
+nnoremap <leader>eh :edit ~/.hyper.js<cr>
+nnoremap <leader>et :edit ~/.tmux.conf<cr>
 
 " Source my vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
