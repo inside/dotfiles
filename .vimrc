@@ -733,6 +733,9 @@ nnoremap <leader>yf :let @+=expand('%')<CR>
 
 " Switch between the source and spec file and vice versa
 nnoremap <leader>a :call OpenAltFile()<CR>
+
+" Easier mapping for the vim alternate file
+nnoremap <leader>6 :e #<cr>
 " }}}
 
 " Abbreviations {{{
