@@ -30,7 +30,7 @@ stty stop undef
     # git $* || return 127
 # }
 
-alias s="git status"
+alias s="git s"
 alias d="git diff"
 alias p="git p"
 alias pfw="git pfw"
