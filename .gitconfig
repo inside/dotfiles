@@ -22,7 +22,7 @@
     lp = log -p
     lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'
     lpe = log -p  -- . ":(exclude)package-lock.json"
-    s = status --short --branch
+    s = status --short
     st = status
     br = branch
     co = checkout
@@ -71,3 +71,11 @@
 	conflictstyle = diff3
 [mergetool]
 	prompt = false
+[gitreview]
+    remote = origin
+[alias]
+    review = !git-review
+[url "git@github.schibsted.io:"]
+	insteadOf = sch:
+[push]
+	default = simple
