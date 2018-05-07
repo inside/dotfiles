@@ -406,6 +406,7 @@ nnoremap <leader>ev :edit $MYVIMRC<cr>
 nnoremap <leader>ez :edit ~/.zshrc<cr>
 nnoremap <leader>eh :edit ~/.hyper.js<cr>
 nnoremap <leader>et :edit ~/.tmux.conf<cr>
+nnoremap <leader>eg :edit ~/.gitconfig<cr>
 
 " Source my vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
