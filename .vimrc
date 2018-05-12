@@ -194,38 +194,6 @@ func! EslintRule()
   let url = 'http://eslint.org/docs/rules/' . rule
   exec 'silent !xdg-open ' . url
 endfunc
-
-func! s:IsSpec(f)
-  let slice = fnamemodify(a:f, ':h:t')
-
-  if slice ==# '__tests__'
-    return 1
-  endif
-
-  return 0
-endfunc
-
-func! s:GetAltFile()
-  let f = expand('%')
-
-  if s:IsSpec(f)
-    let tail = fnamemodify(f, ':t')
-    let root = fnamemodify(tail, ':r')
-    let root = fnamemodify(root, ':r')
-    let altFile = fnamemodify(f, ':h') . '/../' . root . '.js'
-  else
-    let root = fnamemodify(f, ':t')
-    let root = fnamemodify(root, ':r')
-    let altFile = fnamemodify(f, ':h') . '/__tests__/' . root . '.spec.js'
-  endif
-
-  return altFile
-endfunc
-
-func! OpenAltFile()
-    let cmd = "edit " . s:GetAltFile()
-    execute cmd
-endfunc
 " }}}
 
 " User defined commands {{{
@@ -732,8 +700,8 @@ nnoremap <leader>ep :call PrettierWrite()<CR>
 " http://vim.wikia.com/wiki/Copy_filename_to_clipboard
 nnoremap <leader>yf :let @+=expand('%')<CR>
 
-" Switch between the source and spec file and vice versa
-nnoremap <leader>a :call OpenAltFile()<CR>
+" Switch to the alternate file with vim-projectionist
+nnoremap <leader>a :A<CR>
 
 " Easier mapping for the vim alternate file
 nnoremap <leader>6 :e #<cr>
@@ -779,19 +747,15 @@ Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
-Plug 'beyondwords/vim-twig'
 Plug 'breuckelen/vim-resize'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'digitaltoad/vim-pug'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'glts/vim-textobj-comment'
-Plug 'godlygeek/windowlayout'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'honza/vim-snippets'
-Plug 'hynek/vim-python-pep8-indent'
 Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
 Plug 'inside/vim-bubble-lines'
 Plug 'inside/vim-es2015-snippets'
@@ -801,7 +765,6 @@ Plug 'inside/vim-search-pulse'
 Plug 'inside/vim-textobj-jsxattr'
 Plug 'inside/vim-toup'
 Plug 'inside/vim-visual-star-search'
-Plug 'inside/vimwiki'
 Plug 'jebaum/vim-tmuxify'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'kana/vim-textobj-function'
@@ -829,13 +792,11 @@ Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'sgur/unite-qf'
-" Plug 'suan/vim-instant-markdown'
-Plug 'tobyS/pdv', {'for': ['php']}
-Plug 'tobyS/vmustache'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tsukkee/unite-tag'
@@ -845,7 +806,6 @@ Plug 'vim-scripts/CursorLineCurrentWindow'
 Plug 'vim-scripts/L9'
 Plug 'vim-scripts/Toggle'
 Plug 'vim-scripts/camelcasemotion'
-Plug 'vim-scripts/loremipsum'
 Plug 'vim-scripts/matchit.zip'
 Plug 'alexbyk/vim-ultisnips-js-testing'
 Plug 'shime/vim-livedown'

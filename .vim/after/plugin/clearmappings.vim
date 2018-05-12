@@ -1,10 +1,10 @@
 " Vimwiki
-nunmap <Leader>wt
-nunmap <Leader>wi
-nunmap <Leader>ws
-nunmap <Leader>w<Leader>t
-nunmap <Leader>w<Leader>w
-nunmap <Leader>w<Leader>i
+" nunmap <Leader>wt
+" nunmap <Leader>wi
+" nunmap <Leader>ws
+" nunmap <Leader>w<Leader>t
+" nunmap <Leader>w<Leader>w
+" nunmap <Leader>w<Leader>i
 
 " BufKill
 "nunmap <Leader>ba
@@ -16,9 +16,9 @@ nunmap <Leader>w<Leader>i
 "nunmap <Leader>bb
 
 " Toggle
-iunmap <C-T>
-nunmap +
-vunmap +
+" iunmap <C-T>
+" nunmap +
+" vunmap +
 
 " godlygeek/windowlayout
-nunmap <C-W>o
+" nunmap <C-W>o
