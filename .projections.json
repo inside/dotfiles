@@ -1,8 +1,10 @@
 {
-  "*/index.js": {
-    "alternate": "{}/__tests__/index.spec.js"
+  "*.js": {
+    "alternate": "{dirname}/__tests__/{basename}.spec.js",
+    "type": "source"
   },
-  "*/__tests__/index.spec.js": {
-    "alternate": "{}/index.js"
+  "**/__tests__/*.spec.js": {
+    "alternate": "{}.js",
+    "type": "test"
   }
 }
