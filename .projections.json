@@ -1,0 +1,8 @@
+{
+  "*/index.js": {
+    "alternate": "{}/__tests__/index.spec.js"
+  },
+  "*/__tests__/index.spec.js": {
+    "alternate": "{}/index.js"
+  }
+}
