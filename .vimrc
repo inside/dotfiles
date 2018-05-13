@@ -765,6 +765,7 @@ Plug 'inside/vim-search-pulse'
 Plug 'inside/vim-textobj-jsxattr'
 Plug 'inside/vim-toup'
 Plug 'inside/vim-visual-star-search'
+Plug 'janko-m/vim-test'
 Plug 'jebaum/vim-tmuxify'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'kana/vim-textobj-function'
@@ -787,6 +788,7 @@ Plug 'inside/vim-jsx', {'for': 'javascript'}
 Plug 'inside/vim-react-snippets', {'for': 'javascript'}
 Plug 'prendradjaja/vim-vertigo'
 Plug 'stefandtw/quickfix-reflector.vim'
+Plug 'reinh/vim-makegreen'
 Plug 'rhysd/clever-f.vim'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -976,6 +978,11 @@ let g:javascript_plugin_flow = 1
 
 " vim-markdown
 let g:markdown_fenced_languages = ['javascript', 'vim']
+
+" vim-test
+" run test for example with:
+" TestSuite --reporters=/home/yann/.nvm/versions/node/v8.9.4/lib/node_modules/jest-simple-reporter
+let test#strategy = 'makegreen'
 " }}}
 
 " Color options {{{
