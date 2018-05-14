@@ -455,7 +455,7 @@ nnoremap <cr> ==
 xnoremap <cr> =
 
 " Write and quit all buffers
-nnoremap <leader>z :wqa<cr>
+nnoremap <leader>z :xa<cr>
 
 " Quit current window
 nnoremap q :q<cr>
