@@ -230,6 +230,9 @@ Alias gd Gdiff
 Alias gm Gmerge
 Alias gb Gblame
 Alias gi Git
+
+" vim-test aliases
+Alias tf TestFile
 " }}}
 
 " General options {{{
@@ -788,11 +791,11 @@ Plug 'inside/vim-jsx', {'for': 'javascript'}
 Plug 'inside/vim-react-snippets', {'for': 'javascript'}
 Plug 'prendradjaja/vim-vertigo'
 Plug 'stefandtw/quickfix-reflector.vim'
-Plug 'reinh/vim-makegreen'
 Plug 'rhysd/clever-f.vim'
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'skywind3000/asyncrun.vim'
 Plug 'sgur/unite-qf'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-dispatch'
@@ -980,11 +983,17 @@ let g:javascript_plugin_flow = 1
 let g:markdown_fenced_languages = ['javascript', 'vim']
 
 " vim-test
-let test#strategy = 'makegreen'
+let test#strategy = 'asyncrun'
 let g:test#javascript#jest#executable = 'npm test --silent --'
-let g:test#javascript#jest#options = '--reporters=' . $NVM_BIN . '/../lib/node_modules/jest-simple-reporter'
+let g:test#javascript#jest#options =
+      \'--reporters=' .
+      \$NVM_BIN .
+      \'/../lib/node_modules/jest-simple-reporter'
 
-nnoremap t<C-f> :TestFile<CR>
+" Asyncrun
+let g:asyncrun_open = 10
+let g:asyncrun_status = "stopped"
+let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
 " }}}
 
 " Color options {{{
