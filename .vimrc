@@ -232,7 +232,10 @@ Alias gb Gblame
 Alias gi Git
 
 " vim-test aliases
+Alias tn TestNearest
 Alias tf TestFile
+Alias ts TestSuite
+Alias tl TestLast
 " }}}
 
 " General options {{{
