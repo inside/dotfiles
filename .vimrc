@@ -763,6 +763,7 @@ Plug 'digitaltoad/vim-pug'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'glts/vim-textobj-comment'
+Plug 'godlygeek/windowlayout'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'honza/vim-snippets'
 Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
