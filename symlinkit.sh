@@ -5,8 +5,8 @@
 DOTFILES_DIR=~/github/dotfiles/
 
 function relink() {
-    rm -i $1
-    ln -s $2 $1
+    rm "$2"
+    ln -s "$1" "$2"
 }
 
 cd
@@ -18,10 +18,10 @@ do
         $I == '..' || \
         $I == '.git' || \
         $I == '.gitignore' || \
-        $I == $(basename $0) ]]
+        $I == $(basename "$0") ]]
     then
         continue
     fi
 
-    relink $I "$DOTFILES_DIR$I"
+    relink "$DOTFILES_DIR$I" ~/$I
 done

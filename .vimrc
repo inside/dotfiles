@@ -988,11 +988,23 @@ let g:markdown_fenced_languages = ['javascript', 'vim']
 
 " vim-test
 let test#strategy = 'asyncrun'
-let g:test#javascript#jest#executable = 'npm test --silent --'
-let g:test#javascript#jest#options =
-      \'--reporters=' .
-      \$NVM_BIN .
-      \'/../lib/node_modules/jest-simple-reporter'
+" pipefail explained:
+" set the exit status $? to the exit code of the last program to exit non-zero
+" (or zero if all exited successfully)
+" $ false | true; echo $?
+" 0
+" $ set -o pipefail
+" $ false | true; echo $?
+" 1
+let g:test#javascript#jest#executable = 'set -o pipefail; npm test --silent'
+
+function! JestTransform(cmd) abort
+  " redirect the error to standard output to be able to pipe
+  return a:cmd . " 2>&1 | sed -r -f ~/.jest-transform.sed"
+endfunction
+
+let g:test#custom_transformations = {'jest': function('JestTransform')}
+let g:test#transformation = 'jest'
 
 " Asyncrun
 let g:asyncrun_open = 10
@@ -1057,7 +1069,10 @@ augroup mygroup
   autocmd Filetype scss setlocal suffixesadd=.scss
 
   " Suffix for js files
-  autocmd Filetype javascript setlocal suffixesadd=.js
+  " and Jest errorformat
+  autocmd Filetype javascript setlocal
+        \ suffixesadd=.js
+        \ errorformat=%.%#\ at\ %f:%l:%c,%.%#\ at\ %.%#(%f:%l:%c)
 
   " https://github.com/maksimr/vim-jsbeautify
   autocmd Filetype javascript vnoremap <buffer> <leader>b :call RangeJsBeautify()<cr>
