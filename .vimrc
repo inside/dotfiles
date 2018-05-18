@@ -757,6 +757,8 @@ Plug 'ap/vim-css-color'
 Plug 'breuckelen/vim-resize'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'christoomey/vim-tmux-navigator'
+" vim 'compiler' for jest-cli
+Plug 'craigdallimore/vim-jest-cli'
 Plug 'digitaltoad/vim-pug'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'flazz/vim-colorschemes'
@@ -1070,9 +1072,7 @@ augroup mygroup
 
   " Suffix for js files
   " and Jest errorformat
-  autocmd Filetype javascript setlocal
-        \ suffixesadd=.js
-        \ errorformat=%.%#\ at\ %f:%l:%c,%.%#\ at\ %.%#(%f:%l:%c)
+  autocmd Filetype javascript setlocal suffixesadd=.js
 
   " https://github.com/maksimr/vim-jsbeautify
   autocmd Filetype javascript vnoremap <buffer> <leader>b :call RangeJsBeautify()<cr>
