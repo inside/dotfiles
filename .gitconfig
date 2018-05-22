@@ -7,12 +7,13 @@
     branch = auto
 [core]
     pager = less
-	excludesfile = ~/.gitignore_global
+    excludesfile = ~/.gitignore_global
 [alias]
-    a = add
-    d = diff
-    dc = diff --cached
-    e = edit
+    a = number add
+    d = number diff
+    dc = number diff --cached
+    ; e = edit
+    e = number -c vim
     g = grep
     ; Push the branch you are on to the remote
     p = push origin HEAD
@@ -23,10 +24,12 @@
     lp = log -p
     lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'
     lpe = log -p  -- . ":(exclude)package-lock.json"
-    s = status --short
-    st = status
+    ; s = status --short
+    s = number -s
+    ; st = status
+    st = number
     br = branch
-    co = checkout
+    co = number checkout
     ci = commit
     ca = commit -a
     caa = commit -a --amend
@@ -52,7 +55,7 @@
     staged = "!vim `git diff --name-only --cached`"
     all = "!vim `git diff --name-only HEAD`"
 
-    flog = log --name-status
+    flog = number log --name-status
     jls = jira list
     f = fetch --prune
     pr = pull-request
@@ -66,17 +69,17 @@
     show = diff-highlight | less
     diff = diff-highlight | less
 [hub]
-	host = github.schibsted.io
+    host = github.schibsted.io
 [merge]
-	tool = vimdiff
-	conflictstyle = diff3
+    tool = vimdiff
+    conflictstyle = diff3
 [mergetool]
-	prompt = false
+    prompt = false
 [gitreview]
     remote = origin
 [alias]
     review = !git-review
 [url "git@github.schibsted.io:"]
-	insteadOf = sch:
+    insteadOf = sch:
 [push]
-	default = simple
+    default = simple
