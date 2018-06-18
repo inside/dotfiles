@@ -35,7 +35,7 @@ alias d="git diff"
 alias p="git p"
 alias pfw="git pfw"
 alias l="git log"
-
+alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
 alias simpleserver="python -m SimpleHTTPServer"
 
 # Connects to a virtual machine
