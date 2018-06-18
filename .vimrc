@@ -992,6 +992,8 @@ let g:markdown_fenced_languages = ['javascript', 'vim']
 
 " vim-test
 let test#strategy = 'asyncrun'
+" The code below is not used anymore, but I'm keeping it commented since it
+" has so much intelligence in it
 " pipefail explained:
 " set the exit status $? to the exit code of the last program to exit non-zero
 " (or zero if all exited successfully)
@@ -1000,15 +1002,17 @@ let test#strategy = 'asyncrun'
 " $ set -o pipefail
 " $ false | true; echo $?
 " 1
-let g:test#javascript#jest#executable = 'set -o pipefail; npm test --silent'
 
-function! JestTransform(cmd) abort
-  " redirect the error to standard output to be able to pipe
-  return a:cmd . " 2>&1 | sed -r -f ~/.jest-transform.sed"
-endfunction
+" function! JestTransform(cmd) abort
+  " " redirect the error to standard output to be able to pipe
+  " return a:cmd . " 2>&1 | sed -r -f ~/.jest-transform.sed"
+" endfunction
 
-let g:test#custom_transformations = {'jest': function('JestTransform')}
-let g:test#transformation = 'jest'
+" let g:test#custom_transformations = {'jest': function('JestTransform')}
+" let g:test#transformation = 'jest'
+
+" let g:test#javascript#jest#executable = 'set -o pipefail; npm test --silent'
+let g:test#javascript#jest#executable = 'npm test --silent'
 
 " Asyncrun
 let g:asyncrun_open = 10
