@@ -33,6 +33,7 @@
     ci = commit
     ca = commit -a
     caa = commit -a --amend
+    caan = commit -a --amend --no-edit
     ru = remote update
     prom = pull --rebase origin master
     c = clone
@@ -73,7 +74,7 @@
     host = github.schibsted.io
 [merge]
     tool = vimdiff
-    conflictstyle = diff3
+    ; conflictstyle = diff3
 [mergetool]
     prompt = false
 [gitreview]
