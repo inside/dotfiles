@@ -790,7 +790,7 @@ Plug 'maksimr/vim-jsbeautify'
 Plug 'mattn/emmet-vim', {'for': ['javascript', 'html', 'html.twig', 'ejs']}
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'moll/vim-node'
+Plug 'inside/vim-node'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'neomake/neomake'
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
@@ -1077,7 +1077,6 @@ augroup mygroup
   autocmd Filetype scss setlocal suffixesadd=.scss
 
   " Suffix for js files
-  " and Jest errorformat
   autocmd Filetype javascript setlocal suffixesadd=.js
 
   " https://github.com/maksimr/vim-jsbeautify
