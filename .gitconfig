@@ -12,6 +12,8 @@
     a = number add
     d = number diff
     dc = number diff --cached
+    ; r = number rm
+    unstage = number reset HEAD
     ; e = edit
     e = number -c vim
     g = grep
