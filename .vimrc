@@ -187,13 +187,6 @@ func! QuickfixToggle()
     cclose
   endif
 endfunc
-
-func! EslintRule()
-  let rule = expand('<cWORD>')
-  let rule = substitute(rule, '\v["|:|'']', '', 'g')
-  let url = 'http://eslint.org/docs/rules/' . rule
-  exec 'silent !xdg-open ' . url
-endfunc
 " }}}
 
 " User defined commands {{{
@@ -480,14 +473,6 @@ xnoremap <f1> <nop>
 " Remaps esc to something easier to type
 inoremap jk <esc>
 
-" Bring each tag attribute/value on its own line
-" For example <a href="/foo" class="foo" id="foo"> becomes:
-" <a
-" href="/foo"
-" class="foo"
-" id="foo">
-nnoremap <leader><leader>b /=<cr>BXi<cr><esc>n
-
 " Tabs
 nnoremap <leader>tn :tabnew<cr>
 nnoremap <Leader>tc :<C-u>CloseTab<cr>
@@ -573,12 +558,6 @@ nnoremap Y y$
 nnoremap <silent> tn :call <sid>NextTag('next')<cr>
 nnoremap <silent> tp :call <sid>NextTag('previous')<cr>
 nnoremap <leader>nn :call <sid>ToggleNumbers()<cr>
-
-" Vimwiki
-" Don't use noremap
-nmap <leader>W <Plug>VimwikiIndex
-
-nnoremap <c-p> :call pdv#DocumentCurrentLine()<cr>
 
 " vim-argumentative
 nmap [a <Plug>Argumentative_Prev
@@ -785,7 +764,6 @@ Plug 'haya14busa/vim-textobj-function-syntax'
 Plug 'kmnk/vim-unite-giti'
 Plug 'kopischke/vim-fetch'
 Plug 'majutsushi/tagbar'
-Plug 'maksimr/vim-jsbeautify'
 "Plug 'marijnh/tern_for_vim', {'do': 'npm install'}
 Plug 'mattn/emmet-vim', {'for': ['javascript', 'html', 'html.twig', 'ejs']}
 Plug 'mhinz/vim-startify'
@@ -838,9 +816,7 @@ endif
 
 " javascript
 let g:neomake_javascript_enabled_makers = ['eslint']
-" let g:neomake_javascript_enabled_makers = ['eslint', 'flow']
 let g:neomake_javascript_eslint_exe = getcwd() . '/node_modules/.bin/eslint'
-" let g:neomake_javascript_flow_exe = './node_modules/.bin/flow'
 
 let g:neomake_scss_enabled_makers = ['stylelint']
 let g:neomake_scss_stylelint_exe = getcwd() . '/node_modules/.bin/stylelint'
@@ -919,9 +895,6 @@ let g:startify_session_persistence = 1
 " Disables custom header
 let g:startify_custom_header = []
 
-" pdv
-let g:pdv_template_dir = expand('~/.vim/bundle/pdv/templates')
-
 " vim-auto-save
 " Enable auto save
 let g:auto_save = 1
@@ -967,18 +940,10 @@ let g:tmuxify_custom_command = 'tmux split-window -d -v -p 20'
 " The nerdtree
 let g:NERDTreeShowHidden = 1
 
-" suan/vim-instant-markdown
-" let g:instant_markdown_slow = 1
-" let g:instant_markdown_autostart = 0
-
 " shime/vim-livedown
 " should the browser window pop-up upon previewing
 let g:livedown_open = 1
 nnoremap gm :LivedownPreview<cr>
-
-
-" vimwiki
-let g:vimwiki_conceallevel = 0
 
 " nerdcommenter
 let NERDSpaceDelims = 1
@@ -1037,15 +1002,10 @@ augroup mygroup
   autocmd FileType vim nnoremap <buffer> <leader>he :help <c-r><c-w><cr>
   " Make files use the tab character for indentation
   autocmd FileType make setlocal noexpandtab
-  " See: http://bjori.blogspot.fr/2010/01/unix-manual-pages-for-php-functions.html
-  autocmd FileType php setlocal keywordprg=pman
-  autocmd BufNewFile,BufRead *.ejs set filetype=ejs
   " Show the signs column even if it is empty, useful for the vim-git-gutter plugin
   autocmd BufEnter * sign define dummy
   autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
   autocmd FileType unite call s:unite_settings()
-  " I don't want the docstring window to popup during completion
-  autocmd FileType python setlocal completeopt-=preview
   " Thanks to http://tilvim.com/2013/05/29/comment-prefix.html
   " I don't want comment prefixing on a new line
   autocmd FileType * setlocal formatoptions-=o formatoptions-=r
@@ -1068,7 +1028,6 @@ augroup mygroup
   autocmd CmdwinEnter * nnoremap <buffer> <cr> <cr>
 
   " Abbreviations
-  autocmd Filetype php inoreabbrev <buffer> tt $this-><c-r>=<sid>Eatchar('\s')<cr>
 
   " No wrap for css
   autocmd Filetype css,scss setlocal nowrap
@@ -1079,12 +1038,6 @@ augroup mygroup
   " Suffix for js files
   autocmd Filetype javascript setlocal suffixesadd=.js
 
-  " https://github.com/maksimr/vim-jsbeautify
-  autocmd Filetype javascript vnoremap <buffer> <leader>b :call RangeJsBeautify()<cr>
-  autocmd FileType json vnoremap <buffer> <leader>b :call RangeJsonBeautify()<cr>
-  autocmd FileType html vnoremap <buffer> <leader>b :call RangeHtmlBeautify()<cr>
-  autocmd FileType css vnoremap <buffer> <leader>b :call RangeCSSBeautify()<cr>
-  " autocmd BufRead,BufWritePost *.{js,scss,md} Neomake
   autocmd BufRead,BufWritePost *.{js,scss,sh} Neomake
   autocmd FileType html let b:delimitMate_matchpairs = '(:),[:],{:}'
 
