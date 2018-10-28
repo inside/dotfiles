@@ -302,6 +302,9 @@ if has('unnamedplus')
   set clipboard=unnamed,unnamedplus
 endif
 
+" https://medium.com/vim-drops/javascript-autocompletion-on-vim-4fea7f6934e2
+set omnifunc=syntaxcomplete#Complete
+
 " }}}
 
 " Visual options {{{
@@ -765,7 +768,7 @@ Plug 'haya14busa/vim-textobj-function-syntax'
 Plug 'kmnk/vim-unite-giti'
 Plug 'kopischke/vim-fetch'
 Plug 'majutsushi/tagbar'
-"Plug 'marijnh/tern_for_vim', {'do': 'npm install'}
+Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
 Plug 'mattn/emmet-vim', {'for': ['javascript', 'html', 'html.twig', 'ejs']}
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
