@@ -9,6 +9,7 @@
     pager = less
     excludesfile = ~/.gitignore_global
 [alias]
+    cp = cherry-pick
     a = number add
     d = number diff
     dc = number diff --cached
@@ -25,6 +26,7 @@
     l = log
     lp = log -p
     lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'
+    sl = log --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'
     lpe = log -p  -- . ":(exclude)package-lock.json"
     ; s = status --short
     s = number -s
@@ -61,7 +63,7 @@
     flog = number log --name-status
     jls = jira list
     f = fetch --prune
-    pr = pull-request
+    cpr = pull-request
     reuse = commit -eF .git/COMMIT_EDITMSG
     cz = !./node_modules/.bin/git-cz
     cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
