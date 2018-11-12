@@ -81,18 +81,8 @@ func! s:PrepageCommitMessage()
 
   if !filereadable(file_head . '/MERGE_MSG') &&
         \ !filereadable(file_head . '/SQUASH_MSG')
-    " Note the two trailing spaces at the end of the normal command
-    execute 'normal A  '
     startinsert
   endif
-endfunc
-
-" To consume the character typed after an abbreviation
-" See :helpgrep Eatchar
-func! s:Eatchar(pat)
-  let c = nr2char(getchar(0))
-
-  return (c =~# a:pat) ? '' : c
 endfunc
 
 func! s:ToggleNumbers()
@@ -204,13 +194,6 @@ Alias sis SetIndentSize
 command! UndoCloseTab call s:UndoCloseTab()
 command! CloseTab call s:CloseTab()
 
-" pandoc , markdown
-command! -nargs=* RunSilent
-      \ | execute ':silent !'.'<args>'
-      \ | execute ':redraw!'
-nnoremap <leader>dc :RunSilent pandoc -o /tmp/vim-pandoc-out.pdf %<CR>
-nnoremap <leader>do :RunSilent gnome-open /tmp/vim-pandoc-out.pdf<CR>
-
 " Save one key stroke for grepping
 Alias g G
 
@@ -304,7 +287,6 @@ endif
 
 " https://medium.com/vim-drops/javascript-autocompletion-on-vim-4fea7f6934e2
 set omnifunc=syntaxcomplete#Complete
-
 " }}}
 
 " Visual options {{{
@@ -323,12 +305,7 @@ set list
 let &listchars='tab:▸ '
 " Don't colorize syntax after 512 characters
 set synmaxcol=512
-
-" For at least vim >= 7.4.338
-if has('patch-7.4.338')
-  set breakindent
-endif
-
+set breakindent
 set linebreak
 
 " If you're using tmux, be sure to have tmux >= 2.2 when using this setting
@@ -427,9 +404,6 @@ noremap <leader><S-Tab> :bp<cr>
 " fugitive
 " switch back to current file and closes fugitive buffer
 nnoremap <leader>GD :diffoff!<cr><C-W>h:bd<cr>
-
-" Inserts the relative filname
-" inoremap <c-f>n <c-r>=expand("%:p")<cr>
 
 " <C-R> explained:
 " You can insert the result of a Vim expression in insert mode using the <C-R>=
@@ -574,14 +548,6 @@ xmap aa <Plug>Argumentative_OuterTextObject
 omap ia <Plug>Argumentative_OpPendingInnerTextObject
 omap aa <Plug>Argumentative_OpPendingOuterTextObject
 
-" Look for the next/previous number
-nnoremap <silent> <expr> <leader>N <sid>NextPrevNumber('/')
-nnoremap <silent> <expr> <leader>B <sid>NextPrevNumber('?')
-
-func! s:NextPrevNumber(cmd)
-  return a:cmd . "\\v[0-9]+\<cr>:call search_pulse#Pulse()\<cr>"
-endfunc
-
 " To search and replace a word, I often use a dot formula pattern described by
 " Drew Neil in Practical vim:
 "
@@ -627,13 +593,6 @@ nnoremap gk k
 xnoremap gj j
 xnoremap gk k
 
-if has('nvim')
-  tnoremap <c-h> <C-\><C-n><C-w>h
-  tnoremap <c-j> <C-\><C-n><C-w>j
-  tnoremap <c-k> <C-\><C-n><C-w>k
-  tnoremap <c-l> <C-\><C-n><C-w>l
-endif
-
 " Shorcut to paste and preserve indenting
 nnoremap <leader>p ]p
 nnoremap <leader>P ]P
@@ -659,11 +618,8 @@ onoremap <silent> <Space>k :<C-U>VertigoUp o<CR>
 nnoremap <leader>- <c-w>s
 nnoremap <leader>\| <c-w>v
 
-inoremap ./ ./<c-x><c-f>
+" Faster insert mode file completion
 inoremap <c-f> <c-x><c-f>
-
-" format a json file
-" nnoremap <leader> %!python -m json.tool
 
 " Eslint fix
 " Courtesy of https://github.com/jackfranklin/dotfiles/commit/a4e210b23ac2895349333420d6c0f6fd305c5331
@@ -698,8 +654,6 @@ nnoremap <leader>6 :e #<cr>
 
 " Abbreviations {{{
 inoreabbrev fu function
-" Inserts the current date with the format: '%b %d, %Y' == 'Sep 27, 2007'
-inoreabbrev idate <c-r>=strftime('%b %d, %Y')<cr><c-r>=<sid>Eatchar('\s')<cr>
 
 cnoreabbrev gp Gpush origin HEAD
 " }}}
@@ -736,20 +690,17 @@ Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
-Plug 'aserebryakov/vim-todo-lists'
 Plug 'breuckelen/vim-resize'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'christoomey/vim-tmux-navigator'
 " vim 'compiler' for jest-cli
 Plug 'craigdallimore/vim-jest-cli'
-Plug 'digitaltoad/vim-pug'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'glts/vim-textobj-comment'
 Plug 'godlygeek/windowlayout'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'honza/vim-snippets'
-Plug 'inside/CSScomb-for-Vim', {'for': 'css'}
 Plug 'inside/vim-bubble-lines'
 Plug 'inside/vim-es2015-snippets'
 Plug 'inside/vim-grep-operator'
@@ -765,7 +716,6 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-user'
 Plug 'haya14busa/vim-textobj-function-syntax'
-Plug 'kmnk/vim-unite-giti'
 Plug 'kopischke/vim-fetch'
 Plug 'majutsushi/tagbar'
 Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
@@ -795,7 +745,6 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'tsukkee/unite-tag'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/CursorLineCurrentWindow'
@@ -857,15 +806,8 @@ let g:airline_theme = 'monochrome'
 let g:user_emmet_leader_key = '<c-e>'
 let g:user_emmet_mode = 'iv' " enable zencoding in insert and visual modes
 
-" jedi-vim
-let g:jedi#goto_assignments_command = ''
-let g:jedi#rename_command = ''
-
 " Search pulse
 let g:vim_search_pulse_mode = 'pattern'
-
-" CoffeeScript
-let g:coffee_lint_options = '-f ~/.coffeelint.json'
 
 " trailing-whitespace
 let g:extra_whitespace_ignored_filetypes = ['unite']
@@ -912,16 +854,6 @@ let g:auto_save_in_insert_mode = 0
 " Prefer to use 750ms
 let g:auto_save_no_updatetime = 1
 
-" If you have a more recent vim version than: 7.4.493,
-" you can use these autocommands to trigger the save and don't rely on the
-" updatetime option.
-" I found out about a bug here:
-" git log -S TextChanged --since="Sun Jul 10 19:22:53 2014 +0200"
-"let g:auto_save_events = ['TextChanged', 'InsertLeave']
-
-" CursorHold seems to be the best solution for me
-" let g:auto_save_events = ['CursorHold']
-
 " Ultisnips
 let g:UltiSnipsExpandTrigger = '<c-l>'
 let g:UltiSnipsJumpForwardTrigger = '<c-l>'
@@ -955,7 +887,6 @@ let NERDSpaceDelims = 1
 
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_flow = 1
 
 " vim-markdown
 let g:markdown_fenced_languages = ['javascript', 'vim']
@@ -973,15 +904,6 @@ let test#strategy = 'asyncrun'
 " $ false | true; echo $?
 " 1
 
-" function! JestTransform(cmd) abort
-  " " redirect the error to standard output to be able to pipe
-  " return a:cmd . " 2>&1 | sed -r -f ~/.jest-transform.sed"
-" endfunction
-
-" let g:test#custom_transformations = {'jest': function('JestTransform')}
-" let g:test#transformation = 'jest'
-
-" let g:test#javascript#jest#executable = 'set -o pipefail; npm test --silent'
 let g:test#javascript#jest#executable = 'npm test --silent'
 
 " Asyncrun
