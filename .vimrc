@@ -397,10 +397,6 @@ nnoremap <silent> <leader>fa
 nnoremap <silent> <leader>fr
       \ :<c-u>UniteResume<cr>
 
-" Switch to the next/previous buffer
-noremap <leader><Tab> :bn<cr>
-noremap <leader><S-Tab> :bp<cr>
-
 " fugitive
 " switch back to current file and closes fugitive buffer
 nnoremap <leader>GD :diffoff!<cr><C-W>h:bd<cr>
@@ -535,18 +531,6 @@ nnoremap Y y$
 nnoremap <silent> tn :call <sid>NextTag('next')<cr>
 nnoremap <silent> tp :call <sid>NextTag('previous')<cr>
 nnoremap <leader>nn :call <sid>ToggleNumbers()<cr>
-
-" vim-argumentative
-nmap [a <Plug>Argumentative_Prev
-nmap ]a <Plug>Argumentative_Next
-xmap [a <Plug>Argumentative_XPrev
-xmap ]a <Plug>Argumentative_XNext
-nmap <a <Plug>Argumentative_MoveLeft
-nmap >a <Plug>Argumentative_MoveRight
-xmap ia <Plug>Argumentative_InnerTextObject
-xmap aa <Plug>Argumentative_OuterTextObject
-omap ia <Plug>Argumentative_OpPendingInnerTextObject
-omap aa <Plug>Argumentative_OpPendingOuterTextObject
 
 " To search and replace a word, I often use a dot formula pattern described by
 " Drew Neil in Practical vim:
@@ -745,6 +729,7 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/CursorLineCurrentWindow'
@@ -753,6 +738,7 @@ Plug 'vim-scripts/Toggle'
 Plug 'vim-scripts/camelcasemotion'
 Plug 'vim-scripts/matchit.zip'
 Plug 'alexbyk/vim-ultisnips-js-testing'
+Plug 'sgur/vim-textobj-parameter'
 Plug 'shime/vim-livedown'
 
 call plug#end()
@@ -910,6 +896,9 @@ let g:test#javascript#jest#executable = 'npm test --silent'
 let g:asyncrun_open = 10
 let g:asyncrun_status = "stopped"
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+
+" sgur/vim-textobj-parameter
+let g:vim_textobj_parameter_mapping = 'a'
 " }}}
 
 " Color options {{{
