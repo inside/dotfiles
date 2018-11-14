@@ -627,7 +627,11 @@ nnoremap <leader>ep :call PrettierWrite()<CR>
 
 " Copy the current file path to the clipboard
 " http://vim.wikia.com/wiki/Copy_filename_to_clipboard
-nnoremap <leader>yf :let @+=expand('%:p')<CR>
+"
+" Copy the relative path or whatever path vim has
+nnoremap <leader>yf :let @+=expand('%')<CR>
+" Copy the full path
+nnoremap <leader>yF :let @+=expand('%:p')<CR>
 
 " Switch to the alternate file with vim-projectionist
 nnoremap <leader>a :A<CR>
