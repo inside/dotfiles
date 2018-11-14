@@ -40,6 +40,7 @@
     caan = commit -a --amend --no-edit
     ru = remote update
     prom = pull --rebase origin master
+    rcont = rebase --continue
     c = clone
 
     ; Checkout branch name from master
