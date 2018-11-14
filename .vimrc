@@ -874,6 +874,9 @@ nnoremap gm :LivedownPreview<cr>
 
 " nerdcommenter
 let NERDSpaceDelims = 1
+let g:NERDCustomDelimiters = {
+      \ 'javascript': { 'left': '//', 'right': '', 'leftAlt': '{/*', 'rightAlt': '*/}' },
+      \}
 
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1
