@@ -340,7 +340,7 @@ set cursorline
 
 " Mappings {{{
 " Get to know the current pattern count match
-nnoremap <leader>o :%s///gn<cr>
+nnoremap <leader>co :%s///gn<cr>
 
 " Quick way to recall macro a
 nnoremap <leader>2 @q
@@ -638,6 +638,9 @@ nnoremap <leader>a :A<CR>
 
 " Easier mapping for the vim alternate file
 nnoremap <leader>6 :e #<cr>
+
+" ZoomWin
+nmap <leader>o <Plug>ZoomWin
 " }}}
 
 " Abbreviations {{{
