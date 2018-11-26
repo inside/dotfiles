@@ -796,7 +796,7 @@ nmap <leader>sh <Plug>GitGutterStageHunk
 let g:airline_theme = 'monochrome'
 
 " emmet
-let g:user_emmet_leader_key = '<c-e>'
+let g:user_emmet_leader_key = '\e'
 let g:user_emmet_mode = 'iv' " enable zencoding in insert and visual modes
 
 " Search pulse
