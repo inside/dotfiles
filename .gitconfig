@@ -24,6 +24,7 @@
     pfw = push origin HEAD --force-with-lease
     pnfw = push origin HEAD --force-with-lease --no-verify
     l = log
+    lo = log --pretty=oneline
     lp = log -p
     lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'
     sl = log --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'
@@ -64,6 +65,7 @@
     flog = number log --name-status
     jls = jira list
     f = fetch --prune
+    fa = fetch --prune --all
     cpr = pull-request
     reuse = commit -eF .git/COMMIT_EDITMSG
     cz = !./node_modules/.bin/git-cz
