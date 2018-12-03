@@ -56,6 +56,7 @@
 
     ; Fetch git objects and reset hard to master
     rhard = "!git fetch origin && git reset --hard origin/master"
+    rh = "reset --hard"
 
     ; Edit modified file
     edit = "!vim `git diff --name-only`"
