@@ -260,7 +260,7 @@ set autoread
 set winaltkeys=no
 
 " Used for the CursorHold autocommand event and thud by the auto-save plugin
-set updatetime=750
+" set updatetime=750
 
 " Starts diffmode vertically, because it's easier to read
 set diffopt+=vertical
@@ -641,6 +641,9 @@ nnoremap <leader>6 :e #<cr>
 
 " ZoomWin
 nmap <leader>o <Plug>ZoomWin
+
+" Quicker way to save
+nnoremap <leader>w :update<CR>
 " }}}
 
 " Abbreviations {{{
@@ -670,7 +673,7 @@ call plug#begin('~/.vim/bundle')
 let g:plug_url_format = 'git@github.com:%s.git'
 " let g:neomake_logfile = '/tmp/neomake.log'
 
-Plug '907th/vim-auto-save'
+" Plug '907th/vim-auto-save'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'PeterRincker/vim-argumentative'
 Plug 'Raimondi/delimitMate'
@@ -837,15 +840,15 @@ let g:startify_custom_header = []
 
 " vim-auto-save
 " Enable auto save
-let g:auto_save = 1
+" let g:auto_save = 1
 " Do not display the auto-save notification
-let g:auto_save_silent = 1
+" let g:auto_save_silent = 1
 " Do not save while in insert mode
-let g:auto_save_in_insert_mode = 0
+" let g:auto_save_in_insert_mode = 0
 " Do not change the 'updatetime' option
 " It is set to 400ms by this plugin
 " Prefer to use 750ms
-let g:auto_save_no_updatetime = 1
+" let g:auto_save_no_updatetime = 1
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger = '<c-l>'
