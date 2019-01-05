@@ -183,8 +183,8 @@ endfunc
 " Create an alias
 command! -nargs=+ Alias call <sid>Alias(<f-args>)
 
-" Shortcut to :Ag
-command! -complete=file -nargs=+ G :Ag! <args>
+" Shortcut to :Ack
+command! -complete=file -nargs=+ G :Ack! <args>
 
 " Change indent size quickly
 command! -nargs=1 SetIndentSize call <sid>SetIndentSize(<f-args>)
@@ -716,6 +716,7 @@ Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
 Plug 'mattn/emmet-vim', {'for': ['javascript', 'html', 'html.twig', 'ejs']}
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'mileszs/ack.vim'
 Plug 'inside/vim-node'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'neomake/neomake'
@@ -726,7 +727,7 @@ Plug 'inside/vim-react-snippets', {'for': 'javascript'}
 Plug 'prendradjaja/vim-vertigo'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'rhysd/clever-f.vim'
-Plug 'rking/ag.vim'
+Plug 'rhysd/github-complete.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'skywind3000/asyncrun.vim'
@@ -808,13 +809,12 @@ let g:vim_search_pulse_mode = 'pattern'
 " trailing-whitespace
 let g:extra_whitespace_ignored_filetypes = ['unite']
 
-" ag.vim
 " From https://stackoverflow.com/a/26650258/2140421
 " Prevents very long lines from blowing up the quickfix window
-let g:ag_prg = 'true ; f() { ag -Q --vimgrep "$@" \| cut -c 1-1000 }; f'
+let g:ackprg = 'true ; f() { ag -Q --vimgrep "$@" \| cut -c 1-1000 }; f'
 
 " The vim grep operator
-let g:grep_operator = 'Ag'
+let g:grep_operator = 'Ack'
 
 " Startify
 let g:startify_change_to_dir = 0
