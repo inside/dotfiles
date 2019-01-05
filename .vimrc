@@ -643,7 +643,7 @@ nnoremap <leader>6 :e #<cr>
 nmap <leader>o <Plug>ZoomWin
 
 " Quicker way to save
-nnoremap <leader>w :update<CR>
+nnoremap <leader>w :wall<CR>
 " }}}
 
 " Abbreviations {{{
