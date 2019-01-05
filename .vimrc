@@ -971,8 +971,8 @@ augroup mygroup
   autocmd FileType html let b:delimitMate_matchpairs = '(:),[:],{:}'
 
   " useful for filename completion relative to current buffer path
-  autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
-  autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
+  autocmd InsertEnter *.{js,scss,sh} let save_cwd = getcwd() | set autochdir
+  autocmd InsertLeave *.{js,scss,sh} set noautochdir | execute 'cd' fnameescape(save_cwd)
 augroup END
 
 augroup linenumbering
