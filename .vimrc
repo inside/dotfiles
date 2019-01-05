@@ -772,7 +772,7 @@ let g:neomake_javascript_eslint_exe = getcwd() . '/node_modules/.bin/eslint'
 let g:neomake_scss_enabled_makers = ['stylelint']
 let g:neomake_scss_stylelint_exe = getcwd() . '/node_modules/.bin/stylelint'
 
-let g:neomake_shellcheck_args = ['-fgcc']
+let g:neomake_shellcheck_args = ['-fgcc', '-x']
 let g:neomake_sh_enabled_makers = ['shellcheck']
 
 " let g:neomake_markdown_enabled_makers = ['textlint']
