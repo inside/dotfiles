@@ -325,7 +325,7 @@ set shiftround
 " tabstop, just set noexpandtab.
 set expandtab
 set backspace=indent,eol,start
-set textwidth=0
+set textwidth=100
 set autoindent
 set ignorecase
 set smartcase
@@ -745,6 +745,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/CursorLineCurrentWindow'
 Plug 'vim-scripts/L9'
+Plug 'vim-scripts/loremipsum'
 Plug 'vim-scripts/Toggle'
 Plug 'vim-scripts/camelcasemotion'
 Plug 'vim-scripts/matchit.zip'
@@ -766,8 +767,12 @@ endif
 " Neomake
 
 " javascript
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_javascript_eslint_exe = getcwd() . '/node_modules/.bin/eslint'
+let path_to_eslint = getcwd() . '/node_modules/.bin/eslint'
+
+if filereadable(path_to_eslint)
+  let g:neomake_javascript_enabled_makers = ['eslint']
+  let g:neomake_javascript_eslint_exe = path_to_eslint
+endif
 
 let g:neomake_scss_enabled_makers = ['stylelint']
 let g:neomake_scss_stylelint_exe = getcwd() . '/node_modules/.bin/stylelint'
