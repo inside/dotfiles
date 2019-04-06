@@ -184,7 +184,8 @@ endfunc
 command! -nargs=+ Alias call <sid>Alias(<f-args>)
 
 " Shortcut to :Ack
-command! -complete=file -nargs=+ G :Ack! <args>
+" command! -complete=file -nargs=+ G :Ack! <args>
+cabbrev a <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Ack!' : 'a')<CR>
 
 " Change indent size quickly
 command! -nargs=1 SetIndentSize call <sid>SetIndentSize(<f-args>)
@@ -195,7 +196,7 @@ command! UndoCloseTab call s:UndoCloseTab()
 command! CloseTab call s:CloseTab()
 
 " Save one key stroke for grepping
-Alias g G
+" Alias g G
 
 " Fugitive aliases
 Alias gr Gread
