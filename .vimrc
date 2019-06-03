@@ -356,6 +356,7 @@ nnoremap <leader>en :edit ~/.npmrc<cr>
 nnoremap <leader>et :edit ~/.tmux.conf<cr>
 nnoremap <leader>ev :edit $MYVIMRC<cr>
 nnoremap <leader>ez :edit ~/.zshrc<cr>
+nnoremap <leader>ej :edit package.json<cr>
 
 " Source my vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
