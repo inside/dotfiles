@@ -59,6 +59,10 @@ function current_branch() {
   echo $ref
 }
 
+function text2pdf() {
+  cupsfilter "$1" > "$1.pdf"
+}
+
 alias ra="sudo /etc/init.d/apache2 restart"
 alias ls="ls -G --color"
 alias ll="ls -G -l --color"
