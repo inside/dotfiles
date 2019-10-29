@@ -68,6 +68,7 @@
     f = fetch --prune
     fa = fetch --prune --all
     cpr = pull-request
+    prco = pr checkout
     reuse = commit -eF .git/COMMIT_EDITMSG
     cz = !./node_modules/.bin/git-cz
     cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
