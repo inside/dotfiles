@@ -799,10 +799,10 @@ let delimitMate_expand_cr = 1
 " vim-git-gutter
 let g:gitgutter_eager = 0
 let g:gitgutter_realtime = 0
-nmap [h <Plug>GitGutterPrevHunk
-nmap ]h <Plug>GitGutterNextHunk
-nmap <leader>sh <Plug>GitGutterStageHunk
-nmap <leader>su <Plug>GitGutterUndoHunk
+nmap [h <Plug>(GitGutterPrevHunk)
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap <leader>sh <Plug>(GitGutterStageHunk)
+nmap <leader>su <Plug>(GitGutterUndoHunk)
 
 " vim-airline
 let g:airline_theme = 'monochrome'
