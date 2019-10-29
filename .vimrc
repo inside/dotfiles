@@ -896,7 +896,7 @@ let g:NERDCustomDelimiters = {
 let g:javascript_plugin_jsdoc = 1
 
 " vim-markdown
-let g:markdown_fenced_languages = ['javascript', 'vim']
+let g:markdown_fenced_languages = ['javascript', 'js=javascript', 'vim']
 
 " vim-test
 let test#strategy = 'asyncrun'
