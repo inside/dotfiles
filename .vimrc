@@ -1,3 +1,37 @@
+" How to compile vim by yourself {{{
+"
+" % git clone git@github.com:vim/vim.git
+" % cd vim
+"
+" In src/Makefile here are the options I've uncommented:
+"
+" CONF_OPT_GUI = --disable-gui
+" CONF_OPT_LUA = --enable-luainterp
+" CONF_OPT_PYTHON = --enable-pythoninterp
+" CONF_OPT_RUBY = --enable-rubyinterp
+" CONF_OPT_FEAT = --with-features=huge
+" If you have problem with x, don't include it
+" CONF_OPT_X = --without-x
+"
+" Then type:
+"
+" % make
+" % sudo make install
+"
+" If you change anything in the src/Makefile be sure to type:
+" % make reconfig
+" in order to take changes into account.
+"
+" * Installing libncurses-dev fixes this error:
+"
+" no terminal library found
+" checking for tgetent()... configure: error: NOT FOUND!
+" You need to install a terminal library; for example ncurses.
+" Or specify the name of the library with --with-tlib.
+"
+" * Uncomment 'prefix = $(HOME)' in src/Makefile if you want to install vim in your home directory.
+" }}}
+
 " Variables initialization {{{
 " Thanks to http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
 let mapleader = "\<space>"
