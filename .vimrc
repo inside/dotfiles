@@ -67,21 +67,21 @@ endfunc
 
 " This can conflict with the default mappings provided by snipmate.
 " See the after directory in .vim/bundle/snipMate/after
-func! s:SuperCleverTab()
-  if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-    return "\<Tab>"
-  elseif pumvisible()
-    return "\<c-n>"
-  else
-    if &omnifunc != ''
-      return "\<C-X>\<C-O>"
-    elseif &dictionary != ''
-      return "\<C-K>"
-    else
-      return "\<C-N>"
-    endif
-  endif
-endfunc
+" func! s:SuperCleverTab()
+  " if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+    " return "\<Tab>"
+  " elseif pumvisible()
+    " return "\<c-n>"
+  " else
+    " if &omnifunc != ''
+      " return "\<C-X>\<C-O>"
+    " elseif &dictionary != ''
+      " return "\<C-K>"
+    " else
+      " return "\<C-N>"
+    " endif
+  " endif
+" endfunc
 
 " Prevents variable from being over written when sourcing ~/.vimrc
 if exists('g:tmux_pane_open') == 0
@@ -322,7 +322,7 @@ if has('unnamedplus')
 endif
 
 " https://medium.com/vim-drops/javascript-autocompletion-on-vim-4fea7f6934e2
-set omnifunc=syntaxcomplete#Complete
+" set omnifunc=syntaxcomplete#Complete
 " }}}
 
 " Visual options {{{
@@ -443,7 +443,7 @@ nnoremap <leader>GD :diffoff!<cr><C-W>h:bd<cr>
 " command. For example, the following command creates an insert mode map command
 " that inserts the current directory:
 " :inoremap <F2> <C-R>=expand('%:p:h')<cr>
-inoremap <Tab> <C-R>=<sid>SuperCleverTab()<cr>
+" inoremap <Tab> <C-R>=<sid>SuperCleverTab()<cr>
 
 " vim-grep-operator
 let g:grep_operator_set_search_register = 1
@@ -681,6 +681,9 @@ nmap <leader>o <Plug>ZoomWin
 
 " Quicker way to save
 nnoremap <leader>w :wall<CR>
+
+" Trigger the omnicompletion
+inoremap <C-o> <C-x><C-o>
 " }}}
 
 " Abbreviations {{{
@@ -749,7 +752,6 @@ Plug 'kana/vim-textobj-user'
 Plug 'haya14busa/vim-textobj-function-syntax'
 Plug 'kopischke/vim-fetch'
 Plug 'majutsushi/tagbar'
-Plug 'ternjs/tern_for_vim', {'do': 'npm install'}
 Plug 'mattn/emmet-vim', {'for': ['javascript', 'html', 'html.twig', 'ejs']}
 Plug 'mhinz/vim-startify'
 Plug 'michaeljsmith/vim-indent-object'
@@ -789,6 +791,7 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'alexbyk/vim-ultisnips-js-testing'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'shime/vim-livedown'
+Plug 'natebosch/vim-lsc'
 
 call plug#end()
 
@@ -955,6 +958,27 @@ let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status
 
 " sgur/vim-textobj-parameter
 let g:vim_textobj_parameter_mapping = 'a'
+
+" vim-lsc
+" thanks to https://bluz71.github.io/2019/10/16/lsp-in-vim-with-the-lsc-plugin.html
+let g:lsc_server_commands = {
+ \  'javascript': {
+ \    'command': 'typescript-language-server --stdio',
+ \    'log_level': -1,
+ \    'suppress_stderr': v:true,
+ \  }
+ \}
+let g:lsc_auto_map = {
+ \  'GoToDefinition': 'gd',
+ \  'FindReferences': 'gr',
+ \  'Rename': 'gR',
+ \  'ShowHover': 'K',
+ \  'Completion': 'omnifunc',
+ \}
+let g:lsc_enable_autocomplete = v:false
+let g:lsc_enable_diagnostics = v:false
+let g:lsc_reference_highlights = v:false
+let g:lsc_trace_level = 'off'
 " }}}
 
 " Color options {{{
