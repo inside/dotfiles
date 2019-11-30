@@ -769,6 +769,7 @@ Plug 'rhysd/clever-f.vim'
 Plug 'rhysd/github-complete.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 Plug 'skywind3000/asyncrun.vim'
 Plug 'sgur/unite-qf'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
