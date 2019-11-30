@@ -471,9 +471,9 @@ nnoremap q :q<cr>
 nnoremap Q q
 
 " The nerdtree
-nnoremap <leader>nt :NERDTreeToggle<cr>
+nnoremap <leader>nt :NERDTreeToggle<cr> <c-w>=
 " Find the current file in the tree
-nnoremap <leader>nf :NERDTreeFind<cr>
+nnoremap <leader>nf :NERDTreeFind<cr> <c-w>=
 
 " Remaps <f1> to nothing, when you try to reach <esc> you often hit <f1>
 inoremap <f1> <nop>
@@ -768,7 +768,7 @@ Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'rhysd/github-complete.vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'skywind3000/asyncrun.vim'
 Plug 'sgur/unite-qf'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
