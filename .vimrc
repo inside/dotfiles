@@ -124,17 +124,6 @@ func! s:ToggleNumbers()
   set invrelativenumber
 endfunc
 
-" Custom mappings for the unite buffer
-func! s:unite_settings()
-  imap <buffer> <c-c> <Plug>(unite_exit)
-  nmap <buffer> <c-c> <Plug>(unite_exit)
-  nmap <buffer> <esc> <Plug>(unite_exit)
-  imap <buffer> <c-l> <Plug>(unite_redraw)
-  nmap <buffer> <c-l> <Plug>(unite_redraw)
-  imap <buffer> <c-j> <Plug>(unite_select_next_line)
-  imap <buffer> <c-k> <Plug>(unite_select_previous_line)
-endfunc
-
 " Lowercase inner word
 func! s:ChangeInnerWordCase(case)
   let col = virtcol('.')
@@ -401,38 +390,6 @@ nnoremap <leader><cr> :call <sid>ToggleActiveMouse()<cr>
 
 " call the tagbar window
 nnoremap tt :TagbarToggle<cr>
-
-" Unite
-nnoremap <silent> <leader>ff
-      \ :<c-u>Unite
-      \ -no-split -buffer-name=files -start-insert
-      \ file_rec/async<cr>
-nnoremap <silent> <leader>fb
-      \ :<c-u>Unite
-      \ -no-split -buffer-name=buffers -start-insert
-      \ buffer<cr>
-nnoremap <silent> <leader>fo
-      \ :<c-u>Unite
-      \ -no-split -buffer-name=outline -start-insert
-      \ outline<cr>
-nnoremap <silent> <leader>fl
-      \ :<c-u>Unite
-      \ -no-split -buffer-name=lines -start-insert
-      \ line<cr>
-nnoremap <silent> <leader>fm
-      \ :<c-u>Unite
-      \ -no-split -buffer-name=files -start-insert
-      \ file_mru<cr>
-nnoremap <silent> <leader>fc
-      \ :<c-u>UniteWithBufferDir
-      \ -no-split -buffer-name=files -start-insert
-      \ file_rec/async<cr>
-nnoremap <silent> <leader>fa
-      \ :<c-u>Unite
-      \ -no-split -buffer-name=buffers -start-insert
-      \ argument<cr>
-nnoremap <silent> <leader>fr
-      \ :<c-u>UniteResume<cr>
 
 " fugitive
 " switch back to current file and closes fugitive buffer
@@ -713,14 +670,9 @@ call plug#begin('~/.vim/bundle')
 let g:plug_url_format = 'git@github.com:%s.git'
 " let g:neomake_logfile = '/tmp/neomake.log'
 
-" Plug '907th/vim-auto-save'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'PeterRincker/vim-argumentative'
 Plug 'Raimondi/delimitMate'
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/unite-outline'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'SirVer/ultisnips'
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color'
@@ -771,7 +723,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 Plug 'skywind3000/asyncrun.vim'
-Plug 'sgur/unite-qf'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-dispatch'
@@ -789,13 +740,17 @@ Plug 'vim-scripts/loremipsum'
 Plug 'vim-scripts/Toggle'
 Plug 'vim-scripts/camelcasemotion'
 Plug 'vim-scripts/matchit.zip'
-Plug 'alexbyk/vim-ultisnips-js-testing'
+" Plug 'alexbyk/vim-ultisnips-js-testing'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'shime/vim-livedown'
 Plug 'natebosch/vim-lsc'
+Plug 'jreybert/vimagit'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
+Plug 'junegunn/fzf.vim'
+Plug 'pbogut/fzf-mru.vim'
 
 call plug#end()
-
 if s:needs_plugins
   echom 'Installing plugins...'
   PlugInstall
@@ -824,14 +779,6 @@ let g:neomake_sh_enabled_makers = ['shellcheck']
 " let g:neomake_markdown_enabled_makers = ['textlint']
 " let g:neomake_markdown_textlint_exe = './node_modules/.bin/textlint'
 
-" Unite
-let g:unite_source_rec_max_cache_files = 100000
-let g:unite_prompt = '» '
-let g:unite_source_rec_async_command =
-      \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', '']
-
-let g:unite_data_directory = expand('~/.cache/unite')
-
 " delimitMate
 let delimitMate_expand_cr = 1
 
@@ -852,9 +799,6 @@ let g:user_emmet_mode = 'iv' " enable zencoding in insert and visual modes
 
 " Search pulse
 let g:vim_search_pulse_mode = 'pattern'
-
-" trailing-whitespace
-let g:extra_whitespace_ignored_filetypes = ['unite']
 
 " From https://stackoverflow.com/a/26650258/2140421
 " Prevents very long lines from blowing up the quickfix window
@@ -962,6 +906,8 @@ let g:vim_textobj_parameter_mapping = 'a'
 
 " vim-lsc
 " thanks to https://bluz71.github.io/2019/10/16/lsp-in-vim-with-the-lsc-plugin.html
+" Mandatory dependencies can be installed with:
+" npm i -g typescript typescript-language-server
 let g:lsc_server_commands = {
  \  'javascript': {
  \    'command': 'typescript-language-server --stdio',
@@ -980,6 +926,15 @@ let g:lsc_enable_autocomplete = v:false
 let g:lsc_enable_diagnostics = v:false
 let g:lsc_reference_highlights = v:false
 let g:lsc_trace_level = 'off'
+
+" fzf
+nnoremap <silent> <Leader>ff :GFiles<CR>
+nnoremap <silent> <Leader>fb :Buffers<CR>
+nnoremap <silent> <Leader>fm :FZFMru<CR>
+nnoremap <silent> <Leader>fl :BLines<CR>
+nnoremap <silent> <Leader>fg :GFiles?<CR>
+let g:fzf_layout = { "window": "silent botright 16split enew" }
+
 " }}}
 
 " Color options {{{
@@ -1002,7 +957,6 @@ augroup mygroup
   " Show the signs column even if it is empty, useful for the vim-git-gutter plugin
   autocmd BufEnter * sign define dummy
   autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
-  autocmd FileType unite call s:unite_settings()
   " Thanks to http://tilvim.com/2013/05/29/comment-prefix.html
   " I don't want comment prefixing on a new line
   autocmd FileType * setlocal formatoptions-=o formatoptions-=r
