@@ -159,4 +159,5 @@ export NVM_DIR="$HOME/.nvm"
 # added by travis gem
 [ -f /home/yann/.travis/travis.sh ] && source /home/yann/.travis/travis.sh
 
+export FZF_DEFAULT_OPTS="--reverse"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
