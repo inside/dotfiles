@@ -64,7 +64,6 @@
     all = "!vim `git diff --name-only HEAD`"
 
     flog = number log --name-status
-    jls = jira list
     f = fetch --prune
     fa = fetch --prune --all
     cpr = pull-request
