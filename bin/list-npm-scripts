@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+const pkg = require(process.cwd() + '/package.json')
+const scriptNames = Object.keys(pkg.scripts)
+
+scriptNames.forEach(scriptName => {
+  console.log(scriptName)
+})

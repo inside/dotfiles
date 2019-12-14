@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+list-npm-scripts | fzf --cycle | xargs --no-run-if-empty npm run
