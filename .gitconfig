@@ -65,7 +65,6 @@
 
     flog = number log --name-status
     f = fetch --prune
-    fa = fetch --prune --all
     cpr = pull-request
     prco = pr checkout
     reuse = commit -eF .git/COMMIT_EDITMSG
