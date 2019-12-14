@@ -71,7 +71,9 @@
     cz = !./node_modules/.bin/git-cz
     cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
     bi = bisect
-    fco = "!git branch --format='%(refname:short)' | fzf | xargs git checkout"
+
+    ; fuzzy checkout a branch
+    fco = "!git branch --format='%(refname:short)' | fzf | xargs --verbose git checkout"
 [rerere]
     enabled = true
 [pager]
