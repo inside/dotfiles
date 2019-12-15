@@ -933,7 +933,7 @@ nnoremap <silent> <Leader>fb :Buffers<CR>
 nnoremap <silent> <Leader>fm :FZFMru<CR>
 nnoremap <silent> <Leader>fl :BLines<CR>
 nnoremap <silent> <Leader>fg :GFiles?<CR>
-let $FZF_DEFAULT_OPTS = '--reverse'
+
 let g:fzf_layout = { 'up': '~50%' }
 " }}}
 
