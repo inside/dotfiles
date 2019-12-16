@@ -35,23 +35,9 @@ stty stop undef
 alias s="git s"
 alias d="git diff"
 alias p="git p"
-alias pfw="git pfw"
 alias l="git log"
 alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
 alias simpleserver="python -m SimpleHTTPServer"
-
-# Connects to a virtual machine
-vmxpie() {
-    if [ -z "$1" ]
-    then
-        echo "Usage : $(basename $0) 6|7|8|9 [host number]"
-        return
-    fi
-
-    host="vmie$1"
-    echo "connecting to $host"
-    rdesktop -u 'y.thomas-gerard' -d 'DAILY' -f -a 16 -k fr -z -xb -P "$host"
-}
 
 # Will return the current branch name
 # Usage example: git pull origin $(current_branch)
