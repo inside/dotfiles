@@ -95,7 +95,7 @@
         xargs -0 -t -o git add --all"
 
     ; fuzzy edit edited files
-    ef = !FILES=`git status -s | awk '{ print $2 }' | fzf -x -m` && vim ${FILES}
+    ef = !FILES=`git diff --name-only | fzf --multi` && vim ${FILES}
 [rerere]
     enabled = true
 [pager]
