@@ -73,12 +73,22 @@
     bi = bisect
     brshort = branch --format='%(refname:short)'
 
-    ; fuzzy checkout a branch
+    ; fuzzy checkout a local branch
     cof = "!git brshort | fzf | xargs --no-run-if-empty --verbose git checkout"
-    cofa = "!git brshort --all |\
+
+    ; fuzzy checkout a remote branch
+    cofa = "!git brshort --remotes |\
         fzf |\
         sed -E 's/^origin\\/([[:alnum:]_-]+)$/\\1 origin\\/\\1/' |\
         xargs --no-run-if-empty --verbose git checkout -b"
+
+    ; fuzzy add files
+    af = "!git ls-files -m -o --exclude-standard |\
+        fzf --print0 -m --preview 'git diff {}' --preview-window=top:10:wrap |\
+        xargs -0 -t -o git add --all"
+
+    ; fuzzy edit edited files
+    ef = !FILES=`git status -s | awk '{ print $2 }' | fzf -x -m` && vim ${FILES}
 [rerere]
     enabled = true
 [pager]
