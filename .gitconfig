@@ -73,7 +73,7 @@
     bi = bisect
 
     ; fuzzy checkout a branch
-    fco = "!git branch --format='%(refname:short)' | fzf | xargs --no-run-if-empty --verbose git checkout"
+    cof = "!git branch --format='%(refname:short)' | fzf | xargs --no-run-if-empty --verbose git checkout"
 [rerere]
     enabled = true
 [pager]
