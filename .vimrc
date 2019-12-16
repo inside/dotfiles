@@ -65,40 +65,10 @@ func! s:ToggleActiveMouse()
   endif
 endfunc
 
-" This can conflict with the default mappings provided by snipmate.
-" See the after directory in .vim/bundle/snipMate/after
-" func! s:SuperCleverTab()
-  " if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-    " return "\<Tab>"
-  " elseif pumvisible()
-    " return "\<c-n>"
-  " else
-    " if &omnifunc != ''
-      " return "\<C-X>\<C-O>"
-    " elseif &dictionary != ''
-      " return "\<C-K>"
-    " else
-      " return "\<C-N>"
-    " endif
-  " endif
-" endfunc
-
 " Prevents variable from being over written when sourcing ~/.vimrc
 if exists('g:tmux_pane_open') == 0
   let g:tmux_pane_open = 0
 endif
-
-" Go to next/previous SGML tag
-" Credit goes to https://github.com/tejr/nextag/blob/master/plugin/nextag.vim
-func! s:NextTag(direction)
-  let ptn = '\m<\/\?\w\+[^>]*>'
-
-  if a:direction ==# 'next'
-    call search(ptn)
-  elseif a:direction ==# 'previous'
-    call search(ptn, 'b')
-  endif
-endfunc
 
 " Helper to create aliases for vim commands.
 " Thanks to
@@ -309,9 +279,6 @@ set backupcopy=yes
 if has('unnamedplus')
   set clipboard=unnamed,unnamedplus
 endif
-
-" https://medium.com/vim-drops/javascript-autocompletion-on-vim-4fea7f6934e2
-" set omnifunc=syntaxcomplete#Complete
 " }}}
 
 " Visual options {{{
@@ -361,6 +328,13 @@ set laststatus=2
 set showcmd
 set showmode
 set cursorline
+" }}}
+
+" Color options {{{
+syntax on
+set background=dark
+" To run nicely in tmux: https://github.com/morhetz/gruvbox/issues/81
+set t_ut=
 " }}}
 
 " Mappings {{{
@@ -484,10 +458,6 @@ inoremap <c-k> <c-p>
 inoremap <c-n> <nop>
 inoremap <c-p> <nop>
 
-" Bubble lines
-xmap <c-k> <Plug>BubbleLinesVisualUp
-xmap <c-j> <Plug>BubbleLinesVisualDown
-
 " Most of the time I want to search for literal strings using /\V
 nnoremap / /\V
 nnoremap ? ?\V
@@ -495,9 +465,6 @@ nnoremap ? ?\V
 " Command mode history navigation
 cnoremap <c-j> <down>
 cnoremap <c-k> <up>
-
-" See spell checking correction suggestion quicker
-nnoremap <leader>s a<c-x><c-s>
 
 " Upper or lower case inner word
 nnoremap <leader>u :call <sid>ChangeInnerWordCase('lower')<cr>
@@ -522,8 +489,6 @@ xnoremap il :<c-u>call <sid>NextTextObject('i', 'F')<cr>
 " To be consistent with other normal commands like D, C
 nnoremap Y y$
 
-nnoremap <silent> tn :call <sid>NextTag('next')<cr>
-nnoremap <silent> tp :call <sid>NextTag('previous')<cr>
 nnoremap <leader>nn :call <sid>ToggleNumbers()<cr>
 
 " To search and replace a word, I often use a dot formula pattern described by
@@ -581,9 +546,6 @@ nnoremap <leader>q :call QuickfixToggle()<cr>
 
 " Don't loose my yank after a visual paste
 xnoremap <silent> p p:let @" = @0<cr>
-
-" Super quick search and replace inspired by -romainl-
-nnoremap <leader>r :%s/\<<c-r>=expand('<cword>')<cr>\>//gc<left><left><left>
 
 nnoremap <silent> <Space>j :<C-U>VertigoDown n<CR>
 vnoremap <silent> <Space>j :<C-U>VertigoDown v<CR>
@@ -668,7 +630,6 @@ endif
 
 call plug#begin('~/.vim/bundle')
 let g:plug_url_format = 'git@github.com:%s.git'
-" let g:neomake_logfile = '/tmp/neomake.log'
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'PeterRincker/vim-argumentative'
@@ -687,7 +648,6 @@ Plug 'glts/vim-textobj-comment'
 Plug 'godlygeek/windowlayout'
 Plug 'heavenshell/vim-jsdoc'
 Plug 'honza/vim-snippets'
-Plug 'inside/vim-bubble-lines'
 Plug 'inside/vim-es2015-snippets'
 Plug 'inside/vim-grep-operator'
 Plug 'inside/vim-react-snippets'
@@ -761,7 +721,6 @@ endif
 " Plugins configuration {{{
 
 " Neomake
-
 " javascript
 let path_to_eslint = getcwd() . '/node_modules/.bin/eslint'
 
@@ -828,18 +787,6 @@ let g:startify_session_dir = '~/.vimsessions'
 let g:startify_session_persistence = 1
 " Disables custom header
 let g:startify_custom_header = []
-
-" vim-auto-save
-" Enable auto save
-" let g:auto_save = 1
-" Do not display the auto-save notification
-" let g:auto_save_silent = 1
-" Do not save while in insert mode
-" let g:auto_save_in_insert_mode = 0
-" Do not change the 'updatetime' option
-" It is set to 400ms by this plugin
-" Prefer to use 750ms
-" let g:auto_save_no_updatetime = 1
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger = '<c-l>'
@@ -935,14 +882,10 @@ nnoremap <silent> <Leader>fl :BLines<CR>
 nnoremap <silent> <Leader>fg :GFiles?<CR>
 
 let g:fzf_layout = { 'up': '~50%' }
-" }}}
 
-" Color options {{{
-syntax on
-set background=dark
+
+" flazz/vim-colorschemes
 colorscheme gruvbox
-" To run nicely in tmux: https://github.com/morhetz/gruvbox/issues/81
-set t_ut=
 " }}}
 
 " Autocommands {{{
@@ -1050,3 +993,4 @@ if filereadable($HOME . '/.vimrc.local')
   source $HOME/.vimrc.local
 endif
 " }}}
+
