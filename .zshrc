@@ -17,6 +17,8 @@ bindkey -M viins 'jk' vi-cmd-mode
 bindkey -M viins '^j' vi-down-line-or-history
 bindkey -M viins '^k' vi-up-line-or-history
 
+bindkey -M viins '/' fzf-history-widget
+
 # Allow command line editing in an external editor
 autoload -Uz edit-command-line
 zle -N edit-command-line
