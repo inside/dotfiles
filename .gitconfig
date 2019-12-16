@@ -71,9 +71,14 @@
     cz = !./node_modules/.bin/git-cz
     cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
     bi = bisect
+    brshort = branch --format='%(refname:short)'
 
     ; fuzzy checkout a branch
-    cof = "!git branch --format='%(refname:short)' | fzf | xargs --no-run-if-empty --verbose git checkout"
+    cof = "!git brshort | fzf | xargs --no-run-if-empty --verbose git checkout"
+    cofa = "!git brshort --all |\
+        fzf |\
+        sed -E 's/^origin\\/([[:alnum:]_-]+)$/\\1 origin\\/\\1/' |\
+        xargs --no-run-if-empty --verbose git checkout -b"
 [rerere]
     enabled = true
 [pager]
