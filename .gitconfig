@@ -84,9 +84,9 @@
     cof = "!git brshort | fzf | xargs --no-run-if-empty --verbose git checkout"
 
     ; fuzzy checkout a remote branch
-    cofa = "!git brshort --remotes |\
+    corf = "!git brshort --remotes |\
         fzf |\
-        sed -E 's/^origin\\/([[:alnum:]_-]+)$/\\1 origin\\/\\1/' |\
+        sed -E 's#^origin/([[:alnum:]_-]+)$#\\1 origin/\\1#' |\
         xargs --no-run-if-empty --verbose git checkout -b"
 
     ; fuzzy add files
