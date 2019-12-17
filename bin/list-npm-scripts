@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
 const pkg = require(process.cwd() + '/package.json')
-const scriptNames = Object.keys(pkg.scripts)
+const reset = '\x1b[0m'
+const green = '\x1b[32m'
 
-scriptNames.forEach(scriptName => {
-  console.log(scriptName)
-})
+for (const [name, command] of Object.entries(pkg.scripts)) {
+  console.log(`${green}${name}${reset} ${command}`)
+}
