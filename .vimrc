@@ -54,139 +54,21 @@ let g:loaded_zipPlugin = 1
 let g:last_active_tab = 1
 " }}}
 
-" User functions {{{
-func! s:ToggleActiveMouse()
-  if &mouse ==# "nv"
-    set mouse=
-    echo "Mouse is off"
-  else
-    set mouse=nv
-    echo "Mouse is on"
-  endif
-endfunc
-
-" Prevents variable from being over written when sourcing ~/.vimrc
-if exists('g:tmux_pane_open') == 0
-  let g:tmux_pane_open = 0
-endif
-
-" Helper to create aliases for vim commands.
-" Thanks to
-" http://vim.wikia.com/wiki/Replace_a_builtin_command_using_cabbrev
-func! s:Alias(alias, cmd)
-  execute
-        \ printf('cnoreabbrev %s ', a:alias) .
-        \ '<c-r>=getcmdpos() == 1 && getcmdtype() == ":" ? ' .
-        \ printf('"%s" : "%s"<cr>', a:cmd, a:alias)
-endfunc
-
-func! s:PrepageCommitMessage()
-  let file_head = expand('%:p:h')
-
-  if !filereadable(file_head . '/MERGE_MSG') &&
-        \ !filereadable(file_head . '/SQUASH_MSG')
-    startinsert
-  endif
-endfunc
-
-func! s:ToggleNumbers()
-  set invnumber
-  set invrelativenumber
-endfunc
-
-" Lowercase inner word
-func! s:ChangeInnerWordCase(case)
-  let col = virtcol('.')
-
-  execute 'normal ' . (a:case ==# 'lower' ? 'guiw' : 'gUiw')
-  execute 'normal ' . col . '|'
-endfunc
-
-" Toggle capitalize inner word
-func! s:ToggleCapitalizeInnerWord()
-  let col = virtcol('.')
-
-  execute 'normal b~'
-  execute 'normal ' . col . '|'
-endfunc
-
-func! s:NextTextObject(motion, dir)
-  let text_object = nr2char(getchar())
-
-  if text_object ==# 'b'
-    let text_object = '('
-  elseif text_object ==# 'B'
-    let text_object = '{'
-  elseif text_object ==# 'm'
-    let text_object = '['
-  endif
-
-  execute 'normal! ' . a:dir . text_object . 'v' . a:motion . text_object
-endfunc
-
-func! s:SetIndentSize(spaces)
-  if type(str2nr(a:spaces)) != 0
-    return
-  endif
-
-  execute 'setlocal shiftwidth=' . a:spaces
-  execute 'setlocal softtabstop=' . a:spaces
-  execute 'setlocal tabstop=' . a:spaces
-endfunc
-
-" requires https://github.com/godlygeek/windowlayout
-func! s:UndoCloseTab()
-  if exists("s:layout") && !empty(s:layout)
-    tabnew
-    call windowlayout#SetLayout(s:layout)
-    unlet s:layout
-  endif
-endfunc
-
-func! s:CloseTab()
-  let s:layout = windowlayout#GetLayout()
-  tabclose
-endfunc
-
-func! s:LineMotion(dir)
-  if v:count == 0
-    return 'g' . a:dir
-  endif
-  return ":\<C-u>normal! m'" . v:count . a:dir . "\<CR>"
-endfunc
-
-" Toggles the quickfix window open or close
-" The quickfix-reflector.vim plugin is needed for this to work
-" because it sets the quickfix buffer name to quickfix-reflector-n (n being a
-" number)
-func! QuickfixToggle()
-  let qf_name = bufname('quickfix-reflector')
-
-  " The quickfix is not in the buffer list or not visible, let's open it
-  if qf_name ==# '' || bufwinnr(qf_name) == -1
-    copen
-  " The quickfix is visible, let's close it
-  else
-    cclose
-  endif
-endfunc
-" }}}
-
 " User defined commands {{{
 " Create an alias
-command! -nargs=+ Alias call <sid>Alias(<f-args>)
+command! -nargs=+ Alias call utils#alias(<f-args>)
 
 " Shortcut to :Ack
 " command! -complete=file -nargs=+ G :Ack! <args>
 " cabbrev a <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Ack!' : 'a')<CR>
 
 " Change indent size quickly
-command! -nargs=1 SetIndentSize call <sid>SetIndentSize(<f-args>)
+command! -nargs=1 SetIndentSize call utils#setIndentSize(<f-args>)
 Alias sis SetIndentSize
 
 " For restoring a closed tab and its window layout
-command! UndoCloseTab call s:UndoCloseTab()
-command! CloseTab call s:CloseTab()
+command! UndoCloseTab call utils#undoCloseTab()
+command! CloseTab call utils#closeTab()
 
 " Save one key stroke for grepping
 " Alias g G
@@ -360,7 +242,7 @@ nnoremap <leader>ej :edit package.json<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Toggle mouse on or off
-nnoremap <leader><cr> :call <sid>ToggleActiveMouse()<cr>
+nnoremap <leader><cr> :call mouse#toggleActive()<cr>
 
 " call the tagbar window
 nnoremap tt :TagbarToggle<cr>
@@ -467,29 +349,29 @@ cnoremap <c-j> <down>
 cnoremap <c-k> <up>
 
 " Upper or lower case inner word
-nnoremap <leader>u :call <sid>ChangeInnerWordCase('lower')<cr>
-nnoremap <leader>U :call <sid>ChangeInnerWordCase('upper')<cr>
+nnoremap <leader>u :call case#lowerInnerWord()<cr>
+nnoremap <leader>U :call case#upperInnerWord()<cr>
 
 " Toggle capitalize inner word
-nnoremap <leader>` :call <sid>ToggleCapitalizeInnerWord()<cr>
+nnoremap <leader>` :call case#toggleCapitalizeInnerWord()<cr>
 
 " Motion for "next/last object". For example, "din(" would go to the next "()" pair
 " and delete its contents.
 " https://gist.github.com/sjl/1171642
-onoremap an :<c-u>call <sid>NextTextObject('a', 'f')<cr>
-xnoremap an :<c-u>call <sid>NextTextObject('a', 'f')<cr>
-onoremap in :<c-u>call <sid>NextTextObject('i', 'f')<cr>
-xnoremap in :<c-u>call <sid>NextTextObject('i', 'f')<cr>
+onoremap an :<c-u>call utils#nextTextObject('a', 'f')<cr>
+xnoremap an :<c-u>call utils#nextTextObject('a', 'f')<cr>
+onoremap in :<c-u>call utils#nextTextObject('i', 'f')<cr>
+xnoremap in :<c-u>call utils#nextTextObject('i', 'f')<cr>
 
-onoremap al :<c-u>call <sid>NextTextObject('a', 'F')<cr>
-xnoremap al :<c-u>call <sid>NextTextObject('a', 'F')<cr>
-onoremap il :<c-u>call <sid>NextTextObject('i', 'F')<cr>
-xnoremap il :<c-u>call <sid>NextTextObject('i', 'F')<cr>
+onoremap al :<c-u>call utils#nextTextObject('a', 'F')<cr>
+xnoremap al :<c-u>call utils#nextTextObject('a', 'F')<cr>
+onoremap il :<c-u>call utils#nextTextObject('i', 'F')<cr>
+xnoremap il :<c-u>call utils#nextTextObject('i', 'F')<cr>
 
 " To be consistent with other normal commands like D, C
 nnoremap Y y$
 
-nnoremap <leader>nn :call <sid>ToggleNumbers()<cr>
+nnoremap <leader>nn :call numbers#toggle()<cr>
 
 " To search and replace a word, I often use a dot formula pattern described by
 " Drew Neil in Practical vim:
@@ -527,10 +409,10 @@ xnoremap am a[
 
 " LineMotion
 " https://www.reddit.com/r/vim/comments/3npf1z/using_jk_for_wrapped_lines_and_adding_jk_with_a/cvqe1no
-nnoremap <expr> <silent> j <sid>LineMotion('j')
-nnoremap <expr> <silent> k <sid>LineMotion('k')
-xnoremap <expr> <silent> j <sid>LineMotion('j')
-xnoremap <expr> <silent> k <sid>LineMotion('k')
+nnoremap <expr> <silent> j utils#lineMotion('j')
+nnoremap <expr> <silent> k utils#lineMotion('k')
+xnoremap <expr> <silent> j utils#lineMotion('j')
+xnoremap <expr> <silent> k utils#lineMotion('k')
 nnoremap gj j
 nnoremap gk k
 xnoremap gj j
@@ -542,7 +424,7 @@ nnoremap <leader>P ]P
 xnoremap <leader>p ]p
 xnoremap <leader>P ]P
 
-nnoremap <leader>q :call QuickfixToggle()<cr>
+nnoremap <leader>q :call utils#quickfixToggle()<cr>
 
 " Don't loose my yank after a visual paste
 xnoremap <silent> p p:let @" = @0<cr>
@@ -911,7 +793,7 @@ augroup mygroup
   " Toggles between the active and last active tab
   autocmd TabLeave * let g:last_active_tab = tabpagenr()
   autocmd Filetype qf setlocal nowrap
-  autocmd BufRead COMMIT_EDITMSG call <sid>PrepageCommitMessage()
+  autocmd BufRead COMMIT_EDITMSG call utils#prepageCommitMessage()
 
   " rainbow_parentheses
   autocmd VimEnter * RainbowParentheses
