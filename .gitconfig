@@ -6,7 +6,7 @@
     status = auto
     branch = auto
 [core]
-    pager = less
+	pager = diff-so-fancy | less --tabs=4 -RFX
     excludesfile = ~/.gitignore_global
 [alias]
     cp = cherry-pick
@@ -98,22 +98,11 @@
     ef = !FILES=`git diff --name-only | fzf --multi` && vim ${FILES}
 [rerere]
     enabled = true
-[pager]
-    log = diff-highlight | less
-    show = diff-highlight | less
-    diff = diff-highlight | less
 [hub]
     host = github.schibsted.io
 [merge]
     tool = vimdiff
-    ; conflictstyle = diff3
 [mergetool]
     prompt = false
-[gitreview]
-    remote = origin
-[alias]
-    review = !git-review
-[url "git@github.schibsted.io:"]
-    insteadOf = sch:
 [push]
     default = simple
