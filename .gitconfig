@@ -98,8 +98,6 @@
     ef = !FILES=`git diff --name-only | fzf --multi` && vim ${FILES}
 [rerere]
     enabled = true
-[hub]
-    host = github.schibsted.io
 [merge]
     tool = vimdiff
 [mergetool]
