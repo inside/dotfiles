@@ -585,7 +585,9 @@ Plug 'vim-scripts/matchit.zip'
 " Plug 'alexbyk/vim-ultisnips-js-testing'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'shime/vim-livedown'
-Plug 'natebosch/vim-lsc'
+" deactivating this plugin because it causes display troubles when using visual mode
+" == lines appear multiple times when the visual selection goes beyond one page
+" Plug 'natebosch/vim-lsc'
 Plug 'jreybert/vimagit'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
