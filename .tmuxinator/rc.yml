@@ -25,9 +25,13 @@ windows:
           - dev:
               - cd ~/src/rav-next
   - rav-components:
-      layout: ed49,126x30,0,0[126x23,0,0,0,126x6,0,24,1]
+      # layout: ed49,126x30,0,0[126x23,0,0,0,126x6,0,24,1]
+      # 80% top horizontal pane, 20% bottom horizontal pane, 20% right vertical pane
+      layout: f077,111x27,0,0{85x27,0,0[85x21,0,0,2,85x5,0,22,9],25x27,86,0,5}
       panes:
           - editor:
               - cd ~/src/rav-components
           - dev:
+              - cd ~/src/rav-components
+          - tests:
               - cd ~/src/rav-components
