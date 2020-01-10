@@ -114,6 +114,9 @@ PROMPT=$(echo '\
 P%j\n%{$reset_color%}\
 %# ')
 
+# Cursor color
+echo -ne "\e]12;magenta\a"
+
 # export NODE_PATH=/usr/lib/node_modules
 export CDPATH=.:~/github:~/.vim/bundle:~/src
 export LC_ALL=en_US.UTF8
