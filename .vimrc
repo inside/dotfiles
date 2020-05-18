@@ -586,8 +586,8 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'shime/vim-livedown'
 " deactivating this plugin because it causes display troubles when using visual mode
-" == lines appear multiple times when the visual selection goes beyond one page
-" Plug 'natebosch/vim-lsc'
+" e.g. lines appear multiple times when the visual selection goes beyond one page
+Plug 'natebosch/vim-lsc'
 Plug 'jreybert/vimagit'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
@@ -611,6 +611,14 @@ let path_to_eslint = getcwd() . '/node_modules/.bin/eslint'
 if filereadable(path_to_eslint)
   let g:neomake_javascript_enabled_makers = ['eslint']
   let g:neomake_javascript_eslint_exe = path_to_eslint
+endif
+
+" typescript
+let path_to_tsc = getcwd() . '/node_modules/.bin/tsc'
+
+if filereadable(path_to_tsc)
+  let g:neomake_typescript_enabled_makers = ['tsc']
+  let g:neomake_typescript_tsc_exe = path_to_tsc
 endif
 
 let g:neomake_scss_enabled_makers = ['stylelint']
@@ -744,11 +752,22 @@ let g:lsc_server_commands = {
  \    'command': 'typescript-language-server --stdio',
  \    'log_level': -1,
  \    'suppress_stderr': v:true,
+ \  },
+ \  'typescript': {
+ \    'command': 'typescript-language-server --stdio',
+ \    'log_level': -1,
+ \    'suppress_stderr': v:true,
+ \  },
+ \  'typescriptreact': {
+ \    'command': 'typescript-language-server --stdio',
+ \    'log_level': -1,
+ \    'suppress_stderr': v:true,
  \  }
  \}
 let g:lsc_auto_map = {
  \  'GoToDefinition': 'gd',
  \  'FindReferences': 'gr',
+ \  'FindImplementations': 'gI',
  \  'Rename': 'gR',
  \  'ShowHover': 'K',
  \  'Completion': 'omnifunc',
@@ -816,12 +835,16 @@ augroup mygroup
   " Suffix for js files
   autocmd Filetype javascript setlocal suffixesadd=.js
 
-  autocmd BufRead,BufWritePost *.{js,scss,sh} Neomake
+  " Suffix for typescript files
+  autocmd Filetype typescript setlocal suffixesadd=.ts
+  autocmd Filetype typescriptreact setlocal suffixesadd=.tsx
+
+  autocmd BufRead,BufWritePost *.{js,ts,tsx,scss,sh} Neomake
   autocmd FileType html let b:delimitMate_matchpairs = '(:),[:],{:}'
 
   " useful for filename completion relative to current buffer path
-  autocmd InsertEnter *.{js,scss,sh} let save_cwd = getcwd() | set autochdir
-  autocmd InsertLeave *.{js,scss,sh} set noautochdir | execute 'cd' fnameescape(save_cwd)
+  autocmd InsertEnter *.{js,ts,tsx,scss,sh} let save_cwd = getcwd() | set autochdir
+  autocmd InsertLeave *.{js,ts,tsx,scss,sh} set noautochdir | execute 'cd' fnameescape(save_cwd)
 augroup END
 
 augroup linenumbering

@@ -6,5 +6,13 @@
   "**/__tests__/*.spec.js": {
     "alternate": "{}.js",
     "type": "test"
+  },
+  "*.ts": {
+    "alternate": "{dirname}/__tests__/{basename}.spec.ts",
+    "type": "source"
+  },
+  "**/__tests__/*.spec.ts": {
+    "alternate": "{}.ts",
+    "type": "test"
   }
 }
