@@ -99,7 +99,10 @@ unsetopt EXTENDED_HISTORY                # Historique avec timings = bof
 setopt HIST_NO_STORE                     # N'enregistre pas la cmd history
 setopt noflowcontrol                     # restores the use of the keys ctrl-s, ctrl-q
 setopt HIST_SAVE_NO_DUPS
-setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+# setopt SHARE_HISTORY
+setopt histignorespace # Let us type a space before any command, and it'll not be added to history.
+# setopt sharehistory # Share history across terminals
 
 HISTSIZE=1000
 SAVEHIST=1000
@@ -111,7 +114,7 @@ PROMPT=$(echo '\
 %{$fg_no_bold[green]%}:%~ \
 %{$fg_bold[red]%}$(current_branch)\
 %{$fg_no_bold[cyan]%} %D{%b %e %T} \
-P%j\n%{$reset_color%}\
+P%j%{$fg_bold[red]%}%(?.. [%?])\n%{$reset_color%}\
 %# ')
 
 # Cursor color
@@ -161,6 +164,9 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export DENO_INSTALL="/home/yann/.deno/1.0.0"
+export PATH="$DENO_INSTALL/bin:$PATH"
 
 # added by travis gem
 [ -f /home/yann/.travis/travis.sh ] && source /home/yann/.travis/travis.sh
