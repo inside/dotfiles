@@ -18,6 +18,13 @@
     unstage = number reset HEAD
     ; e = edit
     e = number -c vim
+    ; run any git command, for example:
+    ; git n add 1
+    n = number
+    ; this allows commands such as:
+    ; git nc cat 1
+    ; => execute cat on the first numbered file
+    nc = number -c
     g = grep
     ; Push the branch you are on to the remote
     p = push origin HEAD
