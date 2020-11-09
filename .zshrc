@@ -32,12 +32,14 @@ stty stop undef
     # git $* || return 127
 # }
 
+alias ncc="nccgen"
 alias s="git s"
 alias d="git diff"
 alias p="git p"
 alias l="git log"
 alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
 alias simpleserver="python -m SimpleHTTPServer"
+alias cna="create-next-app"
 
 # Will return the current branch name
 # Usage example: git pull origin $(current_branch)
@@ -109,9 +111,15 @@ SAVEHIST=1000
 HISTFILE=~/.history
 
 # Variables
+# PROMPT=$(echo '\
+# %{$fg_bold[green]%}%n@%m\
+# %{$fg_no_bold[green]%}:%~ \
+# %{$fg_bold[red]%}$(current_branch)\
+# %{$fg_no_bold[cyan]%} %D{%b %e %T} \
+# P%j%{$fg_bold[red]%}%(?.. [%?])\n%{$reset_color%}\
+# %# ')
 PROMPT=$(echo '\
-%{$fg_bold[green]%}%n@%m\
-%{$fg_no_bold[green]%}:%~ \
+%{$fg_no_bold[green]%}%~ \
 %{$fg_bold[red]%}$(current_branch)\
 %{$fg_no_bold[cyan]%} %D{%b %e %T} \
 P%j%{$fg_bold[red]%}%(?.. [%?])\n%{$reset_color%}\
@@ -166,6 +174,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export DENO_INSTALL="/home/yann/.deno/1.0.0"
+export DENO_DIR="$DENO_INSTALL/.cache"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 # added by travis gem
