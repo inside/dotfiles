@@ -611,6 +611,8 @@ let path_to_eslint = getcwd() . '/node_modules/.bin/eslint'
 if filereadable(path_to_eslint)
   let g:neomake_javascript_enabled_makers = ['eslint']
   let g:neomake_javascript_eslint_exe = path_to_eslint
+  let g:neomake_typescriptreact_enabled_makers = ['eslint']
+  let g:neomake_typescriptreact_eslint_exe = path_to_eslint
 endif
 
 " typescript
@@ -621,8 +623,12 @@ if filereadable(path_to_tsc)
   let g:neomake_typescript_tsc_exe = path_to_tsc
 endif
 
-let g:neomake_scss_enabled_makers = ['stylelint']
-let g:neomake_scss_stylelint_exe = getcwd() . '/node_modules/.bin/stylelint'
+let path_to_stylelint = getcwd() . '/node_modules/.bin/stylelint'
+
+if filereadable(path_to_stylelint)
+  let g:neomake_scss_enabled_makers = ['stylelint']
+  let g:neomake_scss_stylelint_exe = path_to_stylelint
+endif
 
 let g:neomake_shellcheck_args = ['-fgcc', '-x']
 let g:neomake_sh_enabled_makers = ['shellcheck']
@@ -837,7 +843,7 @@ augroup mygroup
 
   " Suffix for typescript files
   autocmd Filetype typescript setlocal suffixesadd=.ts
-  autocmd Filetype typescriptreact setlocal suffixesadd=.tsx
+  autocmd Filetype typescriptreact setlocal suffixesadd=.ts
 
   autocmd BufRead,BufWritePost *.{js,ts,tsx,scss,sh} Neomake
   autocmd FileType html let b:delimitMate_matchpairs = '(:),[:],{:}'
