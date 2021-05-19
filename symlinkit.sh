@@ -2,7 +2,7 @@
 #
 # "borrowed" from Jonathan Palardy (http://github.com/jpalardy/etc_config/tree/master)
 
-DOTFILES_DIR=~/github/dotfiles/
+DOTFILES_DIR=~/src/dotfiles/
 
 function relink() {
     rm "$2"
