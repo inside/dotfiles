@@ -708,6 +708,7 @@ let g:tmuxify_custom_command = 'tmux split-window -d -v -p 20'
 
 " The nerdtree
 let g:NERDTreeShowHidden = 1
+let g:NERDTreeWinSize = 25
 
 " shime/vim-livedown
 " should the browser window pop-up upon previewing
