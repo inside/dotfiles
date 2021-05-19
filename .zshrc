@@ -73,14 +73,11 @@ alias ls="ls -G --color"
 alias ll="ls -G -l --color"
 alias fgrep="fgrep --color=always --exclude='*.git*'"
 alias lynx="lynx -accept_all_cookies"
-alias flashlog="tail -f ~/.macromedia/Flash_Player/Logs/flashlog.txt"
-alias v=/usr/local/bin/vim
-alias git=hub
+alias v=/usr/bin/vim
 alias g=git
 alias m=npm
 alias mr=npm\ run
 alias mux=tmuxinator
-compdef hub=git
 alias sudo="sudo "
 alias pbcopy="xclip -sel clip"
 
