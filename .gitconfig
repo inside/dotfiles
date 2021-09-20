@@ -36,7 +36,7 @@
     lp = log -p
     lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'
     sl = log --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ar)%Creset'
-    lpe = log -p  -- . ":(exclude)package-lock.json"
+    lpe = log -p  -- . ":(exclude)*package-lock.json"
     ; s = status --short
     s = number -s
     ; st = status
@@ -60,6 +60,12 @@
             return;\
         fi;\
         git checkout -b "$1" origin/master;\
+    }; f"
+
+    rauthor = "!f() {\
+        name=$(git config --get user.name);\
+        email=$(git config --get user.email);\
+        git commit --amend --author=\"$name <$email>\";\
     }; f"
 
     ; Fetch git objects and reset hard to master
@@ -126,3 +132,5 @@
 	whitespace = red reverse
 [diff]
 	tool = vimdiff
+[gitreview]
+	remote = origin
