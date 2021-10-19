@@ -852,6 +852,10 @@ augroup mygroup
   " useful for filename completion relative to current buffer path
   autocmd InsertEnter *.{js,ts,tsx,scss,sh} let save_cwd = getcwd() | set autochdir
   autocmd InsertLeave *.{js,ts,tsx,scss,sh} set noautochdir | execute 'cd' fnameescape(save_cwd)
+
+  " Close nerdtree even if it is the last window
+  " https://stackoverflow.com/questions/2066590/automatically-quit-vim-if-nerdtree-is-last-and-only-buffer
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 
 augroup linenumbering
