@@ -173,8 +173,8 @@ set t_vb=
 set wildmenu
 set wildmode=list:longest,full
 set guicursor+=a:blinkon0
-set relativenumber
-set number
+" set relativenumber
+" set number
 set list
 let &listchars='tab:▸ '
 " Don't colorize syntax after 512 characters
@@ -278,7 +278,7 @@ xnoremap <cr> =
 nnoremap <leader>z :xa<cr>
 
 " Quit current window
-nnoremap q :q<cr>
+nnoremap q :q!<cr>
 
 " Record macros using Q
 nnoremap Q q
@@ -555,7 +555,9 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'neomake/neomake'
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 " vim-jsx depends on vim-javascript
-Plug 'inside/vim-jsx', {'for': 'javascript'}
+" Plug 'inside/vim-jsx', {'for': 'javascript'}
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'inside/vim-react-snippets', {'for': 'javascript'}
 Plug 'prendradjaja/vim-vertigo'
 Plug 'stefandtw/quickfix-reflector.vim'
@@ -587,7 +589,7 @@ Plug 'sgur/vim-textobj-parameter'
 Plug 'shime/vim-livedown'
 " deactivating this plugin because it causes display troubles when using visual mode
 " e.g. lines appear multiple times when the visual selection goes beyond one page
-Plug 'natebosch/vim-lsc'
+" Plug 'natebosch/vim-lsc'
 Plug 'jreybert/vimagit'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
@@ -607,19 +609,33 @@ endif
 " Neomake
 " javascript
 let path_to_eslint = getcwd() . '/node_modules/.bin/eslint'
+let g:neomake_typescript_enabled_makers = []
 
 if filereadable(path_to_eslint)
   let g:neomake_javascript_enabled_makers = ['eslint']
   let g:neomake_javascript_eslint_exe = path_to_eslint
+
   let g:neomake_typescriptreact_enabled_makers = ['eslint']
   let g:neomake_typescriptreact_eslint_exe = path_to_eslint
+
+  let g:neomake_typescript_enabled_makers += ['eslint']
+  let g:neomake_typescript_eslint_exe = path_to_eslint
+
+  let g:neomake_json_enabled_makers = ['eslint']
+  let g:neomake_json_eslint_exe = path_to_eslint
+
+  " let g:neomake_yaml_enabled_makers = ['eslint']
+  " let g:neomake_yaml_eslint_exe = path_to_eslint
+
+  " let g:neomake_yml_enabled_makers = ['eslint']
+  " let g:neomake_yml_eslint_exe = path_to_eslint
 endif
 
 " typescript
 let path_to_tsc = getcwd() . '/node_modules/.bin/tsc'
 
 if filereadable(path_to_tsc)
-  let g:neomake_typescript_enabled_makers = ['tsc']
+  let g:neomake_typescript_enabled_makers += ['tsc']
   let g:neomake_typescript_tsc_exe = path_to_tsc
 endif
 
@@ -659,7 +675,7 @@ let g:vim_search_pulse_mode = 'pattern'
 
 " From https://stackoverflow.com/a/26650258/2140421
 " Prevents very long lines from blowing up the quickfix window
-let g:ackprg = 'true ; f() { ag -Q --vimgrep "$@" \| cut -c 1-1000 }; f'
+let g:ackprg = 'true ; f() { ag --hidden --ignore .git --ignore .next -Q --vimgrep "$@" \| cut -c 1-1000 }; f'
 
 " The vim grep operator
 let g:grep_operator = 'Ack'
@@ -704,7 +720,7 @@ nnoremap <silent> <up> :CmdResizeUp<cr>
 nnoremap <silent> <right> :CmdResizeRight<cr>
 
 " vim-tmuxify
-let g:tmuxify_custom_command = 'tmux split-window -d -v -p 20'
+let g:tmuxify_custom_command = 'tmux split-window -d -v -l 10'
 
 " The nerdtree
 let g:NERDTreeShowHidden = 1
@@ -830,6 +846,10 @@ augroup mygroup
   " because I remap enter to ==
   autocmd Filetype qf nnoremap <buffer> <cr> <cr>
   autocmd CmdwinEnter * nnoremap <buffer> <cr> <cr>
+  " this doesn't work
+  " i want to get rid of the 'cannot close last window' error when typing 'q' to close the last
+  " buffer which is the quickfix window
+  " autocmd FileType qf nmap <buffer> q :q<cr>
 
   " Abbreviations
 
@@ -843,10 +863,10 @@ augroup mygroup
   autocmd Filetype javascript setlocal suffixesadd=.js
 
   " Suffix for typescript files
-  autocmd Filetype typescript setlocal suffixesadd=.ts
-  autocmd Filetype typescriptreact setlocal suffixesadd=.ts
+  autocmd Filetype typescript setlocal suffixesadd=.ts,.tsx
+  autocmd Filetype typescriptreact setlocal suffixesadd=.ts,.tsx,.js
 
-  autocmd BufRead,BufWritePost *.{js,ts,tsx,scss,sh} Neomake
+  autocmd BufRead,BufWritePost *.{js,ts,tsx,scss,sh,yaml,yml,json} Neomake
   autocmd FileType html let b:delimitMate_matchpairs = '(:),[:],{:}'
 
   " useful for filename completion relative to current buffer path
