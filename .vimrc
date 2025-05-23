@@ -105,10 +105,11 @@ set directory=~/.vim/backup " Stores swap files there
 set writebackup
 set mouse=
 
-if !has('nvim')
-  set ttymouse=xterm2 " Make mouse work on virtual terms like screen
-  set nocompatible
-endif
+" not necessary anymore, was making the mouse fail
+" if !has('nvim')
+  " set ttymouse=xterm2 " Make mouse work on virtual terms like screen
+  " set nocompatible
+" endif
 
 set wildignore+=*.git*
 set history=200
@@ -523,12 +524,10 @@ Plug 'breuckelen/vim-resize'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'christoomey/vim-tmux-navigator'
 " vim 'compiler' for jest-cli
-Plug 'craigdallimore/vim-jest-cli'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'glts/vim-textobj-comment'
 Plug 'godlygeek/windowlayout'
-Plug 'heavenshell/vim-jsdoc'
 Plug 'honza/vim-snippets'
 Plug 'inside/vim-es2015-snippets'
 Plug 'inside/vim-grep-operator'
@@ -537,10 +536,7 @@ Plug 'inside/vim-search-pulse'
 Plug 'inside/vim-textobj-jsxattr'
 Plug 'inside/vim-toup'
 Plug 'inside/vim-visual-star-search'
-Plug 'janko-m/vim-test'
 Plug 'jebaum/vim-tmuxify'
-Plug 'jparise/vim-graphql'
-Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-user'
 Plug 'haya14busa/vim-textobj-function-syntax'
@@ -559,15 +555,13 @@ Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'inside/vim-react-snippets', {'for': 'javascript'}
-Plug 'prendradjaja/vim-vertigo'
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'rhysd/clever-f.vim'
-Plug 'rhysd/github-complete.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 Plug 'skywind3000/asyncrun.vim'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+" Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
@@ -580,17 +574,18 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/CursorLineCurrentWindow'
 Plug 'vim-scripts/L9'
-Plug 'vim-scripts/loremipsum'
 Plug 'vim-scripts/Toggle'
 Plug 'vim-scripts/camelcasemotion'
 Plug 'vim-scripts/matchit.zip'
 " Plug 'alexbyk/vim-ultisnips-js-testing'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'shime/vim-livedown'
+
 " deactivating this plugin because it causes display troubles when using visual mode
 " e.g. lines appear multiple times when the visual selection goes beyond one page
 " Plug 'natebosch/vim-lsc'
-Plug 'jreybert/vimagit'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
 Plug 'junegunn/fzf.vim'
@@ -770,35 +765,53 @@ let g:vim_textobj_parameter_mapping = 'a'
 " thanks to https://bluz71.github.io/2019/10/16/lsp-in-vim-with-the-lsc-plugin.html
 " Mandatory dependencies can be installed with:
 " npm i -g typescript typescript-language-server
-let g:lsc_server_commands = {
- \  'javascript': {
- \    'command': 'typescript-language-server --stdio',
- \    'log_level': -1,
- \    'suppress_stderr': v:true,
- \  },
- \  'typescript': {
- \    'command': 'typescript-language-server --stdio',
- \    'log_level': -1,
- \    'suppress_stderr': v:true,
- \  },
- \  'typescriptreact': {
- \    'command': 'typescript-language-server --stdio',
- \    'log_level': -1,
- \    'suppress_stderr': v:true,
- \  }
- \}
-let g:lsc_auto_map = {
- \  'GoToDefinition': 'gd',
- \  'FindReferences': 'gr',
- \  'FindImplementations': 'gI',
- \  'Rename': 'gR',
- \  'ShowHover': 'K',
- \  'Completion': 'omnifunc',
- \}
-let g:lsc_enable_autocomplete = v:false
-let g:lsc_enable_diagnostics = v:false
-let g:lsc_reference_highlights = v:false
-let g:lsc_trace_level = 'off'
+" let g:lsc_server_commands = {
+ " \  'javascript': {
+ " \    'command': 'typescript-language-server --stdio',
+ " \    'log_level': -1,
+ " \    'suppress_stderr': v:true,
+ " \  },
+ " \  'typescript': {
+ " \    'command': 'typescript-language-server --stdio',
+ " \    'log_level': -1,
+ " \    'suppress_stderr': v:true,
+ " \  },
+ " \  'typescriptreact': {
+ " \    'command': 'typescript-language-server --stdio',
+ " \    'log_level': -1,
+ " \    'suppress_stderr': v:true,
+ " \  }
+ " \}
+" let g:lsc_auto_map = {
+ " \  'GoToDefinition': 'gd',
+ " \  'FindReferences': 'gr',
+ " \  'FindImplementations': 'gI',
+ " \  'Rename': 'gR',
+ " \  'ShowHover': 'K',
+ " \  'Completion': 'omnifunc',
+ " \}
+" let g:lsc_enable_autocomplete = v:false
+" let g:lsc_enable_diagnostics = v:false
+" let g:lsc_reference_highlights = v:false
+" let g:lsc_trace_level = 'off'
+
+" coc
+" GoTo code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
 
 " fzf
 nnoremap <silent> <Leader>ff :GFiles<CR>
@@ -838,9 +851,6 @@ augroup mygroup
   autocmd TabLeave * let g:last_active_tab = tabpagenr()
   autocmd Filetype qf setlocal nowrap
   autocmd BufRead COMMIT_EDITMSG call utils#prepageCommitMessage()
-
-  " rainbow_parentheses
-  autocmd VimEnter * RainbowParentheses
 
   " Remaps the enter key for the qf and cmd windows
   " because I remap enter to ==
